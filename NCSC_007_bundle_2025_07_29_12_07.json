@@ -1,0 +1,665 @@
+{
+    "type": "bundle",
+    "id": "bundle--ec57aecf-0b4f-429a-b59d-3f5abb0b5e94",
+    "objects": [
+        {
+            "type": "malware",
+            "id": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "name": "COLDSTEEL",
+            "description": "COLDSTEEL is a fully featured Windows remote access tool (RAT) providing interactive desktop and command-line invocation, file copy, screenshot capture, and user input simulation. It persists as a Windows service and communicates with its C2 server using a raw TCP connection, often using obfuscation. Multiple variants exist, including MileStone2016, MileStone2017, and FBI20111024.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": "true",
+            "labels": [
+                "rat",
+                "windows",
+                "remote-access-trojan",
+                "backdoor",
+                "obfuscation",
+                "persistence",
+                "c2"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "Ahnlab",
+                    "url": "https://www.ahnlab.com/kr/site/securityinfo/secunews/secuNewsView.do?menu_dist=2&seq=29904&_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en-US&_x_tr_pto=wapp"
+                },
+                {
+                    "source_name": "Fortinet",
+                    "url": "https://www.fortinet.com/blog/threat-research/deep-panda-log4shell-fire-chili-rootkits"
+                }
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "name": "COLDSTEEL MileStone2017",
+            "description": "MileStone2017 is a variant of COLDSTEEL that supports Windows 10, typically protected with Themida, and uses unique IDs in network communication. It communicates over raw TCP, supports interactive desktop and command-line access, and persists as a Windows service named msupdate or msupdate2.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": "false",
+            "labels": [
+                "rat",
+                "windows",
+                "obfuscation",
+                "persistence",
+                "c2",
+                "themida"
+            ],
+            "created": "2017-07-05T13:09:02Z",
+            "modified": "2023-01-31T00:00:00Z",
+            "sample_refs": [
+                "file--968d26244b3243a25c66170900b815123469822385cab610267c3a65e755d1ba",
+                "file--e92d4e58dfae7c1aadeef42056d5e2e5002814ee3b9b5ab1a48229bf00f3ade6",
+                "file--7ce2909bf205c1a574ac3dcac5891e31aa59dd4cad6c41d7159ad017c837903c"
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--dfca33eb-b7f2-4821-88c7-9d4e37bb3b50",
+            "name": "COLDSTEEL MileStone2016",
+            "description": "MileStone2016 is a variant of COLDSTEEL, lacking Windows 10 support and typically not protected with Themida. It features custom communication obfuscation, uses service name msupdate, and can create a temporary user account named ANONYMOUS for privilege escalation and persistence.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": "false",
+            "labels": [
+                "rat",
+                "windows",
+                "obfuscation",
+                "persistence",
+                "custom-protocol"
+            ],
+            "created": "2016-07-16T07:34:43Z",
+            "modified": "2023-01-31T00:00:00Z",
+            "sample_refs": [
+                "file--a9fa8e8609872cdcea241e3aab726b02b124c82de4c77ad3c3722d7c6b93b9b5",
+                "file--14930488158df5fca4cba80b1089f41dc296e19bebf41e2ff6e5b32770ac0f1e"
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--303cd892-4841-4f14-8531-453e52b97e16",
+            "name": "COLDSTEEL FBI20111024",
+            "description": "FBI20111024 is a variant of COLDSTEEL with unique command set and process enumeration. It creates a temporary user account _DomainUser_ for privilege escalation and cleanup, and lacks Windows 10 support.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": "false",
+            "labels": [
+                "rat",
+                "windows",
+                "process-enumeration",
+                "persistence"
+            ],
+            "created": "2011-05-04T10:48:19Z",
+            "modified": "2023-01-31T00:00:00Z",
+            "sample_refs": [
+                "file--50838e12e58a2d96b1a2ebdb53a25151cc22cbd458dba49fcb355ccfc82e0e63"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--9c189444-d55a-409c-a1a1-81814839dee1",
+            "name": "COLDSTEEL DLL File Location",
+            "description": "COLDSTEEL malicious DLL observed at C:\\Users\\<user>\\AppData\\Roaming\\newdev.dll",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:path = 'C:\\\\Users\\\\*\\\\AppData\\\\Roaming\\\\newdev.dll']",
+            "valid_from": "2023-01-31T00:00:00Z",
+            "labels": [
+                "persistence",
+                "malware"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--ebd1c555-bfff-4c3d-b332-f6014fbe6f65",
+            "name": "COLDSTEEL C2 Infrastructure",
+            "description": "Observed C2 IPs and ports used by COLDSTEEL RAT.",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ipv4-addr:value = '192.95.36.61' OR ipv4-addr:value = '103.224.80.76' OR ipv4-addr:value = '138.128.98.106' OR ipv4-addr:value = '1.9.5.38']",
+            "valid_from": "2023-01-31T00:00:00Z",
+            "labels": [
+                "c2",
+                "malware"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--98dc9646-dbec-4907-87a1-ef13941a730a",
+            "name": "COLDSTEEL Persistence Windows Service",
+            "description": "Windows services used by COLDSTEEL for persistence: msupdate, msupdate2",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[windows-service:name = 'msupdate' OR windows-service:name = 'msupdate2']",
+            "valid_from": "2023-01-31T00:00:00Z",
+            "labels": [
+                "persistence",
+                "malware"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--f2865588-a6e9-4a3d-8595-1c4fbb14e6d5",
+            "name": "Command and Scripting Interpreter: Windows Command Shell",
+            "description": "COLDSTEEL can run arbitrary commands using cmd.exe. T1059.003",
+            "aliases": [
+                "T1059.003"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--5d6d6be9-6b19-4c33-9a7c-c36b0ab07027",
+            "name": "System Services: Service Execution",
+            "description": "COLDSTEEL executes malicious code as a Windows service. T1569.002",
+            "aliases": [
+                "T1569.002"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--76ea795b-83eb-4381-ba85-79a3d0ea03bc",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "COLDSTEEL creates an autostart service to persist after a system reboot. T1543.003",
+            "aliases": [
+                "T1543.003"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--651a0666-1129-4c07-8510-c4ac045c9537",
+            "name": "Exploit Public-Facing Application",
+            "description": "COLDSTEEL is believed to have been deployed following exploitation of Log4j. T1190",
+            "aliases": [
+                "T1190"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--450ccae1-939f-4d79-8db1-7818daf9bb00",
+            "name": "Obfuscated Files or Information: Software Packing",
+            "description": "MileStone2017 variants of COLDSTEEL have been observed to be packed using Themida. T1027.002",
+            "aliases": [
+                "T1027.002"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--9bcdb1e1-cb34-4a4c-8d1e-8f66f902fb3c",
+            "name": "Modify Registry",
+            "description": "COLDSTEEL modifies registry keys to add a description to its service. T1112",
+            "aliases": [
+                "T1112"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--a982a1ca-b1cb-4085-b735-43def969fdb1",
+            "name": "Indicator Removal: File Deletion",
+            "description": "COLDSTEEL has the ability to delete files from the infected machine. T1070.004",
+            "aliases": [
+                "T1070.004"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--42ef56dc-0fef-4033-aca5-0473d6f79c5d",
+            "name": "Access Token Manipulation: Create Process with Token",
+            "description": "The MileStone2016 variant of COLDSTEEL can create a process as the user named ANONYMOUS. T1134.002",
+            "aliases": [
+                "T1134.002"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--c243e16d-f955-4ad5-879e-2ac285229c21",
+            "name": "System Information Discovery",
+            "description": "COLDSTEEL collects a range of system information from the infected machine. T1082",
+            "aliases": [
+                "T1082"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2ea22e0f-3101-4b7b-9882-c47f2572535b",
+            "name": "File and Directory Discovery",
+            "description": "COLDSTEEL has commands to enumerate the filesystem. T1083",
+            "aliases": [
+                "T1083"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--bbf8d1b9-40c3-4204-95e2-89e9bb5ab1c9",
+            "name": "Process Discovery",
+            "description": "FBI20111024 variants of COLDSTEEL can collect process information. T1057",
+            "aliases": [
+                "T1057"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--7977efeb-436f-4847-8d6a-1867a88685f9",
+            "name": "Non-Application Layer Protocol",
+            "description": "COLDSTEEL communicates over TCP sockets using a custom message format. T1095",
+            "aliases": [
+                "T1095"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "tool",
+            "id": "tool--c2391d4a-7a5a-4713-b24b-6f4c3b7d189c",
+            "name": "Themida",
+            "description": "Themida is a software packer designed to frustrate reverse engineering and scanning. COLDSTEEL variants have been observed using Themida for defense evasion.",
+            "tool_types": [
+                "packer"
+            ],
+            "labels": [
+                "software-packing",
+                "defense-evasion",
+                "obfuscation"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "Oreans",
+                    "url": "https://www.oreans.com/Themida.php"
+                }
+            ]
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--d2de7b40-1cea-4af2-9703-8bbc639191da",
+            "name": "COLDSTEEL C2 Servers",
+            "description": "Infrastructure used by COLDSTEEL for command and control, observed at multiple IPs and ports including 192.95.36.61:443, 103.224.80.76, 138.128.98.106:8443, and 1.9.5.38:443.",
+            "infrastructure_types": [
+                "command-and-control"
+            ],
+            "labels": [
+                "c2",
+                "malware-infrastructure"
+            ],
+            "created": "2023-01-31T00:00:00Z",
+            "modified": "2023-01-31T00:00:00Z"
+        },
+        {
+            "type": "file",
+            "id": "file--4b7d0583-1c3f-4abe-b974-3f9f224aea52",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "8f57ce99d53addabec1d964cd34c96f4",
+                "SHA-1": "b4a9ab6e040c88630ea46a2ae4ff41a558366122",
+                "SHA-256": "e92d4e58dfae7c1aadeef42056d5e2e5002814ee3b9b5ab1a48229bf00f3ade6"
+            },
+            "size": 24064
+        },
+        {
+            "type": "file",
+            "id": "file--69b4ab5d-aab2-41b2-80e9-2410925fa0b0",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "ca1575ce6131735f7e8e1309b657a626",
+                "SHA-1": "54153b749c06dbf2d7d2eaea2bbebf00f6d0b54b",
+                "SHA-256": "968d26244b3243a25c66170900b815123469822385cab610267c3a65e755d1ba"
+            },
+            "size": 2558703
+        },
+        {
+            "type": "file",
+            "id": "file--a748c114-f824-4aee-badf-a05656dc5998",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "53fa0c94678fabf711802009452b521b",
+                "SHA-1": "9ec69a042106fc9d27a27197d3b680b468bca9a0",
+                "SHA-256": "7ce2909bf205c1a574ac3dcac5891e31aa59dd4cad6c41d7159ad017c837903c"
+            },
+            "size": 2411520
+        },
+        {
+            "type": "file",
+            "id": "file--8464362c-c708-46da-8334-909088f03fa2",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "bb40bbbd3b69e0eb802c42d2506b6754",
+                "SHA-1": "bf80e329cba134ccd96f9572d2c0bf250515c26e",
+                "SHA-256": "a9fa8e8609872cdcea241e3aab726b02b124c82de4c77ad3c3722d7c6b93b9b5"
+            },
+            "size": 26624
+        },
+        {
+            "type": "file",
+            "id": "file--2bdb9c95-0ed0-4b2c-93dc-96148671ae8f",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "c5cf6e70d5a5c489aa1c0326799dbe90",
+                "SHA-1": "a94ed3d673261d62f2959979272d8c8d17e6e7f3",
+                "SHA-256": "14930488158df5fca4cba80b1089f41dc296e19bebf41e2ff6e5b32770ac0f1e"
+            },
+            "size": 26576
+        },
+        {
+            "type": "file",
+            "id": "file--af12b352-ab0f-4d3b-9873-13d15ff6edf8",
+            "name": "newdev.dll",
+            "hashes": {
+                "MD5": "25d2eeb36e729679e5e6c647a306850f",
+                "SHA-1": "3c365d907dc9f06d19dd192e92ebeeefb8e8c964",
+                "SHA-256": "50838e12e58a2d96b1a2ebdb53a25151cc22cbd458dba49fcb355ccfc82e0e63"
+            },
+            "size": 66392
+        },
+        {
+            "type": "directory",
+            "id": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8",
+            "path": "C:\\Users\\<user>\\AppData\\Roaming"
+        },
+        {
+            "type": "file",
+            "id": "file--9038f24e-e9c6-4053-86d4-62b3f00fed73",
+            "name": "newdev.dll",
+            "parent_directory_ref": "directory--4f7a0e5e-5fd1-4b3a-bb98-3d7d0c8e9d0e"
+        },
+        {
+            "type": "file",
+            "id": "file--77325851-31eb-4c5d-960a-0c4ffd5ba220",
+            "name": "download.txt",
+            "parent_directory_ref": "directory--dcb1c8e7-0739-41e1-9de8-3c9b91ab17d3"
+        },
+        {
+            "type": "directory",
+            "id": "directory--1c8c8d9b-ab61-49f4-afe1-9a152a28c70d",
+            "path": "C:\\Users\\user\\Desktop"
+        },
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--6c9b9dfe-fe32-46a6-9bd1-94c478fec109",
+            "value": "192.95.36.61"
+        },
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--7205e3c0-7a56-473c-8437-0dd90f66ebb6",
+            "value": "103.224.80.76"
+        },
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--3e7c0ff5-ce9f-448a-9c60-e7856a3b92cf",
+            "value": "138.128.98.106"
+        },
+        {
+            "type": "ipv4-addr",
+            "id": "ipv4-addr--1acef9b8-1b0f-4425-b6d4-d39546330447",
+            "value": "1.9.5.38"
+        },
+        {
+            "type": "user-account",
+            "id": "user-account--ac046a94-bec9-4073-94bc-e021a452f49a",
+            "account_login": "ANONYMOUS"
+        },
+        {
+            "type": "user-account",
+            "id": "user-account--181ab649-295d-4df8-82e4-0eb5aaba87f1",
+            "account_login": "_DomainUser_"
+        },
+        {
+            "type": "windows-service-ext",
+            "id": "windows-service-ext--93920b55-623e-47b3-9a2b-04b77192b724",
+            "service_name": "msupdate"
+        },
+        {
+            "type": "windows-service-ext",
+            "id": "windows-service-ext--ff37c52d-9f83-4a6d-9747-f432f124de86",
+            "service_name": "msupdate2"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--55877a3a-4149-4e16-88dd-2622351c9f0a",
+            "relationship_type": "drops",
+            "source_ref": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "target_ref": "file--4b7d0583-1c3f-4abe-b974-3f9f224aea52"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--c8627f51-707c-468f-b63e-68750f4e494f",
+            "relationship_type": "drops",
+            "source_ref": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "target_ref": "file--69b4ab5d-aab2-41b2-80e9-2410925fa0b0"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--3d035197-4b74-4bab-85da-83d2c29b8bcd",
+            "relationship_type": "drops",
+            "source_ref": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "target_ref": "file--a748c114-f824-4aee-badf-a05656dc5998"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--55e85a77-2df9-40bd-b088-4fd5e914e2ee",
+            "relationship_type": "drops",
+            "source_ref": "malware--dfca33eb-b7f2-4821-88c7-9d4e37bb3b50",
+            "target_ref": "file--8464362c-c708-46da-8334-909088f03fa2"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8063b6d9-5b47-41d8-87e1-a97655bbfc2f",
+            "relationship_type": "drops",
+            "source_ref": "malware--dfca33eb-b7f2-4821-88c7-9d4e37bb3b50",
+            "target_ref": "file--2bdb9c95-0ed0-4b2c-93dc-96148671ae8f"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--9183232a-1d6b-4cca-be85-5c9f8ea23dbe",
+            "relationship_type": "drops",
+            "source_ref": "malware--303cd892-4841-4f14-8531-453e52b97e16",
+            "target_ref": "file--af12b352-ab0f-4d3b-9873-13d15ff6edf8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--e716d746-2288-467d-96e9-3e2c63682426",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--4b7d0583-1c3f-4abe-b974-3f9f224aea52"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--76dbbd64-d6ef-492d-8f25-cbf52be61379",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--69b4ab5d-aab2-41b2-80e9-2410925fa0b0"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7bd3a18e-e82b-429b-a7b0-6ee47af67e3e",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--a748c114-f824-4aee-badf-a05656dc5998"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--3f7d5902-9dbd-462b-a730-e872183966cb",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--8464362c-c708-46da-8334-909088f03fa2"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7104478b-7bc6-4c3f-bf01-000123109d6f",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--2bdb9c95-0ed0-4b2c-93dc-96148671ae8f"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--c696d1a2-399f-4c52-b386-ab688f413469",
+            "relationship_type": "uses",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--af12b352-ab0f-4d3b-9873-13d15ff6edf8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--78d0c21f-4c10-4985-a4f1-1d99285ff36e",
+            "relationship_type": "uses",
+            "source_ref": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "target_ref": "windows-service-ext--93920b55-623e-47b3-9a2b-04b77192b724"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--dc78db85-3df0-415c-b281-37b1241a8a93",
+            "relationship_type": "uses",
+            "source_ref": "malware--c5ba2e87-7107-480b-b267-3140201392f2",
+            "target_ref": "windows-service-ext--ff37c52d-9f83-4a6d-9747-f432f124de86"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--bc56a9bc-7ff1-4ea1-b0e2-65c738405541",
+            "relationship_type": "uses",
+            "source_ref": "malware--dfca33eb-b7f2-4821-88c7-9d4e37bb3b50",
+            "target_ref": "windows-service-ext--93920b55-623e-47b3-9a2b-04b77192b724"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--0ac1bb21-2fc1-447d-ba8e-bb0682a9f4d6",
+            "relationship_type": "uses",
+            "source_ref": "malware--dfca33eb-b7f2-4821-88c7-9d4e37bb3b50",
+            "target_ref": "user-account--ac046a94-bec9-4073-94bc-e021a452f49a"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--b9332de5-597e-4eb9-ac24-fbfa2c7fadba",
+            "relationship_type": "uses",
+            "source_ref": "malware--303cd892-4841-4f14-8531-453e52b97e16",
+            "target_ref": "user-account--181ab649-295d-4df8-82e4-0eb5aaba87f1"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--07835d54-3f18-468c-9d98-4934ff0bbc22",
+            "relationship_type": "communicates-with",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "ipv4-addr--6c9b9dfe-fe32-46a6-9bd1-94c478fec109"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--4c60e0c4-7b4a-4d6e-98c8-ab9482e0fcac",
+            "relationship_type": "communicates-with",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "ipv4-addr--7205e3c0-7a56-473c-8437-0dd90f66ebb6"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--d9fe7c0f-35ac-4990-834f-83b33ac7f20f",
+            "relationship_type": "communicates-with",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "ipv4-addr--3e7c0ff5-ce9f-448a-9c60-e7856a3b92cf"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7b9c4800-f8b7-4409-95f5-6ae03c20cd64",
+            "relationship_type": "communicates-with",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "ipv4-addr--1acef9b8-1b0f-4425-b6d4-d39546330447"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--9e96f91f-7312-449a-b820-90cf2063ec5d",
+            "relationship_type": "located-at",
+            "source_ref": "file--4b7d0583-1c3f-4abe-b974-3f9f224aea52",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--97aa367d-a8a5-41ec-ad96-fa655f045c35",
+            "relationship_type": "located-at",
+            "source_ref": "file--69b4ab5d-aab2-41b2-80e9-2410925fa0b0",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--05e88804-85d1-4dfb-a4c6-0522e3c76716",
+            "relationship_type": "located-at",
+            "source_ref": "file--a748c114-f824-4aee-badf-a05656dc5998",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--e8d8c96b-b4cc-490e-b195-ef6b8d713556",
+            "relationship_type": "located-at",
+            "source_ref": "file--8464362c-c708-46da-8334-909088f03fa2",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--90b2b6a1-c438-4cad-b8dd-28b582b90165",
+            "relationship_type": "located-at",
+            "source_ref": "file--2bdb9c95-0ed0-4b2c-93dc-96148671ae8f",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7e96ba8a-247a-4764-afdf-84dccb84f19c",
+            "relationship_type": "located-at",
+            "source_ref": "file--af12b352-ab0f-4d3b-9873-13d15ff6edf8",
+            "target_ref": "directory--3176626a-a615-4a85-b177-d8f3ff91ccb8"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--a9d78572-4f5b-4a96-8fe4-41aa678958e0",
+            "relationship_type": "drops",
+            "source_ref": "malware--3bff34a3-c501-4b96-ab20-29f38bb918ed",
+            "target_ref": "file--9038f24e-e9c6-4053-86d4-62b3f00fed73"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--73af1c91-6290-4be1-ba22-1abec0c70bab",
+            "relationship_type": "located-at",
+            "source_ref": "file--9038f24e-e9c6-4053-86d4-62b3f00fed73",
+            "target_ref": "directory--4f7a0e5e-5fd1-4b3a-bb98-3d7d0c8e9d0e"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--80613985-949d-400f-93e5-2d21571288bd",
+            "relationship_type": "located-at",
+            "source_ref": "file--77325851-31eb-4c5d-960a-0c4ffd5ba220",
+            "target_ref": "directory--dcb1c8e7-0739-41e1-9de8-3c9b91ab17d3"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--d967b3c3-883f-4727-b1b6-c77eacd08e96",
+            "relationship_type": "located-at",
+            "source_ref": "directory--dcb1c8e7-0739-41e1-9de8-3c9b91ab17d3",
+            "target_ref": "directory--1c8c8d9b-ab61-49f4-afe1-9a152a28c70d"
+        }
+    ]
+}
