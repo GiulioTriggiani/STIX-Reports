@@ -1,0 +1,1075 @@
+{
+    "type": "bundle",
+    "id": "bundle--eb0157d2-b624-4794-8fa2-21a8730fba69",
+    "objects": [
+        {
+            "type": "malware",
+            "id": "malware--8060435a-3ba3-4664-94ce-81fb07a8e993",
+            "name": "Smooth Operator",
+            "description": "Smooth Operator is a macOS malware distributed as part of the 3CX supply chain attack, using a custom data encoding algorithm over HTTPS to exfiltrate victim data. It is delivered via a trojanised, signed, and notarized 3CX software package, persisting as part of libffmpeg.dylib, and downloads a second-stage payload (UpdateAgent) for further functionality.",
+            "malware_types": [
+                "remote-access-trojan",
+                "trojan",
+                "backdoor"
+            ],
+            "labels": [
+                "macos",
+                "supply-chain",
+                "trojan",
+                "backdoor",
+                "data-exfiltration",
+                "c2-obfuscation"
+            ],
+            "is_family": "true",
+            "operating_system_refs": [],
+            "first_seen": "2023-03-01T00:00:00Z",
+            "last_seen": "2023-06-29T00:00:00Z",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "architecture_execution_envs": [
+                "x86-64"
+            ],
+            "implementation_languages": [
+                "Objective-C"
+            ],
+            "external_references": [
+                {
+                    "source_name": "NCSC",
+                    "url": "https://www.ncsc.gov.uk/news/3cx-desktopapp-security-issue"
+                },
+                {
+                    "source_name": "3CX",
+                    "url": "https://www.3cx.com/blog/news/desktopapp-security-alert/"
+                }
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--f458c59e-8259-488b-b10c-b70160c4981d",
+            "name": "UpdateAgent",
+            "description": "UpdateAgent is the second-stage payload of Smooth Operator. It exfiltrates 3CX victim data, runs on Intel x86_64 macOS, and deletes itself from disk after execution. It parses domain and account name values from the 3CX config.json file and exfiltrates them over HTTPS.",
+            "malware_types": [
+                "data-exfiltration",
+                "dropper"
+            ],
+            "labels": [
+                "macos",
+                "exfiltration",
+                "second-stage",
+                "intel-x86_64"
+            ],
+            "is_family": "false",
+            "operating_system_refs": [],
+            "first_seen": "2023-03-01T00:00:00Z",
+            "last_seen": "2023-06-29T00:00:00Z",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "architecture_execution_envs": [
+                "x86-64"
+            ],
+            "implementation_languages": [],
+            "external_references": []
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--a16f95ab-7b88-4c2e-a021-e63906c01d14",
+            "name": "Supply Chain Compromise: Compromise Software Dependencies and Development Tools",
+            "description": "Smooth Operator is distributed via legitimate channels as trojanised, signed, and notarized 3CX software, compromising client software binaries.",
+            "aliases": [],
+            "labels": [
+                "supply-chain",
+                "initial-access"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1195.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--92cc01df-bac9-4a71-9f31-2e605dd17f34",
+            "name": "Compromise Client Software Binary",
+            "description": "Smooth Operator runs as part of the 3CX software by compromising the libffmpeg.dylib binary.",
+            "labels": [
+                "persistence"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1554"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--4a3c1b81-5576-4da6-9721-1dd5248bbdf1",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "Smooth Operator uses a custom algorithm to obfuscate data exfiltrated over the C2 channel and deobfuscates data it writes to disk.",
+            "labels": [
+                "defense-evasion"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--876b8fd4-fddc-4dae-bd22-d4549478cc32",
+            "name": "Indicator Removal: File Deletion",
+            "description": "UpdateAgent, the second-stage payload, deletes itself from disk immediately on execution.",
+            "labels": [
+                "defense-evasion"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--5d5e8c3a-d9bf-4e4b-aafc-8d1cb68feb49",
+            "name": "Virtualization/Sandbox Evasion: Time Based Evasion",
+            "description": "Smooth Operator sleeps for between 7 and 20 days before beaconing, evading detection by sandboxes.",
+            "labels": [
+                "defense-evasion"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1497.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--41b16e37-f2a9-41f7-acf0-2b67b1bada65",
+            "name": "Automated Collection",
+            "description": "Smooth Operator stages collect data from the victim machine to be included in a beacon or exfiltration.",
+            "labels": [
+                "collection"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1119"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--3a93d9d0-c272-43b7-ae34-c9c0842fa5b0",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "Smooth Operator command and control is over HTTPS.",
+            "labels": [
+                "command-and-control"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--36a64fce-1c35-42c9-bfad-674b7f70b3d4",
+            "name": "Fallback Channels",
+            "description": "Smooth Operator contains multiple C2 servers and randomly chooses a new server from the list for each beacon, falling back to the 3CX website if multiple errors occur.",
+            "labels": [
+                "command-and-control"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1008"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--097a200c-9191-4626-a014-14722fea6f2b",
+            "name": "Automated Exfiltration",
+            "description": "Smooth Operator exfiltrates automatically collected data not over the existing C2 channel, but via a dedicated exfiltration URL.",
+            "labels": [
+                "exfiltration"
+            ],
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1020"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--89c94d5b-eb2d-4eb3-b75c-a77b560c5877",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'MD5' = 'd5101c3b86d973a848ab7ed79cd11e5a']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dmg"
+            ],
+            "description": "Malicious 3CX DMG, trojanised, signed and notarized 3CX software package containing the malicious copy of libffmpeg.dylib."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--48f796b4-fec7-47c4-8d34-f512807dd9cd",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-1' = '3dc840d32ce86cebf657b17cef62814646ba8e98']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dmg"
+            ],
+            "description": "Malicious 3CX DMG SHA-1."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--e80c3e47-38a6-4de5-a3a3-36d232129de8",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-256' = 'e6bbc33815b9f20b0cf832d7401dd893fbc467c800728b5891336706da0dbcec']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dmg"
+            ],
+            "description": "Malicious 3CX DMG SHA-256."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--08be15f3-87f9-46a0-9c69-3268e35a9b32",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'MD5' = '660ea9b8205fbd2da59fefd26ae5115c']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dylib"
+            ],
+            "description": "Malicious libffmpeg.dylib MD5."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--badea28b-6f48-4529-9e25-a87ec740cfd4",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-1' = '769383fc65d1386dd141c960c9970114547da0c2']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dylib"
+            ],
+            "description": "Malicious libffmpeg.dylib SHA-1."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--ed718fb1-198a-4973-bca6-c4e01987bac3",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-256' = 'a64fa9f1c76457ecc58402142a8728ce34ccba378c17318b3340083eeb7acc67']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "3cx",
+                "dylib"
+            ],
+            "description": "Malicious libffmpeg.dylib SHA-256."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--71c6f135-c0e6-4286-af6a-029bdc785e7f",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'MD5' = '5faf36ca90f6406a78124f538a03387a']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "updateagent",
+                "second-stage"
+            ],
+            "description": "UpdateAgent second-stage payload MD5."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--2d34242c-6ca4-464b-a076-883a3f96c7f9",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-1' = '9e9a5f8d86356796162cee881c843cde9eaedfb3']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "updateagent",
+                "second-stage"
+            ],
+            "description": "UpdateAgent second-stage payload SHA-1."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--f6a1636e-9901-4770-a774-22c7918e66ac",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[file:hashes.'SHA-256' = '6c121f2b2efa6592c2c22b29218157ec9e63f385e7a1d7425857d603ddef8c59']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "malicious",
+                "updateagent",
+                "second-stage"
+            ],
+            "description": "UpdateAgent second-stage payload SHA-256."
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--75ff6bdd-4216-434c-80ba-8a87729673e0",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://msstorageazure.com/analysis']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--2f201fa2-bdab-408b-998f-45999567c68f",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://officestoragebox.com/api/biosync']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--72cd8f46-a6a0-47fb-bfdf-42775d16bec7",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://visualstudiofactory.com/groupcore']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--d8405b28-af26-4e9a-b019-239ba5b607ea",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://azuredeploystore.com/cloud/images']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--16593788-0ed8-4796-aa49-661200adef9c",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://msstorageboxes.com/xbox']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--cf22e7ec-960b-4d7b-ad1f-ab222ad7dbbc",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://officeaddons.com/quality']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--7c938090-b05d-415c-8dd3-93375a68a6a3",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://sourceslabs.com/status']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--e97a55b4-e13e-49d1-af12-c08354538f11",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://zacharryblogs.com/xmlquery']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--bdee4530-8484-4a1f-9f88-69412ae67836",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://pbxcloudeservices.com/network']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--287de55d-1f42-409b-9b62-d1a830314a20",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://pbxphonenetwork.com/phone']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--8b5eeb64-8ea3-4b86-b99d-8b340d9b4f84",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://akamaitechcloudservices.com/v2/fileapi']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--97633d83-6227-4ae1-a967-d321d37a245e",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://azureonlinestorage.com/google/storage']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--74929cb5-43e5-438a-9b5e-5835f5d6afd3",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://msedgepackageinfo.com/ms-webview']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--713abc02-d7ca-40b6-9770-ec1df179f1d7",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://glcloudservice.com/v1/status']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--c95a9153-f8c7-4558-be22-6f01a6b5858c",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://pbxsources.com/queue']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "c2",
+                "malicious"
+            ],
+            "description": "Smooth Operator C2 URL"
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--e18f5542-91b5-4b68-8007-1c7dc2f27f8e",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[url:value = 'https://sbmsa.wiki/blog/_insert']",
+            "valid_from": "2023-06-29T00:00:00Z",
+            "labels": [
+                "exfiltration",
+                "malicious"
+            ],
+            "description": "Smooth Operator exfiltration URL"
+        },
+        {
+            "type": "infrastructure",
+            "id": "infrastructure--61d4ce0d-6ee1-4ce8-aabb-acb006e087c1",
+            "name": "Smooth Operator C2 Infrastructure",
+            "description": "Command and control infrastructure for Smooth Operator, including multiple domains and URLs for beaconing and fallback.",
+            "infrastructure_types": [
+                "command-and-control"
+            ],
+            "labels": [
+                "c2",
+                "malicious",
+                "multi-domain",
+                "randomization"
+            ],
+            "first_seen": "2023-03-01T00:00:00Z",
+            "last_seen": "2023-06-29T00:00:00Z",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z",
+            "external_references": []
+        },
+        {
+            "type": "file",
+            "id": "file--97607e33-4073-43a7-9f05-a2ffc196a512",
+            "name": "3CXDesktopApp-18.12.416.dmg",
+            "hashes": {
+                "MD5": "d5101c3b86d973a848ab7ed79cd11e5a",
+                "SHA-1": "3dc840d32ce86cebf657b17cef62814646ba8e98",
+                "SHA-256": "e6bbc33815b9f20b0cf832d7401dd893fbc467c800728b5891336706da0dbcec"
+            },
+            "size": 172150545
+        },
+        {
+            "type": "file",
+            "id": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "name": "libffmpeg.dylib",
+            "hashes": {
+                "MD5": "660ea9b8205fbd2da59fefd26ae5115c",
+                "SHA-1": "769383fc65d1386dd141c960c9970114547da0c2",
+                "SHA-256": "a64fa9f1c76457ecc58402142a8728ce34ccba378c17318b3340083eeb7acc67"
+            },
+            "size": 4979136
+        },
+        {
+            "type": "file",
+            "id": "file--1520e531-bea3-4652-8200-305c54d0ffce",
+            "name": "UpdateAgent",
+            "hashes": {
+                "MD5": "5faf36ca90f6406a78124f538a03387a",
+                "SHA-1": "9e9a5f8d86356796162cee881c843cde9eaedfb3",
+                "SHA-256": "6c121f2b2efa6592c2c22b29218157ec9e63f385e7a1d7425857d603ddef8c59"
+            },
+            "size": 43139
+        },
+        {
+            "type": "directory",
+            "id": "directory--15bac272-8605-49c7-b343-34616852f24c",
+            "path": "$HOME/Library/Application Support/3CX Desktop App/"
+        },
+        {
+            "type": "file",
+            "id": "file--83321c95-aeb2-4997-886f-743a907a3624",
+            "name": ".main_storage",
+            "parent_directory_ref": "directory--c6b0d053-cd4c-4e0b-9d0d-3e2d8b6d3f8c"
+        },
+        {
+            "type": "file",
+            "id": "file--848680d7-f821-415a-83d1-77bc1afe2895",
+            "name": ".session-lock",
+            "parent_directory_ref": "directory--c6b0d053-cd4c-4e0b-9d0d-3e2d8b6d3f8c"
+        },
+        {
+            "type": "file",
+            "id": "file--32eb88e4-3226-408a-89a3-633437ed42d3",
+            "name": "config.json",
+            "parent_directory_ref": "directory--c6b0d053-cd4c-4e0b-9d0d-3e2d8b6d3f8c"
+        },
+        {
+            "type": "file",
+            "id": "file--f3118d47-2496-4ec9-b341-4f91b63a14b8",
+            "name": "SystemVersion.plist",
+            "parent_directory_ref": "directory--b58d7f3d-e5d3-48f2-bd1d-9edc67c8b55c"
+        },
+        {
+            "type": "directory",
+            "id": "directory--d6c62363-b070-4dc9-b153-ae6114035cc3",
+            "path": "/System/Library/CoreServices/"
+        },
+        {
+            "type": "url",
+            "id": "url--da10d2cd-ace7-481f-b7ae-b86fd2187618",
+            "value": "https://msstorageazure.com/analysis"
+        },
+        {
+            "type": "url",
+            "id": "url--aacb15a3-c78d-4c5c-b053-fb7d7bee2e0b",
+            "value": "https://officestoragebox.com/api/biosync"
+        },
+        {
+            "type": "url",
+            "id": "url--845be2a8-06da-4261-95cc-3eba124015e9",
+            "value": "https://visualstudiofactory.com/groupcore"
+        },
+        {
+            "type": "url",
+            "id": "url--ae8ce006-d7f1-4818-b11a-08a391b2d948",
+            "value": "https://azuredeploystore.com/cloud/images"
+        },
+        {
+            "type": "url",
+            "id": "url--4042944b-a667-41e6-af58-31b84a81a8e3",
+            "value": "https://msstorageboxes.com/xbox"
+        },
+        {
+            "type": "url",
+            "id": "url--d6a90c28-f72d-4f45-a7ff-b5e2b2dbd2f8",
+            "value": "https://officeaddons.com/quality"
+        },
+        {
+            "type": "url",
+            "id": "url--23c202b8-659b-41be-808d-51b668f2cccc",
+            "value": "https://sourceslabs.com/status"
+        },
+        {
+            "type": "url",
+            "id": "url--fa09cdba-92d6-4743-b8ec-2029a614731b",
+            "value": "https://zacharryblogs.com/xmlquery"
+        },
+        {
+            "type": "url",
+            "id": "url--f2777226-add5-4aa4-8964-3e903056a04f",
+            "value": "https://pbxcloudeservices.com/network"
+        },
+        {
+            "type": "url",
+            "id": "url--eca96c99-bf47-4583-bedb-ea5301d4f9ac",
+            "value": "https://pbxphonenetwork.com/phone"
+        },
+        {
+            "type": "url",
+            "id": "url--8f7ab881-6683-41e4-a73c-64ec8e561a10",
+            "value": "https://akamaitechcloudservices.com/v2/fileapi"
+        },
+        {
+            "type": "url",
+            "id": "url--424e8ca2-e8cc-420e-8d46-e51ca895ca09",
+            "value": "https://azureonlinestorage.com/google/storage"
+        },
+        {
+            "type": "url",
+            "id": "url--dea2f3f3-ed5c-4e97-a574-fe73514b0e42",
+            "value": "https://msedgepackageinfo.com/ms-webview"
+        },
+        {
+            "type": "url",
+            "id": "url--86707d5a-8e92-4b68-b0a9-467a56ed1682",
+            "value": "https://glcloudservice.com/v1/status"
+        },
+        {
+            "type": "url",
+            "id": "url--8b3051a5-85d3-4a0a-ae85-6d7fe7e05c3b",
+            "value": "https://pbxsources.com/queue"
+        },
+        {
+            "type": "url",
+            "id": "url--bf90d6da-5354-4aa5-9487-5b6329ad53d2",
+            "value": "https://www.3cx.com/blog/event-trainings/"
+        },
+        {
+            "type": "url",
+            "id": "url--c7bb40a8-8d11-4bc7-9233-c2d63d486fd5",
+            "value": "https://sbmsa.wiki/blog/_insert"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--4c377c77-7a5b-4404-8629-3f3946bf0aa2",
+            "value": "msstorageazure.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--a94729bf-22ca-4eb8-a808-c08428cd165f",
+            "value": "officestoragebox.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--a3ce3b7a-39ee-4346-a5cb-00f80b232a02",
+            "value": "visualstudiofactory.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--bfce46b2-f013-4662-9854-810bed1dce8e",
+            "value": "azuredeploystore.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--90021acb-a025-46b2-bf7d-6a50bed86d1d",
+            "value": "msstorageboxes.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--7a2bc02e-095a-48ed-bc4d-f882d1404039",
+            "value": "officeaddons.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--011cd631-e7cd-4c23-a63c-dcfb8858fd6e",
+            "value": "sourceslabs.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--2307cd8a-4e50-4aa3-8e86-b9329a3872ff",
+            "value": "zacharryblogs.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--f3074673-4009-4372-a130-f0fe7b1fb82f",
+            "value": "pbxcloudeservices.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--69d344ca-a94b-44f5-922c-6bc156c132a0",
+            "value": "pbxphonenetwork.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--53ef5454-dd90-433f-92bc-6a193bed6ecb",
+            "value": "akamaitechcloudservices.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--26cc68cc-f21b-4228-b367-18519e9f37a5",
+            "value": "azureonlinestorage.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--566edb41-db96-4995-b403-e5f1f203d658",
+            "value": "msedgepackageinfo.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--7f01eeaf-b48b-4661-8af9-15f667582e66",
+            "value": "glcloudservice.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--c0ab46d7-8d73-4bb4-9f81-781847a970a4",
+            "value": "pbxsources.com"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--296efbdc-b6df-4059-9102-ac17f5ce3525",
+            "value": "sbmsa.wiki"
+        },
+        {
+            "type": "domain-name",
+            "id": "domain-name--b2443e90-3726-42bf-899e-650c8f8338e9",
+            "value": "www.3cx.com"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--26b1338e-70e3-417b-ae1a-5b6353454d43",
+            "relationship_type": "drops",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "file--1520e531-bea3-4652-8200-305c54d0ffce",
+            "description": "libffmpeg.dylib (malicious) drops the second-stage UpdateAgent payload.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--e3f8103e-568e-4b87-b2f3-d476c48feb1a",
+            "relationship_type": "contains",
+            "source_ref": "file--97607e33-4073-43a7-9f05-a2ffc196a512",
+            "target_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "description": "3CXDesktopApp-18.12.416.dmg contains the malicious libffmpeg.dylib.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--f5c801c0-3bf7-4700-826e-eba3145985a6",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--da10d2cd-ace7-481f-b7ae-b86fd2187618",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL msstorageazure.com/analysis",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--223298c1-4d51-40ad-a6de-fa2f19a006ef",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--aacb15a3-c78d-4c5c-b053-fb7d7bee2e0b",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL officestoragebox.com/api/biosync",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--af946db8-a874-4bce-814e-74fb77f765b0",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--845be2a8-06da-4261-95cc-3eba124015e9",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL visualstudiofactory.com/groupcore",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--aa4051d3-d391-45f9-abd7-0fbefd58000b",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--ae8ce006-d7f1-4818-b11a-08a391b2d948",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL azuredeploystore.com/cloud/images",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--708f97cb-ea7c-4a4c-93c3-1a2ec5fc60eb",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--4042944b-a667-41e6-af58-31b84a81a8e3",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL msstorageboxes.com/xbox",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--08f54eba-a1bd-44c9-a16e-e95aa85df934",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--d6a90c28-f72d-4f45-a7ff-b5e2b2dbd2f8",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL officeaddons.com/quality",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--81606ae5-0ed8-4448-8a58-fa7ed8f7722b",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--23c202b8-659b-41be-808d-51b668f2cccc",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL sourceslabs.com/status",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7fbc8d1c-2790-4df8-a0be-d413bca9344f",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--fa09cdba-92d6-4743-b8ec-2029a614731b",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL zacharryblogs.com/xmlquery",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8191d5d5-e91b-43cf-b516-582d86e0cf29",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--f2777226-add5-4aa4-8964-3e903056a04f",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL pbxcloudeservices.com/network",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--aac75c8e-6943-4c47-b6f4-1215d7952312",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--eca96c99-bf47-4583-bedb-ea5301d4f9ac",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL pbxphonenetwork.com/phone",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--7027ee54-ff50-47c4-aaa7-c09e22561a98",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--8f7ab881-6683-41e4-a73c-64ec8e561a10",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL akamaitechcloudservices.com/v2/fileapi",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--ac1597c7-772a-4605-99f4-372bbe40ee88",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--424e8ca2-e8cc-420e-8d46-e51ca895ca09",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL azureonlinestorage.com/google/storage",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--6953afd4-d987-4cb0-a032-57f5c7db07e5",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--dea2f3f3-ed5c-4e97-a574-fe73514b0e42",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL msedgepackageinfo.com/ms-webview",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--e6ae9ec8-9035-46a6-abfe-d70c66d08175",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--86707d5a-8e92-4b68-b0a9-467a56ed1682",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL glcloudservice.com/v1/status",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8d429bbe-835e-4fa2-8232-f59e46fb9512",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--8b3051a5-85d3-4a0a-ae85-6d7fe7e05c3b",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with C2 URL pbxsources.com/queue",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--60bba4a7-8ca8-415f-beaf-03c8a49d8630",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--36c45a2b-fa64-4215-83af-000f16cf3c66",
+            "target_ref": "url--bf90d6da-5354-4aa5-9487-5b6329ad53d2",
+            "description": "libffmpeg.dylib (Smooth Operator) communicates with fallback 3CX C2 URL www.3cx.com/blog/event-trainings/",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--ec8603e2-c6fe-4ea0-b5e1-1d39259f86d2",
+            "relationship_type": "communicates-with",
+            "source_ref": "file--1520e531-bea3-4652-8200-305c54d0ffce",
+            "target_ref": "url--c7bb40a8-8d11-4bc7-9233-c2d63d486fd5",
+            "description": "UpdateAgent (second-stage) exfiltrates data via sbmsa.wiki/blog/_insert",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--637753e3-d7b1-4680-b620-d93e77b52862",
+            "relationship_type": "contains",
+            "source_ref": "directory--15bac272-8605-49c7-b343-34616852f24c",
+            "target_ref": "file--83321c95-aeb2-4997-886f-743a907a3624",
+            "description": "3CX Desktop App directory contains .main_storage file.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--ddf2f007-82c1-478b-952c-6b9ac7690819",
+            "relationship_type": "contains",
+            "source_ref": "directory--15bac272-8605-49c7-b343-34616852f24c",
+            "target_ref": "file--848680d7-f821-415a-83d1-77bc1afe2895",
+            "description": "3CX Desktop App directory contains .session-lock file.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--85f93b6b-3e61-4e2a-b7f7-165c6b413e57",
+            "relationship_type": "contains",
+            "source_ref": "directory--15bac272-8605-49c7-b343-34616852f24c",
+            "target_ref": "file--32eb88e4-3226-408a-89a3-633437ed42d3",
+            "description": "3CX Desktop App directory contains config.json file.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--bf600069-8222-4665-8f4e-2a08d194867a",
+            "relationship_type": "contains",
+            "source_ref": "directory--d6c62363-b070-4dc9-b153-ae6114035cc3",
+            "target_ref": "file--f3118d47-2496-4ec9-b341-4f91b63a14b8",
+            "description": "/System/Library/CoreServices/ contains SystemVersion.plist file.",
+            "created": "2023-06-29T00:00:00Z",
+            "modified": "2023-06-29T00:00:00Z"
+        }
+    ]
+}
