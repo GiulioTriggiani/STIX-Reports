@@ -1,0 +1,667 @@
+{
+    "type": "bundle",
+    "id": "bundle--2e7967ae-a8fb-4da0-bc30-c63f85fbf538",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.038957Z",
+            "modified": "2025-09-09T09:27:59.038957Z",
+            "name": "NCSC",
+            "description": "The UK National Cyber Security Centre, author and publisher of this threat report, responsible for analysis and dissemination of findings related to AUTHENTIC ANTICS.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--1ddd3c1b-cbfa-50d3-83bc-97d42f5c7b30",
+            "value": "https://login.microsoftonline.com/common/oauth2/authorize?response_type=code+id_token&client_id=d3590ed6-52b3-4102-aeff-aad2292ab01c&redirect_uri=ms-appx-web%3a%2f%2fMicrosoft.AAD.BrokerPlugin%2fd3590ed6-52b3-4102-aeff-aad2292ab01c&instance_aware=true&nonce=<nonce>resource=https%3a%2f%2foutlook.office365.com%2f&add_account=multiple&prompt=login&login_hint=<example@ncsc.gov.uk>&response_mode=form_post&claims=%7b%22access_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&msafed=0&telemetry=MATS&windows_api_version=2.0"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--0106b5e4-2376-54c2-946b-717d32647a2a",
+            "value": "https://login.microsoftonline.com/common/oauth2/token"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--dcac452f-8ec1-5f08-a018-c33910db2cd5",
+            "value": "https://outlook.office365.com/api/v2.0/me/sendMail"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--87148755-b64d-54a2-8829-b13b40a58b4a",
+            "value": "http://www.gstatic.com/generate_204"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1ce124c6-d27b-4197-8f80-ffd5194e8f48",
+            "created": "2025-09-09T09:26:44.091421Z",
+            "modified": "2025-09-09T09:26:44.091421Z",
+            "name": "Malicious OAuth2 login prompt URL",
+            "description": "URL used by malware to direct victim to malicious login prompt and intercept credentials and tokens.",
+            "pattern": "[url:value = 'https://login.microsoftonline.com/common/oauth2/authorize?response_type=code+id_token&client_id=d3590ed6-52b3-4102-aeff-aad2292ab01c&redirect_uri=ms-appx-web%3a%2f%2fMicrosoft.AAD.BrokerPlugin%2fd3590ed6-52b3-4102-aeff-aad2292ab01c&instance_aware=true&nonce=<nonce>resource=https%3a%2f%2foutlook.office365.com%2f&add_account=multiple&prompt=login&login_hint=<example@ncsc.gov.uk>&response_mode=form_post&claims=%7b%22access_token%22%3a%7b%22xms_cc%22%3a%7b%22values%22%3a%5b%22CP1%22%5d%7d%7d%7d&msafed=0&telemetry=MATS&windows_api_version=2.0']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-09-09T09:26:44.091405Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c4c8fe83-2db6-456e-aac1-1b610c2d90de",
+            "created": "2025-09-09T09:26:44.095893Z",
+            "modified": "2025-09-09T09:26:44.095893Z",
+            "name": "OAuth2 token endpoint",
+            "description": "Used by malware to redeem authorization codes or refresh tokens for access and refresh tokens.",
+            "pattern": "[url:value = 'https://login.microsoftonline.com/common/oauth2/token']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-09-09T09:26:44.095883Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cd05f316-bdb2-4603-8d6b-8081294c8c45",
+            "created": "2025-09-09T09:26:44.097408Z",
+            "modified": "2025-09-09T09:26:44.097408Z",
+            "name": "Outlook API exfiltration endpoint",
+            "description": "Used by malware to exfiltrate stolen credentials and tokens via victim's Outlook account.",
+            "pattern": "[url:value = 'https://outlook.office365.com/api/v2.0/me/sendMail']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-09-09T09:26:44.0974Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--00892060-9f50-40d0-b12f-64b316936741",
+            "created": "2025-09-09T09:26:44.098883Z",
+            "modified": "2025-09-09T09:26:44.098883Z",
+            "name": "Network connection check URL",
+            "description": "Used by malware to verify network connectivity before proceeding with malicious activity.",
+            "pattern": "[url:value = 'http://www.gstatic.com/generate_204']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-09-09T09:26:44.098876Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b3c9d64-1ac4-4182-933e-8aa991bafd70",
+            "created": "2025-09-09T09:26:44.095195Z",
+            "modified": "2025-09-09T09:26:44.095195Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--1ce124c6-d27b-4197-8f80-ffd5194e8f48",
+            "target_ref": "url--1ddd3c1b-cbfa-50d3-83bc-97d42f5c7b30"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--354b94ed-72a9-4748-a639-c66e921c8caa",
+            "created": "2025-09-09T09:26:44.096822Z",
+            "modified": "2025-09-09T09:26:44.096822Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--c4c8fe83-2db6-456e-aac1-1b610c2d90de",
+            "target_ref": "url--0106b5e4-2376-54c2-946b-717d32647a2a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--54e9a9e0-d0ad-4493-8114-7dc1602dfa1b",
+            "created": "2025-09-09T09:26:44.098284Z",
+            "modified": "2025-09-09T09:26:44.098284Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--cd05f316-bdb2-4603-8d6b-8081294c8c45",
+            "target_ref": "url--dcac452f-8ec1-5f08-a018-c33910db2cd5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cb2268ae-bdc4-4d2e-9782-05253a61dcc4",
+            "created": "2025-09-09T09:26:44.099705Z",
+            "modified": "2025-09-09T09:26:44.099705Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--00892060-9f50-40d0-b12f-64b316936741",
+            "target_ref": "url--87148755-b64d-54a2-8829-b13b40a58b4a"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.039427Z",
+            "modified": "2025-09-09T09:27:59.039427Z",
+            "name": "authentic antics",
+            "description": "AUTHENTIC ANTICS is a highly targeted credential and OAuth 2.0 token-stealing malware that targets the Windows Operating System, specifically running within the Outlook process. It displays malicious login prompts to steal credentials and OAuth 2.0 tokens, which are then used to access victim email accounts. The malware employs extensive defense evasion techniques, including environmental keying, string obfuscation, and unhooking of registry APIs in ntdll.dll. It masquerades as the Microsoft Authentication Library (MSAL) for .NET, includes a dropper and stealer payload, and uses COM hijacking for persistence. Exfiltration is performed by sending emails from the victim\u2019s account to an actor-controlled email address, with data obfuscated using gzip and RSA encryption. Network communications are exclusively with legitimate services, and the malware does not implement traditional command and control.",
+            "malware_types": [
+                "spyware"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--f29b3d05-f493-4ba2-968c-17f576956dc3",
+            "created": "2025-09-09T09:27:59.039798Z",
+            "modified": "2025-09-09T09:27:59.039798Z",
+            "name": "NCC Group",
+            "description": "An industry partner acknowledged for providing AUTHENTIC ANTICS malware samples to NCSC for analysis.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--efcdb0d1-2d70-458e-b2e5-8645131812d9",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.040057Z",
+            "modified": "2025-09-09T09:27:59.040057Z",
+            "name": "AUTHENTIC_ANTICS_obfuscated_stack_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule AUTHENTIC_ANTICS_obfuscated_stack_strings {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule detects patterns in how the AUTHENTIC ANTICS dropper\nbuilds strings on the stack.\"\n\n    strings:\n        $stack_string_1 = {8D 50 ?? 8D 48 ?? 8D 78 ?? 8D 42 ?? 44 8D 42 ?? 44 8D 62 ??\n44 8D 52 ?? 44 8D 6A } // build obfuscated stack string\n        $stack_string_2 = {8D 73 ?? 44 8D 4B ?? 44 8D 53 ?? 44 8D 5B ?? 44 8D 73 ?? 44\n8D 7B ??}\n        $stack_string_3 = {41 8D 49 ?? 8D 51 ?? 45 8D 41 ?? 45 8D 51 ?? 45 8D 59}\n\n    condition:\n\n    uint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and all of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-09-09T09:27:59.040043Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--106af658-86eb-41a7-a9d8-1558804aff73",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.04036Z",
+            "modified": "2025-09-09T09:27:59.04036Z",
+            "name": "AUTHENTIC_ANTICS_ntdll_unhooking",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule AUTHENTIC_ANTICS_ntdll_unhooking {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule detects code used in the unhooking of ntdll functions\nin the AUTHENTIC ANTICS dropper.\"\n\n    strings:\n        $addr_calc = {48 8B D0 49 2B D4 8B D2 49 03 D6 48 8B 00 48 3B 02} // ntdll\nfunction unhooking calculation logic\n\n    condition:\n        uint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and all of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-09-09T09:27:59.040352Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2e262244-231d-43cc-8568-c68c1bae5157",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.040649Z",
+            "modified": "2025-09-09T09:27:59.040649Z",
+            "name": "AUTHENTIC_ANTICS_pdb_and_imports",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "import \"pe\"\n\nrule AUTHENTIC_ANTICS_pdb_and_imports {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule detects the pdb path and imports associated with the\nAUTHENTIC ANTICS dropper.\"\n\n    strings:\n        $pdb = \"C:\\\\Users\\\\user\\\\Desktop\\\\outlook4\\\\bin\\\\\"\n\n    condition:\n        uint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and all of them and\npe.imports(\"user32.dll\",\"GetClassNameW\") and pe.imports(\"user32.dll\",\"GetParent\") and\npe.imports(\"user32.dll\",\"EnumChildWindows\") and\npe.imports(\"user32.dll\",\"GetWindowTextW\") and\npe.imports(\"user32.dll\",\"GetWindowThreadProcessId\")\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-09-09T09:27:59.040641Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fd2abe73-2d95-4b05-b852-3e43de526b8c",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.040935Z",
+            "modified": "2025-09-09T09:27:59.040935Z",
+            "name": "AUTHENTIC_ANTICS_iertutil_hook",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule AUTHENTIC_ANTICS_iertutil_hook{\n    meta:\n        author = \"NCSC\"\n        description = \"This rule detects code which is used to implement a hook of\niertutil.dll by the AUTHENTIC ANTICS dropper.\"\n\n    strings:\n        $stub_func = {81 F9 04 00 00 20 ?? ?? B8 01 00 00 00 C3 81 F9 01 00 00 20 ?? ??\n33 C0 C3} // used as hook\n        $import_check = {49 63 44 24 3C 42 83 BC 20 94 00 00 00 00 0F}\n        $calc_address = {41 8B 5E 10 49 03 DC 41 8B 3E 49 03 FC}\n\n    condition:\n        uint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-09-09T09:27:59.040928Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--66bf7a6f-e4a5-4a14-ac85-800107d9bc8a",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.041216Z",
+            "modified": "2025-09-09T09:27:59.041216Z",
+            "name": "AUTHENTIC_ANTICS_Stealer",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule AUTHENTIC_ANTICS_Stealer {\n    meta:\n        author = \"NCSC\"\n\n description = \"This rule detects strings present in the AUTHENTIC ANTICS .NET\n\nstealer payload.\"\n\n    strings:\n        $ = \"http://www.gstatic.com/generate_204\" wide\n        $ = \"d3590ed6-52b3-4102-aeff-aad2292ab01c\" wide\n        $ = \"https://login.microsoftonline.com/common/oauth2/token\" wide\n        $ = \"https://outlook.office365.com/api/v2.0/me/sendMail\" wide\n        $ =\n\"https://login.microsoftonline.com/common/oauth2/authorize?response_type=code+id_token&c\nlient_id=d3590ed6-52b3-4102-aeff-aad2292ab01c&redirect_uri=ms-appx-\nweb%3a%2f%2fMicrosoft.AAD.BrokerPlugin%2fd3590ed6-52b3-4102-aeff-\naad2292ab01c&instance_aware=true&nonce=\" wide\n\nweb://Microsoft.AAD.BrokerPlugin/d3590ed6-52b3-4102-aeff-aad2292ab01c\" wide\n\n$ = \"<form method=\\\"POST\\\" name=\\\"hiddenform\\\" action=\\\"ms-appx-\n\n    condition:\n        (uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-09-09T09:27:59.041209Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--12b7439f-84a1-4fdc-ae07-4969171a799e",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.041482Z",
+            "modified": "2025-09-09T09:27:59.041482Z",
+            "name": "Event Triggered Execution: Component Object Model Hijacking",
+            "description": "AUTHENTIC ANTICS is persisted via COM Hijacking.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1546/015",
+                    "external_id": "T1546.015"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--10044a93-7db9-46ec-96d3-4fb15caddeb1",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.04196Z",
+            "modified": "2025-09-09T09:27:59.04196Z",
+            "name": "Deobfuscate/Decode Files or Information.",
+            "description": "AUTHENTIC ANTICS encrypts the stealer payload as well as using gzip and RSA to obfuscate exfiltration data.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d6ec291c-0885-40e0-9d24-cc9b6c94863e",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.042305Z",
+            "modified": "2025-09-09T09:27:59.042305Z",
+            "name": "Impair Defenses: Disable or Modify Tools",
+            "description": "AUTHENTIC ANTICS unhooks registry APIs within ntdll.dll.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1562/001",
+                    "external_id": "T1562.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--38d305b8-5f73-4c6e-a7b9-73de5a4644f1",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.042665Z",
+            "modified": "2025-09-09T09:27:59.042665Z",
+            "name": "Execution Guardrails: Environmental Keying",
+            "description": "The AUTHENTIC ANTICS stealer payload is encrypted with a key derived from victim device specific data.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1480/001",
+                    "external_id": "T1480.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d87f6523-7d1f-45e6-b654-ceafb4ee5ba3",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.043004Z",
+            "modified": "2025-09-09T09:27:59.043004Z",
+            "name": "System Binary Proxy Execution",
+            "description": "AUTHENTIC ANTICS carries out extensive checks to ensure it is running from within the Outlook process.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1218",
+                    "external_id": "T1218"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--7f0cf88c-e543-4055-91d7-e4eb732791d9",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.043321Z",
+            "modified": "2025-09-09T09:27:59.043321Z",
+            "name": "Adversary-in-the-Middle",
+            "description": "AUTHENTIC ANTICS intercepts requests to Microsoft\u2019s OAuth 2.0 Authorization Server and extracts an authorisation code and credentials.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "credential access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1557",
+                    "external_id": "T1557"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--fdeec1bc-1592-4c7b-a93b-1820b06acd2d",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.043683Z",
+            "modified": "2025-09-09T09:27:59.043683Z",
+            "name": "Forced Authentication",
+            "description": "AUTHENTIC ANTICS directs a pop-up browser window to Microsoft\u2019s OAuth 2.0 Authorization Server which prompts the victim to enter their credentials.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "credential access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1187",
+                    "external_id": "T1187"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--43c6de95-0db5-4a80-bff1-e1b76c7bfa74",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.044019Z",
+            "modified": "2025-09-09T09:27:59.044019Z",
+            "name": "Exfiltration Over Web Service",
+            "description": "AUTHENTIC ANTICS hijacks the victim\u2019s email account to send an email to an actor email address via Outlook\u2019s web API.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1567",
+                    "external_id": "T1567"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--29bb6c50-05b3-49fd-93f9-96c7dacb33aa",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.044426Z",
+            "modified": "2025-09-09T09:27:59.044426Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--12b7439f-84a1-4fdc-ae07-4969171a799e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d8196fdb-f608-43ba-a647-2cc08c1bb1c8",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.044747Z",
+            "modified": "2025-09-09T09:27:59.044747Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--10044a93-7db9-46ec-96d3-4fb15caddeb1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0b209cea-3b5a-40b6-86ed-159303b73a16",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.045005Z",
+            "modified": "2025-09-09T09:27:59.045005Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--d6ec291c-0885-40e0-9d24-cc9b6c94863e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--930119b5-1f3f-49cf-9d46-d9c3e2607508",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.045255Z",
+            "modified": "2025-09-09T09:27:59.045255Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--38d305b8-5f73-4c6e-a7b9-73de5a4644f1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c88755f7-dd1f-485b-9d47-70d94e70e75e",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.045503Z",
+            "modified": "2025-09-09T09:27:59.045503Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--d87f6523-7d1f-45e6-b654-ceafb4ee5ba3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a8ba4beb-0db4-47cf-8246-700a47c2d03f",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.045775Z",
+            "modified": "2025-09-09T09:27:59.045775Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--7f0cf88c-e543-4055-91d7-e4eb732791d9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a46c4aad-c366-4c51-a755-702e4dd9484f",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.046024Z",
+            "modified": "2025-09-09T09:27:59.046024Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--fdeec1bc-1592-4c7b-a93b-1820b06acd2d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1d1b9235-7af0-4b51-aa98-3b3c7b54cdda",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.046268Z",
+            "modified": "2025-09-09T09:27:59.046268Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+            "target_ref": "attack-pattern--43c6de95-0db5-4a80-bff1-e1b76c7bfa74"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--efc82e2c-316f-4585-8e97-173ceb8bc243",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.046515Z",
+            "modified": "2025-09-09T09:27:59.046515Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1ce124c6-d27b-4197-8f80-ffd5194e8f48",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ad113035-0e5b-4d69-9d4e-554dede5b59e",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.046787Z",
+            "modified": "2025-09-09T09:27:59.046787Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c4c8fe83-2db6-456e-aac1-1b610c2d90de",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5ed36554-2637-42f4-a26f-547396a7fc7b",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.047036Z",
+            "modified": "2025-09-09T09:27:59.047036Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cd05f316-bdb2-4603-8d6b-8081294c8c45",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3c1c6bf4-2386-4642-a235-b2a91a8006ec",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.047279Z",
+            "modified": "2025-09-09T09:27:59.047279Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--00892060-9f50-40d0-b12f-64b316936741",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b2ee14ca-b544-407a-8647-4cdb32c7df40",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.047693Z",
+            "modified": "2025-09-09T09:27:59.047693Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--efcdb0d1-2d70-458e-b2e5-8645131812d9",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cc1e350a-29ff-46e5-89fd-9dfdae209451",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.047997Z",
+            "modified": "2025-09-09T09:27:59.047997Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--106af658-86eb-41a7-a9d8-1558804aff73",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e12574ae-b5d7-44d4-a094-a0a6995503da",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.048287Z",
+            "modified": "2025-09-09T09:27:59.048287Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2e262244-231d-43cc-8568-c68c1bae5157",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bea4be3e-1755-4716-9137-36e47b265e48",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.048584Z",
+            "modified": "2025-09-09T09:27:59.048584Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fd2abe73-2d95-4b05-b852-3e43de526b8c",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4ea7d592-dc52-4839-84da-e232f122c2d2",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.0489Z",
+            "modified": "2025-09-09T09:27:59.0489Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--66bf7a6f-e4a5-4a14-ac85-800107d9bc8a",
+            "target_ref": "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--8c7ec672-5c98-4a2a-b6b3-a4a0026301aa",
+            "created_by_ref": "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+            "created": "2025-09-09T09:27:59.049327Z",
+            "modified": "2025-09-09T09:27:59.049327Z",
+            "name": "Analisi Malware: Authentic Antics",
+            "description": "This report contains technical analysis and indicators associated with malware. authentic antics.",
+            "report_types": [
+                "malware-analysis"
+            ],
+            "published": "2025-09-09T09:27:59.049316Z",
+            "object_refs": [
+                "identity--f01516f8-d2e3-4ea0-afd5-dfb79d492807",
+                "url--1ddd3c1b-cbfa-50d3-83bc-97d42f5c7b30",
+                "url--0106b5e4-2376-54c2-946b-717d32647a2a",
+                "url--dcac452f-8ec1-5f08-a018-c33910db2cd5",
+                "url--87148755-b64d-54a2-8829-b13b40a58b4a",
+                "indicator--1ce124c6-d27b-4197-8f80-ffd5194e8f48",
+                "indicator--c4c8fe83-2db6-456e-aac1-1b610c2d90de",
+                "indicator--cd05f316-bdb2-4603-8d6b-8081294c8c45",
+                "indicator--00892060-9f50-40d0-b12f-64b316936741",
+                "relationship--3b3c9d64-1ac4-4182-933e-8aa991bafd70",
+                "relationship--354b94ed-72a9-4748-a639-c66e921c8caa",
+                "relationship--54e9a9e0-d0ad-4493-8114-7dc1602dfa1b",
+                "relationship--cb2268ae-bdc4-4d2e-9782-05253a61dcc4",
+                "malware--739e0c8f-b8b1-47e2-90b8-244c5cb9da42",
+                "identity--f29b3d05-f493-4ba2-968c-17f576956dc3",
+                "indicator--efcdb0d1-2d70-458e-b2e5-8645131812d9",
+                "indicator--106af658-86eb-41a7-a9d8-1558804aff73",
+                "indicator--2e262244-231d-43cc-8568-c68c1bae5157",
+                "indicator--fd2abe73-2d95-4b05-b852-3e43de526b8c",
+                "indicator--66bf7a6f-e4a5-4a14-ac85-800107d9bc8a",
+                "attack-pattern--12b7439f-84a1-4fdc-ae07-4969171a799e",
+                "attack-pattern--10044a93-7db9-46ec-96d3-4fb15caddeb1",
+                "attack-pattern--d6ec291c-0885-40e0-9d24-cc9b6c94863e",
+                "attack-pattern--38d305b8-5f73-4c6e-a7b9-73de5a4644f1",
+                "attack-pattern--d87f6523-7d1f-45e6-b654-ceafb4ee5ba3",
+                "attack-pattern--7f0cf88c-e543-4055-91d7-e4eb732791d9",
+                "attack-pattern--fdeec1bc-1592-4c7b-a93b-1820b06acd2d",
+                "attack-pattern--43c6de95-0db5-4a80-bff1-e1b76c7bfa74",
+                "relationship--29bb6c50-05b3-49fd-93f9-96c7dacb33aa",
+                "relationship--d8196fdb-f608-43ba-a647-2cc08c1bb1c8",
+                "relationship--0b209cea-3b5a-40b6-86ed-159303b73a16",
+                "relationship--930119b5-1f3f-49cf-9d46-d9c3e2607508",
+                "relationship--c88755f7-dd1f-485b-9d47-70d94e70e75e",
+                "relationship--a8ba4beb-0db4-47cf-8246-700a47c2d03f",
+                "relationship--a46c4aad-c366-4c51-a755-702e4dd9484f",
+                "relationship--1d1b9235-7af0-4b51-aa98-3b3c7b54cdda",
+                "relationship--efc82e2c-316f-4585-8e97-173ceb8bc243",
+                "relationship--ad113035-0e5b-4d69-9d4e-554dede5b59e",
+                "relationship--5ed36554-2637-42f4-a26f-547396a7fc7b",
+                "relationship--3c1c6bf4-2386-4642-a235-b2a91a8006ec",
+                "relationship--b2ee14ca-b544-407a-8647-4cdb32c7df40",
+                "relationship--cc1e350a-29ff-46e5-89fd-9dfdae209451",
+                "relationship--e12574ae-b5d7-44d4-a094-a0a6995503da",
+                "relationship--bea4be3e-1755-4716-9137-36e47b265e48",
+                "relationship--4ea7d592-dc52-4839-84da-e232f122c2d2"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
