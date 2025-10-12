@@ -1,0 +1,531 @@
+{
+    "type": "bundle",
+    "id": "bundle--26827c0a-569c-4c50-98a8-a55952db133f",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.427793Z",
+            "modified": "2025-10-12T22:04:37.427793Z",
+            "name": "NCSC",
+            "description": "Author and publisher of this report (UK National Cyber Security Centre). The report draws on NCSC findings and the YARA rule embedded in the report lists the meta author as NCSC.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.428306Z",
+            "modified": "2025-10-12T22:04:37.428306Z",
+            "name": "jaguar tooth",
+            "description": "Jaguar Tooth is non-persistent malware that targets Cisco IOS routers (notably firmware C5350-IS-M, Version 12.3(6)). It enables unauthenticated backdoor access by patching Cisco IOS authentication routines (askpassword and ask_md5secret) to always succeed, creates a persistent process named \"Service Policy Lock\" which automatically collects device information (running configuration, firmware version, flash directory listing, ARP and routing tables, interfaces, connected devices) and exfiltrates that data over TFTP, and is deployed by exploiting a patched SNMP stack-based buffer overflow (CVE-2017-6742) that uses ROP and incremental writes to place and execute payloads in memory.",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan",
+                "spyware"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--b919f40d-219d-4563-8f1d-ea4d8f0ff397",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.428682Z",
+            "modified": "2025-10-12T22:04:37.428682Z",
+            "name": "CVE-2017-6742",
+            "description": "A patched SNMP vulnerability in Cisco IOS (stack-based buffer overflow in alpsRemPeerConnLocalPort / k_alpsRemPeerConnEntry_get) that can be triggered via a specially crafted OID (1.3.6.1.4.1.9.9.95.1.2.4.1.3). Successful exploitation allows control of saved registers / the instruction pointer and enables remote code execution. The exploit leverages Return Oriented Programming (ROP) to overwrite memory and incrementally deploy shellcode that performs arbitrary 4-byte writes to place and execute the Jaguar Tooth payload in memory; ASCII bytes in appended OID sections are converted to uppercase, which constrains written data and is accounted for by the exploit's ROP sequence."
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--623b9914-3d22-42f1-9af5-8ee7243fc852",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.428961Z",
+            "modified": "2025-10-12T22:04:37.428961Z",
+            "name": "JaguarTooth_Cisco_IOS_payload",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule JaguarTooth_Cisco_IOS_payload {\n    meta:\n        author = \"NCSC\"\n        description = \"This signature detects the Jaguar Tooth Cisco IOS\nmalware. It looks for the process name, two of the hard-coded commands,\nand code calling two Cisco IOS functions.\"\n    strings:\n        $ = \"Service Policy Lock\"\n        $ = \"sleep 5000\"\n        $ = \"tclquit\"\n        $ = {0C ?? ?? ?? 00 00 30 25 0C ?? ?? ?? 24 04 FF FF 8F BF 00 34}\n    condition:\n        3 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-12T22:04:37.428949Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5b76bdb4-b1e1-4b70-8829-986ba5b8139e",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.429297Z",
+            "modified": "2025-10-12T22:04:37.429297Z",
+            "name": "Modify Authentication Process",
+            "description": "Jaguar Tooth patches two authentication functions to grant access to local accounts for Telnet and physical sessions without checking the provided password (patches askpassword and ask_md5secret to always return true).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1556",
+                    "external_id": "T1556"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3cc1369d-461c-4d3e-88a9-7857bd4c9852",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.42975Z",
+            "modified": "2025-10-12T22:04:37.42975Z",
+            "name": "Modify System Image: Patch System Image",
+            "description": "Jaguar Tooth patches the system image in memory to enable a user authentication bypass by modifying system image code in-memory.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1601/001",
+                    "external_id": "T1601.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--482dfb43-24d4-434c-973e-55a25073307a",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.430101Z",
+            "modified": "2025-10-12T22:04:37.430101Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "Jaguar Tooth is deployed via an SNMP exploit which grants remote code execution and write-access to the target operating system (exploitation of a public-facing SNMP service using a crafted OID to trigger a buffer overflow).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1190",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3200955d-84b0-4cbd-893a-27bd20e259dd",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.430473Z",
+            "modified": "2025-10-12T22:04:37.430473Z",
+            "name": "Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol",
+            "description": "Jaguar Tooth exfiltrates collected device information (running configuration, versions, flash listings, ARP, routing tables, interfaces, etc.) over TFTP, an unencrypted non-C2 protocol.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1048/003",
+                    "external_id": "T1048.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--30255194-ccd3-471a-9aad-f8e6458a2e8f",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.430828Z",
+            "modified": "2025-10-12T22:04:37.430828Z",
+            "name": "Automated Exfiltration",
+            "description": "Jaguar Tooth contains a hard-coded list of Cisco IOS CLI and Tcl commands which are automatically executed and the results automatically exfiltrated over TFTP (automated exfiltration of collected outputs).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1020",
+                    "external_id": "T1020"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8a6f9bda-6f05-4578-b775-bf6cdb188421",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.43116Z",
+            "modified": "2025-10-12T22:04:37.43116Z",
+            "name": "Automated Collection",
+            "description": "Jaguar Tooth contains a hard-coded list of Cisco IOS CLI and Tcl commands (e.g., show running-config, show version, show ip interface brief, show arp, show cdp neighbors, show start, show ip route, show flash) which it executes automatically to gather device information for exfiltration.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1119",
+                    "external_id": "T1119"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--37d1f5c2-4807-4061-a235-cd84b2290bd2",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.431517Z",
+            "modified": "2025-10-12T22:04:37.431517Z",
+            "name": "Data from Configuration Repository: Network Device Configuration Dump",
+            "description": "Jaguar Tooth utilises a Cisco IOS CLI command to dump the current device running configuration and collects configuration data from the device's configuration repository for exfiltration.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1602/002",
+                    "external_id": "T1602.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--83f47008-97cf-4442-b13d-3976053a3177",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.431868Z",
+            "modified": "2025-10-12T22:04:37.431868Z",
+            "name": "Remote System Discovery",
+            "description": "Jaguar Tooth performs remote system discovery by utilising Cisco IOS CLI commands to obtain ARP and connected devices information.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1018",
+                    "external_id": "T1018"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9c171ed9-c461-42b1-9073-b6047b37475d",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.432185Z",
+            "modified": "2025-10-12T22:04:37.432185Z",
+            "name": "File and Directory Discovery",
+            "description": "Jaguar Tooth enumerates the local flash filesystem using Cisco IOS CLI commands to list and examine files and directories on the device.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1083",
+                    "external_id": "T1083"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8491826f-eeac-41ee-ab3c-a79ea0fcbfa9",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.432547Z",
+            "modified": "2025-10-12T22:04:37.432547Z",
+            "name": "System Network Configuration Discovery",
+            "description": "Jaguar Tooth utilises several Cisco IOS CLI commands to discover the system network configuration (interfaces, routing information, ARP tables, etc.).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1016",
+                    "external_id": "T1016"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1e012413-0fcc-4baf-b40b-3089e0be1067",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.432903Z",
+            "modified": "2025-10-12T22:04:37.432903Z",
+            "name": "System Information Discovery",
+            "description": "Jaguar Tooth discovers system information such as interfaces and software versioning by utilising several Cisco IOS CLI commands (e.g., show version).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1082",
+                    "external_id": "T1082"
+                }
+            ]
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--be8461ad-c819-4e50-812d-40f58b2fb738",
+            "created": "2025-10-12T22:04:37.433225Z",
+            "modified": "2025-10-12T22:04:37.433225Z",
+            "name": "Cisco",
+            "description": "Vendor/maintainer of Cisco IOS referenced in the report; Cisco announced the vulnerability and published the advisory and bug ID CSCve54313 and provided fixed software.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--0096f68c-24d1-4bec-a326-eac8f0618d03",
+            "created": "2025-10-12T22:04:37.433466Z",
+            "modified": "2025-10-12T22:04:37.433466Z",
+            "name": "MITRE",
+            "description": "Provider of the MITRE ATT&CK framework referenced by the report as the taxonomy for tactics and techniques used in the analysis.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--36ca7bb7-fa7d-45db-ad8f-b8b0c926754b",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.433775Z",
+            "modified": "2025-10-12T22:04:37.433775Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--5b76bdb4-b1e1-4b70-8829-986ba5b8139e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--638116e8-16fb-4c88-9ad5-f89aab1984ed",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.434081Z",
+            "modified": "2025-10-12T22:04:37.434081Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--3cc1369d-461c-4d3e-88a9-7857bd4c9852"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5d807bd2-2aae-46d3-970e-12d6c8c2b341",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.434359Z",
+            "modified": "2025-10-12T22:04:37.434359Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--482dfb43-24d4-434c-973e-55a25073307a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--01cb3a00-08d1-4c46-8014-23550624dfcd",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.43463Z",
+            "modified": "2025-10-12T22:04:37.43463Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--3200955d-84b0-4cbd-893a-27bd20e259dd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--abe0d454-67eb-4379-aecd-91d89ff9c74b",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.434887Z",
+            "modified": "2025-10-12T22:04:37.434887Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--30255194-ccd3-471a-9aad-f8e6458a2e8f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cfdd8598-3c31-4473-bc41-242982ab07b8",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.435174Z",
+            "modified": "2025-10-12T22:04:37.435174Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--8a6f9bda-6f05-4578-b775-bf6cdb188421"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aa07b313-e63c-4e98-970f-063d29d9464b",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.435471Z",
+            "modified": "2025-10-12T22:04:37.435471Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--37d1f5c2-4807-4061-a235-cd84b2290bd2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--99e095da-1543-447a-8df0-976f78566a3a",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.435743Z",
+            "modified": "2025-10-12T22:04:37.435743Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--83f47008-97cf-4442-b13d-3976053a3177"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4b65ba31-47c1-406b-9599-f214165c955b",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.436003Z",
+            "modified": "2025-10-12T22:04:37.436003Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--9c171ed9-c461-42b1-9073-b6047b37475d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--47494e60-6c05-4bf1-81a2-05ac9e14df48",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.436263Z",
+            "modified": "2025-10-12T22:04:37.436263Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--8491826f-eeac-41ee-ab3c-a79ea0fcbfa9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cb48f5e7-8ab0-435e-9cf0-ace0fce8717d",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.436539Z",
+            "modified": "2025-10-12T22:04:37.436539Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "attack-pattern--1e012413-0fcc-4baf-b40b-3089e0be1067"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3f6fd6f0-8049-4a15-942d-d4c82207ba56",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.436936Z",
+            "modified": "2025-10-12T22:04:37.436936Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--623b9914-3d22-42f1-9af5-8ee7243fc852",
+            "target_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4ab6e912-9284-4ee6-98f1-0e4983e0b571",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.437262Z",
+            "modified": "2025-10-12T22:04:37.437262Z",
+            "relationship_type": "exploits",
+            "source_ref": "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+            "target_ref": "vulnerability--b919f40d-219d-4563-8f1d-ea4d8f0ff397"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--867d0b85-b72f-4801-aec4-3638aada77c9",
+            "created_by_ref": "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+            "created": "2025-10-12T22:04:37.437651Z",
+            "modified": "2025-10-12T22:04:37.437651Z",
+            "name": "Analisi Malware: Jaguar Tooth",
+            "description": "This report contains technical analysis and indicators associated with malware. jaguar tooth.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-10-12T22:04:37.437639Z",
+            "object_refs": [
+                "identity--6a93371f-3438-46ef-a886-966bb9f22f19",
+                "malware--1108a10e-ed8e-4dfd-a5a8-8d081483d53e",
+                "vulnerability--b919f40d-219d-4563-8f1d-ea4d8f0ff397",
+                "indicator--623b9914-3d22-42f1-9af5-8ee7243fc852",
+                "attack-pattern--5b76bdb4-b1e1-4b70-8829-986ba5b8139e",
+                "attack-pattern--3cc1369d-461c-4d3e-88a9-7857bd4c9852",
+                "attack-pattern--482dfb43-24d4-434c-973e-55a25073307a",
+                "attack-pattern--3200955d-84b0-4cbd-893a-27bd20e259dd",
+                "attack-pattern--30255194-ccd3-471a-9aad-f8e6458a2e8f",
+                "attack-pattern--8a6f9bda-6f05-4578-b775-bf6cdb188421",
+                "attack-pattern--37d1f5c2-4807-4061-a235-cd84b2290bd2",
+                "attack-pattern--83f47008-97cf-4442-b13d-3976053a3177",
+                "attack-pattern--9c171ed9-c461-42b1-9073-b6047b37475d",
+                "attack-pattern--8491826f-eeac-41ee-ab3c-a79ea0fcbfa9",
+                "attack-pattern--1e012413-0fcc-4baf-b40b-3089e0be1067",
+                "identity--be8461ad-c819-4e50-812d-40f58b2fb738",
+                "identity--0096f68c-24d1-4bec-a326-eac8f0618d03",
+                "relationship--36ca7bb7-fa7d-45db-ad8f-b8b0c926754b",
+                "relationship--638116e8-16fb-4c88-9ad5-f89aab1984ed",
+                "relationship--5d807bd2-2aae-46d3-970e-12d6c8c2b341",
+                "relationship--01cb3a00-08d1-4c46-8014-23550624dfcd",
+                "relationship--abe0d454-67eb-4379-aecd-91d89ff9c74b",
+                "relationship--cfdd8598-3c31-4473-bc41-242982ab07b8",
+                "relationship--aa07b313-e63c-4e98-970f-063d29d9464b",
+                "relationship--99e095da-1543-447a-8df0-976f78566a3a",
+                "relationship--4b65ba31-47c1-406b-9599-f214165c955b",
+                "relationship--47494e60-6c05-4bf1-81a2-05ac9e14df48",
+                "relationship--cb48f5e7-8ab0-435e-9cf0-ace0fce8717d",
+                "relationship--3f6fd6f0-8049-4a15-942d-d4c82207ba56",
+                "relationship--4ab6e912-9284-4ee6-98f1-0e4983e0b571"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
