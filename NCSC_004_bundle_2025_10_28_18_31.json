@@ -1,0 +1,1024 @@
+{
+    "type": "bundle",
+    "id": "bundle--e085f04f-6195-4ec8-91a8-0f9a6f391475",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.723588Z",
+            "modified": "2025-10-28T18:31:36.723588Z",
+            "name": "NCSC",
+            "description": "UK National Cyber Security Centre; primary author and publisher of this report and the included YARA rules.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b7fcc721-f211-4f4e-ae18-1edc675551ec",
+            "created": "2025-10-28T18:28:57.657751Z",
+            "modified": "2025-10-28T18:28:57.657751Z",
+            "name": "libsophos.so",
+            "description": "Copied malware path used by Pygmy Goat backdoor via LD_PRELOAD injection into /bin/sshd.",
+            "pattern": "[file:name = 'libsophos.so' AND file:parent_directory_ref.path LIKE '/lib']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.657723Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7eb29e88-f459-4e56-84dc-b9980a83f804",
+            "created": "2025-10-28T18:28:57.66004Z",
+            "modified": "2025-10-28T18:28:57.66004Z",
+            "name": ".sshd.ipc",
+            "description": "IPC Unix server socket created and used by Pygmy Goat for backdoor SSH connection handling.",
+            "pattern": "[file:name = '.sshd.ipc' AND file:parent_directory_ref.path LIKE '/tmp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.660019Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c101c1ce-6cad-4265-badf-8edf88c38b3b",
+            "created": "2025-10-28T18:28:57.661962Z",
+            "modified": "2025-10-28T18:28:57.661962Z",
+            "name": ".fgmon_cli.ipc",
+            "description": "IPC Unix client socket used by Pygmy Goat; presence suggests FortiGate targeting as per report.",
+            "pattern": "[file:name = '.fgmon_cli.ipc' AND file:parent_directory_ref.path LIKE '/tmp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.661947Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--edf2663a-66c0-421e-b339-982fed8c8a42",
+            "created": "2025-10-28T18:28:57.663532Z",
+            "modified": "2025-10-28T18:28:57.663532Z",
+            "name": ".goat.ipc",
+            "description": "IPC Unix server socket from older Pygmy Goat sample.",
+            "pattern": "[file:name = '.goat.ipc' AND file:parent_directory_ref.path LIKE '/tmp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.66352Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--170efb1d-d000-430f-9f25-6c7c3bbabc94",
+            "created": "2025-10-28T18:28:57.665306Z",
+            "modified": "2025-10-28T18:28:57.665306Z",
+            "name": "sshdd.pid",
+            "description": "Single-instance PID file created by Pygmy Goat to ensure only one malicious instance runs.",
+            "pattern": "[file:name = 'sshdd.pid' AND file:parent_directory_ref.path LIKE '/var/run']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.665287Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cb3fe237-1074-4247-bc64-76d8ed968188",
+            "created": "2025-10-28T18:28:57.667171Z",
+            "modified": "2025-10-28T18:28:57.667171Z",
+            "name": "goat.pid",
+            "description": "Single-instance PID file used by older Pygmy Goat sample.",
+            "pattern": "[file:name = 'goat.pid' AND file:parent_directory_ref.path LIKE '/var/run']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.667154Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--63bdbc5e-c62c-4821-b1a1-a0624f67af66",
+            "created": "2025-10-28T18:28:57.668754Z",
+            "modified": "2025-10-28T18:28:57.668754Z",
+            "name": "sshd.pid",
+            "description": "PID file lock path referenced by Pygmy Goat to ensure single instance per narrative section.",
+            "pattern": "[file:name = 'sshd.pid' AND file:parent_directory_ref.path LIKE '/var/run']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.668742Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cd9e12c2-7616-4f00-b2d4-8b07a9964ff3",
+            "created": "2025-10-28T18:28:57.670625Z",
+            "modified": "2025-10-28T18:28:57.670625Z",
+            "name": "Indicator for libsophos.so (MD5)",
+            "description": "Malicious libsophos.so shared object loaded into /bin/sshd (Pygmy Goat backdoor).",
+            "pattern": "[file:hashes.'MD5' = 'c71cd27efcdb8c44ab8c29d51f033a22']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.670611Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b",
+            "created": "2025-10-28T18:28:57.671855Z",
+            "modified": "2025-10-28T18:28:57.671855Z",
+            "name": "Indicator for libsophos.so (SHA1)",
+            "description": "Malicious libsophos.so shared object loaded into /bin/sshd (Pygmy Goat backdoor).",
+            "pattern": "[file:hashes.'SHA1' = '71f70d61af00542b2e9ad64abd2dda7e437536ff']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.671843Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ea358c1a-41c5-4442-b788-f1ee2320225b",
+            "created": "2025-10-28T18:28:57.673078Z",
+            "modified": "2025-10-28T18:28:57.673078Z",
+            "name": "Indicator for libsophos.so (SHA256)",
+            "description": "Malicious libsophos.so shared object loaded into /bin/sshd (Pygmy Goat backdoor).",
+            "pattern": "[file:hashes.'SHA256' = '6455de74ae15071fa98f18cdbc3148c967755e69df7dee747bc31d0387751162']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.673067Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4068e43e-12c8-4d94-89f2-745473b2404b",
+            "created": "2025-10-28T18:28:57.674329Z",
+            "modified": "2025-10-28T18:28:57.674329Z",
+            "name": "Indicator for libsophos.so (earlier variant) (MD5)",
+            "description": "Earlier variant of libsophos.so used by Pygmy Goat; VMProtect obfuscation and missing reverse proxy functionality.",
+            "pattern": "[file:hashes.'MD5' = '3f28196675dc8cb20cf5b5f80ea29310']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.674319Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--da4d65b5-da03-4c22-94ca-77c5651b3e77",
+            "created": "2025-10-28T18:28:57.675464Z",
+            "modified": "2025-10-28T18:28:57.675464Z",
+            "name": "Indicator for libsophos.so (earlier variant) (SHA1)",
+            "description": "Earlier variant of libsophos.so used by Pygmy Goat; VMProtect obfuscation and missing reverse proxy functionality.",
+            "pattern": "[file:hashes.'SHA1' = '7ace663c22b3e800fc17c1477d54b533f7002833']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.675455Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5675fe31-0ded-4e55-a4cc-0d92ab5d589d",
+            "created": "2025-10-28T18:28:57.676601Z",
+            "modified": "2025-10-28T18:28:57.676601Z",
+            "name": "Indicator for libsophos.so (earlier variant) (SHA256)",
+            "description": "Earlier variant of libsophos.so used by Pygmy Goat; VMProtect obfuscation and missing reverse proxy functionality.",
+            "pattern": "[file:hashes.'SHA256' = '823b079c75f4e6a5905d9eea9a60c62e1f0995bfc25764d1ba0407a5bd78c962']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:28:57.676592Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6ed36874-fdca-4fe0-8afd-e3548ac8452b",
+            "created": "2025-10-28T18:28:57.677832Z",
+            "modified": "2025-10-28T18:28:57.677832Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cd9e12c2-7616-4f00-b2d4-8b07a9964ff3",
+            "target_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6549b73a-6ed3-451c-9720-9fec3090177c",
+            "created": "2025-10-28T18:28:57.678192Z",
+            "modified": "2025-10-28T18:28:57.678192Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cd9e12c2-7616-4f00-b2d4-8b07a9964ff3",
+            "target_ref": "indicator--ea358c1a-41c5-4442-b788-f1ee2320225b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dbf359d7-4810-4ac5-a92c-fa43e40ab751",
+            "created": "2025-10-28T18:28:57.6785Z",
+            "modified": "2025-10-28T18:28:57.6785Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b",
+            "target_ref": "indicator--ea358c1a-41c5-4442-b788-f1ee2320225b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0a355508-cb41-421f-b89e-f5d5a8e30be7",
+            "created": "2025-10-28T18:28:57.678809Z",
+            "modified": "2025-10-28T18:28:57.678809Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4068e43e-12c8-4d94-89f2-745473b2404b",
+            "target_ref": "indicator--da4d65b5-da03-4c22-94ca-77c5651b3e77"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e3e1e262-9852-4f07-bb68-70789629919b",
+            "created": "2025-10-28T18:28:57.679098Z",
+            "modified": "2025-10-28T18:28:57.679098Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4068e43e-12c8-4d94-89f2-745473b2404b",
+            "target_ref": "indicator--5675fe31-0ded-4e55-a4cc-0d92ab5d589d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c4bb478d-bd1e-4742-8e9b-5cb1d059344c",
+            "created": "2025-10-28T18:28:57.679424Z",
+            "modified": "2025-10-28T18:28:57.679424Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--da4d65b5-da03-4c22-94ca-77c5651b3e77",
+            "target_ref": "indicator--5675fe31-0ded-4e55-a4cc-0d92ab5d589d"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.724194Z",
+            "modified": "2025-10-28T18:31:36.724194Z",
+            "name": "pygmy goat",
+            "description": "Pygmy Goat is a native x86-32 ELF shared object backdoor (libsophos.so) observed on Sophos XG firewall devices. It achieves persistence by being injected into /bin/sshd via LD_PRELOAD, immediately unsetting the variable after loading, and hooks the accept function to monitor inbound SSH connections for magic bytes (e.g., SSH-2.0-OpenSSH_5.3p1) as a covert trigger. It also listens on a raw ICMP socket for AES-256-CBC encrypted port-knock packets that carry a callback IP and port. On activation, it establishes a TLS C2 connection validated against an embedded Root CA certificate that impersonates FortiGate/Fortinet. Available commands include remote shells (/bin/sh and /bin/csh), interactive crontab tasking via a statically embedded BusyBox 1.33.1 crond, libpcap-based packet capture, and a reverse SOCKS5 proxy using EarthWorm code. C2 messaging is LZO1X-compressed. Earlier variants lacked the reverse proxy and were protected with VMProtect. The malware uses Unix sockets for internal IPC, supports multiple wake-up mechanisms, and appears designed for general Linux environments, though artifacts (e.g., FortiGate CA claims and .fgmon_cli.ipc) suggest FortiGate targeting as well.",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--4304e621-8a3d-4e1a-9db8-0019d77130e9",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.724681Z",
+            "modified": "2025-10-28T18:31:36.724681Z",
+            "name": "castletap",
+            "description": "Referenced by Mandiant as part of attacks on FortiGate devices; it exhibits TTPs similar to Pygmy Goat, including use of an encrypted ICMP packet containing C2 details to establish a reverse SSL connection.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ef0c6ed0-d6ea-427d-b9ee-be42f9d45605",
+            "created": "2025-10-28T18:31:36.725349Z",
+            "modified": "2025-10-28T18:31:36.725349Z",
+            "name": "Sophos",
+            "description": "Security vendor whose XG firewall devices were observed hosting the Pygmy Goat backdoor.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--8c80f399-9516-4cad-98f9-844804f56940",
+            "created": "2025-10-28T18:31:36.725662Z",
+            "modified": "2025-10-28T18:31:36.725662Z",
+            "name": "Fortinet Ltd.",
+            "description": "Network device vendor; the embedded Root CA certificate used by Pygmy Goat claims issuance by 'FortiGate, Fortinet Ltd.'.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acdcd1bd-4a22-4399-97f9-f26663bfa910",
+            "created": "2025-10-28T18:31:36.725956Z",
+            "modified": "2025-10-28T18:31:36.725956Z",
+            "name": "Mandiant",
+            "description": "Security vendor cited for reporting on attacks against FortiGate devices and the CASTLETAP malware with similar TTPs.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ab42880f-c8c7-4d2a-998b-8cb8d09e931a",
+            "created": "2025-10-28T18:31:36.726247Z",
+            "modified": "2025-10-28T18:31:36.726247Z",
+            "name": "CrowdStrike",
+            "description": "Security vendor cited for prior reporting on threat actor use of EarthWorm.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5f320abc-e186-4b69-92fd-6513bc831e1d",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.72655Z",
+            "modified": "2025-10-28T18:31:36.72655Z",
+            "name": "Dynamic Linker Hijacking",
+            "description": "Pygmy Goat uses the LD_PRELOAD environment variable to inject into sshd",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/006",
+                    "external_id": "T1574.006"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--decee331-0915-4427-a2d8-eb6be01041d9",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.727121Z",
+            "modified": "2025-10-28T18:31:36.727121Z",
+            "name": "Command and Scripting Interpreter: Unix Shell",
+            "description": "Pygmy Goat can create a /bin/sh or /bin/csh remote shell",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/004",
+                    "external_id": "T1059.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--30f04b11-45b3-4c0a-8c87-9c22b676dcb2",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.727603Z",
+            "modified": "2025-10-28T18:31:36.727603Z",
+            "name": "Scheduled Task/Job: Cron",
+            "description": "Pygmy Goat can create arbitrary cron tasks using crontab",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/003",
+                    "external_id": "T1053.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--09cc55fd-e464-4733-9b02-f2f9004126af",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.728095Z",
+            "modified": "2025-10-28T18:31:36.728095Z",
+            "name": "Inter-Process Communication",
+            "description": "Pygmy Goat uses Unix sockets for inter-process communication between parent and forked child processes",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1559",
+                    "external_id": "T1559"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3c561a31-c7d5-4267-b893-9b592c4f4e6c",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.728547Z",
+            "modified": "2025-10-28T18:31:36.728547Z",
+            "name": "Network Sniffing",
+            "description": "Pygmy Goat can use libpcap to sniff network traffic according to a BPF filter and exfiltrate it to the C2",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1040",
+                    "external_id": "T1040"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ded66b15-5235-4709-93c8-31d5394633f9",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.72901Z",
+            "modified": "2025-10-28T18:31:36.72901Z",
+            "name": "Traffic Signaling: Port Knocking",
+            "description": "Pygmy Goat listens on an ICMP raw socket for encrypted packets containing magic bytes and the C2 address to connect back to",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1205/001",
+                    "external_id": "T1205.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4398a284-1ad4-4717-b581-ba8d0e50859d",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.729465Z",
+            "modified": "2025-10-28T18:31:36.729465Z",
+            "name": "Data Obfuscation: Protocol Impersonation",
+            "description": "Pygmy Goat responds to an SSH connection that sends magic bytes with a fake SSH handshake",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1001/003",
+                    "external_id": "T1001.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--2165e261-6774-4952-b279-36b9b47b100a",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.72992Z",
+            "modified": "2025-10-28T18:31:36.72992Z",
+            "name": "Encrypted Channel: Asymmetric Cryptography",
+            "description": "Pygmy Goat encrypts C2 communications with TLS",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1573/002",
+                    "external_id": "T1573.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3fd0f7e3-a6d3-4fb0-966a-02fd14b59b84",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.730361Z",
+            "modified": "2025-10-28T18:31:36.730361Z",
+            "name": "Protocol Tunneling",
+            "description": "Pygmy Goat can create a reverse SOCKS5 proxy server to tunnel traffic through it",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1572",
+                    "external_id": "T1572"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--cadc9275-c8b5-40d1-a4de-f43fa47586d5",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.73081Z",
+            "modified": "2025-10-28T18:31:36.73081Z",
+            "name": "Archive Collected Data: Archive via Library",
+            "description": "Pygmy Goat compresses its C2 communications with LZO1X",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1560/002",
+                    "external_id": "T1560.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b04df8cf-f846-495e-87bb-17290d803367",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.731252Z",
+            "modified": "2025-10-28T18:31:36.731252Z",
+            "name": "Exfiltration Over C2 Channel",
+            "description": "Pygmy Goat exfiltrates its result data over its C2 channel",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1041",
+                    "external_id": "T1041"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6b46f0b9-22b4-48ff-bf53-3d17c4deaa03",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.731719Z",
+            "modified": "2025-10-28T18:31:36.731719Z",
+            "name": "pygmy_goat_aes_key",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule pygmy_goat_aes_key\n{\n\nmeta:\n\n        author = \"NCSC\"\n        description = \"Pygmy Goat AES key built on the stack or in data\"\n        date = \"2024-11-07\"\n        hash1 = \"71f70d61af00542b2e9ad64abd2dda7e437536ff\"\n\nstrings:\n\n$dword_1 = { 59 4b 6e 77 }\n$dword_2 = { 51 6a 6d 41 }\n$dword_3 = { 54 62 41 6e }\n$dword_4 = { 52 6f 5a 6d }\n$dword_5 = { 30 66 47 37 }\n$dword_6 = { 55 5a 57 62 }\n$dword_7 = { 32 59 55 78 }\n$dword_8 = { 55 51 50 77 }\n\ncondition:\n\n(uint32(0) == 0x464c457f) and filesize < 5MB and all of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:31:36.731704Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0b6819bd-dae1-4cb7-8a0b-f94439252b9a",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.732071Z",
+            "modified": "2025-10-28T18:31:36.732071Z",
+            "name": "pygmy_goat_magic_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule pygmy_goat_magic_strings\n{\n\nmeta:\n\n        author = \"NCSC\"\n        description = \"Pygmy Goat magic byte sequences used in C2 comms\"\n        date = \"2024-10-22\"\n        hash1 = \"71f70d61af00542b2e9ad64abd2dda7e437536ff\"\n\nstrings:\n\n$c2_magic_handshake = \",bEB3?=o\"\n$fake_ssh_banner = \"SSH-2.0-D8pjE\"\n$fake_ed25519_key = { 29 cc f0 cc 16 c5 46 6e 52 19 82 8e 86\n\n65 42 8c 1f 1a d4 c3 a5 b1 cb fc c0 26 6c 31 3c 5c 90 3a 24 7d e4 d3 57\n6d da 8e cb f4 66 d1 cb 81 4f 63 fd 4a fa 06 e4 7e 4c a0 95 91 bd cb 97\na4 b3 0f }\n\ncondition:\n\n(uint32(0) == 0x464c457f) and any of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:31:36.732064Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ee943e18-967e-4372-a701-55418771282a",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.732407Z",
+            "modified": "2025-10-28T18:31:36.732407Z",
+            "name": "earthworm_id_generation_x86",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule earthworm_id_generation_x86\n{\n\nmeta:\n\n        author = \"NCSC\"\n        description = \"EarthWorm pool num generation x86 assembly\"\n        date = \"2024-10-22\"\n        hash1 = \"71f70d61af00542b2e9ad64abd2dda7e437536ff\"\n\nstrings:\n\n$chartoi = {\n\n8b 45 ??        // MOV\nc1 e0 07        // SHL\n89 c1           // MOV\n8b 55 ??        // MOV\n8b 45 ??        // MOV\n01 d0           // ADD\n0f b6 00        // MOVZX\n0f be c0        // MOVSX\n01 c8           // ADD\n89 45 ??        // MOV\n83 6d ?? 01     // SUB\n\nEAX,dword ptr [EBP + ??]\nEAX,0x7\nECX,EAX\nEDX,dword ptr [EBP + ??]\nEAX,dword ptr [EBP + ??]\nEAX,EDX\nEAX,byte ptr [EAX]\nEAX,AL\nEAX,ECX\ndword ptr [EBP + ??],EAX\ndword ptr [EBP + ??],0x1\n\n}\n\ncondition:\n\n}\n\n(uint32(0) == 0x464c457f) and all of them",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:31:36.732399Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7567246a-324e-4009-ad77-8a67568d6880",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.732881Z",
+            "modified": "2025-10-28T18:31:36.732881Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--5f320abc-e186-4b69-92fd-6513bc831e1d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--590ba2de-a6ea-4265-8ce1-caf636ff5f28",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.733254Z",
+            "modified": "2025-10-28T18:31:36.733254Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--decee331-0915-4427-a2d8-eb6be01041d9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3578b0f5-a519-4dcb-b6df-f026a6d1fc34",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.733577Z",
+            "modified": "2025-10-28T18:31:36.733577Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--30f04b11-45b3-4c0a-8c87-9c22b676dcb2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--07784c67-9541-4d89-8abb-6b5719df6f0d",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.733903Z",
+            "modified": "2025-10-28T18:31:36.733903Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--09cc55fd-e464-4733-9b02-f2f9004126af"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7bf77a52-964a-4702-ad81-f406ad4b80f0",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.734225Z",
+            "modified": "2025-10-28T18:31:36.734225Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--3c561a31-c7d5-4267-b893-9b592c4f4e6c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5ac14c52-5d5e-416e-aaee-3bcbbe741dae",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.73453Z",
+            "modified": "2025-10-28T18:31:36.73453Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--ded66b15-5235-4709-93c8-31d5394633f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d7df7913-3ce4-4776-aa77-fde7fbd0ca2e",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.734844Z",
+            "modified": "2025-10-28T18:31:36.734844Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--4398a284-1ad4-4717-b581-ba8d0e50859d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--28c41b40-52f3-4607-ba53-6efb7d2fcdfb",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.73515Z",
+            "modified": "2025-10-28T18:31:36.73515Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--2165e261-6774-4952-b279-36b9b47b100a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d097b704-8dd6-4753-ac59-0f4c67d17213",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.735447Z",
+            "modified": "2025-10-28T18:31:36.735447Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--3fd0f7e3-a6d3-4fb0-966a-02fd14b59b84"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--527842d8-ab04-4a87-b13a-e044cca16920",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.735765Z",
+            "modified": "2025-10-28T18:31:36.735765Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--cadc9275-c8b5-40d1-a4de-f43fa47586d5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1b02dceb-98cf-4920-bf6a-1b5876f3aedf",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.73606Z",
+            "modified": "2025-10-28T18:31:36.73606Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+            "target_ref": "attack-pattern--b04df8cf-f846-495e-87bb-17290d803367"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3cc59cfd-2af2-4f7d-aaf5-1c2ca594892a",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.736375Z",
+            "modified": "2025-10-28T18:31:36.736375Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b7fcc721-f211-4f4e-ae18-1edc675551ec",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5ffa35fe-3d7e-4bfe-ba71-576cd37fe32f",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.736687Z",
+            "modified": "2025-10-28T18:31:36.736687Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7eb29e88-f459-4e56-84dc-b9980a83f804",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5b7f377b-86a4-4e3d-a7ac-b2ff17e9bbcd",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.736985Z",
+            "modified": "2025-10-28T18:31:36.736985Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c101c1ce-6cad-4265-badf-8edf88c38b3b",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--39720057-7306-45ee-b7ce-a14cd2f1bd5c",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.737289Z",
+            "modified": "2025-10-28T18:31:36.737289Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--edf2663a-66c0-421e-b339-982fed8c8a42",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--06830943-b975-430d-b869-748bd9540d92",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.737582Z",
+            "modified": "2025-10-28T18:31:36.737582Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--170efb1d-d000-430f-9f25-6c7c3bbabc94",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5d3d763a-d610-409e-a984-1494217c8211",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.737887Z",
+            "modified": "2025-10-28T18:31:36.737887Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cb3fe237-1074-4247-bc64-76d8ed968188",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--958597ac-a036-4562-9622-24b8f063702d",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.738185Z",
+            "modified": "2025-10-28T18:31:36.738185Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--63bdbc5e-c62c-4821-b1a1-a0624f67af66",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3ab87476-dd60-42cb-ae2c-6a692016f5e3",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.738476Z",
+            "modified": "2025-10-28T18:31:36.738476Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cd9e12c2-7616-4f00-b2d4-8b07a9964ff3",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b06263fb-4953-4a85-9e64-721944a3f0c1",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.738783Z",
+            "modified": "2025-10-28T18:31:36.738783Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9edd2980-0ba8-41a4-8c61-b707ac73e477",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.739072Z",
+            "modified": "2025-10-28T18:31:36.739072Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ea358c1a-41c5-4442-b788-f1ee2320225b",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4b36a2fd-0765-4266-9996-726b2e8da2db",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.739373Z",
+            "modified": "2025-10-28T18:31:36.739373Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4068e43e-12c8-4d94-89f2-745473b2404b",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4d07605f-3c31-4f60-8bee-7016807808e8",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.739681Z",
+            "modified": "2025-10-28T18:31:36.739681Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--da4d65b5-da03-4c22-94ca-77c5651b3e77",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--98885dd5-7290-4d8f-acad-c23bc7449ad1",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.739972Z",
+            "modified": "2025-10-28T18:31:36.739972Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5675fe31-0ded-4e55-a4cc-0d92ab5d589d",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3dfc40a-173d-4685-9c86-b8650bc63dc8",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.740524Z",
+            "modified": "2025-10-28T18:31:36.740524Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6b46f0b9-22b4-48ff-bf53-3d17c4deaa03",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d20ec3e4-6da7-4aa7-b730-85b933863cf5",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.740883Z",
+            "modified": "2025-10-28T18:31:36.740883Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--6b46f0b9-22b4-48ff-bf53-3d17c4deaa03",
+            "target_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0f886ffb-e6b4-4c86-8043-8c4f4875201b",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.741235Z",
+            "modified": "2025-10-28T18:31:36.741235Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0b6819bd-dae1-4cb7-8a0b-f94439252b9a",
+            "target_ref": "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--381d5149-fc2b-49f3-8e1a-fef6e740ee58",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.741555Z",
+            "modified": "2025-10-28T18:31:36.741555Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0b6819bd-dae1-4cb7-8a0b-f94439252b9a",
+            "target_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2a47e50f-d9d7-4cd9-b8c4-23667ba0488f",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.741991Z",
+            "modified": "2025-10-28T18:31:36.741991Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--ee943e18-967e-4372-a701-55418771282a",
+            "target_ref": "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--fe13409f-2241-4c32-adde-00740d2bf335",
+            "created_by_ref": "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+            "created": "2025-10-28T18:31:36.742982Z",
+            "modified": "2025-10-28T18:31:36.742982Z",
+            "name": "Analisi Malware: Pygmy Goat",
+            "description": "This report contains technical analysis and indicators associated with malware. pygmy goat.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-10-28T18:31:36.742966Z",
+            "object_refs": [
+                "identity--1d6030ff-85c5-4e0a-bde8-2dcbda565936",
+                "indicator--b7fcc721-f211-4f4e-ae18-1edc675551ec",
+                "indicator--7eb29e88-f459-4e56-84dc-b9980a83f804",
+                "indicator--c101c1ce-6cad-4265-badf-8edf88c38b3b",
+                "indicator--edf2663a-66c0-421e-b339-982fed8c8a42",
+                "indicator--170efb1d-d000-430f-9f25-6c7c3bbabc94",
+                "indicator--cb3fe237-1074-4247-bc64-76d8ed968188",
+                "indicator--63bdbc5e-c62c-4821-b1a1-a0624f67af66",
+                "indicator--cd9e12c2-7616-4f00-b2d4-8b07a9964ff3",
+                "indicator--57f86f2a-cc7a-402b-bb7d-4fb3192d2d5b",
+                "indicator--ea358c1a-41c5-4442-b788-f1ee2320225b",
+                "indicator--4068e43e-12c8-4d94-89f2-745473b2404b",
+                "indicator--da4d65b5-da03-4c22-94ca-77c5651b3e77",
+                "indicator--5675fe31-0ded-4e55-a4cc-0d92ab5d589d",
+                "relationship--6ed36874-fdca-4fe0-8afd-e3548ac8452b",
+                "relationship--6549b73a-6ed3-451c-9720-9fec3090177c",
+                "relationship--dbf359d7-4810-4ac5-a92c-fa43e40ab751",
+                "relationship--0a355508-cb41-421f-b89e-f5d5a8e30be7",
+                "relationship--e3e1e262-9852-4f07-bb68-70789629919b",
+                "relationship--c4bb478d-bd1e-4742-8e9b-5cb1d059344c",
+                "malware--c850e286-a3d0-40d0-92e9-8a7a175d0cfd",
+                "malware--4304e621-8a3d-4e1a-9db8-0019d77130e9",
+                "identity--ef0c6ed0-d6ea-427d-b9ee-be42f9d45605",
+                "identity--8c80f399-9516-4cad-98f9-844804f56940",
+                "identity--acdcd1bd-4a22-4399-97f9-f26663bfa910",
+                "identity--ab42880f-c8c7-4d2a-998b-8cb8d09e931a",
+                "attack-pattern--5f320abc-e186-4b69-92fd-6513bc831e1d",
+                "attack-pattern--decee331-0915-4427-a2d8-eb6be01041d9",
+                "attack-pattern--30f04b11-45b3-4c0a-8c87-9c22b676dcb2",
+                "attack-pattern--09cc55fd-e464-4733-9b02-f2f9004126af",
+                "attack-pattern--3c561a31-c7d5-4267-b893-9b592c4f4e6c",
+                "attack-pattern--ded66b15-5235-4709-93c8-31d5394633f9",
+                "attack-pattern--4398a284-1ad4-4717-b581-ba8d0e50859d",
+                "attack-pattern--2165e261-6774-4952-b279-36b9b47b100a",
+                "attack-pattern--3fd0f7e3-a6d3-4fb0-966a-02fd14b59b84",
+                "attack-pattern--cadc9275-c8b5-40d1-a4de-f43fa47586d5",
+                "attack-pattern--b04df8cf-f846-495e-87bb-17290d803367",
+                "indicator--6b46f0b9-22b4-48ff-bf53-3d17c4deaa03",
+                "indicator--0b6819bd-dae1-4cb7-8a0b-f94439252b9a",
+                "indicator--ee943e18-967e-4372-a701-55418771282a",
+                "relationship--7567246a-324e-4009-ad77-8a67568d6880",
+                "relationship--590ba2de-a6ea-4265-8ce1-caf636ff5f28",
+                "relationship--3578b0f5-a519-4dcb-b6df-f026a6d1fc34",
+                "relationship--07784c67-9541-4d89-8abb-6b5719df6f0d",
+                "relationship--7bf77a52-964a-4702-ad81-f406ad4b80f0",
+                "relationship--5ac14c52-5d5e-416e-aaee-3bcbbe741dae",
+                "relationship--d7df7913-3ce4-4776-aa77-fde7fbd0ca2e",
+                "relationship--28c41b40-52f3-4607-ba53-6efb7d2fcdfb",
+                "relationship--d097b704-8dd6-4753-ac59-0f4c67d17213",
+                "relationship--527842d8-ab04-4a87-b13a-e044cca16920",
+                "relationship--1b02dceb-98cf-4920-bf6a-1b5876f3aedf",
+                "relationship--3cc59cfd-2af2-4f7d-aaf5-1c2ca594892a",
+                "relationship--5ffa35fe-3d7e-4bfe-ba71-576cd37fe32f",
+                "relationship--5b7f377b-86a4-4e3d-a7ac-b2ff17e9bbcd",
+                "relationship--39720057-7306-45ee-b7ce-a14cd2f1bd5c",
+                "relationship--06830943-b975-430d-b869-748bd9540d92",
+                "relationship--5d3d763a-d610-409e-a984-1494217c8211",
+                "relationship--958597ac-a036-4562-9622-24b8f063702d",
+                "relationship--3ab87476-dd60-42cb-ae2c-6a692016f5e3",
+                "relationship--b06263fb-4953-4a85-9e64-721944a3f0c1",
+                "relationship--9edd2980-0ba8-41a4-8c61-b707ac73e477",
+                "relationship--4b36a2fd-0765-4266-9996-726b2e8da2db",
+                "relationship--4d07605f-3c31-4f60-8bee-7016807808e8",
+                "relationship--98885dd5-7290-4d8f-acad-c23bc7449ad1",
+                "relationship--f3dfc40a-173d-4685-9c86-b8650bc63dc8",
+                "relationship--d20ec3e4-6da7-4aa7-b730-85b933863cf5",
+                "relationship--0f886ffb-e6b4-4c86-8043-8c4f4875201b",
+                "relationship--381d5149-fc2b-49f3-8e1a-fef6e740ee58",
+                "relationship--2a47e50f-d9d7-4cd9-b8c4-23667ba0488f"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
