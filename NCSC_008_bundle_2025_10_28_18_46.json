@@ -1,0 +1,2303 @@
+{
+    "type": "bundle",
+    "id": "bundle--845ee6e1-1d42-4897-a318-e9b940d025ac",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.38031Z",
+            "modified": "2025-10-28T18:46:05.38031Z",
+            "name": "National Cyber Security Centre (NCSC)",
+            "description": "Author and publisher of the malware analysis report and associated YARA rules for Goofy Guineapig.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--e14480ea-ce4a-53b4-8152-7585cc739c01",
+            "value": "static.tcplog.com"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--18b16915-391a-59d6-a304-267e8aed2473",
+            "value": "https://static.tcplog.com:4443"
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--5aa196fa-5bd6-5575-890c-710d10607b92",
+            "path": "C:\\ProgramData\\GoogleUpdate"
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--159ebb7f-24f1-5bc8-b0fd-1898d899aec0",
+            "path": "C:\\ProgramData\\GoogleUpdate\\GoogleUpdate"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--76bc7f12-08f0-4858-838d-3160fd98d9a3",
+            "created": "2025-10-28T18:43:28.943723Z",
+            "modified": "2025-10-28T18:43:28.943723Z",
+            "name": "Goofy Guineapig C2 domain",
+            "description": "Primary HTTPS C2 domain used by Goofy Guineapig over non-standard port 4443.",
+            "pattern": "[domain-name:value = 'static.tcplog.com']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.943708Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ec804f7d-14ce-4e90-ac62-e53dc3c419a0",
+            "created": "2025-10-28T18:43:28.945574Z",
+            "modified": "2025-10-28T18:43:28.945574Z",
+            "name": "Goofy Guineapig HTTPS C2 endpoint",
+            "description": "Configured C2 endpoint in embedded config using HTTPS over port 4443.",
+            "pattern": "[url:value = 'https://static.tcplog.com:4443']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.94556Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5e22f0b5-0b1f-4d01-ae24-0aad37d659fb",
+            "created": "2025-10-28T18:43:28.946976Z",
+            "modified": "2025-10-28T18:43:28.946976Z",
+            "name": "Malicious batch file for cleanup/restart",
+            "description": "Created and executed by Goofy Guineapig to delete original files and restart the launcher.",
+            "pattern": "[file:name = 'tmp.bat' AND file:parent_directory_ref.path LIKE 'C:\\\\ProgramData\\\\GoogleUpdate\\\\GoogleUpdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.946966Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cf930ae0-16ed-48b2-b38d-058f10dc45e4",
+            "created": "2025-10-28T18:43:28.948239Z",
+            "modified": "2025-10-28T18:43:28.948239Z",
+            "name": "Side-loaded launcher",
+            "description": "Legitimate GoogleUpdate.exe placed by malware and used to sideload malicious Goopdate.dll for persistence.",
+            "pattern": "[file:name = 'GoogleUpdate.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\ProgramData\\\\GoogleUpdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.948229Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4faa7219-2601-41c4-bfda-30dc94dce5e0",
+            "created": "2025-10-28T18:43:28.949678Z",
+            "modified": "2025-10-28T18:43:28.949678Z",
+            "name": "Malware working directory",
+            "description": "Location where Goofy Guineapig relocates and persists its components.",
+            "pattern": "[directory:path = 'C:\\\\ProgramData\\\\GoogleUpdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.949669Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--408b53c9-e3e3-4e8c-872a-73dcb36964df",
+            "created": "2025-10-28T18:43:28.951245Z",
+            "modified": "2025-10-28T18:43:28.951245Z",
+            "name": "Batch staging directory",
+            "description": "Directory used by malware to stage and execute the temporary batch script.",
+            "pattern": "[directory:path = 'C:\\\\ProgramData\\\\GoogleUpdate\\\\GoogleUpdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.951231Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c0cd9533-755c-4ba8-8c2b-3fcb69232bbc",
+            "created": "2025-10-28T18:43:28.953019Z",
+            "modified": "2025-10-28T18:43:28.953019Z",
+            "name": "Indicator for Firefox-latest.exe (MD5)",
+            "description": "UPX-packed loader (trojanised NSIS stub) used to deploy Goofy Guineapig.",
+            "pattern": "[file:hashes.'MD5' = 'a21dec89611368313e138480b3c94835']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.953009Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3198e900-4c07-4548-9b98-1ebef955a96e",
+            "created": "2025-10-28T18:43:28.953927Z",
+            "modified": "2025-10-28T18:43:28.953927Z",
+            "name": "Indicator for Firefox-latest.exe (SHA1)",
+            "description": "UPX-packed loader (trojanised NSIS stub) used to deploy Goofy Guineapig.",
+            "pattern": "[file:hashes.'SHA1' = '2b8aab068ef15cb05789da320b7099932a0a4166']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.953919Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--47acc50a-67e8-47b0-8a92-63c279cf58d7",
+            "created": "2025-10-28T18:43:28.95479Z",
+            "modified": "2025-10-28T18:43:28.95479Z",
+            "name": "Indicator for Firefox-latest.exe (SHA256)",
+            "description": "UPX-packed loader (trojanised NSIS stub) used to deploy Goofy Guineapig.",
+            "pattern": "[file:hashes.'SHA256' = '19cef7f32e42cc674f7c76be3a5c691c543f4e018486c29153e7dde1a48af34c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.954781Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0fc842f9-1b78-487c-97ae-b3c2211bca43",
+            "created": "2025-10-28T18:43:28.955658Z",
+            "modified": "2025-10-28T18:43:28.955658Z",
+            "name": "Indicator for setup-stub.exe (MD5)",
+            "description": "Trojanised NSIS Firefox installer containing malicious components.",
+            "pattern": "[file:hashes.'MD5' = '180e0bb4b570c215bfe7abdf209402aa']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.955649Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56",
+            "created": "2025-10-28T18:43:28.956482Z",
+            "modified": "2025-10-28T18:43:28.956482Z",
+            "name": "Indicator for setup-stub.exe (SHA1)",
+            "description": "Trojanised NSIS Firefox installer containing malicious components.",
+            "pattern": "[file:hashes.'SHA1' = '6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.956472Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--05238e5e-539a-4709-b3da-51f21a23c285",
+            "created": "2025-10-28T18:43:28.957669Z",
+            "modified": "2025-10-28T18:43:28.957669Z",
+            "name": "Indicator for setup-stub.exe (SHA256)",
+            "description": "Trojanised NSIS Firefox installer containing malicious components.",
+            "pattern": "[file:hashes.'SHA256' = '97f66bcdd73917a8b59d9a1dcac21a58936bcaf91e757a9dfb8e5c320af40f56']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.957656Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d6dd7df6-6590-4ccb-9d54-69b3fe00ce97",
+            "created": "2025-10-28T18:43:28.958961Z",
+            "modified": "2025-10-28T18:43:28.958961Z",
+            "name": "Indicator for Goopdate.dll (MD5)",
+            "description": "Malicious DLL masquerading as Google update component; core backdoor.",
+            "pattern": "[file:hashes.'MD5' = 'f98537517212068d0c57968876fc8204']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.958947Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e",
+            "created": "2025-10-28T18:43:28.960096Z",
+            "modified": "2025-10-28T18:43:28.960096Z",
+            "name": "Indicator for Goopdate.dll (SHA1)",
+            "description": "Malicious DLL masquerading as Google update component; core backdoor.",
+            "pattern": "[file:hashes.'SHA1' = '7961930d13cb8d5056db64b6749356915fb4c272']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.960086Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f0802813-5b45-4f2b-b597-d19e37a67b41",
+            "created": "2025-10-28T18:43:28.960965Z",
+            "modified": "2025-10-28T18:43:28.960965Z",
+            "name": "Indicator for Goopdate.dll (SHA256)",
+            "description": "Malicious DLL masquerading as Google update component; core backdoor.",
+            "pattern": "[file:hashes.'SHA256' = '12a29373c1f493f7757b755099bde4770c310af3fde376176b6d792cd1c5e150']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.960956Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--dd4f9fa0-ad90-440d-8746-053d7d241601",
+            "created": "2025-10-28T18:43:28.962074Z",
+            "modified": "2025-10-28T18:43:28.962074Z",
+            "name": "Indicator for Config.dat (MD5)",
+            "description": "Encoded shellcode file extracted from the trojanised installer.",
+            "pattern": "[file:hashes.'MD5' = '3dc1096e73db4886fb66ed9413ca994c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.962062Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--23d93d47-f35e-4fed-ab40-d3c010994049",
+            "created": "2025-10-28T18:43:28.964011Z",
+            "modified": "2025-10-28T18:43:28.964011Z",
+            "name": "Indicator for Config.dat (SHA1)",
+            "description": "Encoded shellcode file extracted from the trojanised installer.",
+            "pattern": "[file:hashes.'SHA1' = '628ce6721b97fa12590356712fbfc5ae030781ce']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.964Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5cfcce5b-d860-40d8-9456-e8b23338d616",
+            "created": "2025-10-28T18:43:28.964897Z",
+            "modified": "2025-10-28T18:43:28.964897Z",
+            "name": "Indicator for Config.dat (SHA256)",
+            "description": "Encoded shellcode file extracted from the trojanised installer.",
+            "pattern": "[file:hashes.'SHA256' = '3a1af09a0250c602569d458e79db90a45e305b76d8423b81eeca14c69847b81c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.964888Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d071262b-520c-4c19-9424-46648cd4d4bd",
+            "created": "2025-10-28T18:43:28.965838Z",
+            "modified": "2025-10-28T18:43:28.965838Z",
+            "name": "Indicator for Decoded shellcode from config.dat (MD5)",
+            "description": "Deobfuscated shellcode payload used to load embedded DLL.",
+            "pattern": "[file:hashes.'MD5' = '06e1992e6c52af33117d142bdbeef74d']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.965828Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5",
+            "created": "2025-10-28T18:43:28.966735Z",
+            "modified": "2025-10-28T18:43:28.966735Z",
+            "name": "Indicator for Decoded shellcode from config.dat (SHA1)",
+            "description": "Deobfuscated shellcode payload used to load embedded DLL.",
+            "pattern": "[file:hashes.'SHA1' = '231ac2c5f3c9a833836be65f7443e3525eb1e7a3']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.966726Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--00029e47-02a2-49eb-b2fd-696eff914d32",
+            "created": "2025-10-28T18:43:28.967569Z",
+            "modified": "2025-10-28T18:43:28.967569Z",
+            "name": "Indicator for Decoded shellcode from config.dat (SHA256)",
+            "description": "Deobfuscated shellcode payload used to load embedded DLL.",
+            "pattern": "[file:hashes.'SHA256' = '13c27a686f863a388cbc40661e6fda602ab14af9454421b08229cadb54d7b000']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.96756Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--45ed0676-60ac-450f-bbd7-1abd78041c80",
+            "created": "2025-10-28T18:43:28.968432Z",
+            "modified": "2025-10-28T18:43:28.968432Z",
+            "name": "Indicator for Decoded binary extracted from the shellcode extracted from config.dat (MD5)",
+            "description": "Decoded DLL loaded in-memory by the shellcode (backdoor component).",
+            "pattern": "[file:hashes.'MD5' = 'abbe7d13b13ea4315543bdad187f14b3']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.968424Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621",
+            "created": "2025-10-28T18:43:28.969259Z",
+            "modified": "2025-10-28T18:43:28.969259Z",
+            "name": "Indicator for Decoded binary extracted from the shellcode extracted from config.dat (SHA1)",
+            "description": "Decoded DLL loaded in-memory by the shellcode (backdoor component).",
+            "pattern": "[file:hashes.'SHA1' = '11b82826ec01aeec44e5e2504935b6aaccf51cac']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.96925Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0d022af1-bb64-47d6-b3ec-e11d201429d8",
+            "created": "2025-10-28T18:43:28.970081Z",
+            "modified": "2025-10-28T18:43:28.970081Z",
+            "name": "Indicator for Decoded binary extracted from the shellcode extracted from config.dat (SHA256)",
+            "description": "Decoded DLL loaded in-memory by the shellcode (backdoor component).",
+            "pattern": "[file:hashes.'SHA256' = '4ffc7f65e16ce59ff9e6a504f88e0cf56b225c0eb2cf8ec578b3e9d40d9bd898']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-10-28T18:43:28.970073Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--29e7f1c9-fb57-49fc-bb9f-85fe6dc228f1",
+            "created": "2025-10-28T18:43:28.944765Z",
+            "modified": "2025-10-28T18:43:28.944765Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--76bc7f12-08f0-4858-838d-3160fd98d9a3",
+            "target_ref": "domain-name--e14480ea-ce4a-53b4-8152-7585cc739c01"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ea1a930f-3dfc-4177-8c66-4745a0f0c3d5",
+            "created": "2025-10-28T18:43:28.946599Z",
+            "modified": "2025-10-28T18:43:28.946599Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--ec804f7d-14ce-4e90-ac62-e53dc3c419a0",
+            "target_ref": "url--18b16915-391a-59d6-a304-267e8aed2473"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c63c3547-c1d9-4b82-b46b-1af7c696a910",
+            "created": "2025-10-28T18:43:28.950437Z",
+            "modified": "2025-10-28T18:43:28.950437Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--4faa7219-2601-41c4-bfda-30dc94dce5e0",
+            "target_ref": "directory--5aa196fa-5bd6-5575-890c-710d10607b92"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fc80f64c-8c33-416f-82bf-520a1314ca59",
+            "created": "2025-10-28T18:43:28.952585Z",
+            "modified": "2025-10-28T18:43:28.952585Z",
+            "relationship_type": "based-on",
+            "source_ref": "indicator--408b53c9-e3e3-4e8c-872a-73dcb36964df",
+            "target_ref": "directory--159ebb7f-24f1-5bc8-b0fd-1898d899aec0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--05dcb597-4d2c-43b7-bf1d-e71238565be8",
+            "created": "2025-10-28T18:43:28.97092Z",
+            "modified": "2025-10-28T18:43:28.97092Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c0cd9533-755c-4ba8-8c2b-3fcb69232bbc",
+            "target_ref": "indicator--3198e900-4c07-4548-9b98-1ebef955a96e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9f382111-c7b4-4167-bb06-a4c39e97ab8c",
+            "created": "2025-10-28T18:43:28.97123Z",
+            "modified": "2025-10-28T18:43:28.97123Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c0cd9533-755c-4ba8-8c2b-3fcb69232bbc",
+            "target_ref": "indicator--47acc50a-67e8-47b0-8a92-63c279cf58d7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5da12880-5c7d-4046-acc8-28a74131c41a",
+            "created": "2025-10-28T18:43:28.971492Z",
+            "modified": "2025-10-28T18:43:28.971492Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--3198e900-4c07-4548-9b98-1ebef955a96e",
+            "target_ref": "indicator--47acc50a-67e8-47b0-8a92-63c279cf58d7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d861bcc9-732f-49e4-b5f9-373c7943d68e",
+            "created": "2025-10-28T18:43:28.97177Z",
+            "modified": "2025-10-28T18:43:28.97177Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0fc842f9-1b78-487c-97ae-b3c2211bca43",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--07efdcdf-c4e6-45ff-b93b-fc490314e36f",
+            "created": "2025-10-28T18:43:28.972032Z",
+            "modified": "2025-10-28T18:43:28.972032Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0fc842f9-1b78-487c-97ae-b3c2211bca43",
+            "target_ref": "indicator--05238e5e-539a-4709-b3da-51f21a23c285"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--46885d13-8761-4ef1-95a8-fb1cd57e080f",
+            "created": "2025-10-28T18:43:28.972294Z",
+            "modified": "2025-10-28T18:43:28.972294Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56",
+            "target_ref": "indicator--05238e5e-539a-4709-b3da-51f21a23c285"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6cc6b764-3756-40c2-b59a-00ed9c7e85a9",
+            "created": "2025-10-28T18:43:28.972555Z",
+            "modified": "2025-10-28T18:43:28.972555Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d6dd7df6-6590-4ccb-9d54-69b3fe00ce97",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--109fba6a-56fd-45b7-8c28-d6a84df0a145",
+            "created": "2025-10-28T18:43:28.972827Z",
+            "modified": "2025-10-28T18:43:28.972827Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d6dd7df6-6590-4ccb-9d54-69b3fe00ce97",
+            "target_ref": "indicator--f0802813-5b45-4f2b-b597-d19e37a67b41"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b55049d-8fb1-49e6-9d28-e9dfb4d2b9bc",
+            "created": "2025-10-28T18:43:28.973082Z",
+            "modified": "2025-10-28T18:43:28.973082Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e",
+            "target_ref": "indicator--f0802813-5b45-4f2b-b597-d19e37a67b41"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb1b6e6d-ebd1-4bec-a7d1-74e206374a26",
+            "created": "2025-10-28T18:43:28.973349Z",
+            "modified": "2025-10-28T18:43:28.973349Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--dd4f9fa0-ad90-440d-8746-053d7d241601",
+            "target_ref": "indicator--23d93d47-f35e-4fed-ab40-d3c010994049"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6a957ba9-0aea-4378-ae11-d18a540de74a",
+            "created": "2025-10-28T18:43:28.973605Z",
+            "modified": "2025-10-28T18:43:28.973605Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--dd4f9fa0-ad90-440d-8746-053d7d241601",
+            "target_ref": "indicator--5cfcce5b-d860-40d8-9456-e8b23338d616"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a4307268-a60a-4ff3-8a10-7a7b39b1e1d6",
+            "created": "2025-10-28T18:43:28.973874Z",
+            "modified": "2025-10-28T18:43:28.973874Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d93d47-f35e-4fed-ab40-d3c010994049",
+            "target_ref": "indicator--5cfcce5b-d860-40d8-9456-e8b23338d616"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9d48e3cf-1cdd-418a-b12b-8926cd10692e",
+            "created": "2025-10-28T18:43:28.974166Z",
+            "modified": "2025-10-28T18:43:28.974166Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d071262b-520c-4c19-9424-46648cd4d4bd",
+            "target_ref": "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2a7d77ac-af39-4db9-9db0-e007cfb01ad9",
+            "created": "2025-10-28T18:43:28.974422Z",
+            "modified": "2025-10-28T18:43:28.974422Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d071262b-520c-4c19-9424-46648cd4d4bd",
+            "target_ref": "indicator--00029e47-02a2-49eb-b2fd-696eff914d32"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--29a18efb-5fb2-4b7b-8c22-1cef4bdbc44c",
+            "created": "2025-10-28T18:43:28.974987Z",
+            "modified": "2025-10-28T18:43:28.974987Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5",
+            "target_ref": "indicator--00029e47-02a2-49eb-b2fd-696eff914d32"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9587c20-a964-42ab-8e03-994a06168586",
+            "created": "2025-10-28T18:43:28.97525Z",
+            "modified": "2025-10-28T18:43:28.97525Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45ed0676-60ac-450f-bbd7-1abd78041c80",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7105882b-d95d-4af1-ac11-e417339b5a17",
+            "created": "2025-10-28T18:43:28.975508Z",
+            "modified": "2025-10-28T18:43:28.975508Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45ed0676-60ac-450f-bbd7-1abd78041c80",
+            "target_ref": "indicator--0d022af1-bb64-47d6-b3ec-e11d201429d8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--327db965-c208-428c-82c7-c4ef90328e77",
+            "created": "2025-10-28T18:43:28.975772Z",
+            "modified": "2025-10-28T18:43:28.975772Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621",
+            "target_ref": "indicator--0d022af1-bb64-47d6-b3ec-e11d201429d8"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.380799Z",
+            "modified": "2025-10-28T18:46:05.380799Z",
+            "name": "goofy guineapig",
+            "description": "Goofy Guineapig is a persistent Windows backdoor delivered via a UPX-packed, trojanised NSIS Firefox installer that sideloads a malicious Goopdate.dll via the legitimate GoogleUpdate.exe. It maintains persistence as a Windows service using cmd.exe, rundll32.exe, and url.dll to launch the legitimate binary that loads the malicious DLL. The malware provides a plugin framework, can execute plugins in-process or via process hollowing of dllhost.exe, and communicates with C2 over HTTPS (static.tcplog.com) on non-standard port 4443. It supports multiple transport methods (HTTP, HTTPS, UDP with KCP, and raw TCP) selected by an embedded configuration string. It collects and exfiltrates system information (OS caption, antivirus product name, adapter info, host details, computer name), constructs a unique victim identifier, and embeds this data in an obfuscated Authorization header. Communications and payloads are RC4-encrypted and XOR-encoded. The malware employs extensive defense evasion and anti-analysis tactics, including time-based checks (>100ms delay), debug/sandbox process and window title checks, environment checks (RAM >2GB, disk >1GB, >2 logical processors), obfuscation and packing, hidden window creation during process hollowing, and file deletion to remove artifacts.",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--94b8dca2-3df6-4f39-8938-0b73c3ce947a",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.381194Z",
+            "modified": "2025-10-28T18:46:05.381194Z",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "Goofy Guineapig maintains persistence as a Windows service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1543/003",
+                    "external_id": "T1543.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d9ee146b-6f06-4d8b-97f2-ae2e88ebe72f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.381649Z",
+            "modified": "2025-10-28T18:46:05.381649Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "Goofy Guineapig masquerades as a FireFox installer and a Google updater.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/005",
+                    "external_id": "T1036.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--f331bbc1-21f7-4f4b-8691-7e564b0077c4",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.382025Z",
+            "modified": "2025-10-28T18:46:05.382025Z",
+            "name": "Virtualization/Sandbox Evasion: Time Based Evasion",
+            "description": "Goofy Guineapig checks the time register twice for a delay of more than 100 milliseconds and will not continue execution if more time has elapsed.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1497/003",
+                    "external_id": "T1497.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a7a9440a-e543-492a-a48d-9ac45e12d604",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.382394Z",
+            "modified": "2025-10-28T18:46:05.382394Z",
+            "name": "Virtualization/Sandbox Evasion: System Checks",
+            "description": "Goofy Guineapig checks the disk size, physical memory size, and number of logical processors, and will not continue execution if any of the checks fail.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1497/001",
+                    "external_id": "T1497.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a1d381fe-62cd-4ff1-ac57-a0bc8dee1c4f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.382801Z",
+            "modified": "2025-10-28T18:46:05.382801Z",
+            "name": "Virtualization/Sandbox Evasion: User Activity Based Checks",
+            "description": "Goofy Guineapig checks for processes running on a system which indicate that it is being reverse engineered or debugged and will not continue execution if any of the checks fail.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1497/002",
+                    "external_id": "T1497.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1fe8f225-586f-4911-a518-80335c9866b6",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.384051Z",
+            "modified": "2025-10-28T18:46:05.384051Z",
+            "name": "Obfuscated/Compressed Files and Information: Software Packing",
+            "description": "Goofy Guineapig is UPX packed and packaged in with a legitimate NSIS installer.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027/002",
+                    "external_id": "T1027.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--fff3e911-41a6-4650-9359-2711198b942f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.384586Z",
+            "modified": "2025-10-28T18:46:05.384586Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "Goofy Guineapig contains stack-based strings which are obfuscated with single byte XOR or subtraction throughout the binary.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--685d0e29-14a7-4360-b815-93693c4aadab",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.38513Z",
+            "modified": "2025-10-28T18:46:05.38513Z",
+            "name": "Hide Artifacts: Hidden Window",
+            "description": "Goofy Guineapig contains the functionality to perform process hollowing on dllhost.exe, when this is performed the process is created hidden.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1564/003",
+                    "external_id": "T1564.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--6f5d646a-06fa-49db-8bcb-cfa85ea23cdd",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.386755Z",
+            "modified": "2025-10-28T18:46:05.386755Z",
+            "name": "Indicator Removal on Host: File Deletion",
+            "description": "Goofy Guineapig initially runs in the location to which it is downloaded, the files are moved to a legitimate looking directory and deleted from the initial download location.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--fcc1267d-4942-4a6d-8a13-e6a2682ebc95",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.387234Z",
+            "modified": "2025-10-28T18:46:05.387234Z",
+            "name": "Hijack Execution Flow: DLL Side-Loading",
+            "description": "A legitimate executable is installed by the Goofy Guineapig loader, alongside a malicious DLL which will be loaded by the legitimate executable.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/002",
+                    "external_id": "T1574.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--244248fb-2c4e-4d0d-bf85-f2c14350efbe",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.387544Z",
+            "modified": "2025-10-28T18:46:05.387544Z",
+            "name": "Process Injection: Process Hollowing",
+            "description": "Goofy Guineapig can perform process hollowing on the dllhost.exe binary, injecting content downloaded by the C2.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1055/012",
+                    "external_id": "T1055.012"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a4a45285-a49b-43a7-80f2-633cd7f5f864",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.388231Z",
+            "modified": "2025-10-28T18:46:05.388231Z",
+            "name": "System Binary Proxy Execution: Rundll32",
+            "description": "The Goofy Guineapig persistence mechanism utilises rundll32.exe and url.dll to execute the legitimate binary which will load the malicious DLL.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1218/011",
+                    "external_id": "T1218.011"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--82a65b2e-4635-4d1f-98d0-250889e7b3d3",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.389563Z",
+            "modified": "2025-10-28T18:46:05.389563Z",
+            "name": "System Information Discovery",
+            "description": "Goofy Guineapig sends information about the infected machine in each C2 packet, as an obfuscated \u2018Authorization\u2019 string in the HTTP header.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1082",
+                    "external_id": "T1082"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--02c3c10f-8cc2-4b2d-84ec-4c33572a4e86",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.390357Z",
+            "modified": "2025-10-28T18:46:05.390357Z",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "Goofy Guineapig uses HTTPS for its C2 communications.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--61674b21-8005-4f79-a96d-7920a0d6848f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.391241Z",
+            "modified": "2025-10-28T18:46:05.391241Z",
+            "name": "Fallback Channels",
+            "description": "Goofy Guineapig contains the functionality to communicate using UDP and the KCP protocol, or direct socket communications, dependant on an embedded configuration string.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1008",
+                    "external_id": "T1008"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--dfb7b35d-6fe0-4804-8a97-297df0900663",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.391767Z",
+            "modified": "2025-10-28T18:46:05.391767Z",
+            "name": "Non-Standard Port",
+            "description": "Goofy Guineapig communicates over the non-standard HTTPS port 4443.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1571",
+                    "external_id": "T1571"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a183fd3e-de67-4600-8f88-5de20a9fba5e",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.392465Z",
+            "modified": "2025-10-28T18:46:05.392465Z",
+            "name": "GoofyGuineapig_sessionstate",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_sessionstate\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects session state stack string setup in Goofy\nGuineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {66 C7 45 E8 44 69 66 C7 45 F2 65 64 C6 45 F1 74 66 C7 45 EB\n63 6F C6 45 F4 00 C6 45 EA 73 C7 45 ED 6E 6E 65 63}\n        $2 = {66 C7 45 ED 65 00 C7 45 E8 41 63 74 69 C6 45 EC 76 EB 2A}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.392433Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8eb21e37-851b-4197-a771-fd17bfe007d5",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.392756Z",
+            "modified": "2025-10-28T18:46:05.392756Z",
+            "name": "GoofyGuineapig_shellcodeheader",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_shellcodeheader\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig shellcode header.\"\n        date = \"2022-12-13\"\n        hash1 = \"231ac2c5f3c9a833836be65f7443e3525eb1e7a3\"\n\n    strings:\n        $1 = {10 00 00 00 00 FA 01 00 EA 06 00 00 51 36 25 07 31 25 53 55\n08 3A 15 2A 3B 34 2C 34 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n02 00 00 00}\n\n    condition:\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.392749Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6518c8b9-4d61-4248-b8a8-8641a35f12e9",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.392966Z",
+            "modified": "2025-10-28T18:46:05.392966Z",
+            "name": "GoofyGuineapig_querysessionargs",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_querysessionargs\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects query session information API call\narguments in Goofy Guineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {6A 05 52 33 DB 53 FF D7}\n        $2 = {50 6A 10 51 53 FF D7}\n        $3 = {51 6A 0E 52 53 FF D7}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.39296Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5acd2927-abf5-42e3-8af4-04b7c2b4f9c0",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.393172Z",
+            "modified": "2025-10-28T18:46:05.393172Z",
+            "name": "GoofyGuineapig_sleepargs",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_sleepargs\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects sleep API call argument setup in Goofy\nGuineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {33 D2 8D 4E 01 F7 F1 8B C6 8B CA 99 2B C2 D1 F8 8D 94 01 D0\n07 00 00 52 FF 15 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.393168Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--21fe71cb-e6fd-492f-8e9e-991d883d5507",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.393372Z",
+            "modified": "2025-10-28T18:46:05.393372Z",
+            "name": "GoofyGuineapig_internetqueryoptionargs",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_internetqueryoptionargs\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects internet query option API call arguments\nin Goofy Guineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {52 6A 1F 57 C7 85 ?? ?? ?? ?? 00 00 00 00 C7 85 ?? ?? ?? ??\n04 00 00 00 FF 15 ?? ?? ?? ?? 81 8D ?? ?? ?? ?? 80 03 00 00 6A 04 8D 85\n?? ?? ?? ?? 50 6A 1F 57 FF 15 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.393367Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7a4367f3-6952-4976-a850-65397866c7aa",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.393569Z",
+            "modified": "2025-10-28T18:46:05.393569Z",
+            "name": "GoofyGuineapig_httpstack",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_httpstack\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects http/HTTP stack string setup in Goofy\nGuineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {3C 68 75 ?? 80 7F 01 74 75 ?? 80 7F 02 74 75 ?? 80 7F 03 70\n74 ??}\n        $2 = {3C 48 75 ?? 80 7F 01 54 75 ?? 80 7F 02 54 75 ?? 80 7F 03 50\n74 ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.393565Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--03a99ed1-cf19-4c3d-8ba0-16f79c281a38",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.393785Z",
+            "modified": "2025-10-28T18:46:05.393785Z",
+            "name": "GoofyGuineapig_httpfunc",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_httpfunc\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects GET string setup in Goofy Guineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {C7 45 ?? FF FF FF FF BE 00 01 00 80 C7 45 ?? 47 45 54 00 C7\n45 ?? 00 02 00 00 E8 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.393781Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--098868b6-5b65-4a5c-8d8c-19f584f3187f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.393979Z",
+            "modified": "2025-10-28T18:46:05.393979Z",
+            "name": "GoofyGuineapig_encodedurl",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_encodedurl\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig encoded URL config.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {11 0D 0D 09 0A 63 76 76 2A 2D 38 2D 30 3A 77 2D 3A 29 35 36\n3E 77 3A 36 34 63 6D 6D 6D 6A 25 11 0D 0D 09 0A 63 76 76 2A 2D 38 2D 30\n3A 77 2D 3A 29 35 36 3E 77 3A 36 34 63 6D 6D 6D 6A 25 68 6B 25 6C 25 68\n59}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.393975Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2da988be-b038-4eaf-843d-7b7f8398e6dd",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.394184Z",
+            "modified": "2025-10-28T18:46:05.394184Z",
+            "name": "GoofyGuineapig_errorcompare",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_errorcompare\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig error comparison.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {81 FE FF 2E 00 00 0F ?? ?? ?? ?? ?? 81 FE F3 2E 00 00 74 ??\n81 FE 0D 2F 00 00 74 ?? 81 FE 8A 2F 00 00 74 ?? 81 FE 89 2F 00 00 74 ??\n81 FE 06 2F 00 00 74 ?? 81 FE 05 2F 00 00 0F}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.394179Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9ac77d16-0193-42b5-af8e-11fa6eb44f97",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.394378Z",
+            "modified": "2025-10-28T18:46:05.394378Z",
+            "name": "GoofyGuineapig_processstart",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_processstart\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig process hollowing process\nstart-up.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {50 51 51 68 34 00 08 00 51 51 51 66 89 4D CC 8B 4D 08 51 6A\n00 52 C7 45 9C 48 00 00 00 C7 45 A4 ?? ?? ?? ?? C7 45 C8 01 00 08 00 FF\n15 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.394374Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fc675bdc-d9fc-4047-8e03-19f5eba01e5b",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.39457Z",
+            "modified": "2025-10-28T18:46:05.39457Z",
+            "name": "GoofyGuineapig_threadcontext",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_threadcontext\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig process hollowing thread\ncontext.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {8D 95 ?? ?? ?? ?? 52 BB 02 00 01 00 57 89 9D ?? ?? ?? ?? FF\n15 ?? ?? ?? ?? 85 C0 74 ?? 8B 85 ?? ?? ?? ?? 8D 8D ?? ?? ?? ?? 51 57 89\n85 ?? ?? ?? ?? 89 9D ?? ?? ?? ?? FF 15 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.394566Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--965d293b-640c-4fc9-8ca0-a78e3c11f19a",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.394813Z",
+            "modified": "2025-10-28T18:46:05.394813Z",
+            "name": "GoofyGuineapig_rc4keystackstring_NZTsIkAC6FUDY7FyN",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_rc4keystackstring_NZTsIkAC6FUDY7FyN\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig RC4 key stack string\nsetup.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {66 C7 45 DF 79 4E C6 45 E1 00 C7 45 D0 4E 5A 54 73 66 C7 45\nDC 59 37 66 C7 45 D9 46 55 C6 45 DB 44 C7 45 D4 49 6B 41 43 C6 45 D8 36}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.394808Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--51c24f9e-f73a-4a74-9c16-7a5cdf0522e1",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.395015Z",
+            "modified": "2025-10-28T18:46:05.395015Z",
+            "name": "GoofyGuineapig_decodeshellcode",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_decodeshellcode\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig loader shellcode\ndecoding.\"\n        date = \"2022-12-13\"\n        hash1 = \"7961930d13cb8d5056db64b6749356915fb4c272\"\n        hash2 = \"6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c\"\n\n    strings:\n        $1 = {8A 0C 18 80 E9 73 80 F1 6D 88 0C 18 40 3B C7}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.395011Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b43d9b9e-7400-4af0-a146-a64e815eae7e",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.395215Z",
+            "modified": "2025-10-28T18:46:05.395215Z",
+            "name": "GoofyGuineapig_decodestring",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_decodestring\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig loader string decoding\"\n        date = \"2022-12-13\"\n        hash1 = \"6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c\"\n        hash2 = \"7961930d13cb8d5056db64b6749356915fb4c272\"\n\n    strings:\n        $1 = {8A 0C 18 80 E9 73 80 F1 6D 88 0C 18 40 3B C7}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.395211Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f665cede-202a-4094-887b-737e87022392",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.395417Z",
+            "modified": "2025-10-28T18:46:05.395417Z",
+            "name": "GoofyGuineapig_internetsetoptionargs",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_internetsetoptionargs\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects internet set option API call arguments in\nGoofy Guineapig.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {6A 04 8D 55 ?? 52 6A 06 57 C7 45 ?? 20 BF 02 00 FF 15 ?? ??\n?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.395413Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ce4b67e0-dd10-4a59-b9ea-5717bc4f8e98",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.395603Z",
+            "modified": "2025-10-28T18:46:05.395603Z",
+            "name": "GoofyGuineapig_rc4keystackstring_DNPl8CS20U5SvtpT5PE13",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_rc4keystackstring_DNPl8CS20U5SvtpT5PE13\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig RC4 key stack string\nsetup.\"\n        date = \"2022-12-13\"\n        hash1 = \"11b82826ec01aeec44e5e2504935b6aaccf51cac\"\n\n    strings:\n        $1 = {C7 45 ?? 44 4E 50 6C C7 45 ?? 38 43 53 32 C7 45 ?? 30 55 35\n53 C7 45 ?? 76 74 70 54 C7 45 ?? 35 50 45 31 66 C7 45 ?? 33 00}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.395599Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c55cac03-7012-472b-8b3c-27441d07022f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.395834Z",
+            "modified": "2025-10-28T18:46:05.395834Z",
+            "name": "GoofyGuineapig_servicestring",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_servicestring\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig loader service string.\"\n        date = \"2022-12-13\"\n        hash1 = \"7961930d13cb8d5056db64b6749356915fb4c272\"\n        hash2 = \"6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c\"\n\n    strings:\n        $service_string = \"C:\\\\windows\\\\system32\\\\cmd.exe /c\nC:\\\\windows\\\\system32\\\\rundll32.exe url.dll,FileProtocolHandler\nC:\\\\ProgramData\\\\GoogleUpdate\\\\GoogleUpdate.exe\"\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.395829Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--77cc9a65-febc-41fc-9ce5-4ef7f54b6ea2",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.396026Z",
+            "modified": "2025-10-28T18:46:05.396026Z",
+            "name": "GoofyGuineapig_stackstrings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_stackstrings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig loader stack strings.\"\n        date = \"2022-12-13\"\n        hash1 = \"6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c\"\n        hash2 = \"7961930d13cb8d5056db64b6749356915fb4c272\"\n\n    strings:\n        $TempBat = {C6 85 ?? F5 FF FF 2A C6 85 ?? F5 FF FF 78 C6 85 ?? F5\nFF FF 61 C6 85 ?? F5 FF FF 79 C6 85 ?? F5 FF FF 6A C6 85 ?? F5 FF FF 72\nC6 85 ?? F5 FF FF 75 C6 85 ?? F5 FF FF 33 C6 85 ?? F5 FF FF 67 C6 85 ??\nF5 FF FF 66 C6 85 ?? F5 FF FF 79}\n        $nStart = {C6 85 ?? F5 FF FF 4C C6 85 ?? F5 FF FF 35 C6 85 ?? F5\nFF FF 32 C6 85 ?? F5 FF FF 27 C6 85 ?? F5 FF FF 34 C6 85 ?? F5 FF FF 32\nC6 85 ?? F5 FF FF 66}\n        $Goopdate = {C6 85 ?? F6 FF FF 49 33 C9 C6 85 ?? F6 FF FF 71 C6\n85 ?? F6 FF FF 71 C6 85 ?? F6 FF FF 69 C6 85 ?? F6 FF FF 6E C6 85 ?? F6\nFF FF 67 C6 85 ?? F6 FF FF 57 C6 85 ?? F6 FF FF 72 C6 85 ?? F6 FF FF 66\nC6 85 ?? F6 FF FF 63 C6 85 ?? F6 FF FF 76 C6 85 ?? F6 FF FF 67}\n        $GoogleUpdateExe = {C6 85 ?? F5 FF FF 75 C6 85 ?? F5 FF FF 5D\n\nC6 85 ?? F5 FF FF 5D C6 85 ?? F5 FF FF 55 C6 85 ?? F5 FF FF 5E C6 85 ??\nF5 FF FF 57 C6 85 ?? F5 FF FF 67 C6 85 ?? F5 FF FF 42 C6 85 ?? F5 FF FF\n56 C6 85 ?? F5 FF FF 53 C6 85 ?? F5 FF FF 46 C6 85 ?? F5 FF FF 57 C6 85\n?? F5 FF FF 1C C6 85 ?? F5 FF FF 57 C6 85 ?? F5 FF FF 4A C6 85 ?? F5 FF\nFF 57}\n        $GoogleUpdate = {C6 85 ?? F5 FF FF 4E C6 85 ?? F5 FF FF 55 C6 85\n?? F5 FF FF 7D C6 85 ?? F5 FF FF 7D C6 85 ?? F5 FF FF 75 C6 85 ?? F5 FF\nFF 7E C6 85 ?? F5 FF FF 77 C6 85 ?? F5 FF FF 47 C6 85 ?? F5 FF FF 62 C6\n85 ?? F5 FF FF 76 C6 85 ?? F5 FF FF 73 C6 85 ?? F5 FF FF 66 C6 85 ?? F5\nFF FF 77 C6 85 ?? F5 FF FF 3C C6 85 ?? F5 FF FF 77 C6 85 ?? F5 FF FF 6A\nC6 85 ?? F5 FF FF 77}\n        $ProgramDataGoogleUpdate = {C6 85 ?? F5 FF FF 4F C6 85 ?? F5 FF\nFF 46 C6 85 ?? F5 FF FF 68 C6 85 ?? F5 FF FF 5C C6 85 ?? F5 FF FF 7E C6\n85 ?? F5 FF FF 7B 33 C9 C6 85 ?? F5 FF FF 73 C6 85 ?? F5 FF FF 7E C6 85\n?? F5 FF FF 6D C6 85 ?? F5 FF FF 79 C6 85 ?? F5 FF FF 50 C6 85 ?? F5 FF\nFF 6D C6 85 ?? F5 FF FF 80 C6 85 ?? F5 FF FF 6D C6 85 ?? F5 FF FF 68 C6\n85 ?? F5 FF FF 53 C6 85 ?? F5 FF FF 7B C6 85 ?? F5 FF FF 7B C6 85 ?? F5\nFF FF 73 C6 85 ?? F5 FF FF 78 C6 85 ?? F5 FF FF 71 C6 85 ?? F5 FF FF 61\nC6 85 ?? F5 FF FF 7C C6 85 ?? F5 FF FF 70 C6 85 ?? F5 FF FF 6D C6 85 ??\nF5 FF FF 80 C6 85 ?? F5 FF FF 71}\n        $Del = {C6 85 ?? F5 FF FF 79 C6 85 ?? F5 FF FF 17 C6 85 ?? F5 FF\nFF 16 C6 85 ?? F5 FF FF 1F C6 85 ?? F5 FF FF 53 C6 85 ?? F5 FF FF 56 C6\n85 ?? F5 FF FF 43 C6 85 ?? F5 FF FF 79}\n        $DEBUG = {C6 85 ?? FD FF FF 4A 33 C9 C6 85 ?? FD FF FF 4B C6 85\n?? FD FF FF 48 C6 85 ?? FD FF FF 5B C6 85 ?? FD FF FF 4D}\n        $Debug = {C6 85 ?? FD FF FF 34 C6 85 ?? FD FF FF 35 C6 85 ?? FD\nFF FF 32 C6 85 ?? FD FF FF 25 C6 85 ?? FD FF FF 37}\n        $Debug2 = {C6 44 24 ?? 5B C6 44 24 ?? 5A C6 44 24 ?? 5D C6 44 24\n?? 4A 88 44 24 ?? C6 44 24 ?? 58}\n        $ConfigDat = {C6 85 ?? F6 FF FF 16 C6 85 ?? F6 FF FF 29 C6 85 ??\nF6 FF FF 25 C6 85 ?? F6 FF FF 24 C6 85 ?? F6 FF FF 2C C6 85 ?? F6 FF FF\n23 C6 85 ?? F6 FF FF 2D C6 85 ?? F6 FF FF 64 C6 85 ?? F6 FF FF 2E C6 85\n?? F6 FF FF 2B C6 85 ?? F6 FF FF 3E}\n        $ConfigDatSubC = {C6 85 ?? F6 FF FF 68 C6 85 ?? F6 FF FF 6F C6 85\n?? F6 FF FF 7B C6 85 ?? F6 FF FF 7A C6 85 ?? F6 FF FF 72 C6 85 ?? F6 FF\nFF 75 C6 85 ?? F6 FF FF 73 C6 85 ?? F6 FF FF 3A C6 85 ?? F6 FF FF 70 C6\n85 ?? F6 FF FF 6D}\n        $EchoCommand = {C6 85 ?? F5 FF FF 43 C6 85 ?? F5 FF FF 68 C6 85\n?? F5 FF FF 66 C6 85 ?? F5 FF FF 6B C6 85 ?? F5 FF FF 72 C6 85 ?? F5 FF\nFF 23 C6 85 ?? F5 FF FF 72 C6 85 ?? F5 FF FF 69 C6 85 ?? F5 FF FF 69 C6\n85 ?? F5 FF FF 0D C6 85 ?? F5 FF FF 66 C6 85 ?? F5 FF FF 6B C6 85 ?? F5\nFF FF 72 C6 85 ?? F5 FF FF 6C C6 85 ?? F5 FF FF 66 C6 85 ?? F5 FF FF 68\nC6 85 ?? F5 FF FF 23 C6 85 ?? F5 FF FF 32 C6 85 ?? F5 FF FF 77 C6 85 ??\nF5 FF FF 23 C6 85 ?? F5 FF FF 28 C6 85 ?? F5 FF FF 67 C6 85 ?? F5 FF FF\n23 C6 85 ?? F5 FF FF 32 C6 85 ?? F5 FF FF 67 33 C9 C6 85 ?? F5 FF FF 23\nC6 85 ?? F5 FF FF 7C C6 85 ?? F5 FF FF 23 C6 85 ?? F5 FF FF 32 C6 85 ??\nF5 FF FF 71 C6 85 ?? F5 FF FF 23 C6 85 ?? F5 FF FF 41 C6 85 ?? F5 FF FF\n71 C6 85 ?? F5 FF FF 78 C6 85 ?? F5 FF FF 6F C6 85 ?? F5 FF FF 0D C6 85\n?? F5 FF FF 67 C6 85 ?? F5 FF FF 68 C6 85 ?? F5 FF FF 6F C6 85 ?? F5 FF\nFF 23}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.396022Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--df646c61-2b69-47ce-9dc0-02eb42f3f54a",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.396227Z",
+            "modified": "2025-10-28T18:46:05.396227Z",
+            "name": "GoofyGuineapig_pdbpath",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule GoofyGuineapig_pdbpath\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Goofy Guineapig debug path\"\n        date = \"2022-12-13\"\n        hash1 = \"7961930d13cb8d5056db64b6749356915fb4c272\"\n        hash2 = \"6f5c07c50ce4976ddb3879ce65d3b2f96693dc4c\"\n\n    strings:\n        $pdb_path =\n\"C:\\\\Users\\\\Benjamin\\\\source\\\\repos\\\\Dll1\\\\Release\\\\Dll1.pdb\"\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-10-28T18:46:05.396223Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--db1f21bb-4f5d-4d7d-97bc-4ace612226a6",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.396573Z",
+            "modified": "2025-10-28T18:46:05.396573Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--94b8dca2-3df6-4f39-8938-0b73c3ce947a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e339865-fa03-4edf-9852-ee0f51a2e3b3",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.396826Z",
+            "modified": "2025-10-28T18:46:05.396826Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--d9ee146b-6f06-4d8b-97f2-ae2e88ebe72f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6d1db3db-3bd1-4532-bc51-3aadf2eacb1b",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.397023Z",
+            "modified": "2025-10-28T18:46:05.397023Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--f331bbc1-21f7-4f4b-8691-7e564b0077c4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--68c26737-79d6-4fb1-8638-aac08d764f6c",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.397222Z",
+            "modified": "2025-10-28T18:46:05.397222Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--a7a9440a-e543-492a-a48d-9ac45e12d604"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--caf1f12d-70b5-4b7b-8f3b-05b73b3dd13b",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.39741Z",
+            "modified": "2025-10-28T18:46:05.39741Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--a1d381fe-62cd-4ff1-ac57-a0bc8dee1c4f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5aa74526-6bb6-46ec-bc28-52c209de4310",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.397595Z",
+            "modified": "2025-10-28T18:46:05.397595Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--1fe8f225-586f-4911-a518-80335c9866b6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--41f1f1c8-67ae-4252-a461-d5050dc258fb",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.397796Z",
+            "modified": "2025-10-28T18:46:05.397796Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--fff3e911-41a6-4650-9359-2711198b942f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--adeddb19-6a7c-41be-8e89-4a761ba22607",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.397981Z",
+            "modified": "2025-10-28T18:46:05.397981Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--685d0e29-14a7-4360-b815-93693c4aadab"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4973e12c-3c07-48e9-ab8e-6022140aa941",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.398182Z",
+            "modified": "2025-10-28T18:46:05.398182Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--6f5d646a-06fa-49db-8bcb-cfa85ea23cdd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d45c37a0-5053-4f21-96ce-51a935cd59fe",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.39837Z",
+            "modified": "2025-10-28T18:46:05.39837Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--fcc1267d-4942-4a6d-8a13-e6a2682ebc95"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b291134e-6986-41a9-8187-04ac21c81c7e",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.398553Z",
+            "modified": "2025-10-28T18:46:05.398553Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--244248fb-2c4e-4d0d-bf85-f2c14350efbe"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ceb1a497-eb02-4bd9-b1df-230002d1f34d",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.398746Z",
+            "modified": "2025-10-28T18:46:05.398746Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--a4a45285-a49b-43a7-80f2-633cd7f5f864"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--63033a33-27fb-44b9-b683-9adcb641d368",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.39893Z",
+            "modified": "2025-10-28T18:46:05.39893Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--82a65b2e-4635-4d1f-98d0-250889e7b3d3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--92bb4570-667a-4b25-abf1-17129a7f4ec8",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.399246Z",
+            "modified": "2025-10-28T18:46:05.399246Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--02c3c10f-8cc2-4b2d-84ec-4c33572a4e86"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5d1b85b3-5051-47b3-be68-562ca1395010",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.399433Z",
+            "modified": "2025-10-28T18:46:05.399433Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--61674b21-8005-4f79-a96d-7920a0d6848f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bbc31ae9-c0de-4932-b5da-fd63e0855749",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.399613Z",
+            "modified": "2025-10-28T18:46:05.399613Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5c58deca-6729-4965-b109-299774222e1c",
+            "target_ref": "attack-pattern--dfb7b35d-6fe0-4804-8a97-297df0900663"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--75c8e69a-bc2e-46ca-91bc-7f70bd11086f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.399876Z",
+            "modified": "2025-10-28T18:46:05.399876Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--76bc7f12-08f0-4858-838d-3160fd98d9a3",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6b399412-6e14-4de7-8ebe-928eea073c0a",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.40006Z",
+            "modified": "2025-10-28T18:46:05.40006Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ec804f7d-14ce-4e90-ac62-e53dc3c419a0",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c71fb127-7097-4bf6-8ef5-dd7d4fbb0fe1",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.400251Z",
+            "modified": "2025-10-28T18:46:05.400251Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5e22f0b5-0b1f-4d01-ae24-0aad37d659fb",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1d3257ac-95a2-4dc3-90d8-45fb1caa02a3",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.400433Z",
+            "modified": "2025-10-28T18:46:05.400433Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cf930ae0-16ed-48b2-b38d-058f10dc45e4",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aeafda01-d5e5-4919-ade7-5a5b5f96328e",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.400615Z",
+            "modified": "2025-10-28T18:46:05.400615Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4faa7219-2601-41c4-bfda-30dc94dce5e0",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3111497e-c06f-4075-b4ad-e680caa34a39",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.400815Z",
+            "modified": "2025-10-28T18:46:05.400815Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--408b53c9-e3e3-4e8c-872a-73dcb36964df",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8cd92db6-63a4-4c9a-a405-ff32967b678f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.401892Z",
+            "modified": "2025-10-28T18:46:05.401892Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c0cd9533-755c-4ba8-8c2b-3fcb69232bbc",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2f3fb88a-3cb8-4163-aa86-16ab1aeed49a",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.402106Z",
+            "modified": "2025-10-28T18:46:05.402106Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3198e900-4c07-4548-9b98-1ebef955a96e",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d2b65a97-cb32-42db-a546-88ded1240af0",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.402294Z",
+            "modified": "2025-10-28T18:46:05.402294Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--47acc50a-67e8-47b0-8a92-63c279cf58d7",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--472f4bfe-3358-451a-929d-8ef351c4b872",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.402475Z",
+            "modified": "2025-10-28T18:46:05.402475Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0fc842f9-1b78-487c-97ae-b3c2211bca43",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--131ec528-1c3a-40d3-99aa-e1a700eb4a68",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.402673Z",
+            "modified": "2025-10-28T18:46:05.402673Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aba1f9f2-d2f0-421b-a2ba-bf41a07acac6",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.402859Z",
+            "modified": "2025-10-28T18:46:05.402859Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--05238e5e-539a-4709-b3da-51f21a23c285",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--16e3963b-cec6-4594-8c6a-61754df9501f",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.403039Z",
+            "modified": "2025-10-28T18:46:05.403039Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d6dd7df6-6590-4ccb-9d54-69b3fe00ce97",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--da9abb6c-738a-4ae0-ab13-82f0165ef3b3",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.403229Z",
+            "modified": "2025-10-28T18:46:05.403229Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7e04795c-4dca-4d3d-8b44-f6dc1c7338e2",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.40341Z",
+            "modified": "2025-10-28T18:46:05.40341Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f0802813-5b45-4f2b-b597-d19e37a67b41",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--739d3c88-0115-4833-98e1-5af25de5a31c",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.40359Z",
+            "modified": "2025-10-28T18:46:05.40359Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--dd4f9fa0-ad90-440d-8746-053d7d241601",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bb1fa7a7-317f-4b5e-a954-7a4f44956180",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.403792Z",
+            "modified": "2025-10-28T18:46:05.403792Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--23d93d47-f35e-4fed-ab40-d3c010994049",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--61a16c4d-5c3a-4f53-ad65-1ca7dbfb8515",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.403979Z",
+            "modified": "2025-10-28T18:46:05.403979Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5cfcce5b-d860-40d8-9456-e8b23338d616",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6ebe32f4-f5d2-4df7-bdec-2b73ce11eb68",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.40417Z",
+            "modified": "2025-10-28T18:46:05.40417Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d071262b-520c-4c19-9424-46648cd4d4bd",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--361d7d3b-e717-4e01-acfe-5168eac9acce",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.404349Z",
+            "modified": "2025-10-28T18:46:05.404349Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1ce35dd-1702-4c21-8a04-ab8c6d1df464",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.404527Z",
+            "modified": "2025-10-28T18:46:05.404527Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--00029e47-02a2-49eb-b2fd-696eff914d32",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a132e852-5c18-42b0-8e66-8cd3803dcc34",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.40472Z",
+            "modified": "2025-10-28T18:46:05.40472Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--45ed0676-60ac-450f-bbd7-1abd78041c80",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--45b5f97e-d552-46c1-a1f9-d95b957caaee",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.404902Z",
+            "modified": "2025-10-28T18:46:05.404902Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b3a876f3-1b93-40b0-811d-04b71dfffd65",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.405088Z",
+            "modified": "2025-10-28T18:46:05.405088Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0d022af1-bb64-47d6-b3ec-e11d201429d8",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5d0ab840-d0af-415d-9bb7-560fc356dcd9",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.405512Z",
+            "modified": "2025-10-28T18:46:05.405512Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a183fd3e-de67-4600-8f88-5de20a9fba5e",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bec8db01-5a36-496a-8b32-1c6b063ccb08",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.405784Z",
+            "modified": "2025-10-28T18:46:05.405784Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a183fd3e-de67-4600-8f88-5de20a9fba5e",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eb5194e2-0d2a-491c-b900-93b97eebb7e1",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.406051Z",
+            "modified": "2025-10-28T18:46:05.406051Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8eb21e37-851b-4197-a771-fd17bfe007d5",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0bc003bf-b414-4f05-898a-715ecb8cefee",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.406271Z",
+            "modified": "2025-10-28T18:46:05.406271Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--8eb21e37-851b-4197-a771-fd17bfe007d5",
+            "target_ref": "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6454312e-8d45-43e8-8661-0a7c7206b664",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.406505Z",
+            "modified": "2025-10-28T18:46:05.406505Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6518c8b9-4d61-4248-b8a8-8641a35f12e9",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7de33086-a593-481f-b403-a43c817fb210",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.406723Z",
+            "modified": "2025-10-28T18:46:05.406723Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--6518c8b9-4d61-4248-b8a8-8641a35f12e9",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ea2010e4-c545-4fc7-8bf8-b75afa353d71",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.406942Z",
+            "modified": "2025-10-28T18:46:05.406942Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5acd2927-abf5-42e3-8af4-04b7c2b4f9c0",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ca1739fd-b2fa-43c5-a87d-d769fb66ceb4",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.407147Z",
+            "modified": "2025-10-28T18:46:05.407147Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5acd2927-abf5-42e3-8af4-04b7c2b4f9c0",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a22789b4-c031-4c06-aecd-8668a821f139",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.407366Z",
+            "modified": "2025-10-28T18:46:05.407366Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--21fe71cb-e6fd-492f-8e9e-991d883d5507",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e37bc6bd-8b92-416e-8a75-04c3514131f5",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.407562Z",
+            "modified": "2025-10-28T18:46:05.407562Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--21fe71cb-e6fd-492f-8e9e-991d883d5507",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8bec1183-6363-4f6e-9b81-825f3e4282e0",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.407802Z",
+            "modified": "2025-10-28T18:46:05.407802Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7a4367f3-6952-4976-a850-65397866c7aa",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3422b702-baa1-4c86-821f-6db88b100936",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.408005Z",
+            "modified": "2025-10-28T18:46:05.408005Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--7a4367f3-6952-4976-a850-65397866c7aa",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e51cf62f-3f06-46e3-8744-7063f1c85c39",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.408229Z",
+            "modified": "2025-10-28T18:46:05.408229Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--03a99ed1-cf19-4c3d-8ba0-16f79c281a38",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--23f1e079-f8c1-4c8a-8c4d-2c5f55da71be",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.408437Z",
+            "modified": "2025-10-28T18:46:05.408437Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--03a99ed1-cf19-4c3d-8ba0-16f79c281a38",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2ca61ab3-b770-4666-a635-67add561f64c",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.408672Z",
+            "modified": "2025-10-28T18:46:05.408672Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--098868b6-5b65-4a5c-8d8c-19f584f3187f",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--803fdf49-77bd-46df-9e20-51d05629bcc8",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.408875Z",
+            "modified": "2025-10-28T18:46:05.408875Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--098868b6-5b65-4a5c-8d8c-19f584f3187f",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e03316f4-2fe1-4ae3-8d7f-1b7fcec23cb8",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.4091Z",
+            "modified": "2025-10-28T18:46:05.4091Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2da988be-b038-4eaf-843d-7b7f8398e6dd",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a1ded6c2-7f83-456a-8fe6-e6ad7b1c06f9",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.409305Z",
+            "modified": "2025-10-28T18:46:05.409305Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2da988be-b038-4eaf-843d-7b7f8398e6dd",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b2cef12c-2bfb-4064-b771-9a284f1f2418",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.409526Z",
+            "modified": "2025-10-28T18:46:05.409526Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9ac77d16-0193-42b5-af8e-11fa6eb44f97",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6533c3d-79ec-4dce-bd05-7a0244b98641",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.409736Z",
+            "modified": "2025-10-28T18:46:05.409736Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9ac77d16-0193-42b5-af8e-11fa6eb44f97",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9c02a80f-ceda-4fa1-a443-aa074a523ba0",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.409964Z",
+            "modified": "2025-10-28T18:46:05.409964Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fc675bdc-d9fc-4047-8e03-19f5eba01e5b",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--00f16894-7366-46b2-af9c-af794138b3e8",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.41017Z",
+            "modified": "2025-10-28T18:46:05.41017Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fc675bdc-d9fc-4047-8e03-19f5eba01e5b",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e963b837-058c-40e6-a96e-232252203c8d",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.410482Z",
+            "modified": "2025-10-28T18:46:05.410482Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--965d293b-640c-4fc9-8ca0-a78e3c11f19a",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--572a59e4-4496-4eab-a80e-6826ce8fa710",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.410716Z",
+            "modified": "2025-10-28T18:46:05.410716Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--51c24f9e-f73a-4a74-9c16-7a5cdf0522e1",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dc17a5d3-37dd-4d04-ac68-9f5d4956fdc4",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.410908Z",
+            "modified": "2025-10-28T18:46:05.410908Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--51c24f9e-f73a-4a74-9c16-7a5cdf0522e1",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2b1974d5-32b7-40fe-90d4-03a04a3273e3",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.411104Z",
+            "modified": "2025-10-28T18:46:05.411104Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--51c24f9e-f73a-4a74-9c16-7a5cdf0522e1",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3723af38-a7b8-4ccd-b6a9-5792e1d2ef5b",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.411329Z",
+            "modified": "2025-10-28T18:46:05.411329Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b43d9b9e-7400-4af0-a146-a64e815eae7e",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--70f81bcd-8921-4ef5-82e8-00c82c22f244",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.411521Z",
+            "modified": "2025-10-28T18:46:05.411521Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b43d9b9e-7400-4af0-a146-a64e815eae7e",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--80c554c5-542b-4844-8695-451ffe021309",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.411723Z",
+            "modified": "2025-10-28T18:46:05.411723Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b43d9b9e-7400-4af0-a146-a64e815eae7e",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--47a7ee5b-66ce-4f35-936b-9707c6481483",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.411946Z",
+            "modified": "2025-10-28T18:46:05.411946Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f665cede-202a-4094-887b-737e87022392",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--10d18869-7897-4093-96e9-33d5a7e49dc6",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.412149Z",
+            "modified": "2025-10-28T18:46:05.412149Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f665cede-202a-4094-887b-737e87022392",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fc0081c2-541b-4e65-9cfc-017b806af2ff",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.412372Z",
+            "modified": "2025-10-28T18:46:05.412372Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ce4b67e0-dd10-4a59-b9ea-5717bc4f8e98",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4c5584ad-e30a-45cc-8a56-8b8fc10005f2",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.412567Z",
+            "modified": "2025-10-28T18:46:05.412567Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--ce4b67e0-dd10-4a59-b9ea-5717bc4f8e98",
+            "target_ref": "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8d3a951a-5e5d-4b41-9a3d-75ef4ae76379",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.412801Z",
+            "modified": "2025-10-28T18:46:05.412801Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c55cac03-7012-472b-8b3c-27441d07022f",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f003e620-840f-4c74-9084-665c9fd63822",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.412991Z",
+            "modified": "2025-10-28T18:46:05.412991Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c55cac03-7012-472b-8b3c-27441d07022f",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f739f3b-2b0e-44e8-b9d5-e0c5b74bfff9",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.413188Z",
+            "modified": "2025-10-28T18:46:05.413188Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c55cac03-7012-472b-8b3c-27441d07022f",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c51d7aab-5170-4a5e-a710-d79bc408e2fd",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.413413Z",
+            "modified": "2025-10-28T18:46:05.413413Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--77cc9a65-febc-41fc-9ce5-4ef7f54b6ea2",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f9e212eb-4e06-475d-b6dc-c0af8f9df319",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.413601Z",
+            "modified": "2025-10-28T18:46:05.413601Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--77cc9a65-febc-41fc-9ce5-4ef7f54b6ea2",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--157c89ed-8685-4772-ba72-a9104acd6d59",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.413803Z",
+            "modified": "2025-10-28T18:46:05.413803Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--77cc9a65-febc-41fc-9ce5-4ef7f54b6ea2",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3476a7b7-3aa1-49b9-bb90-9edf8a57c663",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.414027Z",
+            "modified": "2025-10-28T18:46:05.414027Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--df646c61-2b69-47ce-9dc0-02eb42f3f54a",
+            "target_ref": "malware--5c58deca-6729-4965-b109-299774222e1c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3d6571a4-e23f-4771-b235-fbd5cfc2b94b",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.414227Z",
+            "modified": "2025-10-28T18:46:05.414227Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--df646c61-2b69-47ce-9dc0-02eb42f3f54a",
+            "target_ref": "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--71372983-c48b-4a2d-994e-e65f917671f9",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.414418Z",
+            "modified": "2025-10-28T18:46:05.414418Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--df646c61-2b69-47ce-9dc0-02eb42f3f54a",
+            "target_ref": "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--642571e1-57c0-44a2-a406-7bb4109d3e50",
+            "created_by_ref": "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+            "created": "2025-10-28T18:46:05.415099Z",
+            "modified": "2025-10-28T18:46:05.415099Z",
+            "name": "Analisi Malware: Goofy Guineapig",
+            "description": "This report contains technical analysis and indicators associated with malware. goofy guineapig.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-10-28T18:46:05.415087Z",
+            "object_refs": [
+                "identity--adfde8a9-06fc-45bd-ba6a-aaebe78cc773",
+                "domain-name--e14480ea-ce4a-53b4-8152-7585cc739c01",
+                "url--18b16915-391a-59d6-a304-267e8aed2473",
+                "directory--5aa196fa-5bd6-5575-890c-710d10607b92",
+                "directory--159ebb7f-24f1-5bc8-b0fd-1898d899aec0",
+                "indicator--76bc7f12-08f0-4858-838d-3160fd98d9a3",
+                "indicator--ec804f7d-14ce-4e90-ac62-e53dc3c419a0",
+                "indicator--5e22f0b5-0b1f-4d01-ae24-0aad37d659fb",
+                "indicator--cf930ae0-16ed-48b2-b38d-058f10dc45e4",
+                "indicator--4faa7219-2601-41c4-bfda-30dc94dce5e0",
+                "indicator--408b53c9-e3e3-4e8c-872a-73dcb36964df",
+                "indicator--c0cd9533-755c-4ba8-8c2b-3fcb69232bbc",
+                "indicator--3198e900-4c07-4548-9b98-1ebef955a96e",
+                "indicator--47acc50a-67e8-47b0-8a92-63c279cf58d7",
+                "indicator--0fc842f9-1b78-487c-97ae-b3c2211bca43",
+                "indicator--4ca3dfbd-3c19-4f8b-8fc1-d8d388069a56",
+                "indicator--05238e5e-539a-4709-b3da-51f21a23c285",
+                "indicator--d6dd7df6-6590-4ccb-9d54-69b3fe00ce97",
+                "indicator--e5525f74-52a4-49c0-a180-2445e2fdf60e",
+                "indicator--f0802813-5b45-4f2b-b597-d19e37a67b41",
+                "indicator--dd4f9fa0-ad90-440d-8746-053d7d241601",
+                "indicator--23d93d47-f35e-4fed-ab40-d3c010994049",
+                "indicator--5cfcce5b-d860-40d8-9456-e8b23338d616",
+                "indicator--d071262b-520c-4c19-9424-46648cd4d4bd",
+                "indicator--1a4ee93f-74a4-4511-8f7f-e9dabcf170c5",
+                "indicator--00029e47-02a2-49eb-b2fd-696eff914d32",
+                "indicator--45ed0676-60ac-450f-bbd7-1abd78041c80",
+                "indicator--2aa173c5-4f5c-4052-ae91-f52c60bb8621",
+                "indicator--0d022af1-bb64-47d6-b3ec-e11d201429d8",
+                "relationship--29e7f1c9-fb57-49fc-bb9f-85fe6dc228f1",
+                "relationship--ea1a930f-3dfc-4177-8c66-4745a0f0c3d5",
+                "relationship--c63c3547-c1d9-4b82-b46b-1af7c696a910",
+                "relationship--fc80f64c-8c33-416f-82bf-520a1314ca59",
+                "relationship--05dcb597-4d2c-43b7-bf1d-e71238565be8",
+                "relationship--9f382111-c7b4-4167-bb06-a4c39e97ab8c",
+                "relationship--5da12880-5c7d-4046-acc8-28a74131c41a",
+                "relationship--d861bcc9-732f-49e4-b5f9-373c7943d68e",
+                "relationship--07efdcdf-c4e6-45ff-b93b-fc490314e36f",
+                "relationship--46885d13-8761-4ef1-95a8-fb1cd57e080f",
+                "relationship--6cc6b764-3756-40c2-b59a-00ed9c7e85a9",
+                "relationship--109fba6a-56fd-45b7-8c28-d6a84df0a145",
+                "relationship--3b55049d-8fb1-49e6-9d28-e9dfb4d2b9bc",
+                "relationship--fb1b6e6d-ebd1-4bec-a7d1-74e206374a26",
+                "relationship--6a957ba9-0aea-4378-ae11-d18a540de74a",
+                "relationship--a4307268-a60a-4ff3-8a10-7a7b39b1e1d6",
+                "relationship--9d48e3cf-1cdd-418a-b12b-8926cd10692e",
+                "relationship--2a7d77ac-af39-4db9-9db0-e007cfb01ad9",
+                "relationship--29a18efb-5fb2-4b7b-8c22-1cef4bdbc44c",
+                "relationship--a9587c20-a964-42ab-8e03-994a06168586",
+                "relationship--7105882b-d95d-4af1-ac11-e417339b5a17",
+                "relationship--327db965-c208-428c-82c7-c4ef90328e77",
+                "malware--5c58deca-6729-4965-b109-299774222e1c",
+                "attack-pattern--94b8dca2-3df6-4f39-8938-0b73c3ce947a",
+                "attack-pattern--d9ee146b-6f06-4d8b-97f2-ae2e88ebe72f",
+                "attack-pattern--f331bbc1-21f7-4f4b-8691-7e564b0077c4",
+                "attack-pattern--a7a9440a-e543-492a-a48d-9ac45e12d604",
+                "attack-pattern--a1d381fe-62cd-4ff1-ac57-a0bc8dee1c4f",
+                "attack-pattern--1fe8f225-586f-4911-a518-80335c9866b6",
+                "attack-pattern--fff3e911-41a6-4650-9359-2711198b942f",
+                "attack-pattern--685d0e29-14a7-4360-b815-93693c4aadab",
+                "attack-pattern--6f5d646a-06fa-49db-8bcb-cfa85ea23cdd",
+                "attack-pattern--fcc1267d-4942-4a6d-8a13-e6a2682ebc95",
+                "attack-pattern--244248fb-2c4e-4d0d-bf85-f2c14350efbe",
+                "attack-pattern--a4a45285-a49b-43a7-80f2-633cd7f5f864",
+                "attack-pattern--82a65b2e-4635-4d1f-98d0-250889e7b3d3",
+                "attack-pattern--02c3c10f-8cc2-4b2d-84ec-4c33572a4e86",
+                "attack-pattern--61674b21-8005-4f79-a96d-7920a0d6848f",
+                "attack-pattern--dfb7b35d-6fe0-4804-8a97-297df0900663",
+                "indicator--a183fd3e-de67-4600-8f88-5de20a9fba5e",
+                "indicator--8eb21e37-851b-4197-a771-fd17bfe007d5",
+                "indicator--6518c8b9-4d61-4248-b8a8-8641a35f12e9",
+                "indicator--5acd2927-abf5-42e3-8af4-04b7c2b4f9c0",
+                "indicator--21fe71cb-e6fd-492f-8e9e-991d883d5507",
+                "indicator--7a4367f3-6952-4976-a850-65397866c7aa",
+                "indicator--03a99ed1-cf19-4c3d-8ba0-16f79c281a38",
+                "indicator--098868b6-5b65-4a5c-8d8c-19f584f3187f",
+                "indicator--2da988be-b038-4eaf-843d-7b7f8398e6dd",
+                "indicator--9ac77d16-0193-42b5-af8e-11fa6eb44f97",
+                "indicator--fc675bdc-d9fc-4047-8e03-19f5eba01e5b",
+                "indicator--965d293b-640c-4fc9-8ca0-a78e3c11f19a",
+                "indicator--51c24f9e-f73a-4a74-9c16-7a5cdf0522e1",
+                "indicator--b43d9b9e-7400-4af0-a146-a64e815eae7e",
+                "indicator--f665cede-202a-4094-887b-737e87022392",
+                "indicator--ce4b67e0-dd10-4a59-b9ea-5717bc4f8e98",
+                "indicator--c55cac03-7012-472b-8b3c-27441d07022f",
+                "indicator--77cc9a65-febc-41fc-9ce5-4ef7f54b6ea2",
+                "indicator--df646c61-2b69-47ce-9dc0-02eb42f3f54a",
+                "relationship--db1f21bb-4f5d-4d7d-97bc-4ace612226a6",
+                "relationship--3e339865-fa03-4edf-9852-ee0f51a2e3b3",
+                "relationship--6d1db3db-3bd1-4532-bc51-3aadf2eacb1b",
+                "relationship--68c26737-79d6-4fb1-8638-aac08d764f6c",
+                "relationship--caf1f12d-70b5-4b7b-8f3b-05b73b3dd13b",
+                "relationship--5aa74526-6bb6-46ec-bc28-52c209de4310",
+                "relationship--41f1f1c8-67ae-4252-a461-d5050dc258fb",
+                "relationship--adeddb19-6a7c-41be-8e89-4a761ba22607",
+                "relationship--4973e12c-3c07-48e9-ab8e-6022140aa941",
+                "relationship--d45c37a0-5053-4f21-96ce-51a935cd59fe",
+                "relationship--b291134e-6986-41a9-8187-04ac21c81c7e",
+                "relationship--ceb1a497-eb02-4bd9-b1df-230002d1f34d",
+                "relationship--63033a33-27fb-44b9-b683-9adcb641d368",
+                "relationship--92bb4570-667a-4b25-abf1-17129a7f4ec8",
+                "relationship--5d1b85b3-5051-47b3-be68-562ca1395010",
+                "relationship--bbc31ae9-c0de-4932-b5da-fd63e0855749",
+                "relationship--75c8e69a-bc2e-46ca-91bc-7f70bd11086f",
+                "relationship--6b399412-6e14-4de7-8ebe-928eea073c0a",
+                "relationship--c71fb127-7097-4bf6-8ef5-dd7d4fbb0fe1",
+                "relationship--1d3257ac-95a2-4dc3-90d8-45fb1caa02a3",
+                "relationship--aeafda01-d5e5-4919-ade7-5a5b5f96328e",
+                "relationship--3111497e-c06f-4075-b4ad-e680caa34a39",
+                "relationship--8cd92db6-63a4-4c9a-a405-ff32967b678f",
+                "relationship--2f3fb88a-3cb8-4163-aa86-16ab1aeed49a",
+                "relationship--d2b65a97-cb32-42db-a546-88ded1240af0",
+                "relationship--472f4bfe-3358-451a-929d-8ef351c4b872",
+                "relationship--131ec528-1c3a-40d3-99aa-e1a700eb4a68",
+                "relationship--aba1f9f2-d2f0-421b-a2ba-bf41a07acac6",
+                "relationship--16e3963b-cec6-4594-8c6a-61754df9501f",
+                "relationship--da9abb6c-738a-4ae0-ab13-82f0165ef3b3",
+                "relationship--7e04795c-4dca-4d3d-8b44-f6dc1c7338e2",
+                "relationship--739d3c88-0115-4833-98e1-5af25de5a31c",
+                "relationship--bb1fa7a7-317f-4b5e-a954-7a4f44956180",
+                "relationship--61a16c4d-5c3a-4f53-ad65-1ca7dbfb8515",
+                "relationship--6ebe32f4-f5d2-4df7-bdec-2b73ce11eb68",
+                "relationship--361d7d3b-e717-4e01-acfe-5168eac9acce",
+                "relationship--d1ce35dd-1702-4c21-8a04-ab8c6d1df464",
+                "relationship--a132e852-5c18-42b0-8e66-8cd3803dcc34",
+                "relationship--45b5f97e-d552-46c1-a1f9-d95b957caaee",
+                "relationship--b3a876f3-1b93-40b0-811d-04b71dfffd65",
+                "relationship--5d0ab840-d0af-415d-9bb7-560fc356dcd9",
+                "relationship--bec8db01-5a36-496a-8b32-1c6b063ccb08",
+                "relationship--eb5194e2-0d2a-491c-b900-93b97eebb7e1",
+                "relationship--0bc003bf-b414-4f05-898a-715ecb8cefee",
+                "relationship--6454312e-8d45-43e8-8661-0a7c7206b664",
+                "relationship--7de33086-a593-481f-b403-a43c817fb210",
+                "relationship--ea2010e4-c545-4fc7-8bf8-b75afa353d71",
+                "relationship--ca1739fd-b2fa-43c5-a87d-d769fb66ceb4",
+                "relationship--a22789b4-c031-4c06-aecd-8668a821f139",
+                "relationship--e37bc6bd-8b92-416e-8a75-04c3514131f5",
+                "relationship--8bec1183-6363-4f6e-9b81-825f3e4282e0",
+                "relationship--3422b702-baa1-4c86-821f-6db88b100936",
+                "relationship--e51cf62f-3f06-46e3-8744-7063f1c85c39",
+                "relationship--23f1e079-f8c1-4c8a-8c4d-2c5f55da71be",
+                "relationship--2ca61ab3-b770-4666-a635-67add561f64c",
+                "relationship--803fdf49-77bd-46df-9e20-51d05629bcc8",
+                "relationship--e03316f4-2fe1-4ae3-8d7f-1b7fcec23cb8",
+                "relationship--a1ded6c2-7f83-456a-8fe6-e6ad7b1c06f9",
+                "relationship--b2cef12c-2bfb-4064-b771-9a284f1f2418",
+                "relationship--a6533c3d-79ec-4dce-bd05-7a0244b98641",
+                "relationship--9c02a80f-ceda-4fa1-a443-aa074a523ba0",
+                "relationship--00f16894-7366-46b2-af9c-af794138b3e8",
+                "relationship--e963b837-058c-40e6-a96e-232252203c8d",
+                "relationship--572a59e4-4496-4eab-a80e-6826ce8fa710",
+                "relationship--dc17a5d3-37dd-4d04-ac68-9f5d4956fdc4",
+                "relationship--2b1974d5-32b7-40fe-90d4-03a04a3273e3",
+                "relationship--3723af38-a7b8-4ccd-b6a9-5792e1d2ef5b",
+                "relationship--70f81bcd-8921-4ef5-82e8-00c82c22f244",
+                "relationship--80c554c5-542b-4844-8695-451ffe021309",
+                "relationship--47a7ee5b-66ce-4f35-936b-9707c6481483",
+                "relationship--10d18869-7897-4093-96e9-33d5a7e49dc6",
+                "relationship--fc0081c2-541b-4e65-9cfc-017b806af2ff",
+                "relationship--4c5584ad-e30a-45cc-8a56-8b8fc10005f2",
+                "relationship--8d3a951a-5e5d-4b41-9a3d-75ef4ae76379",
+                "relationship--f003e620-840f-4c74-9084-665c9fd63822",
+                "relationship--7f739f3b-2b0e-44e8-b9d5-e0c5b74bfff9",
+                "relationship--c51d7aab-5170-4a5e-a710-d79bc408e2fd",
+                "relationship--f9e212eb-4e06-475d-b6dc-c0af8f9df319",
+                "relationship--157c89ed-8685-4772-ba72-a9104acd6d59",
+                "relationship--3476a7b7-3aa1-49b9-bb90-9edf8a57c663",
+                "relationship--3d6571a4-e23f-4771-b235-fbd5cfc2b94b",
+                "relationship--71372983-c48b-4a2d-994e-e65f917671f9"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
