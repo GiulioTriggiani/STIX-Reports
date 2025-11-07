@@ -1,0 +1,975 @@
+{
+    "type": "bundle",
+    "id": "bundle--4139bdbd-77de-40d9-9286-46375ca3e62f",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.405178Z",
+            "modified": "2025-11-07T16:27:57.405178Z",
+            "name": "NCSC",
+            "description": "Organization referenced throughout the report; credited as the author in YARA rule metadata and the publisher of this malware analysis report.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--c04a7596-a950-5780-afd0-65cb74300cdb",
+            "value": "theandersonco.com"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--d94905e8-fcc1-5c71-85ea-b6ec4138635b",
+            "value": "tomasubiera.com"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--81cbe837-251f-5f2c-8edd-c52249cc63fc",
+            "value": "http://theandersonco.com/wp_info.php"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--f7e161ae-9400-5270-8e32-b09be2e68aa5",
+            "value": "https://tomasubiera.com/wp-getcontent.php"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--811a8e02-555d-56f6-b393-d67d60b34be1",
+            "name": "YpqlzSab"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--da286979-3cfe-5948-b6ac-84f77db1928c",
+            "name": "j7vRUGBW"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e41ec069-d7f5-43dc-a5b9-74a0aa0912c6",
+            "created": "2025-11-07T16:24:09.359395Z",
+            "modified": "2025-11-07T16:24:09.359395Z",
+            "name": "C2 domain (LocalData.dll)",
+            "description": "Rhythmic Parry HTTP C2 domain used in beacon requests (GET /wp_info.php).",
+            "pattern": "[domain-name:value = 'theandersonco.com']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.359377Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cfde8877-9a4e-4edc-b8a9-25d2c1bad617",
+            "created": "2025-11-07T16:24:09.360889Z",
+            "modified": "2025-11-07T16:24:09.360889Z",
+            "name": "C2 domain (DiagView.dll)",
+            "description": "Rhythmic Parry HTTPS C2 domain used in beacon requests (GET /wp-getcontent.php?contentid=uuid).",
+            "pattern": "[domain-name:value = 'tomasubiera.com']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.36088Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--98327843-0733-4452-97b9-d7a32e0c1563",
+            "created": "2025-11-07T16:24:09.362009Z",
+            "modified": "2025-11-07T16:24:09.362009Z",
+            "name": "LocalData.dll C2 endpoint",
+            "description": "HTTP GET beacon endpoint used by Rhythmic Parry LocalData.dll sample.",
+            "pattern": "[url:value = 'http://theandersonco.com/wp_info.php']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.362001Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bbd788b9-cd17-41cb-a6d0-83effa9bfe53",
+            "created": "2025-11-07T16:24:09.363042Z",
+            "modified": "2025-11-07T16:24:09.363042Z",
+            "name": "DiagView.dll C2 endpoint",
+            "description": "HTTPS GET beacon endpoint used by Rhythmic Parry DiagView.dll sample; actual requests include a victim-specific UUID in the 'contentid' query parameter.",
+            "pattern": "[url:value = 'https://tomasubiera.com/wp-getcontent.php']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.363034Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2b33cb13-8a1d-42d1-94c3-5b942f64f8ca",
+            "created": "2025-11-07T16:24:09.364059Z",
+            "modified": "2025-11-07T16:24:09.364059Z",
+            "name": "Rhythmic Parry mutex (LocalData.dll)",
+            "description": "Mutex created by Rhythmic Parry to ensure single instance (LocalData.dll variant).",
+            "pattern": "[mutex:name = 'YpqlzSab']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.364051Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ce09987b-4a28-4f29-86d1-fc1db249f5ca",
+            "created": "2025-11-07T16:24:09.36517Z",
+            "modified": "2025-11-07T16:24:09.36517Z",
+            "name": "Rhythmic Parry mutex (DiagView.dll)",
+            "description": "Mutex created by Rhythmic Parry to ensure single instance (DiagView.dll variant).",
+            "pattern": "[mutex:name = 'j7vRUGBW']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.365162Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5dc6db96-2c5c-419a-a0dd-ec71ddaea4f4",
+            "created": "2025-11-07T16:24:09.366109Z",
+            "modified": "2025-11-07T16:24:09.366109Z",
+            "name": "Log file (LocalData.dll)",
+            "description": "Log file created by Rhythmic Parry in temporary directory; initialized with four zeros.",
+            "pattern": "[file:name = 'gPgF1Jdz' AND file:parent_directory_ref.path LIKE '%TEMP%']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.3661Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b156fca7-819f-4de8-9d8f-f16275294551",
+            "created": "2025-11-07T16:24:09.367233Z",
+            "modified": "2025-11-07T16:24:09.367233Z",
+            "name": "Log file (DiagView.dll)",
+            "description": "Log file created by Rhythmic Parry in temporary directory; initialized with four zeros.",
+            "pattern": "[file:name = 'ifNEDf0Z' AND file:parent_directory_ref.path LIKE '%TEMP%']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.367224Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--498e7429-d9d0-4dce-9850-5063305f64c6",
+            "created": "2025-11-07T16:24:09.368252Z",
+            "modified": "2025-11-07T16:24:09.368252Z",
+            "name": "Indicator for LocalData.dll (MD5)",
+            "description": "MD5 of Rhythmic Parry 64-bit DLL downloader (HTTP C2).",
+            "pattern": "[file:hashes.'MD5' = '3633203d9a93fecfa9d4d9c06fc7fe36']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.368236Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3",
+            "created": "2025-11-07T16:24:09.369057Z",
+            "modified": "2025-11-07T16:24:09.369057Z",
+            "name": "Indicator for LocalData.dll (SHA1)",
+            "description": "SHA-1 of Rhythmic Parry 64-bit DLL downloader (HTTP C2).",
+            "pattern": "[file:hashes.'SHA1' = '628cf9ace06af1d0985fce3c5c39ab0773135c00']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.369049Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--091d2ccd-6744-44ce-aed7-bb1850f2a0a8",
+            "created": "2025-11-07T16:24:09.369859Z",
+            "modified": "2025-11-07T16:24:09.369859Z",
+            "name": "Indicator for LocalData.dll (SHA256)",
+            "description": "SHA-256 of Rhythmic Parry 64-bit DLL downloader (HTTP C2).",
+            "pattern": "[file:hashes.'SHA256' = 'ff3ec235c80df9e9b340cdddc4d253b2c495446dd27158f9afb88d9b604a1dac']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.369851Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--79370f03-02e3-45e7-aa17-0654abc2ac7b",
+            "created": "2025-11-07T16:24:09.370652Z",
+            "modified": "2025-11-07T16:24:09.370652Z",
+            "name": "Indicator for DiagView.dll (MD5)",
+            "description": "MD5 of Rhythmic Parry 64-bit DLL downloader (HTTPS C2).",
+            "pattern": "[file:hashes.'MD5' = 'f3962456f7fc8d10644bf051ddb7c7ef']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.370644Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd",
+            "created": "2025-11-07T16:24:09.371436Z",
+            "modified": "2025-11-07T16:24:09.371436Z",
+            "name": "Indicator for DiagView.dll (SHA1)",
+            "description": "SHA-1 of Rhythmic Parry 64-bit DLL downloader (HTTPS C2).",
+            "pattern": "[file:hashes.'SHA1' = 'af895002b93854de0eb6f17dc4823a50c7bd08f5']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.371428Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--58854b3c-3407-4ac9-bedd-3a2122ad5e1d",
+            "created": "2025-11-07T16:24:09.372253Z",
+            "modified": "2025-11-07T16:24:09.372253Z",
+            "name": "Indicator for DiagView.dll (SHA256)",
+            "description": "SHA-256 of Rhythmic Parry 64-bit DLL downloader (HTTPS C2).",
+            "pattern": "[file:hashes.'SHA256' = '03563997eb552d8a7278aa6aecffd05717dc36a1480795d06685ba7f1df3675f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T16:24:09.372245Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d7caa65f-4fb2-4bb8-8910-ea4e5230bca8",
+            "created": "2025-11-07T16:24:09.373076Z",
+            "modified": "2025-11-07T16:24:09.373076Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--498e7429-d9d0-4dce-9850-5063305f64c6",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c4b484b2-8d91-4d3f-aa7c-b21859662e6d",
+            "created": "2025-11-07T16:24:09.373386Z",
+            "modified": "2025-11-07T16:24:09.373386Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--498e7429-d9d0-4dce-9850-5063305f64c6",
+            "target_ref": "indicator--091d2ccd-6744-44ce-aed7-bb1850f2a0a8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6776d67d-d62b-49c4-bd5b-d9ab1e937bba",
+            "created": "2025-11-07T16:24:09.373625Z",
+            "modified": "2025-11-07T16:24:09.373625Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3",
+            "target_ref": "indicator--091d2ccd-6744-44ce-aed7-bb1850f2a0a8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9e3c6cd4-6c0f-44db-8ad1-962ba226bfad",
+            "created": "2025-11-07T16:24:09.373891Z",
+            "modified": "2025-11-07T16:24:09.373891Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--79370f03-02e3-45e7-aa17-0654abc2ac7b",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--73affe42-917c-4826-8bac-6c5927ca7c19",
+            "created": "2025-11-07T16:24:09.374134Z",
+            "modified": "2025-11-07T16:24:09.374134Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--79370f03-02e3-45e7-aa17-0654abc2ac7b",
+            "target_ref": "indicator--58854b3c-3407-4ac9-bedd-3a2122ad5e1d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b10d46bd-e4d7-4e5b-86c5-187c1fcdfff5",
+            "created": "2025-11-07T16:24:09.374376Z",
+            "modified": "2025-11-07T16:24:09.374376Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd",
+            "target_ref": "indicator--58854b3c-3407-4ac9-bedd-3a2122ad5e1d"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.405697Z",
+            "modified": "2025-11-07T16:27:57.405697Z",
+            "name": "rhythmic parry",
+            "description": "Rhythmic Parry is a 64-bit Windows DLL downloader that downloads, decrypts, and executes an AES-256-CBC encrypted second-stage payload returned by a C2 server over HTTP or HTTPS. It uses scheduled tasks to maintain persistence and is configured to run via rundll32.exe at logon as SYSTEM. The malware employs several anti-analysis techniques including extensive junk code, unused exports, indirect calls, and dynamically resolved imports from obfuscated strings (XOR + Base64). Configuration strings (including C2 parameters, mutex, and filenames) are stored as Base64 strings additionally XOR-encoded with a 6-byte key, with variant-specific XOR and AES keys. It uses Microsoft CryptoAPI for decryption (IV zero, CBC), verifies payload integrity with a SHA-256, pre-resolves key APIs for the second-stage loader, and continues beaconing even after executing the payload. Two observed variants are LocalData.dll (HTTP C2) and DiagView.dll (HTTPS C2).",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--09c7ee6b-2191-418b-8362-46cf94ac99e8",
+            "created": "2025-11-07T16:27:57.4061Z",
+            "modified": "2025-11-07T16:27:57.4061Z",
+            "name": "MITRE ATT&CK",
+            "description": "Referenced framework used to structure the report; described as a globally accessible knowledge base of adversary tactics and techniques based on real-world observations.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--e319beda-3b41-4071-842e-0a49ed97d1f5",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.406366Z",
+            "modified": "2025-11-07T16:27:57.406366Z",
+            "name": "Scheduled Task/Job: Scheduled Task",
+            "description": "Rhythmic Parry has been installed as a Scheduled Task to maintain persistence.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/005",
+                    "external_id": "T1053.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--6a9cb763-ba2e-47ef-b337-410286af5d0d",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.406811Z",
+            "modified": "2025-11-07T16:27:57.406811Z",
+            "name": "Obfuscated Files or Information: Binary Padding",
+            "description": "Rhythmic Parry contains junk code with a consistent pattern, including unused exports and indirect calls.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027/001",
+                    "external_id": "T1027.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ca9ab1ab-1d2e-4bda-9b0a-e9c9bcbd09ca",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.407176Z",
+            "modified": "2025-11-07T16:27:57.407176Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "Rhythmic Parry hard-coded configuration strings are XOR-encoded with a 6-byte key, then Base64-encoded.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0b06aded-b63f-446a-894e-c232f38ba465",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.407514Z",
+            "modified": "2025-11-07T16:27:57.407514Z",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "Rhythmic Parry uses HTTP or HTTPS to download a payload from a C2 server.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1f8ddf62-a572-4e64-b764-949fba1b7465",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.407905Z",
+            "modified": "2025-11-07T16:27:57.407905Z",
+            "name": "Encrypted Channel: Symmetric Cryptography",
+            "description": "Rhythmic Parry downloads a second-stage payload which is encrypted using AES-256-CBC with an IV of zero.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1573/001",
+                    "external_id": "T1573.001"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6b158c1a-4e6f-4d34-99cc-c0c52c5015c3",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.408278Z",
+            "modified": "2025-11-07T16:27:57.408278Z",
+            "name": "rp_config_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule rp_config_strings {\n    meta:\n        author = \"NCSC\"\n        description = \"Base64 and XOR encoded strings which in plaintext\nappear in both samples of Rhythmic Parry.\"\n        date = \"2022-01-10\"\n        hash1 = \"628cf9ace06af1d0985fce3c5c39ab0773135c00\"\n        hash2 = \"af895002b93854de0eb6f17dc4823a50c7bd08f5\"\n    strings:\n\n$LD_UA =\n\n\"OQALACoADAACAAMAEABbAFEAfgBVAE4ARwAmAB0ACgA0AAoAGQAcAFEAOgAwAHAAVABeAEEA\nQQBPAEQABwAMAAAAWQBFAE8ARAAoAFMAWgBGAFEANQAUACAACQALADgAFAAWAC8AOQARAEEAW\ngBCAEMASgBjAFMATgBHADoAPAAwAB0AKQBCAE8AHQAdAA8ANQBFACkACgASAB8ACwB5AEUALQ\nAHAAMAGwAJADUASgBaAF0AXwBEAEoAYgBWAF8AXgBfAEUAVwBlAEUAPQAOABcAFQAWADkASgB\nbAFwARgBaAFcAZgBFACsACwAWABEASwBhAFcAQABdAEUAQgA=\" wide\n\n$DV_UA =\n\n\"GgA5ADAAPgAjAC0AMgB4AGMAZABnAG8AaQAEAD4AOAAuADgAOAAyAHMAGQACAGoAZgB/AG8A\nYwBsAHYAHQA+ACEAdwBnAGwAdgAyAGEAewBoAHMAFgAmADoAOwAqABYANgA1AB0AIwAjAGAAd\nABgAGAAeAB5AGEAbwBpABgAHwACAAcAGwBjAGEAPwA+AD0ALwB3AAgAJAAwADwAOQBjAHcADA\nApACEAOAA7AC8AeAB7AHMAfQBnAHgAeABkAH4AcAB9AGYAZQB/AHcAHAAgADUANgAkACMAeAB\n6AHIAZAB5AGUAfAB3AAoAJQA0ADIAeQB7AGUAYQBzAGcAYQA=\" wide\n\n$LD_EXP =\n\n\"FwBeAAwAOQAZAAYAHwAQAAsAJwAWADIAMwAUAAwAFAA8AAoAHAAKAAMAWgABACgAAAA=\"\nwide\n\n$DV_EXP =\n\n\"NABsABYACwA4ACgAPQAzADkAPQAkABMAHQA2AC8AJgAmADgAPQAkACEAeQAzADIAMgA=\"\nwide\n\n    condition:\n\nuint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and (2\n\nof ($LD_*) or 2 of ($DV_*))\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T16:27:57.408267Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--02a0aa7c-fa1c-4f99-a06e-a66c1ecb2109",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.408572Z",
+            "modified": "2025-11-07T16:27:57.408572Z",
+            "name": "rp_junk_code",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule rp_junk_code {\n    meta:\n        author = \"NCSC\"\n        description = \"Highlights common junk code sections identified in\nboth Rhythmic Parry samples.\"\n        date = \"2022-01-10\"\n        hash1 = \"628cf9ace06af1d0985fce3c5c39ab0773135c00\"\n        hash2 = \"af895002b93854de0eb6f17dc4823a50c7bd08f5\"\n\n    strings:\n\n$post_writefile = {C7 84 24 ?? ?? 00 00 00 00 00 00 48 8B 84 24 ??\n\n?? 00 00 48 89 8C 24 ?? ?? 00 00 48 89 C1 48 8D 05 ?? ?? ?? 00 89 94 24\n?? ?? 00 00 48 89 C2 41 B8}\n\n$temp_path_a = {41 B8 C8 00 00 00 89 8C 24 ?? ?? 00 00 44 89 C1}\n\n    condition:\n\nuint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and\n\nfilesize > 500KB and (#temp_path_a > 30) and (#post_writefile > 12)\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T16:27:57.408566Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c0a5c425-624e-4f6b-b2de-4b33eea7d158",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.408888Z",
+            "modified": "2025-11-07T16:27:57.408888Z",
+            "name": "rp_import_obfuscation",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule rp_import_obfuscation {\n    meta:\n        author = \"NCSC\"\n        description = \"Import obfuscation is achieved by pushing\nimmediate character values onto the stack while applying single byte\nglobal XOR to each, the global XOR is reinitiated each time it is\napplied. This rule highlights the four-instruction sequence to achieve\nthis.\"\n        date = \"2022-01-10\"\n        hash1 = \"628cf9ace06af1d0985fce3c5c39ab0773135c00\"\n        hash2 = \"af895002b93854de0eb6f17dc4823a50c7bd08f5\"\n\n    strings:\n\n$char_sequence_eax = {0F BE 05 [4] 83 F0 ?? 88 C1 88 8C 24 [4] 0F\n\nBE 05}\n    condition:\n\nuint16(0) == 0x5A4D and uint32(uint32(0x3C)) == 0x00004550 and\n\n#char_sequence_eax > 20\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T16:27:57.408877Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39d959fe-6848-43f9-8543-1a5395d0b446",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.409156Z",
+            "modified": "2025-11-07T16:27:57.409156Z",
+            "name": "rp_hash_payload",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule rp_hash_payload {\n    meta:\n        author = \"NCSC\"\n        description = \"Hash comparison routine used to check downloaded\npayload in Rhythmic Parry samples.\"\n        date = \"2022-01-10\"\n        hash1 = \"628cf9ace06af1d0985fce3c5c39ab0773135c00\"\n        hash2 = \"af895002b93854de0eb6f17dc4823a50c7bd08f5\"\n    strings:\n\n$hash_1 = {0F BE ?? ?? 48 8B 44 24 ?? ?? 63 ?? 24 ?? ?? 0F BE}\n\n        $hash_2 = {0F 84 08 00 00 00 C7 44 24 ?? 00 00 00 00 E9 00 00 00\n00 8B 44 24 ?? 83 C0 01 89 44 24 ?? E9 ?? ?? FF FF}\n\n$hash_3 = {C7 44 24 ?? 01 00 00 00 48 8B ?? 24 [1-5] 48 89 44 24 ??\n\n48 83 [3-6] 00 0F 85 0D 00 00 00 C7 44 24 ?? 00 00 00 00 E9}\n\n    condition:\n\n(uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and\n\nall of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T16:27:57.409149Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c448f4e6-298c-468f-8b38-83bbf8dbf961",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.409435Z",
+            "modified": "2025-11-07T16:27:57.409435Z",
+            "name": "rp_xor_routine",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule rp_xor_routine {\n    meta:\n        author = \"NCSC\"\n        description = \"Targets the XOR routine used to decode\nconfiguration strings in both observed Rhythmic Parry samples.\"\n        date = \"2022-01-10\"\n        hash1 = \"628cf9ace06af1d0985fce3c5c39ab0773135c00\"\n        hash2 = \"af895002b93854de0eb6f17dc4823a50c7bd08f5\"\n    strings:\n\n$xor_1 = {48 8B ?? 24 ?? [0-3] 48 63 ?? 24 ?? [0-3] 0F B? 14 ?8 48\n\n63 ?? 24}\n        $xor_2 = {45 31 C0 89 54 24 ?? 44 89 C2 48 F7 ?? 24 ?? [0-3] 44\n(0F BE 84 14|8A 8C)}\n        $xor_3 = {00 00 66 45 89 C1 45 0F B7 C1 44 8B 54 24 ?? 45 31 C2\n66 45 89 D1}\n    condition:\n\n(uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and 2\n\nof them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T16:27:57.409427Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bfad2b46-9930-4095-a9fa-16318b8a621d",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.409861Z",
+            "modified": "2025-11-07T16:27:57.409861Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "target_ref": "attack-pattern--e319beda-3b41-4071-842e-0a49ed97d1f5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5f1fbc1f-0063-46c7-8e51-4b27b9b1731b",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.410187Z",
+            "modified": "2025-11-07T16:27:57.410187Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "target_ref": "attack-pattern--6a9cb763-ba2e-47ef-b337-410286af5d0d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3540d8d5-1fc1-4825-a0f1-34991d1245d3",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.410453Z",
+            "modified": "2025-11-07T16:27:57.410453Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "target_ref": "attack-pattern--ca9ab1ab-1d2e-4bda-9b0a-e9c9bcbd09ca"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9f9b3cb-cb4a-450d-8838-dc41194e09a5",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.410713Z",
+            "modified": "2025-11-07T16:27:57.410713Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "target_ref": "attack-pattern--0b06aded-b63f-446a-894e-c232f38ba465"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--604d68cf-ee0a-43b6-bbf0-2f5bde36b45e",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.410995Z",
+            "modified": "2025-11-07T16:27:57.410995Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+            "target_ref": "attack-pattern--1f8ddf62-a572-4e64-b764-949fba1b7465"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b5334ceb-074a-47b8-bfc6-391b1b5470ff",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.411266Z",
+            "modified": "2025-11-07T16:27:57.411266Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e41ec069-d7f5-43dc-a5b9-74a0aa0912c6",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0a548eb-3c4a-49da-bbc8-3155e778e670",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.41152Z",
+            "modified": "2025-11-07T16:27:57.41152Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cfde8877-9a4e-4edc-b8a9-25d2c1bad617",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8a466ada-98c0-4f15-8ef1-2958ae5149f9",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.411784Z",
+            "modified": "2025-11-07T16:27:57.411784Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--98327843-0733-4452-97b9-d7a32e0c1563",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb1b7c9b-4d1f-4701-9fa2-3441ddc9138d",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.412038Z",
+            "modified": "2025-11-07T16:27:57.412038Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bbd788b9-cd17-41cb-a6d0-83effa9bfe53",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--127f6eaa-952d-40c7-abd5-025fd2d9235f",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.412293Z",
+            "modified": "2025-11-07T16:27:57.412293Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2b33cb13-8a1d-42d1-94c3-5b942f64f8ca",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--689ff72b-ff85-4ada-a2ee-e0a2601f594c",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.412542Z",
+            "modified": "2025-11-07T16:27:57.412542Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ce09987b-4a28-4f29-86d1-fc1db249f5ca",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--37b6cfcc-67f5-4bf0-8578-d365ae076d83",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.412803Z",
+            "modified": "2025-11-07T16:27:57.412803Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5dc6db96-2c5c-419a-a0dd-ec71ddaea4f4",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f4877d84-3bda-4be8-93d3-09c401a7b099",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.413058Z",
+            "modified": "2025-11-07T16:27:57.413058Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b156fca7-819f-4de8-9d8f-f16275294551",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9426dce4-74aa-458c-9aeb-68429623a146",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.413315Z",
+            "modified": "2025-11-07T16:27:57.413315Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--498e7429-d9d0-4dce-9850-5063305f64c6",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--38c7cc9c-2dc7-4172-99d6-7302c8b66c9a",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.413562Z",
+            "modified": "2025-11-07T16:27:57.413562Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6ab6121e-52e4-44da-be28-40656a5f2b74",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.413841Z",
+            "modified": "2025-11-07T16:27:57.413841Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--091d2ccd-6744-44ce-aed7-bb1850f2a0a8",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9169ad8b-73a8-41cd-8498-e3d187b4c8f5",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.414107Z",
+            "modified": "2025-11-07T16:27:57.414107Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--79370f03-02e3-45e7-aa17-0654abc2ac7b",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1faa816c-1f95-4769-927e-7970483cd171",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.414368Z",
+            "modified": "2025-11-07T16:27:57.414368Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3d52c85-a765-4275-9dd9-bac4726f5e11",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.414624Z",
+            "modified": "2025-11-07T16:27:57.414624Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--58854b3c-3407-4ac9-bedd-3a2122ad5e1d",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b87bc6bc-f91d-4d62-ad31-f1718bb2c338",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.415102Z",
+            "modified": "2025-11-07T16:27:57.415102Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6b158c1a-4e6f-4d34-99cc-c0c52c5015c3",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8c201154-d8a5-4c1b-b01b-69e367586954",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.415398Z",
+            "modified": "2025-11-07T16:27:57.415398Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--6b158c1a-4e6f-4d34-99cc-c0c52c5015c3",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4567e7a2-dd9e-4aaf-a074-af62da8f4810",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.415671Z",
+            "modified": "2025-11-07T16:27:57.415671Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--6b158c1a-4e6f-4d34-99cc-c0c52c5015c3",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7ca4b9f-9741-4bbc-ac51-731a673dcbfe",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.415987Z",
+            "modified": "2025-11-07T16:27:57.415987Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--02a0aa7c-fa1c-4f99-a06e-a66c1ecb2109",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--017ceacd-9609-4c04-b4f1-b0a3bb1641de",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.416268Z",
+            "modified": "2025-11-07T16:27:57.416268Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--02a0aa7c-fa1c-4f99-a06e-a66c1ecb2109",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d8a8bdeb-0fb1-4425-8032-d2e798d3d27c",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.416543Z",
+            "modified": "2025-11-07T16:27:57.416543Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--02a0aa7c-fa1c-4f99-a06e-a66c1ecb2109",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f640b01-d75d-40bd-9938-ca5434e3c152",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.416949Z",
+            "modified": "2025-11-07T16:27:57.416949Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c0a5c425-624e-4f6b-b2de-4b33eea7d158",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4bc325d5-3628-4641-9563-ede5c450a1ad",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.417481Z",
+            "modified": "2025-11-07T16:27:57.417481Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c0a5c425-624e-4f6b-b2de-4b33eea7d158",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--964558f0-2783-4ed8-b992-1241a8221047",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.417847Z",
+            "modified": "2025-11-07T16:27:57.417847Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c0a5c425-624e-4f6b-b2de-4b33eea7d158",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e8dbaed1-895a-41fc-b15a-3387c007f526",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.418445Z",
+            "modified": "2025-11-07T16:27:57.418445Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--39d959fe-6848-43f9-8543-1a5395d0b446",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7071b664-6966-46b4-8d35-fb71d1c6d304",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.418792Z",
+            "modified": "2025-11-07T16:27:57.418792Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--39d959fe-6848-43f9-8543-1a5395d0b446",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--774dbf81-efcb-43b6-9a54-2939a1dd6a9f",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.419082Z",
+            "modified": "2025-11-07T16:27:57.419082Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--39d959fe-6848-43f9-8543-1a5395d0b446",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--60a731b6-a042-459d-8a51-7674c323c10d",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.419409Z",
+            "modified": "2025-11-07T16:27:57.419409Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c448f4e6-298c-468f-8b38-83bbf8dbf961",
+            "target_ref": "malware--ec86fe29-5664-4876-bbad-51841a03730e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3a5e2a92-d69f-4d8f-bc85-15f901ab2d7c",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.419691Z",
+            "modified": "2025-11-07T16:27:57.419691Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c448f4e6-298c-468f-8b38-83bbf8dbf961",
+            "target_ref": "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--13d8d121-6b73-4384-9983-3166afe64865",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.420002Z",
+            "modified": "2025-11-07T16:27:57.420002Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c448f4e6-298c-468f-8b38-83bbf8dbf961",
+            "target_ref": "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--759b09a0-c268-4397-a8d8-8fa8e80b370b",
+            "created_by_ref": "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+            "created": "2025-11-07T16:27:57.420576Z",
+            "modified": "2025-11-07T16:27:57.420576Z",
+            "name": "Analisi Malware: Rhythmic Parry",
+            "description": "This report contains technical analysis and indicators associated with malware. rhythmic parry.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-07T16:27:57.420561Z",
+            "object_refs": [
+                "identity--21999290-f5bc-4917-abf2-f5164b6d47d7",
+                "domain-name--c04a7596-a950-5780-afd0-65cb74300cdb",
+                "domain-name--d94905e8-fcc1-5c71-85ea-b6ec4138635b",
+                "url--81cbe837-251f-5f2c-8edd-c52249cc63fc",
+                "url--f7e161ae-9400-5270-8e32-b09be2e68aa5",
+                "mutex--811a8e02-555d-56f6-b393-d67d60b34be1",
+                "mutex--da286979-3cfe-5948-b6ac-84f77db1928c",
+                "indicator--e41ec069-d7f5-43dc-a5b9-74a0aa0912c6",
+                "indicator--cfde8877-9a4e-4edc-b8a9-25d2c1bad617",
+                "indicator--98327843-0733-4452-97b9-d7a32e0c1563",
+                "indicator--bbd788b9-cd17-41cb-a6d0-83effa9bfe53",
+                "indicator--2b33cb13-8a1d-42d1-94c3-5b942f64f8ca",
+                "indicator--ce09987b-4a28-4f29-86d1-fc1db249f5ca",
+                "indicator--5dc6db96-2c5c-419a-a0dd-ec71ddaea4f4",
+                "indicator--b156fca7-819f-4de8-9d8f-f16275294551",
+                "indicator--498e7429-d9d0-4dce-9850-5063305f64c6",
+                "indicator--fde0a6e8-a9cc-4612-bbc8-92a30bafb0b3",
+                "indicator--091d2ccd-6744-44ce-aed7-bb1850f2a0a8",
+                "indicator--79370f03-02e3-45e7-aa17-0654abc2ac7b",
+                "indicator--58b3f0be-27d3-42c4-afd6-c84a589077cd",
+                "indicator--58854b3c-3407-4ac9-bedd-3a2122ad5e1d",
+                "relationship--d7caa65f-4fb2-4bb8-8910-ea4e5230bca8",
+                "relationship--c4b484b2-8d91-4d3f-aa7c-b21859662e6d",
+                "relationship--6776d67d-d62b-49c4-bd5b-d9ab1e937bba",
+                "relationship--9e3c6cd4-6c0f-44db-8ad1-962ba226bfad",
+                "relationship--73affe42-917c-4826-8bac-6c5927ca7c19",
+                "relationship--b10d46bd-e4d7-4e5b-86c5-187c1fcdfff5",
+                "malware--ec86fe29-5664-4876-bbad-51841a03730e",
+                "identity--09c7ee6b-2191-418b-8362-46cf94ac99e8",
+                "attack-pattern--e319beda-3b41-4071-842e-0a49ed97d1f5",
+                "attack-pattern--6a9cb763-ba2e-47ef-b337-410286af5d0d",
+                "attack-pattern--ca9ab1ab-1d2e-4bda-9b0a-e9c9bcbd09ca",
+                "attack-pattern--0b06aded-b63f-446a-894e-c232f38ba465",
+                "attack-pattern--1f8ddf62-a572-4e64-b764-949fba1b7465",
+                "indicator--6b158c1a-4e6f-4d34-99cc-c0c52c5015c3",
+                "indicator--02a0aa7c-fa1c-4f99-a06e-a66c1ecb2109",
+                "indicator--c0a5c425-624e-4f6b-b2de-4b33eea7d158",
+                "indicator--39d959fe-6848-43f9-8543-1a5395d0b446",
+                "indicator--c448f4e6-298c-468f-8b38-83bbf8dbf961",
+                "relationship--bfad2b46-9930-4095-a9fa-16318b8a621d",
+                "relationship--5f1fbc1f-0063-46c7-8e51-4b27b9b1731b",
+                "relationship--3540d8d5-1fc1-4825-a0f1-34991d1245d3",
+                "relationship--a9f9b3cb-cb4a-450d-8838-dc41194e09a5",
+                "relationship--604d68cf-ee0a-43b6-bbf0-2f5bde36b45e",
+                "relationship--b5334ceb-074a-47b8-bfc6-391b1b5470ff",
+                "relationship--c0a548eb-3c4a-49da-bbc8-3155e778e670",
+                "relationship--8a466ada-98c0-4f15-8ef1-2958ae5149f9",
+                "relationship--fb1b7c9b-4d1f-4701-9fa2-3441ddc9138d",
+                "relationship--127f6eaa-952d-40c7-abd5-025fd2d9235f",
+                "relationship--689ff72b-ff85-4ada-a2ee-e0a2601f594c",
+                "relationship--37b6cfcc-67f5-4bf0-8578-d365ae076d83",
+                "relationship--f4877d84-3bda-4be8-93d3-09c401a7b099",
+                "relationship--9426dce4-74aa-458c-9aeb-68429623a146",
+                "relationship--38c7cc9c-2dc7-4172-99d6-7302c8b66c9a",
+                "relationship--6ab6121e-52e4-44da-be28-40656a5f2b74",
+                "relationship--9169ad8b-73a8-41cd-8498-e3d187b4c8f5",
+                "relationship--1faa816c-1f95-4769-927e-7970483cd171",
+                "relationship--f3d52c85-a765-4275-9dd9-bac4726f5e11",
+                "relationship--b87bc6bc-f91d-4d62-ad31-f1718bb2c338",
+                "relationship--8c201154-d8a5-4c1b-b01b-69e367586954",
+                "relationship--4567e7a2-dd9e-4aaf-a074-af62da8f4810",
+                "relationship--c7ca4b9f-9741-4bbc-ac51-731a673dcbfe",
+                "relationship--017ceacd-9609-4c04-b4f1-b0a3bb1641de",
+                "relationship--d8a8bdeb-0fb1-4425-8032-d2e798d3d27c",
+                "relationship--7f640b01-d75d-40bd-9938-ca5434e3c152",
+                "relationship--4bc325d5-3628-4641-9563-ede5c450a1ad",
+                "relationship--964558f0-2783-4ed8-b992-1241a8221047",
+                "relationship--e8dbaed1-895a-41fc-b15a-3387c007f526",
+                "relationship--7071b664-6966-46b4-8d35-fb71d1c6d304",
+                "relationship--774dbf81-efcb-43b6-9a54-2939a1dd6a9f",
+                "relationship--60a731b6-a042-459d-8a51-7674c323c10d",
+                "relationship--3a5e2a92-d69f-4d8f-bc85-15f901ab2d7c",
+                "relationship--13d8d121-6b73-4384-9983-3166afe64865"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
