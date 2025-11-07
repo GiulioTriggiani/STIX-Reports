@@ -1,0 +1,1376 @@
+{
+    "type": "bundle",
+    "id": "bundle--677b1f93-76e9-4435-b94b-b74fa57611b5",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.005776Z",
+            "modified": "2025-11-07T17:35:16.005776Z",
+            "name": "NCSC",
+            "description": "The National Cyber Security Centre (UK) authored and published this malware analysis report and the accompanying YARA rules.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--ff5507ab-0bea-5900-b8e0-39969c70aca4",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\SQMClient\\Windows\\WSqmCons"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--af42d6f0-d29f-5595-9fa6-30acccfc15e8",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\SQMClient\\Windows\\WSqmConBak"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--4d3ce3ab-cccb-5ff7-a011-0d56f9d46828",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\SQMClient\\Windows\\WSqmConBin"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--e5a7bd04-7f0a-5135-82d9-0beb451a8331",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\SQMClient\\Windows\\WSqmConHex"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--ad960c75-f117-5693-bc28-44a183e2c808",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Publishers\\{cabe18a5-69b9-4eec-bed0-fa080ed05a3b}\\ChannelReferences\\0\\N"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--18c023f7-b4a1-51c5-abc9-14209ce76569",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WINEVT\\Publishers\\{cabe18a5-69b9-4eec-bed0-fa080ed05a3b}\\ChannelReferences\\0\\S"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39ffa719-86c0-47c4-a655-4d815359906b",
+            "created": "2025-11-07T17:31:10.626043Z",
+            "modified": "2025-11-07T17:31:10.626043Z",
+            "name": "WSqmCons registry value",
+            "description": "Registry value created by Infinite Second to store the obfuscated payload (XOR + Base64) used to bootstrap the main script.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\SQMClient\\\\Windows\\\\WSqmCons']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.626024Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--adb16c67-5270-4237-93b4-b18e099fcf5a",
+            "created": "2025-11-07T17:31:10.627886Z",
+            "modified": "2025-11-07T17:31:10.627886Z",
+            "name": "WSqmConBak registry value",
+            "description": "Registry value created by Infinite Second; backup of the Microsoft Consolidator scheduled task configuration for persistence recovery.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\SQMClient\\\\Windows\\\\WSqmConBak']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.627876Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9f72eefb-e1f4-4444-8ef3-094d8be33431",
+            "created": "2025-11-07T17:31:10.629208Z",
+            "modified": "2025-11-07T17:31:10.629208Z",
+            "name": "WSqmConBin registry value",
+            "description": "Registry value created by Infinite Second; stores the Microsoft Consolidator executable path used to re-create the scheduled task.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\SQMClient\\\\Windows\\\\WSqmConBin']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.6292Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a97a3166-b9a6-48a6-aba4-10d7d5b11765",
+            "created": "2025-11-07T17:31:10.630462Z",
+            "modified": "2025-11-07T17:31:10.630462Z",
+            "name": "WSqmConHex registry value",
+            "description": "Registry value created by Infinite Second; stores any configured arguments to the Microsoft Consolidator.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\SQMClient\\\\Windows\\\\WSqmConHex']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.630453Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e4717453-43ec-4b9a-8232-c50f34ca5d7b",
+            "created": "2025-11-07T17:31:10.631638Z",
+            "modified": "2025-11-07T17:31:10.631638Z",
+            "name": "ChannelReferences 3DES password (N)",
+            "description": "Registry value created by Infinite Second; stores the hardcoded 3DES password used to decrypt modified PowerSploit content.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\WINEVT\\\\Publishers\\\\{cabe18a5-69b9-4eec-bed0-fa080ed05a3b}\\\\ChannelReferences\\\\0\\\\N']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.63163Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1602b607-0ed4-4760-ac92-a2c87f32d527",
+            "created": "2025-11-07T17:31:10.632897Z",
+            "modified": "2025-11-07T17:31:10.632897Z",
+            "name": "ChannelReferences 3DES salt (S)",
+            "description": "Registry value created by Infinite Second; stores the hardcoded 3DES salt used to decrypt modified PowerSploit content.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\WINEVT\\\\Publishers\\\\{cabe18a5-69b9-4eec-bed0-fa080ed05a3b}\\\\ChannelReferences\\\\0\\\\S']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.632889Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9a138694-8e6a-4409-874c-ecf949a862e2",
+            "created": "2025-11-07T17:31:10.634103Z",
+            "modified": "2025-11-07T17:31:10.634103Z",
+            "name": "Temporary file deleted by Infinite Second",
+            "description": "File deleted by the Infinite Second installer; associated with the infection chain (likely a parent component artefact).",
+            "pattern": "[file:name = 'tmp4071.tmp' AND file:parent_directory_ref.path LIKE 'C:\\\\Windows\\\\Temp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.634085Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6d04ba0c-c22d-4b26-a22c-8d30eb7e0fcf",
+            "created": "2025-11-07T17:31:10.635198Z",
+            "modified": "2025-11-07T17:31:10.635198Z",
+            "name": "thumbs.ini executed and deleted by Infinite Second",
+            "description": "File executed (likely as PowerShell) and then deleted by Infinite Second during execution.",
+            "pattern": "[file:name = 'thumbs.ini' AND file:parent_directory_ref.path LIKE 'C:\\\\Users\\\\Public\\\\Documents']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.635189Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--79b7b8e1-2301-439b-8c5e-260b3fda0e1c",
+            "created": "2025-11-07T17:31:10.63626Z",
+            "modified": "2025-11-07T17:31:10.63626Z",
+            "name": "Indicator for Infinite Second PowerShell script (MD5)",
+            "description": "MD5 hash of the Infinite Second dropper PowerShell script observed in the campaign.",
+            "pattern": "[file:hashes.'MD5' = 'aaedebe3574f07e81650437739ac9357']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.636251Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--eec7e10d-f058-4414-874c-a3cece036f2a",
+            "created": "2025-11-07T17:31:10.637108Z",
+            "modified": "2025-11-07T17:31:10.637108Z",
+            "name": "Indicator for Infinite Second PowerShell script (SHA1)",
+            "description": "SHA-1 hash of the Infinite Second dropper PowerShell script observed in the campaign.",
+            "pattern": "[file:hashes.'SHA1' = '2030075a29da9c6c1c44aeb4862588480a64509c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.637099Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--452b6756-f966-45d7-b1ba-cb81893c5760",
+            "created": "2025-11-07T17:31:10.63795Z",
+            "modified": "2025-11-07T17:31:10.63795Z",
+            "name": "Indicator for Infinite Second PowerShell script (SHA256)",
+            "description": "SHA-256 hash of the Infinite Second dropper PowerShell script observed in the campaign.",
+            "pattern": "[file:hashes.'SHA256' = 'd532610528ad75d80c17f0372c5af8d2e417e0e2e08a055bf9923b71c149c51c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.637926Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b5976961-187b-47d0-8bf0-709365f3a3d6",
+            "created": "2025-11-07T17:31:10.638818Z",
+            "modified": "2025-11-07T17:31:10.638818Z",
+            "name": "Indicator for Script stored in registry (Base64 encoded) (MD5)",
+            "description": "MD5 hash of the Infinite Second payload as stored in the WSqmCons registry value (XOR + Base64 encoded).",
+            "pattern": "[file:hashes.'MD5' = '187b78e6ac908b43556b3f97587a5071']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.638809Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--12dd4bf4-9eba-4fb6-8646-265b03747aa2",
+            "created": "2025-11-07T17:31:10.639615Z",
+            "modified": "2025-11-07T17:31:10.639615Z",
+            "name": "Indicator for Script stored in registry (Base64 encoded) (SHA1)",
+            "description": "SHA-1 hash of the Infinite Second payload as stored in the WSqmCons registry value (XOR + Base64 encoded).",
+            "pattern": "[file:hashes.'SHA1' = 'd67af71a2c5d717b5e299653a5c1b2d097919b43']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.639604Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0b970a36-b293-49d2-b808-297767ee4cb9",
+            "created": "2025-11-07T17:31:10.640459Z",
+            "modified": "2025-11-07T17:31:10.640459Z",
+            "name": "Indicator for Script stored in registry (Base64 encoded) (SHA256)",
+            "description": "SHA-256 hash of the Infinite Second payload as stored in the WSqmCons registry value (XOR + Base64 encoded).",
+            "pattern": "[file:hashes.'SHA256' = '9a3c57b080cb7b55d56b263a0bb2de592681e78716d025b3cdc895ee2dc144a1']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.640452Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a1cb22e3-089e-4e75-a0af-c0a93a15be16",
+            "created": "2025-11-07T17:31:10.641289Z",
+            "modified": "2025-11-07T17:31:10.641289Z",
+            "name": "Indicator for Script stored in registry (decoded) (MD5)",
+            "description": "MD5 hash of the Infinite Second script after decoding from the WSqmCons registry value.",
+            "pattern": "[file:hashes.'MD5' = '486bd55b1e8b28d16367ce342bc6b733']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.641281Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b8d41dd1-d4bc-4c84-ab29-13f0baf941b6",
+            "created": "2025-11-07T17:31:10.642356Z",
+            "modified": "2025-11-07T17:31:10.642356Z",
+            "name": "Indicator for Script stored in registry (decoded) (SHA1)",
+            "description": "SHA-1 hash of the Infinite Second script after decoding from the WSqmCons registry value.",
+            "pattern": "[file:hashes.'SHA1' = 'f63ae2ca45badde26b8950628a0dd3f3a307bcf1']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.642348Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--54e5418a-34e4-4c78-a00a-c68d7c0a6b5d",
+            "created": "2025-11-07T17:31:10.643181Z",
+            "modified": "2025-11-07T17:31:10.643181Z",
+            "name": "Indicator for Script stored in registry (decoded) (SHA256)",
+            "description": "SHA-256 hash of the Infinite Second script after decoding from the WSqmCons registry value.",
+            "pattern": "[file:hashes.'SHA256' = '27fb6e28589ddff239d2616fde8169204da3f8365b9670e68f733424ecab93fe']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.643173Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--03423269-78b7-44ad-86b9-6e9b879947fc",
+            "created": "2025-11-07T17:31:10.644009Z",
+            "modified": "2025-11-07T17:31:10.644009Z",
+            "name": "Indicator for Modified PowerSploit Invoke-ReflectivePEInjection script (MD5)",
+            "description": "MD5 hash of the modified PowerSploit reflective injection script embedded by Infinite Second.",
+            "pattern": "[file:hashes.'MD5' = 'c310c43be2b837cd18d33356936254b0']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.644001Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--031d9b59-e5df-4743-9fce-0027a3028d76",
+            "created": "2025-11-07T17:31:10.644792Z",
+            "modified": "2025-11-07T17:31:10.644792Z",
+            "name": "Indicator for Modified PowerSploit Invoke-ReflectivePEInjection script (SHA1)",
+            "description": "SHA-1 hash of the modified PowerSploit reflective injection script embedded by Infinite Second.",
+            "pattern": "[file:hashes.'SHA1' = 'cf978c1dfe192485733223a6aa9b66797f7c1f08']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.644784Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9cbf9948-01e5-4f99-b452-24d33938f8ef",
+            "created": "2025-11-07T17:31:10.645569Z",
+            "modified": "2025-11-07T17:31:10.645569Z",
+            "name": "Indicator for Modified PowerSploit Invoke-ReflectivePEInjection script (SHA256)",
+            "description": "SHA-256 hash of the modified PowerSploit reflective injection script embedded by Infinite Second.",
+            "pattern": "[file:hashes.'SHA256' = '84a8d297f2ca73164df69084a216f479fd2ce1052f465deb0300ba1f69614e8b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.645561Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a065b33c-a40c-4cb8-b9fd-28ca4af5d553",
+            "created": "2025-11-07T17:31:10.64642Z",
+            "modified": "2025-11-07T17:31:10.64642Z",
+            "name": "Indicator for ComRAT DLL x86 dropped by Infinite Second (MD5)",
+            "description": "MD5 hash of the ComRAT x86 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'MD5' = '1d626b48ae7062bd319cb768a8ca979d']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.646412Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a2c3766a-af0d-46a3-93e2-3942155455c8",
+            "created": "2025-11-07T17:31:10.647214Z",
+            "modified": "2025-11-07T17:31:10.647214Z",
+            "name": "Indicator for ComRAT DLL x86 dropped by Infinite Second (SHA1)",
+            "description": "SHA-1 hash of the ComRAT x86 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'SHA1' = 'd117643019d665a29ce8a7b812268fb8d3e5aadb']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.647206Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bc1fbc42-0a30-4e2c-8160-1cc3ef88924a",
+            "created": "2025-11-07T17:31:10.648006Z",
+            "modified": "2025-11-07T17:31:10.648006Z",
+            "name": "Indicator for ComRAT DLL x86 dropped by Infinite Second (SHA256)",
+            "description": "SHA-256 hash of the ComRAT x86 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'SHA256' = 'b93484683014aca8e909c9b5648d8f0ac21a45d0c193f6ca40f0b01d2464c1c4']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.647998Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--85186d26-dfe5-4b1f-9e80-9a0b942dff14",
+            "created": "2025-11-07T17:31:10.648835Z",
+            "modified": "2025-11-07T17:31:10.648835Z",
+            "name": "Indicator for ComRAT DLL x64 dropped by Infinite Second (MD5)",
+            "description": "MD5 hash of the ComRAT x64 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'MD5' = '82fc41b3e9ce722d4e6b21580e873d52']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.648827Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9716cb4e-68a7-40d4-b00b-1dbe4530d78a",
+            "created": "2025-11-07T17:31:10.649601Z",
+            "modified": "2025-11-07T17:31:10.649601Z",
+            "name": "Indicator for ComRAT DLL x64 dropped by Infinite Second (SHA1)",
+            "description": "SHA-1 hash of the ComRAT x64 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'SHA1' = '8a93f216607f43bd39164096728ae2bbcdbc2de8']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.649593Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--52d04abd-4fca-4f62-baab-a4f952126345",
+            "created": "2025-11-07T17:31:10.650806Z",
+            "modified": "2025-11-07T17:31:10.650806Z",
+            "name": "Indicator for ComRAT DLL x64 dropped by Infinite Second (SHA256)",
+            "description": "SHA-256 hash of the ComRAT x64 payload dropped and executed by Infinite Second.",
+            "pattern": "[file:hashes.'SHA256' = 'e209d07f8992892bf4776c897a8f054849b12464d9f58bcb78602217b3fd98bc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-07T17:31:10.650797Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7717fb0f-ebc6-4b2e-9d84-8a72d5867b46",
+            "created": "2025-11-07T17:31:10.651689Z",
+            "modified": "2025-11-07T17:31:10.651689Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--79b7b8e1-2301-439b-8c5e-260b3fda0e1c",
+            "target_ref": "indicator--eec7e10d-f058-4414-874c-a3cece036f2a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--651532c5-97e0-4d4a-9977-969f6da5c337",
+            "created": "2025-11-07T17:31:10.652028Z",
+            "modified": "2025-11-07T17:31:10.652028Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--79b7b8e1-2301-439b-8c5e-260b3fda0e1c",
+            "target_ref": "indicator--452b6756-f966-45d7-b1ba-cb81893c5760"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e2d0b114-f33c-4593-b8f4-e35b84170853",
+            "created": "2025-11-07T17:31:10.652283Z",
+            "modified": "2025-11-07T17:31:10.652283Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eec7e10d-f058-4414-874c-a3cece036f2a",
+            "target_ref": "indicator--452b6756-f966-45d7-b1ba-cb81893c5760"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d0d17277-73c8-4b02-a6d9-757675150a36",
+            "created": "2025-11-07T17:31:10.652544Z",
+            "modified": "2025-11-07T17:31:10.652544Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b5976961-187b-47d0-8bf0-709365f3a3d6",
+            "target_ref": "indicator--12dd4bf4-9eba-4fb6-8646-265b03747aa2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2dcb54c6-5785-4473-9105-d41e10962290",
+            "created": "2025-11-07T17:31:10.652803Z",
+            "modified": "2025-11-07T17:31:10.652803Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b5976961-187b-47d0-8bf0-709365f3a3d6",
+            "target_ref": "indicator--0b970a36-b293-49d2-b808-297767ee4cb9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a650e065-22c6-44d3-b364-12a56f577aea",
+            "created": "2025-11-07T17:31:10.653044Z",
+            "modified": "2025-11-07T17:31:10.653044Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--12dd4bf4-9eba-4fb6-8646-265b03747aa2",
+            "target_ref": "indicator--0b970a36-b293-49d2-b808-297767ee4cb9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--32d8d543-b37a-4817-ab6a-280b67951945",
+            "created": "2025-11-07T17:31:10.653465Z",
+            "modified": "2025-11-07T17:31:10.653465Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a1cb22e3-089e-4e75-a0af-c0a93a15be16",
+            "target_ref": "indicator--b8d41dd1-d4bc-4c84-ab29-13f0baf941b6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--84092149-55f9-440b-a4ee-8a0e5fba4ce6",
+            "created": "2025-11-07T17:31:10.653707Z",
+            "modified": "2025-11-07T17:31:10.653707Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a1cb22e3-089e-4e75-a0af-c0a93a15be16",
+            "target_ref": "indicator--54e5418a-34e4-4c78-a00a-c68d7c0a6b5d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4aeace12-c8d7-4dc4-88f4-d65a4282ba70",
+            "created": "2025-11-07T17:31:10.653969Z",
+            "modified": "2025-11-07T17:31:10.653969Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b8d41dd1-d4bc-4c84-ab29-13f0baf941b6",
+            "target_ref": "indicator--54e5418a-34e4-4c78-a00a-c68d7c0a6b5d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b8d54554-34e9-4186-9e79-fc27d4bcac31",
+            "created": "2025-11-07T17:31:10.654221Z",
+            "modified": "2025-11-07T17:31:10.654221Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--03423269-78b7-44ad-86b9-6e9b879947fc",
+            "target_ref": "indicator--031d9b59-e5df-4743-9fce-0027a3028d76"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--70c56e22-ef6d-4fcb-9e41-abbdfd1f2e51",
+            "created": "2025-11-07T17:31:10.654466Z",
+            "modified": "2025-11-07T17:31:10.654466Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--03423269-78b7-44ad-86b9-6e9b879947fc",
+            "target_ref": "indicator--9cbf9948-01e5-4f99-b452-24d33938f8ef"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--43ff2f62-3e65-4322-ae63-93f2d1c146c4",
+            "created": "2025-11-07T17:31:10.654713Z",
+            "modified": "2025-11-07T17:31:10.654713Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--031d9b59-e5df-4743-9fce-0027a3028d76",
+            "target_ref": "indicator--9cbf9948-01e5-4f99-b452-24d33938f8ef"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b858b1f8-efec-4df8-8f85-6297fe115b2f",
+            "created": "2025-11-07T17:31:10.654998Z",
+            "modified": "2025-11-07T17:31:10.654998Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a065b33c-a40c-4cb8-b9fd-28ca4af5d553",
+            "target_ref": "indicator--a2c3766a-af0d-46a3-93e2-3942155455c8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--85624943-cfba-415f-b205-edf826a75bfd",
+            "created": "2025-11-07T17:31:10.655247Z",
+            "modified": "2025-11-07T17:31:10.655247Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a065b33c-a40c-4cb8-b9fd-28ca4af5d553",
+            "target_ref": "indicator--bc1fbc42-0a30-4e2c-8160-1cc3ef88924a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0d11e709-4e66-4b24-ac08-edb8b1dc4b9f",
+            "created": "2025-11-07T17:31:10.655483Z",
+            "modified": "2025-11-07T17:31:10.655483Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a2c3766a-af0d-46a3-93e2-3942155455c8",
+            "target_ref": "indicator--bc1fbc42-0a30-4e2c-8160-1cc3ef88924a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--142dd233-962b-47b0-ba04-a6abec6f03a5",
+            "created": "2025-11-07T17:31:10.65572Z",
+            "modified": "2025-11-07T17:31:10.65572Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--85186d26-dfe5-4b1f-9e80-9a0b942dff14",
+            "target_ref": "indicator--9716cb4e-68a7-40d4-b00b-1dbe4530d78a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0741269-d1ba-4204-bd3e-947bef1d574c",
+            "created": "2025-11-07T17:31:10.655972Z",
+            "modified": "2025-11-07T17:31:10.655972Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--85186d26-dfe5-4b1f-9e80-9a0b942dff14",
+            "target_ref": "indicator--52d04abd-4fca-4f62-baab-a4f952126345"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b09df3cd-1468-46a9-9f0f-d6c4f6600b4d",
+            "created": "2025-11-07T17:31:10.656244Z",
+            "modified": "2025-11-07T17:31:10.656244Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9716cb4e-68a7-40d4-b00b-1dbe4530d78a",
+            "target_ref": "indicator--52d04abd-4fca-4f62-baab-a4f952126345"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.007672Z",
+            "modified": "2025-11-07T17:35:16.007672Z",
+            "name": "infinite second",
+            "description": "Infinite Second is a malicious PowerShell dropper used to deploy the ComRAT (also referred to as Chinch) malware. It achieves persistence by hijacking and modifying the Microsoft Consolidator scheduled task (part of the Microsoft Customer Experience Improvement Program) to execute a secondary script at user log-in and every 6 hours. The dropper stores configuration, cryptographic material, additional scripts, and obfuscated payloads in the Windows registry. It uses multiple layers of obfuscation and encoding (Base64, XOR with a 6\u20139 byte ASCII key, GZIP, and 3DES with a hardcoded IV) and leverages a modified PowerSploit Invoke-ReflectivePEInjection script to inject ComRAT into the explorer process. It also deletes temporary artifacts and uses registry paths and names that masquerade as legitimate software to evade detection.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--2b7efaf1-98f2-4601-99dc-749bb3dd9a30",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.008196Z",
+            "modified": "2025-11-07T17:35:16.008196Z",
+            "name": "comrat",
+            "description": "ComRAT is the payload delivered by Infinite Second. The Infinite Second installer contains 32-bit and 64-bit ComRAT DLLs which are deobfuscated (Base64-decoded and GUNZIPed) and executed in-memory via a modified PowerSploit Invoke-ReflectivePEInjection script into the explorer process, likely to avoid Windows Firewall blocking. The report notes its C2 traffic considerations and that ComRAT is well documented in open sources beyond the scope of this report.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--481e2c7d-78d1-4f29-9f64-78055243b248",
+            "created": "2025-11-07T17:35:16.008919Z",
+            "modified": "2025-11-07T17:35:16.008919Z",
+            "name": "Microsoft",
+            "description": "Vendor of Windows and the Microsoft Consolidator scheduled task (part of the Customer Experience Improvement Program) that Infinite Second hijacks for persistence; Windows registry and processes referenced throughout the report.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d86781ad-ab5b-4cdc-812b-20e3fe9dbd85",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.009557Z",
+            "modified": "2025-11-07T17:35:16.009557Z",
+            "name": "Command and Scripting Interpreter: PowerShell",
+            "description": "Infinite Second is a PowerShell script that deploys and sets up persistence for ComRAT.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/001",
+                    "external_id": "T1059.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a0e8b8f7-2237-4b69-bbdf-53106f144b04",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.010501Z",
+            "modified": "2025-11-07T17:35:16.010501Z",
+            "name": "Scheduled Task/Job: Scheduled Task",
+            "description": "Infinite Second creates or modifies a scheduled task to run as SYSTEM to launch ComRAT.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/005",
+                    "external_id": "T1053.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--58ee2063-f330-493e-852b-09b9fbb6b2b6",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.010975Z",
+            "modified": "2025-11-07T17:35:16.010975Z",
+            "name": "Modify Registry",
+            "description": "Infinite Second stores cryptographic keys, additional scripts and obfuscated payloads in the registry.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1112",
+                    "external_id": "T1112"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--df77b914-1d72-432e-9f07-e8d95aa9276c",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.011421Z",
+            "modified": "2025-11-07T17:35:16.011421Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "Infinite Second deobfuscates information stored in the registry using 3DES, XOR, and Base64 encoding.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4d43fa16-7bec-43a5-9ca5-d2825d624b92",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.011889Z",
+            "modified": "2025-11-07T17:35:16.011889Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "Infinite Second uses registry values that masquerade as legitimate software.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/005",
+                    "external_id": "T1036.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--11b9a9fa-717a-40d4-a94e-ab05def1f551",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.012297Z",
+            "modified": "2025-11-07T17:35:16.012297Z",
+            "name": "Indicator Removal on Host: File Deletion",
+            "description": "Infinite Second deletes C:\\Windows\\Temp\\tmp4071.tmp and C:\\Users\\Public\\Documents\\thumbs.ini.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--30e59210-7e69-441f-a2d6-979b8962552f",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.012796Z",
+            "modified": "2025-11-07T17:35:16.012796Z",
+            "name": "infinitesecond_custom_xor",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_custom_xor\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies the XOR implementation\"\n\n    strings:\n      $a =\n\"KGJ5dGVbXSBpbmNvbWVfYnl0ZXMsIGJ5dGVbXSBnYW1tYSl7Ynl0ZVtdIG91dHB1dCA9IG5l\n dyBieXRlW2luY29tZV9ieXRlcy5MZW5ndGhdO2ZvciAoaW50IGkgPSAwOyBpIDwgaW5jb21lX\n 2J5dGVzLkxlbmd0aDsgKytpKXtvdXRwdXRbaV0gPSAoYnl0ZSkoaW5jb21lX2J5dGVzW2ldIF\n 4gZ2FtbWFbaSAlIGdhbW1hLkxlbmd0aF0pO31yZXR1cm4gb3V0cHV0O319\"\n\n$b =\n\n\"hieXRlW10gaW5jb21lX2J5dGVzLCBieXRlW10gZ2FtbWEpe2J5dGVbXSBvdXRwdXQgPSBuZX\n cgYnl0ZVtpbmNvbWVfYnl0ZXMuTGVuZ3RoXTtmb3IgKGludCBpID0gMDsgaSA8IGluY29tZV9\n ieXRlcy5MZW5ndGg7ICsraSl7b3V0cHV0W2ldID0gKGJ5dGUpKGluY29tZV9ieXRlc1tpXSBe\n IGdhbW1hW2kgJSBnYW1tYS5MZW5ndGhdKTt9cmV0dXJuIG91dHB1dDt9f\"\n\n$c =\n\n\"oYnl0ZVtdIGluY29tZV9ieXRlcywgYnl0ZVtdIGdhbW1hKXtieXRlW10gb3V0cHV0ID0gbmV\n 3IGJ5dGVbaW5jb21lX2J5dGVzLkxlbmd0aF07Zm9yIChpbnQgaSA9IDA7IGkgPCBpbmNvbWVf\n Ynl0ZXMuTGVuZ3RoOyArK2kpe291dHB1dFtpXSA9IChieXRlKShpbmNvbWVfYnl0ZXNbaV0gX\n iBnYW1tYVtpICUgZ2FtbWEuTGVuZ3RoXSk7fXJldHVybiBvdXRwdXQ7fX\"\n    condition:\n        any of them\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.012778Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--760f0eba-a26b-479f-af21-97067e0773ed",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.01313Z",
+            "modified": "2025-11-07T17:35:16.01313Z",
+            "name": "infinitesecond_random_name_function",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_random_name_function\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies the random name generator\"\n\n    strings:\n        $ = \"function TVM730egf([string[]]$GP50afa) { $UC33gfa =\n((1..(Get-Random -Min 2 -Max 4) | % {[Char](Get-Random -Min 0x41 -Max\n0x5B)}) -join '');\"\n        $ = \"$EQ33abh = ((1..(Get-Random -Min 2 -Max 4) | % {[Char](Get-\nRandom -Min 0x30 -Max 0x3A)}) -join '');\"\n        $ = \"$OFK689fa = ((1..(Get-Random -Min 2 -Max 4) | % {[Char](Get-\nRandom -Min 0x61 -Max 0x6B)}) -join '');\"\n    condition: any of them\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.013122Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1b8f2e35-d385-414e-8186-7515be2ddddf",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.013719Z",
+            "modified": "2025-11-07T17:35:16.013719Z",
+            "name": "infinitesecond_hardcoded_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_hardcoded_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies hardcoded strings throughout the\nscript\"\n\n    strings:\n        $ = \"HKLM:\\\\SOFTWARE\\\\Microsoft\\\\SQMClient\\\\Windows\"\n        $ =\n\"\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\WINEVT\\\\Publishers\\\\{cab\ne18a5-69b9-4eec-bed0-fa080ed05a3b}\\\\ChannelReferences\\\\0\"\n        $ = \"C:\\\\Windows\\\\Temp\\\\tmp4071.tmp\"\n        $ = \"C:\\\\Windows\\\\System32\\\\Tasks\\\\Microsoft\\\\Windows\\\\Customer\nExperience Improvement Program\\\\Consolidator\"\n        $ = \"Microsoft\\\\Windows\\\\Customer Experience Improvement Program\"\n        $ = \"WSqmConHex\"\n        $ = \"WSqmConBin\"\n        $ = \"WSqmCons\"\n        $ = \"WSqmConBak\"\n\n    condition: 4 of them\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.013704Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f88ea94c-f0c5-4b38-8a41-0fa840d86ab8",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.014602Z",
+            "modified": "2025-11-07T17:35:16.014602Z",
+            "name": "infinitesecond_3des_file",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_3des_file\n{\n    meta:\n        author = \"NCSC\"\n        description = \"3DES Initialisation Vector\"\n\n    strings:\n\n$IV = \"FVADRCORAOSKBHPX\"\n\n    condition:\n        all of them\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.014591Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--71e6df90-15c5-43ea-978f-6aaf3e1178d1",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.015017Z",
+            "modified": "2025-11-07T17:35:16.015017Z",
+            "name": "infinitesecond_psbreakpoint_luis_armstrong",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_psbreakpoint_luis_armstrong\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identification of unusual PowerShell break point\"\n\n    strings:\n        $  = \"Set-PSBreakpoint -Variable luis_armstrong -Mode Write;\"\nwide ascii\n    condition:\n        all of them\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.015008Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--326a23c6-0ff3-4463-b5bd-281baa9a7884",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.015625Z",
+            "modified": "2025-11-07T17:35:16.015625Z",
+            "name": "infinitesecond_powershell_reflective_injection",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule infinitesecond_powershell_reflective_injection\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies a modification made to reflective\ninjection script\"\n\n    strings:\n\n$process_number = {7b 54 68 72 6f 77 20 22 43 61 6e 27 74 20\n\n66 69 6e 64 20 70 72 6f 63 65 73 73 20 24 50 72 6f 63 4e 61 6d 65 22 7d\n65 6c 73 65 7b 24 50 72 6f 63 49 64 20 3d 20 24 50 72 6f 63 65 73 73 65\n73 5b 30 5d 2e 49 44 7d 7d} // {Throw \"Can't find process\n$ProcName\"}else{$ProcId = $Processes[0].ID}}\n\ncondition:\n\nall of them\n\n}\n",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-07T17:35:16.015616Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--74b7ca9d-54a3-4b1c-9456-54b357c80560",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.01615Z",
+            "modified": "2025-11-07T17:35:16.01615Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--d86781ad-ab5b-4cdc-812b-20e3fe9dbd85"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b444980-dbac-4931-8085-7dd6ed1307f2",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.01655Z",
+            "modified": "2025-11-07T17:35:16.01655Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--a0e8b8f7-2237-4b69-bbdf-53106f144b04"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1e98d2a-c006-4bbb-889f-96a59d58effd",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.016878Z",
+            "modified": "2025-11-07T17:35:16.016878Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--58ee2063-f330-493e-852b-09b9fbb6b2b6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--55d082f5-67c2-43cc-b051-dd687d7f8180",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.01719Z",
+            "modified": "2025-11-07T17:35:16.01719Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--df77b914-1d72-432e-9f07-e8d95aa9276c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f198f939-9268-4fe0-a8bb-1893c844feec",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.017499Z",
+            "modified": "2025-11-07T17:35:16.017499Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--4d43fa16-7bec-43a5-9ca5-d2825d624b92"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--51c2c98d-190c-4168-a183-1ce5cfe65c20",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.017809Z",
+            "modified": "2025-11-07T17:35:16.017809Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+            "target_ref": "attack-pattern--11b9a9fa-717a-40d4-a94e-ab05def1f551"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a537a6ce-9403-4162-9a04-83873f9ad737",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.018128Z",
+            "modified": "2025-11-07T17:35:16.018128Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--39ffa719-86c0-47c4-a655-4d815359906b",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ff24a7d-db6d-440d-87f8-d2e56c99b4d0",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.01844Z",
+            "modified": "2025-11-07T17:35:16.01844Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--adb16c67-5270-4237-93b4-b18e099fcf5a",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e244ab57-0e4d-4286-865a-cdc81851e535",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.018718Z",
+            "modified": "2025-11-07T17:35:16.018718Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9f72eefb-e1f4-4444-8ef3-094d8be33431",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a3e516d9-ec5c-41ec-8a0f-bd1da557635c",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.019034Z",
+            "modified": "2025-11-07T17:35:16.019034Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a97a3166-b9a6-48a6-aba4-10d7d5b11765",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0a3cab9e-e4c3-4128-8c6a-3c11d35c543d",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.019361Z",
+            "modified": "2025-11-07T17:35:16.019361Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e4717453-43ec-4b9a-8232-c50f34ca5d7b",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b736e11f-bb7d-4f9c-895f-95e9f50f2998",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.019665Z",
+            "modified": "2025-11-07T17:35:16.019665Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1602b607-0ed4-4760-ac92-a2c87f32d527",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c3c3dc80-eac1-4091-8526-61b3ea591e29",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.019972Z",
+            "modified": "2025-11-07T17:35:16.019972Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9a138694-8e6a-4409-874c-ecf949a862e2",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0eaa849-25ce-4dc8-b352-5ffa887c3194",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.020264Z",
+            "modified": "2025-11-07T17:35:16.020264Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6d04ba0c-c22d-4b26-a22c-8d30eb7e0fcf",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a38aaf2b-c033-491b-9aff-5408e9c84966",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.020581Z",
+            "modified": "2025-11-07T17:35:16.020581Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--79b7b8e1-2301-439b-8c5e-260b3fda0e1c",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0c91698-e150-42aa-8355-effcc26fea21",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.020907Z",
+            "modified": "2025-11-07T17:35:16.020907Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eec7e10d-f058-4414-874c-a3cece036f2a",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a8c88ea8-6975-4ade-ba8f-3508c6b013fd",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.021225Z",
+            "modified": "2025-11-07T17:35:16.021225Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--452b6756-f966-45d7-b1ba-cb81893c5760",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--47f40fc1-4514-4c41-aa70-77d500f20ffa",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.021505Z",
+            "modified": "2025-11-07T17:35:16.021505Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b5976961-187b-47d0-8bf0-709365f3a3d6",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3f01db34-0edb-4d8b-bddd-d5d6907e9991",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.021796Z",
+            "modified": "2025-11-07T17:35:16.021796Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--12dd4bf4-9eba-4fb6-8646-265b03747aa2",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--91063b36-472d-4850-98e4-7f62e98347ff",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.022115Z",
+            "modified": "2025-11-07T17:35:16.022115Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0b970a36-b293-49d2-b808-297767ee4cb9",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aacc5ef6-1f7f-488e-a38e-8f8bb2a4fabe",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.022398Z",
+            "modified": "2025-11-07T17:35:16.022398Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a1cb22e3-089e-4e75-a0af-c0a93a15be16",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1b1201e-624c-41ee-8d9e-fa998ff01e67",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.022704Z",
+            "modified": "2025-11-07T17:35:16.022704Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b8d41dd1-d4bc-4c84-ab29-13f0baf941b6",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--df4ba965-601f-48ff-b8f5-5ef775fdc752",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.023041Z",
+            "modified": "2025-11-07T17:35:16.023041Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--54e5418a-34e4-4c78-a00a-c68d7c0a6b5d",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3ab8a5e-2cd0-40f2-91ec-fff35ce6ca3e",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.023328Z",
+            "modified": "2025-11-07T17:35:16.023328Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--03423269-78b7-44ad-86b9-6e9b879947fc",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--38a2dba8-a358-4c43-8fc9-595a05335493",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.023758Z",
+            "modified": "2025-11-07T17:35:16.023758Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--031d9b59-e5df-4743-9fce-0027a3028d76",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--766f05e8-f083-4e44-bdac-c3e762717b18",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.024157Z",
+            "modified": "2025-11-07T17:35:16.024157Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9cbf9948-01e5-4f99-b452-24d33938f8ef",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5a4ecfcc-7596-4070-bf30-a382153ce047",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.024487Z",
+            "modified": "2025-11-07T17:35:16.024487Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a065b33c-a40c-4cb8-b9fd-28ca4af5d553",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e8948432-ad4b-4f71-9f8b-f5a02f11a3e1",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.024796Z",
+            "modified": "2025-11-07T17:35:16.024796Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a2c3766a-af0d-46a3-93e2-3942155455c8",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--97c48394-b3b4-4d3a-a211-6fa530a71415",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.025076Z",
+            "modified": "2025-11-07T17:35:16.025076Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bc1fbc42-0a30-4e2c-8160-1cc3ef88924a",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cfd62028-1b6a-4bf8-9d79-26ba364de33d",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.025363Z",
+            "modified": "2025-11-07T17:35:16.025363Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--85186d26-dfe5-4b1f-9e80-9a0b942dff14",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--22260e70-2ecd-4faf-9181-a61f9bfee1f1",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.025628Z",
+            "modified": "2025-11-07T17:35:16.025628Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9716cb4e-68a7-40d4-b00b-1dbe4530d78a",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--778914c2-2f26-4e6b-b5bb-f433ccfbb1b0",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.026276Z",
+            "modified": "2025-11-07T17:35:16.026276Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--52d04abd-4fca-4f62-baab-a4f952126345",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a1ddc5aa-d904-4aa0-b447-7857aba25f54",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.026973Z",
+            "modified": "2025-11-07T17:35:16.026973Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--30e59210-7e69-441f-a2d6-979b8962552f",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15d85724-ea7c-48f1-aa30-036085d4fc9f",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.027365Z",
+            "modified": "2025-11-07T17:35:16.027365Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--760f0eba-a26b-479f-af21-97067e0773ed",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--944a4504-6b9f-4178-b37e-7c233b799bbf",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.027721Z",
+            "modified": "2025-11-07T17:35:16.027721Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1b8f2e35-d385-414e-8186-7515be2ddddf",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--307205b0-d96c-450b-91e8-a36c4091d82d",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.028115Z",
+            "modified": "2025-11-07T17:35:16.028115Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f88ea94c-f0c5-4b38-8a41-0fa840d86ab8",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--64186724-cdea-4f2c-bb63-4f9c4f181f07",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.028481Z",
+            "modified": "2025-11-07T17:35:16.028481Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--71e6df90-15c5-43ea-978f-6aaf3e1178d1",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cddea420-70d0-462b-9b35-bd9296e0de13",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.028838Z",
+            "modified": "2025-11-07T17:35:16.028838Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--326a23c6-0ff3-4463-b5bd-281baa9a7884",
+            "target_ref": "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--8490b644-b1be-4680-9aa5-ee035da7109b",
+            "created_by_ref": "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+            "created": "2025-11-07T17:35:16.029522Z",
+            "modified": "2025-11-07T17:35:16.029522Z",
+            "name": "Analisi Malware: Infinite Second",
+            "description": "This report contains technical analysis and indicators associated with malware. infinite second.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-07T17:35:16.029508Z",
+            "object_refs": [
+                "identity--a999045c-4729-4aeb-9fe8-bdafe8ba96e2",
+                "windows-registry-key--ff5507ab-0bea-5900-b8e0-39969c70aca4",
+                "windows-registry-key--af42d6f0-d29f-5595-9fa6-30acccfc15e8",
+                "windows-registry-key--4d3ce3ab-cccb-5ff7-a011-0d56f9d46828",
+                "windows-registry-key--e5a7bd04-7f0a-5135-82d9-0beb451a8331",
+                "windows-registry-key--ad960c75-f117-5693-bc28-44a183e2c808",
+                "windows-registry-key--18c023f7-b4a1-51c5-abc9-14209ce76569",
+                "indicator--39ffa719-86c0-47c4-a655-4d815359906b",
+                "indicator--adb16c67-5270-4237-93b4-b18e099fcf5a",
+                "indicator--9f72eefb-e1f4-4444-8ef3-094d8be33431",
+                "indicator--a97a3166-b9a6-48a6-aba4-10d7d5b11765",
+                "indicator--e4717453-43ec-4b9a-8232-c50f34ca5d7b",
+                "indicator--1602b607-0ed4-4760-ac92-a2c87f32d527",
+                "indicator--9a138694-8e6a-4409-874c-ecf949a862e2",
+                "indicator--6d04ba0c-c22d-4b26-a22c-8d30eb7e0fcf",
+                "indicator--79b7b8e1-2301-439b-8c5e-260b3fda0e1c",
+                "indicator--eec7e10d-f058-4414-874c-a3cece036f2a",
+                "indicator--452b6756-f966-45d7-b1ba-cb81893c5760",
+                "indicator--b5976961-187b-47d0-8bf0-709365f3a3d6",
+                "indicator--12dd4bf4-9eba-4fb6-8646-265b03747aa2",
+                "indicator--0b970a36-b293-49d2-b808-297767ee4cb9",
+                "indicator--a1cb22e3-089e-4e75-a0af-c0a93a15be16",
+                "indicator--b8d41dd1-d4bc-4c84-ab29-13f0baf941b6",
+                "indicator--54e5418a-34e4-4c78-a00a-c68d7c0a6b5d",
+                "indicator--03423269-78b7-44ad-86b9-6e9b879947fc",
+                "indicator--031d9b59-e5df-4743-9fce-0027a3028d76",
+                "indicator--9cbf9948-01e5-4f99-b452-24d33938f8ef",
+                "indicator--a065b33c-a40c-4cb8-b9fd-28ca4af5d553",
+                "indicator--a2c3766a-af0d-46a3-93e2-3942155455c8",
+                "indicator--bc1fbc42-0a30-4e2c-8160-1cc3ef88924a",
+                "indicator--85186d26-dfe5-4b1f-9e80-9a0b942dff14",
+                "indicator--9716cb4e-68a7-40d4-b00b-1dbe4530d78a",
+                "indicator--52d04abd-4fca-4f62-baab-a4f952126345",
+                "relationship--7717fb0f-ebc6-4b2e-9d84-8a72d5867b46",
+                "relationship--651532c5-97e0-4d4a-9977-969f6da5c337",
+                "relationship--e2d0b114-f33c-4593-b8f4-e35b84170853",
+                "relationship--d0d17277-73c8-4b02-a6d9-757675150a36",
+                "relationship--2dcb54c6-5785-4473-9105-d41e10962290",
+                "relationship--a650e065-22c6-44d3-b364-12a56f577aea",
+                "relationship--32d8d543-b37a-4817-ab6a-280b67951945",
+                "relationship--84092149-55f9-440b-a4ee-8a0e5fba4ce6",
+                "relationship--4aeace12-c8d7-4dc4-88f4-d65a4282ba70",
+                "relationship--b8d54554-34e9-4186-9e79-fc27d4bcac31",
+                "relationship--70c56e22-ef6d-4fcb-9e41-abbdfd1f2e51",
+                "relationship--43ff2f62-3e65-4322-ae63-93f2d1c146c4",
+                "relationship--b858b1f8-efec-4df8-8f85-6297fe115b2f",
+                "relationship--85624943-cfba-415f-b205-edf826a75bfd",
+                "relationship--0d11e709-4e66-4b24-ac08-edb8b1dc4b9f",
+                "relationship--142dd233-962b-47b0-ba04-a6abec6f03a5",
+                "relationship--c0741269-d1ba-4204-bd3e-947bef1d574c",
+                "relationship--b09df3cd-1468-46a9-9f0f-d6c4f6600b4d",
+                "malware--7393b28f-f3ad-466f-96e9-a935d9b55a5c",
+                "malware--2b7efaf1-98f2-4601-99dc-749bb3dd9a30",
+                "identity--481e2c7d-78d1-4f29-9f64-78055243b248",
+                "attack-pattern--d86781ad-ab5b-4cdc-812b-20e3fe9dbd85",
+                "attack-pattern--a0e8b8f7-2237-4b69-bbdf-53106f144b04",
+                "attack-pattern--58ee2063-f330-493e-852b-09b9fbb6b2b6",
+                "attack-pattern--df77b914-1d72-432e-9f07-e8d95aa9276c",
+                "attack-pattern--4d43fa16-7bec-43a5-9ca5-d2825d624b92",
+                "attack-pattern--11b9a9fa-717a-40d4-a94e-ab05def1f551",
+                "indicator--30e59210-7e69-441f-a2d6-979b8962552f",
+                "indicator--760f0eba-a26b-479f-af21-97067e0773ed",
+                "indicator--1b8f2e35-d385-414e-8186-7515be2ddddf",
+                "indicator--f88ea94c-f0c5-4b38-8a41-0fa840d86ab8",
+                "indicator--71e6df90-15c5-43ea-978f-6aaf3e1178d1",
+                "indicator--326a23c6-0ff3-4463-b5bd-281baa9a7884",
+                "relationship--74b7ca9d-54a3-4b1c-9456-54b357c80560",
+                "relationship--3b444980-dbac-4931-8085-7dd6ed1307f2",
+                "relationship--d1e98d2a-c006-4bbb-889f-96a59d58effd",
+                "relationship--55d082f5-67c2-43cc-b051-dd687d7f8180",
+                "relationship--f198f939-9268-4fe0-a8bb-1893c844feec",
+                "relationship--51c2c98d-190c-4168-a183-1ce5cfe65c20",
+                "relationship--a537a6ce-9403-4162-9a04-83873f9ad737",
+                "relationship--1ff24a7d-db6d-440d-87f8-d2e56c99b4d0",
+                "relationship--e244ab57-0e4d-4286-865a-cdc81851e535",
+                "relationship--a3e516d9-ec5c-41ec-8a0f-bd1da557635c",
+                "relationship--0a3cab9e-e4c3-4128-8c6a-3c11d35c543d",
+                "relationship--b736e11f-bb7d-4f9c-895f-95e9f50f2998",
+                "relationship--c3c3dc80-eac1-4091-8526-61b3ea591e29",
+                "relationship--c0eaa849-25ce-4dc8-b352-5ffa887c3194",
+                "relationship--a38aaf2b-c033-491b-9aff-5408e9c84966",
+                "relationship--c0c91698-e150-42aa-8355-effcc26fea21",
+                "relationship--a8c88ea8-6975-4ade-ba8f-3508c6b013fd",
+                "relationship--47f40fc1-4514-4c41-aa70-77d500f20ffa",
+                "relationship--3f01db34-0edb-4d8b-bddd-d5d6907e9991",
+                "relationship--91063b36-472d-4850-98e4-7f62e98347ff",
+                "relationship--aacc5ef6-1f7f-488e-a38e-8f8bb2a4fabe",
+                "relationship--b1b1201e-624c-41ee-8d9e-fa998ff01e67",
+                "relationship--df4ba965-601f-48ff-b8f5-5ef775fdc752",
+                "relationship--f3ab8a5e-2cd0-40f2-91ec-fff35ce6ca3e",
+                "relationship--38a2dba8-a358-4c43-8fc9-595a05335493",
+                "relationship--766f05e8-f083-4e44-bdac-c3e762717b18",
+                "relationship--5a4ecfcc-7596-4070-bf30-a382153ce047",
+                "relationship--e8948432-ad4b-4f71-9f8b-f5a02f11a3e1",
+                "relationship--97c48394-b3b4-4d3a-a211-6fa530a71415",
+                "relationship--cfd62028-1b6a-4bf8-9d79-26ba364de33d",
+                "relationship--22260e70-2ecd-4faf-9181-a61f9bfee1f1",
+                "relationship--778914c2-2f26-4e6b-b5bb-f433ccfbb1b0",
+                "relationship--a1ddc5aa-d904-4aa0-b447-7857aba25f54",
+                "relationship--15d85724-ea7c-48f1-aa30-036085d4fc9f",
+                "relationship--944a4504-6b9f-4178-b37e-7c233b799bbf",
+                "relationship--307205b0-d96c-450b-91e8-a36c4091d82d",
+                "relationship--64186724-cdea-4f2c-bb63-4f9c4f181f07",
+                "relationship--cddea420-70d0-462b-9b35-bd9296e0de13"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
