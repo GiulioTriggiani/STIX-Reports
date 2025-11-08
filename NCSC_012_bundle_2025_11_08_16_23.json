@@ -1,0 +1,750 @@
+{
+    "type": "bundle",
+    "id": "bundle--9fcc9663-acac-4834-8379-b91658a05fdf",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.777107Z",
+            "modified": "2025-11-08T16:23:18.777107Z",
+            "name": "NCSC",
+            "description": "The UK National Cyber Security Centre (NCSC) is the primary author and publisher of this threat report, providing analysis and recommendations regarding the Small Sieve malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--05915e05-5d26-517d-b0f5-7f66a889b60a",
+            "key": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\OutlookMicrosift"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--6fbf1a28-ce4d-5540-afef-effc98ec3b58",
+            "value": "https://api.telegram.org/bot2003026094:AAGoitvpcx3SFZ2_6YzIs4La_kyDF1PbXrY/sendMessage?chat_id=2090761833&parse_mode=Markdown&text=/com39062050%20|%208313e22333e27313e2031302c70213e49414d4f444e49475f2e696d64616"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--3833a260-39a2-51cb-a98b-1d7e383b400b",
+            "value": "2003026094:AAGoitvpcx3SFZ2_6YzIs4La_kyDF1PbXrY"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--fffc00f8-cd17-5dea-8c10-ac31c907ddd9",
+            "value": "10.17.32.18"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39cb9bb3-c8d8-4c93-9035-d7b6d230ce33",
+            "created": "2025-11-08T16:22:50.217359Z",
+            "modified": "2025-11-08T16:22:50.217359Z",
+            "name": "Telegram Session Persistence File",
+            "description": "Obfuscated file used by Small Sieve to store Telegram session and token data for persistence.",
+            "pattern": "[file:name = 'MicrosoftWindowsOutlookDataPlus.txt' AND file:parent_directory_ref.path LIKE '%LocalAppData%']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.217332Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--112727d7-698d-4372-86df-4a804f37812a",
+            "created": "2025-11-08T16:22:50.219049Z",
+            "modified": "2025-11-08T16:22:50.219049Z",
+            "name": "Small Sieve backdoor installation path",
+            "description": "Path where the Small Sieve backdoor binary is installed by the malicious NSIS installer.",
+            "pattern": "[file:name = 'index.exe' AND file:parent_directory_ref.path LIKE '%AppData%\\\\OutlookMicrosift']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.219036Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ecfbde6b-52d8-4ae8-acfd-e04c5bf634b2",
+            "created": "2025-11-08T16:22:50.220591Z",
+            "modified": "2025-11-08T16:22:50.220591Z",
+            "name": "Persistence Registry Key",
+            "description": "Registry key used for persistence, configured to execute the Small Sieve backdoor with the 'Platypus' argument on user logon.",
+            "pattern": "[windows-registry-key:key = 'HKCU\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\OutlookMicrosift']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.220581Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--90d00e21-5d57-429d-9bec-b75f83df34d3",
+            "created": "2025-11-08T16:22:50.221871Z",
+            "modified": "2025-11-08T16:22:50.221871Z",
+            "name": "Telegram Bot API C2 URL",
+            "description": "Malicious C2 URL used by Small Sieve to beacon and receive commands via the Telegram Bot API.",
+            "pattern": "[url:value = 'https://api.telegram.org/bot2003026094:AAGoitvpcx3SFZ2_6YzIs4La_kyDF1PbXrY/sendMessage?chat_id=2090761833&parse_mode=Markdown&text=/com39062050%20|%208313e22333e27313e2031302c70213e49414d4f444e49475f2e696d64616']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.221862Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--604051eb-c3a9-4098-8fc8-5754a931c2ba",
+            "created": "2025-11-08T16:22:50.224023Z",
+            "modified": "2025-11-08T16:22:50.224023Z",
+            "name": "Telegram Bot API token",
+            "description": "Hardcoded Telegram Bot API token used for C2 communications by Small Sieve.",
+            "pattern": "[domain-name:value = '2003026094:AAGoitvpcx3SFZ2_6YzIs4La_kyDF1PbXrY']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.224012Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--27b38e66-eefd-4b98-bf75-978335b92c97",
+            "created": "2025-11-08T16:22:50.225275Z",
+            "modified": "2025-11-08T16:22:50.225275Z",
+            "name": "Example victim IP address",
+            "description": "Example of a victim IP address exfiltrated by the malware in beacon traffic.",
+            "pattern": "[ipv4-addr:value = '10.17.32.18']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.225266Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--831c2484-eb8c-4a66-9d08-5c847600df7f",
+            "created": "2025-11-08T16:22:50.226312Z",
+            "modified": "2025-11-08T16:22:50.226312Z",
+            "name": "Indicator for gram_app.exe (MD5)",
+            "description": "MD5 hash of the malicious NSIS installer that installs and runs the Small Sieve backdoor.",
+            "pattern": "[file:hashes.'MD5' = '15fa3b32539d7453a9a85958b77d4c95']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.226302Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--92df57ef-6e29-4e31-a76b-642e7ac1165a",
+            "created": "2025-11-08T16:22:50.227232Z",
+            "modified": "2025-11-08T16:22:50.227232Z",
+            "name": "Indicator for gram_app.exe (SHA1)",
+            "description": "SHA-1 hash of the malicious NSIS installer that installs and runs the Small Sieve backdoor.",
+            "pattern": "[file:hashes.'SHA1' = '11d594f3b3cf8525682f6214acb7b7782056d282']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.227222Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fe1c647d-2522-4003-9723-aa578a2373d6",
+            "created": "2025-11-08T16:22:50.228322Z",
+            "modified": "2025-11-08T16:22:50.228322Z",
+            "name": "Indicator for gram_app.exe (SHA256)",
+            "description": "SHA-256 hash of the malicious NSIS installer that installs and runs the Small Sieve backdoor.",
+            "pattern": "[file:hashes.'SHA256' = 'b75208393fa17c0bcbc1a07857686b8c0d7e0471d00a167a07fd0d52e1fc9054']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.228307Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--00a8bcb0-9e7e-4304-b311-75ffba7c4461",
+            "created": "2025-11-08T16:22:50.229473Z",
+            "modified": "2025-11-08T16:22:50.229473Z",
+            "name": "Indicator for index.exe (MD5)",
+            "description": "MD5 hash of the PyInstaller-bundled Python backdoor payload.",
+            "pattern": "[file:hashes.'MD5' = '5763530f25ed0ec08fb26a30c04009f1']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.229459Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--870e147e-f3b5-4b5c-93ee-c2e03d634267",
+            "created": "2025-11-08T16:22:50.230398Z",
+            "modified": "2025-11-08T16:22:50.230398Z",
+            "name": "Indicator for index.exe (SHA1)",
+            "description": "SHA-1 hash of the PyInstaller-bundled Python backdoor payload.",
+            "pattern": "[file:hashes.'SHA1' = '2a6ddf89a8366a262b56a251b00aafaed5321992']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.230388Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f9c92d7b-9e8d-4251-8fb1-a05f1a22cf5a",
+            "created": "2025-11-08T16:22:50.231337Z",
+            "modified": "2025-11-08T16:22:50.231337Z",
+            "name": "Indicator for index.exe (SHA256)",
+            "description": "SHA-256 hash of the PyInstaller-bundled Python backdoor payload.",
+            "pattern": "[file:hashes.'SHA256' = 'bf090cf7078414c9e157da7002ca727f06053b39fa4e377f9a0050f2af37d3a2']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:22:50.231327Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ae3da2e9-b82b-4ce2-bc6a-d0f62149e6b9",
+            "created": "2025-11-08T16:22:50.232221Z",
+            "modified": "2025-11-08T16:22:50.232221Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--831c2484-eb8c-4a66-9d08-5c847600df7f",
+            "target_ref": "indicator--92df57ef-6e29-4e31-a76b-642e7ac1165a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ff626d8-316d-4ff9-a9d6-a3fef0fd79f0",
+            "created": "2025-11-08T16:22:50.232551Z",
+            "modified": "2025-11-08T16:22:50.232551Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--831c2484-eb8c-4a66-9d08-5c847600df7f",
+            "target_ref": "indicator--fe1c647d-2522-4003-9723-aa578a2373d6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4798a17a-cb25-427e-add1-f435d0ba1235",
+            "created": "2025-11-08T16:22:50.232832Z",
+            "modified": "2025-11-08T16:22:50.232832Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--92df57ef-6e29-4e31-a76b-642e7ac1165a",
+            "target_ref": "indicator--fe1c647d-2522-4003-9723-aa578a2373d6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d20d1968-ff98-4546-a6f6-4663c74d21df",
+            "created": "2025-11-08T16:22:50.233102Z",
+            "modified": "2025-11-08T16:22:50.233102Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--00a8bcb0-9e7e-4304-b311-75ffba7c4461",
+            "target_ref": "indicator--870e147e-f3b5-4b5c-93ee-c2e03d634267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5af26fbc-cbf3-4998-95fb-0f02930499f1",
+            "created": "2025-11-08T16:22:50.233355Z",
+            "modified": "2025-11-08T16:22:50.233355Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--00a8bcb0-9e7e-4304-b311-75ffba7c4461",
+            "target_ref": "indicator--f9c92d7b-9e8d-4251-8fb1-a05f1a22cf5a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cd89b797-becf-4a2f-908a-e55c37a38621",
+            "created": "2025-11-08T16:22:50.233623Z",
+            "modified": "2025-11-08T16:22:50.233623Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--870e147e-f3b5-4b5c-93ee-c2e03d634267",
+            "target_ref": "indicator--f9c92d7b-9e8d-4251-8fb1-a05f1a22cf5a"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.777589Z",
+            "modified": "2025-11-08T16:23:18.777589Z",
+            "name": "small sieve",
+            "description": "Small Sieve is a simple, possibly disposable, Python backdoor distributed via an NSIS installer. It provides basic functionality to maintain and expand a foothold in victim infrastructure, using custom string and traffic obfuscation schemes together with the Telegram Bot API to avoid detection. Its capabilities include file download, command execution, and persistence via registry keys. It employs anti-sandbox techniques, custom encoding for strings and traffic, and leverages the Telegram Bot API for command and control.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--85d1830e-37a7-4cc5-9923-a8bd8ea9ba9e",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.778018Z",
+            "modified": "2025-11-08T16:23:18.778018Z",
+            "name": "Command and Scripting Interpreter: Python",
+            "description": "Small Sieve is a PyInstaller-packed Python script.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/006",
+                    "external_id": "T1059.006"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--60974ba2-3e57-4971-a8c6-2a20ab8075cf",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.778639Z",
+            "modified": "2025-11-08T16:23:18.778639Z",
+            "name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+            "description": "Small Sieve is started by a registry run key.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547/001",
+                    "external_id": "T1547.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--e43d7c3c-4f8b-48e5-af43-0104a79be59b",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.779225Z",
+            "modified": "2025-11-08T16:23:18.779225Z",
+            "name": "Obfuscated Files or Information",
+            "description": "Small Sieve uses a custom hex byte swapping encoding scheme combined with an obfuscated base64 function to protect program strings and updated Telegram credentials.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027",
+                    "external_id": "T1027"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1d6f0652-7cb8-4350-9d82-432f42afa2fb",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.779915Z",
+            "modified": "2025-11-08T16:23:18.779915Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "Small Sieve uses variations of Microsoft (Microsift) and Outlook in its filenames to attempt to avoid detection during casual inspection.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/005",
+                    "external_id": "T1036.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--60ee6396-5e88-49a3-9368-f54a7ed4d48e",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.780318Z",
+            "modified": "2025-11-08T16:23:18.780318Z",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "Small Sieve beacons and tasking are performed using the Telegram API over HTTPS.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--34358b47-d7cc-4c1d-87b0-84a068470ddf",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.780695Z",
+            "modified": "2025-11-08T16:23:18.780695Z",
+            "name": "Data Encoding: Non-Standard Encoding",
+            "description": "Small Sieve employs a custom hex byte swapping encoding scheme to obfuscate tasking traffic.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1132/002",
+                    "external_id": "T1132.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--e83d758c-299b-4f54-9a43-73e5196ac9af",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.781499Z",
+            "modified": "2025-11-08T16:23:18.781499Z",
+            "name": "Execution Guardrails",
+            "description": "The Small Sieve payload will only execute correctly if the word 'Platypus' is passed to it on the command line.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1480",
+                    "external_id": "T1480"
+                }
+            ]
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--ff68a17e-abac-4c86-990c-30b65807e818",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.782077Z",
+            "modified": "2025-11-08T16:23:18.782077Z",
+            "name": "gram_app.exe",
+            "description": "NSIS installer which installs and runs the index.exe backdoor and adds a persistence registry key.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--e8429887-c598-4a52-8fa5-67f21add156c",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.782432Z",
+            "modified": "2025-11-08T16:23:18.782432Z",
+            "name": "index.exe",
+            "description": "The final PyInstaller-bundled Python 3.9 backdoor component of Small Sieve, responsible for command and control, file download, and execution.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d040d443-1da2-4555-9e6b-a14a579ad94f",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.782903Z",
+            "modified": "2025-11-08T16:23:18.782903Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--85d1830e-37a7-4cc5-9923-a8bd8ea9ba9e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1a08875-1a92-4899-b5fc-88fd90e5f23d",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.783218Z",
+            "modified": "2025-11-08T16:23:18.783218Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--60974ba2-3e57-4971-a8c6-2a20ab8075cf"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--39726159-e16c-412e-aa8f-493b838576a4",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.783533Z",
+            "modified": "2025-11-08T16:23:18.783533Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--e43d7c3c-4f8b-48e5-af43-0104a79be59b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9abd13ca-803f-4e5f-be22-6ace98d38602",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.783849Z",
+            "modified": "2025-11-08T16:23:18.783849Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--1d6f0652-7cb8-4350-9d82-432f42afa2fb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d9071499-464c-4932-a316-a9503aeae34d",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.784157Z",
+            "modified": "2025-11-08T16:23:18.784157Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--60ee6396-5e88-49a3-9368-f54a7ed4d48e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--110e9844-77a0-4041-8c90-a573a2702405",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.784438Z",
+            "modified": "2025-11-08T16:23:18.784438Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--34358b47-d7cc-4c1d-87b0-84a068470ddf"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--77ac1336-9e51-42b2-a194-eeb6f6c0beb1",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.784724Z",
+            "modified": "2025-11-08T16:23:18.784724Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+            "target_ref": "attack-pattern--e83d758c-299b-4f54-9a43-73e5196ac9af"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0c1fb9e3-66db-44e5-a605-91aeff4710a4",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.78503Z",
+            "modified": "2025-11-08T16:23:18.78503Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--39cb9bb3-c8d8-4c93-9035-d7b6d230ce33",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b31ee28-5b1a-4fe1-b290-c3ad7e1a24bd",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.785307Z",
+            "modified": "2025-11-08T16:23:18.785307Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--112727d7-698d-4372-86df-4a804f37812a",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f6fb20f1-54c8-47f6-95e6-fbb69bdbc07c",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.785579Z",
+            "modified": "2025-11-08T16:23:18.785579Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ecfbde6b-52d8-4ae8-acfd-e04c5bf634b2",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f7120c84-45b2-4e32-a570-d64491584544",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.785863Z",
+            "modified": "2025-11-08T16:23:18.785863Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--90d00e21-5d57-429d-9bec-b75f83df34d3",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--54221ac7-b5d7-4d65-a097-8d4fc55180a1",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.786198Z",
+            "modified": "2025-11-08T16:23:18.786198Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--604051eb-c3a9-4098-8fc8-5754a931c2ba",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--33717c7a-ab06-4786-b1a3-b7b66676630e",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.786804Z",
+            "modified": "2025-11-08T16:23:18.786804Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--27b38e66-eefd-4b98-bf75-978335b92c97",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--65eda769-bae1-4ce3-8258-d97ecaa851d9",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.787132Z",
+            "modified": "2025-11-08T16:23:18.787132Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--831c2484-eb8c-4a66-9d08-5c847600df7f",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--831638ab-53f6-446c-b3d3-904c8abae7cf",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.787438Z",
+            "modified": "2025-11-08T16:23:18.787438Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--92df57ef-6e29-4e31-a76b-642e7ac1165a",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9564ff4b-1ae3-44b5-a652-ba69c6b406ce",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.787719Z",
+            "modified": "2025-11-08T16:23:18.787719Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fe1c647d-2522-4003-9723-aa578a2373d6",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e3b07bac-3795-4509-a84d-943f5e56cdbc",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.788021Z",
+            "modified": "2025-11-08T16:23:18.788021Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--00a8bcb0-9e7e-4304-b311-75ffba7c4461",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4e0103b1-13d8-4760-8e65-275d7f2f8bde",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.788302Z",
+            "modified": "2025-11-08T16:23:18.788302Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--870e147e-f3b5-4b5c-93ee-c2e03d634267",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9392a674-ab39-4c11-979b-1c9ed484b8b7",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.78858Z",
+            "modified": "2025-11-08T16:23:18.78858Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f9c92d7b-9e8d-4251-8fb1-a05f1a22cf5a",
+            "target_ref": "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--48c871b4-1559-4949-9b38-2bcbd344cf97",
+            "created_by_ref": "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+            "created": "2025-11-08T16:23:18.789183Z",
+            "modified": "2025-11-08T16:23:18.789183Z",
+            "name": "Analisi Malware: Small Sieve",
+            "description": "This report contains technical analysis and indicators associated with malware. small sieve.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-08T16:23:18.789171Z",
+            "object_refs": [
+                "identity--bf7bf34a-857b-4d46-b14e-4385676c8ffc",
+                "windows-registry-key--05915e05-5d26-517d-b0f5-7f66a889b60a",
+                "url--6fbf1a28-ce4d-5540-afef-effc98ec3b58",
+                "domain-name--3833a260-39a2-51cb-a98b-1d7e383b400b",
+                "ipv4-addr--fffc00f8-cd17-5dea-8c10-ac31c907ddd9",
+                "indicator--39cb9bb3-c8d8-4c93-9035-d7b6d230ce33",
+                "indicator--112727d7-698d-4372-86df-4a804f37812a",
+                "indicator--ecfbde6b-52d8-4ae8-acfd-e04c5bf634b2",
+                "indicator--90d00e21-5d57-429d-9bec-b75f83df34d3",
+                "indicator--604051eb-c3a9-4098-8fc8-5754a931c2ba",
+                "indicator--27b38e66-eefd-4b98-bf75-978335b92c97",
+                "indicator--831c2484-eb8c-4a66-9d08-5c847600df7f",
+                "indicator--92df57ef-6e29-4e31-a76b-642e7ac1165a",
+                "indicator--fe1c647d-2522-4003-9723-aa578a2373d6",
+                "indicator--00a8bcb0-9e7e-4304-b311-75ffba7c4461",
+                "indicator--870e147e-f3b5-4b5c-93ee-c2e03d634267",
+                "indicator--f9c92d7b-9e8d-4251-8fb1-a05f1a22cf5a",
+                "relationship--ae3da2e9-b82b-4ce2-bc6a-d0f62149e6b9",
+                "relationship--1ff626d8-316d-4ff9-a9d6-a3fef0fd79f0",
+                "relationship--4798a17a-cb25-427e-add1-f435d0ba1235",
+                "relationship--d20d1968-ff98-4546-a6f6-4663c74d21df",
+                "relationship--5af26fbc-cbf3-4998-95fb-0f02930499f1",
+                "relationship--cd89b797-becf-4a2f-908a-e55c37a38621",
+                "malware--0e86171a-d2ba-4cb4-a160-7394cabe7111",
+                "attack-pattern--85d1830e-37a7-4cc5-9923-a8bd8ea9ba9e",
+                "attack-pattern--60974ba2-3e57-4971-a8c6-2a20ab8075cf",
+                "attack-pattern--e43d7c3c-4f8b-48e5-af43-0104a79be59b",
+                "attack-pattern--1d6f0652-7cb8-4350-9d82-432f42afa2fb",
+                "attack-pattern--60ee6396-5e88-49a3-9368-f54a7ed4d48e",
+                "attack-pattern--34358b47-d7cc-4c1d-87b0-84a068470ddf",
+                "attack-pattern--e83d758c-299b-4f54-9a43-73e5196ac9af",
+                "malware--ff68a17e-abac-4c86-990c-30b65807e818",
+                "malware--e8429887-c598-4a52-8fa5-67f21add156c",
+                "relationship--d040d443-1da2-4555-9e6b-a14a579ad94f",
+                "relationship--b1a08875-1a92-4899-b5fc-88fd90e5f23d",
+                "relationship--39726159-e16c-412e-aa8f-493b838576a4",
+                "relationship--9abd13ca-803f-4e5f-be22-6ace98d38602",
+                "relationship--d9071499-464c-4932-a316-a9503aeae34d",
+                "relationship--110e9844-77a0-4041-8c90-a573a2702405",
+                "relationship--77ac1336-9e51-42b2-a194-eeb6f6c0beb1",
+                "relationship--0c1fb9e3-66db-44e5-a605-91aeff4710a4",
+                "relationship--3b31ee28-5b1a-4fe1-b290-c3ad7e1a24bd",
+                "relationship--f6fb20f1-54c8-47f6-95e6-fbb69bdbc07c",
+                "relationship--f7120c84-45b2-4e32-a570-d64491584544",
+                "relationship--54221ac7-b5d7-4d65-a097-8d4fc55180a1",
+                "relationship--33717c7a-ab06-4786-b1a3-b7b66676630e",
+                "relationship--65eda769-bae1-4ce3-8258-d97ecaa851d9",
+                "relationship--831638ab-53f6-446c-b3d3-904c8abae7cf",
+                "relationship--9564ff4b-1ae3-44b5-a652-ba69c6b406ce",
+                "relationship--e3b07bac-3795-4509-a84d-943f5e56cdbc",
+                "relationship--4e0103b1-13d8-4760-8e65-275d7f2f8bde",
+                "relationship--9392a674-ab39-4c11-979b-1c9ed484b8b7"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
