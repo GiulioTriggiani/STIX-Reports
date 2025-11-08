@@ -1,0 +1,1181 @@
+{
+    "type": "bundle",
+    "id": "bundle--d42cba58-e6f4-4039-a544-ad19beeaf1c1",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.64277Z",
+            "modified": "2025-11-08T12:17:32.64277Z",
+            "name": "NCSC",
+            "description": "The UK National Cyber Security Centre (NCSC) is the author and publisher of this report, providing analysis and recommendations regarding UMBRELLA STAND malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--272bc839-6307-5fa6-a07f-53ac6c508dcd",
+            "value": "89.44.194.32"
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--c67f8200-4283-5395-bc96-b86ae1121f68",
+            "path": "/data2/.ztls/"
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--941a911a-6e30-5d4d-813e-ecba01c1b069",
+            "path": "/data/etc/.ftgd_trusted/"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bcfc2101-91ec-44a5-a640-488199011d16",
+            "created": "2025-11-08T12:16:41.744682Z",
+            "modified": "2025-11-08T12:16:41.744682Z",
+            "name": "UMBRELLA STAND C2",
+            "description": "Hardcoded default C2 IP address used by UMBRELLA STAND malware for command and control communications.",
+            "pattern": "[ipv4-addr:value = '89.44.194.32']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.744661Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6f0118de-35c6-4532-9966-aa68cfdf8bb6",
+            "created": "2025-11-08T12:16:41.76065Z",
+            "modified": "2025-11-08T12:16:41.76065Z",
+            "name": "UMBRELLA STAND hidden directory",
+            "description": "Hidden directory used by UMBRELLA STAND and associated tooling to store malicious binaries and evade detection.",
+            "pattern": "[directory:path = '/data2/.ztls/']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.760634Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2876d387-21d7-4f60-a525-8008e94b88a8",
+            "created": "2025-11-08T12:16:41.765741Z",
+            "modified": "2025-11-08T12:16:41.765741Z",
+            "name": "UMBRELLA STAND shell output file",
+            "description": "Temporary file created by UMBRELLA STAND to store output of executed shell commands before exfiltration and deletion.",
+            "pattern": "[file:name = '%d.sv' AND file:parent_directory_ref.path LIKE '/tmp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.765722Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--984a842a-389d-44d5-b1a0-d533f66b0c70",
+            "created": "2025-11-08T12:16:41.772008Z",
+            "modified": "2025-11-08T12:16:41.772008Z",
+            "name": "UMBRELLA STAND collection info file",
+            "description": "File used by UMBRELLA STAND to track chunk collection status for exfiltrated command output.",
+            "pattern": "[file:name = '%s.ini' AND file:parent_directory_ref.path LIKE '/data2/tmp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.771985Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f74294a6-a0ca-4191-a712-f8a96be4bf27",
+            "created": "2025-11-08T12:16:41.773932Z",
+            "modified": "2025-11-08T12:16:41.773932Z",
+            "name": "UMBRELLA STAND persistence library",
+            "description": "Malicious shared object used for persistence via ldpreload, loaded into processes to facilitate malware execution.",
+            "pattern": "[file:name = 'libguic.so' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.773912Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bfb7d9f5-7900-4b3f-a209-0d42d6b7b8da",
+            "created": "2025-11-08T12:16:41.776124Z",
+            "modified": "2025-11-08T12:16:41.776124Z",
+            "name": "UMBRELLA STAND networking binary",
+            "description": "Main networking component of UMBRELLA STAND, responsible for C2 communications and tasking.",
+            "pattern": "[file:name = 'blghtd' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.776107Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--775fad2c-5cff-4f13-af0c-da746c027894",
+            "created": "2025-11-08T12:16:41.778207Z",
+            "modified": "2025-11-08T12:16:41.778207Z",
+            "name": "UMBRELLA STAND watchdog binary",
+            "description": "Watchdog binary used to monitor and restart the main networking component blghtd.",
+            "pattern": "[file:name = 'jvnlpe' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.778192Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--94d8af65-e8fb-45cd-9b5c-29aad44a97b1",
+            "created": "2025-11-08T12:16:41.779859Z",
+            "modified": "2025-11-08T12:16:41.779859Z",
+            "name": "UMBRELLA STAND initialisation binary",
+            "description": "Binary responsible for initialisation, launching injection, and starting jvnlpe.",
+            "pattern": "[file:name = 'cisz' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.779845Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f2363e1d-3ce6-4325-abc8-b674103509e4",
+            "created": "2025-11-08T12:16:41.781376Z",
+            "modified": "2025-11-08T12:16:41.781376Z",
+            "name": "UMBRELLA STAND loader library",
+            "description": "Shared object loaded via ldpreload to load cisz and facilitate malware execution.",
+            "pattern": "[file:name = 'libguic.so2' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.781364Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3df2e879-905b-4d71-b72b-6f6791fd5095",
+            "created": "2025-11-08T12:16:41.782847Z",
+            "modified": "2025-11-08T12:16:41.782847Z",
+            "name": "UMBRELLA STAND file encryptor",
+            "description": "Command line tool used to encrypt and decrypt files as part of the malware's operations.",
+            "pattern": "[file:name = 'a' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.782834Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d53e4b39-79b6-4886-becf-88e8a34f49ac",
+            "created": "2025-11-08T12:16:41.784351Z",
+            "modified": "2025-11-08T12:16:41.784351Z",
+            "name": "BusyBox utility (renamed)",
+            "description": "Renamed BusyBox binary used by the actors to provide shell and utility functions on the compromised device.",
+            "pattern": "[file:name = 'lidwok' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.784339Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ed054d1f-578f-44ae-b0fd-739b61be1097",
+            "created": "2025-11-08T12:16:41.785961Z",
+            "modified": "2025-11-08T12:16:41.785961Z",
+            "name": "UMBRELLA STAND injection tool",
+            "description": "Tool used to inject libraries into other processes as part of the malware's process injection capability.",
+            "pattern": "[file:name = 'dskz' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.785949Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5f15d42d-915d-4e13-89c7-348c5b209ac1",
+            "created": "2025-11-08T12:16:41.787524Z",
+            "modified": "2025-11-08T12:16:41.787524Z",
+            "name": "tcpdump utility (malicious deployment)",
+            "description": "tcpdump binary deployed by the actors for network traffic capture on the victim device.",
+            "pattern": "[file:name = 'tdp' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.787512Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3e98e6a3-6003-451c-a9fa-5efe2513fec6",
+            "created": "2025-11-08T12:16:41.789047Z",
+            "modified": "2025-11-08T12:16:41.789047Z",
+            "name": "nbtscan utility (malicious deployment)",
+            "description": "nbtscan binary deployed by the actors for network discovery on the victim device.",
+            "pattern": "[file:name = 'nbso' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.789034Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ca0a1784-352b-40f1-b967-5b99fd1f8f89",
+            "created": "2025-11-08T12:16:41.79087Z",
+            "modified": "2025-11-08T12:16:41.79087Z",
+            "name": "Persistence configuration file",
+            "description": "System file modified to achieve persistence by loading malicious shared objects at process startup.",
+            "pattern": "[file:name = 'ld.so.preload' AND file:parent_directory_ref.path LIKE '/etc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.790857Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8a807024-2de6-49d7-9f34-1169983b4fbb",
+            "created": "2025-11-08T12:16:41.792347Z",
+            "modified": "2025-11-08T12:16:41.792347Z",
+            "name": "UMBRELLA STAND process impersonation name",
+            "description": "Fake process name used by blghtd to masquerade as a legitimate system process.",
+            "pattern": "[file:name = 'httpsd' AND file:parent_directory_ref.path LIKE '/bin']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.792334Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a20ce26e-86bc-4ae9-867a-f3bbe17dcf60",
+            "created": "2025-11-08T12:16:41.794333Z",
+            "modified": "2025-11-08T12:16:41.794333Z",
+            "name": "Fortinet hidden directory (abused)",
+            "description": "Legitimate Fortinet directory string replaced by malware to hide its own directory from administrators.",
+            "pattern": "[directory:path = '/data/etc/.ftgd_trusted/']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.794321Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--83aa43d1-eea0-4420-98f5-70ce68ca5e55",
+            "created": "2025-11-08T12:16:41.795492Z",
+            "modified": "2025-11-08T12:16:41.795492Z",
+            "name": "BusyBox utility (malicious deployment)",
+            "description": "Maliciously deployed BusyBox binary used by the actors, referenced in YARA rules.",
+            "pattern": "[file:name = 'lidwok' AND file:parent_directory_ref.path LIKE '/data2/.ztls']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T12:16:41.795479Z"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.643446Z",
+            "modified": "2025-11-08T12:17:32.643446Z",
+            "name": "umbrella stand",
+            "description": "UMBRELLA STAND is a medium sophistication malware targeting Fortinet FortiGate 100D series firewalls. It is composed of multiple interconnected binaries and is deployed to facilitate long-term access into target networks. The malware beacons to its C2 server using fake TLS on port 443, supports remote shell execution, configurable beacon frequency and C2 IP address, and AES-encrypted C2 communications. It hooks the device reboot functionality for persistence, uses hidden directories and generic filenames for defense evasion, and employs AES-encrypted stack strings. UMBRELLA STAND is deployed alongside public domain utilities such as BusyBox, nbtscan, tcpdump, and openLDAP, and uses process injection and argument spoofing to evade detection.",
+            "malware_types": [
+                "remote-access-trojan",
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ee7ee95f-7fd7-428f-9c22-e890d3d11360",
+            "created": "2025-11-08T12:17:32.645097Z",
+            "modified": "2025-11-08T12:17:32.645097Z",
+            "name": "Fortinet",
+            "description": "Fortinet is the vendor of the FortiGate 100D series firewalls targeted by UMBRELLA STAND malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--ef1d18ff-8336-4959-878e-126c2b74ed05",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.645465Z",
+            "modified": "2025-11-08T12:17:32.645465Z",
+            "name": "shoe rack",
+            "description": "SHOE RACK is a previously unknown piece of malware identified on the same device as UMBRELLA STAND. Its functionality is beyond the scope of this report but is referenced as actor tooling.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--b117b08c-7a78-487a-a4e6-d720714f4bbc",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.645908Z",
+            "modified": "2025-11-08T12:17:32.645908Z",
+            "name": "coathanger",
+            "description": "COATHANGER is referenced as a malware family with tooling similar to UMBRELLA STAND, particularly in loading components and operational security considerations.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--27651d77-0f72-4637-a06e-55e0ad1238e6",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.646303Z",
+            "modified": "2025-11-08T12:17:32.646303Z",
+            "name": "UMBRELLA_STAND_stack_constants_used_for_crypt",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_stack_constants_used_for_crypt {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\nencrypted stack strings.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = {C6 45 D0 92 C6 45 D1 48 C6 45 D2 D6 C6 45 D3 E3 C6 45\nD4 39 C6 45 D5 EE C6 45 D6 CE C6 45 D7 E4 C6 45 D8 59 C6 45 D9 58\nC6 45 DA 97 C6 45 DB E5 C6 45 DC 2E C6 45 DD 27 C6 45 DE 98 C6 45\nDF DE C6 45 E0 93 C6 45 E1 A8 C6 45 E2 77 C6 45 E3 9B C6 45 E4 4A\nC6 45 E5 F0 C6 45 E6 EF C6 45 E7 74 C6 45 E8 80 C6 45 E9 2D C6 45\nEA EB C6 45 EB 30 C6 45 EC 1F C6 45 ED B5 C6 45 EE D9 C6 45 EF C7}// Key\n        $ = {C6 45 C0 77 C6 45 C1 90 C6 45 C2 3D C6 45 C3 35 C6 45\nC4 A4 C6 45 C5 9F C6 45 C6 0F C6 45 C7 5E C6 45 C8 F5 C6 45 C9 52\nC6 45 CA 44 C6 45 CB 69 C6 45 CC B9 C6 45 CD C0 C6 45 CE BA C6 45\nCF DC} // IV\n    condition:\n        uint32(0) == 0x464C457F and\n        any of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.646285Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d000b479-ec64-4d3f-b2a1-db97a640a4a3",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.646704Z",
+            "modified": "2025-11-08T12:17:32.646704Z",
+            "name": "UMBRELLA_STAND_plaintext_of_encrypted_stings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_plaintext_of_encrypted_stings {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\nstrings, if string obfuscation is not present.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = {ED B8 83 20}\n        $ = \"%s/%d.sv\"\n        $ = \"%s/%s.ini\"\n        $ = \"%s>%s 2>&1\"\n        $ = \"%[^=]=%[^=]\"\n        $ = \"/data2/.ztls/\"\n        $ = \"/proc/%s/status\"\n        $ = \"%*s %s\"\n        $ = \"./lidwok killall blghtd\"\n        $ = \"89.44.194.32\"\n        $ = \"/data2/.ztls/lidwok\"\n    condition:\n        uint32(0) == 0x464C457F and\n        5 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.646693Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b1f80725-13f4-4d17-8eb7-cc5690cebb80",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.647073Z",
+            "modified": "2025-11-08T12:17:32.647073Z",
+            "name": "UMBRELLA_STAND_injected_tool_load_mechanism",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_injected_tool_load_mechanism {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\nstrings present in tooling.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = \"LoadMsg\"\n        $ = \"/bin/httpsd\"\n        $ = \"/proc/%d/cmdline\"\n        $ = \"/tmp/logx\"\n        $ = \"error\"\n    condition:\n        uint32(0) == 0x464C457F and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.647063Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8f1f1b2f-ef68-4c02-8c91-ce5eb4cad6e0",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.647468Z",
+            "modified": "2025-11-08T12:17:32.647468Z",
+            "name": "UMBRELLA_STAND_deobfuscated_custom_base64_and_encryption_key",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_deobfuscated_custom_base64_and_encryption_key {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\ncustom base64 alphabet and encryption key reference.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = \",((@=+utivp45ztvo6&RFvt&*^tp&!q;\"\n        $ =\n\"ef345FGHIJKLMNOPWghijklmnoXYd67TUVABC89+/pqrstQRSDEZabcuvwxyz012\"\n    condition:\n        uint32(0) == 0x464C457F and\n        any of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.647459Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e30201dc-ca49-4a16-973c-695107cd1215",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.647839Z",
+            "modified": "2025-11-08T12:17:32.647839Z",
+            "name": "UMBRELLA_STAND_strings_used_in_firewall_malware",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_strings_used_in_firewall_malware {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\nstrings.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = \"/bin/httpsd\"\n        $ = \"dxumbsu\"\n        $ = \"/proc/%d/cmdline\"\n        $ = \"/tmp/logx\"\n        $ = \"/etc/ld.so.preload\"\n        $ = \"loadMsg\"\n        $ =\"/SYSV64564856\"\n    condition:\n        uint32(0) == 0x464C457F and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.64783Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3a2d9896-e324-48e4-b07a-26362feaa8de",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.648313Z",
+            "modified": "2025-11-08T12:17:32.648313Z",
+            "name": "UMBRELLA_STAND_injection_related_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule UMBRELLA_STAND_injection_related_strings {\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies UMBRELLA STAND sample based on\nstrings used to configure injection.\"\n        date = \"2025-06-18\"\n    strings:\n        $ = \"/SYSV64564856\"\n        $ = \"/etc/ld.so.preload\"\n        $ = \"version 2\"\n        $ = \"init_drivercheck\"\n    condition:\n        uint32(0) == 0x464C457F and\n        3 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T12:17:32.648304Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--737ba988-5a60-43e1-b710-b07f7f1cae3d",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.648675Z",
+            "modified": "2025-11-08T12:17:32.648675Z",
+            "name": "Command and Scripting Interpreter: Unix Shell",
+            "description": "UMBRELLA STAND contains functionality to receive and run Shell commands.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/004",
+                    "external_id": "T1059.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--599f7d68-84fb-4f15-9e8e-f85d6da34fdd",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.649289Z",
+            "modified": "2025-11-08T12:17:32.649289Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "UMBRELLA STAND contains AES-encrypted strings.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9f2dca65-739a-4bae-b513-e0640c158982",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.649833Z",
+            "modified": "2025-11-08T12:17:32.649833Z",
+            "name": "Process Injection",
+            "description": "UMBRELLA STAND uses tooling to perform process injection.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T155",
+                    "external_id": "T155"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ca11c0bf-53ca-436b-9004-164f7a96f86a",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.650314Z",
+            "modified": "2025-11-08T12:17:32.650314Z",
+            "name": "Indicator Removal: File Deletion",
+            "description": "UMBRELLA STAND binaries had been deleted from the device.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--f6a46019-653a-42f3-a080-7efe6c94aaf7",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.650809Z",
+            "modified": "2025-11-08T12:17:32.650809Z",
+            "name": "Hide Artifacts: Process Argument Spoofing",
+            "description": "UMBRELLA STAND modifies its process name.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1564/010",
+                    "external_id": "T1564.010"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1c4c3101-4ecd-4b44-8b14-6f64d205ac4f",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.65129Z",
+            "modified": "2025-11-08T12:17:32.65129Z",
+            "name": "Hide Artifacts: Hidden Files and Directories",
+            "description": "UMBRELLA STAND and associated tooling use hidden directories.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1564/001",
+                    "external_id": "T1564.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--063585ea-e1a6-45b2-b4ff-498746ebb860",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.65179Z",
+            "modified": "2025-11-08T12:17:32.65179Z",
+            "name": "Boot or Logon Autostart Execution: Kernel Modules and Extensions",
+            "description": "UMBRELLA STAND has functionality to modify reboot to achieve persistence.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547/006",
+                    "external_id": "T1547.006"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--c66768b9-aa5c-4b74-8da6-325ac60e0972",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.652256Z",
+            "modified": "2025-11-08T12:17:32.652256Z",
+            "name": "Hijack Execution Flow: Dynamic Linker Hijacking",
+            "description": "UMBRELLA STAND has functionality to load via ldpreload.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/006",
+                    "external_id": "T1574.006"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1c047d33-36ea-4e9c-b1e2-1efb9efa8c98",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.652778Z",
+            "modified": "2025-11-08T12:17:32.652778Z",
+            "name": "Process Discovery",
+            "description": "UMBRELLA STAND performs process discovery to check that its main process is still executing.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1057",
+                    "external_id": "T1057"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--41ff7f6c-ba9e-4deb-b7fe-297a918f1c7b",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.65324Z",
+            "modified": "2025-11-08T12:17:32.65324Z",
+            "name": "Network Service Discovery",
+            "description": "UMBRELLA STAND was in use with nbtscan which can list NetBIOS computer names.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1046",
+                    "external_id": "T1046"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0533102d-621e-41f8-936f-cc2ddd48a362",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.653776Z",
+            "modified": "2025-11-08T12:17:32.653776Z",
+            "name": "Network Sniffing",
+            "description": "UMBRELLA STAND was in use with tcpdump which can be, and was, used to perform packet captures.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1040",
+                    "external_id": "T1040"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9ce69f85-f59a-4070-9001-26a2ce968cdd",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.654298Z",
+            "modified": "2025-11-08T12:17:32.654298Z",
+            "name": "Data Obfuscation: Protocol or Service Impersonation",
+            "description": "UMBRELLA STAND uses fake TLS for communications with the C2 server.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1001/003",
+                    "external_id": "T1001.003"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a095acd6-9bb7-4f40-a8a8-19896ffa4523",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.654963Z",
+            "modified": "2025-11-08T12:17:32.654963Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--737ba988-5a60-43e1-b710-b07f7f1cae3d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9860bd68-4636-41c2-b498-054b75a4ca27",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.655362Z",
+            "modified": "2025-11-08T12:17:32.655362Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--599f7d68-84fb-4f15-9e8e-f85d6da34fdd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--62d7cfaa-f722-4a71-926d-5b89a08c6b4e",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.655753Z",
+            "modified": "2025-11-08T12:17:32.655753Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--9f2dca65-739a-4bae-b513-e0640c158982"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8d2a9e34-2e19-4839-b364-7450d93c1cd5",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.656066Z",
+            "modified": "2025-11-08T12:17:32.656066Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--ca11c0bf-53ca-436b-9004-164f7a96f86a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7b89899e-41c5-48ad-b88f-3383fb0058c6",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.656405Z",
+            "modified": "2025-11-08T12:17:32.656405Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--f6a46019-653a-42f3-a080-7efe6c94aaf7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cae22db1-5ba2-411b-bf54-b221fc419c7b",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.656774Z",
+            "modified": "2025-11-08T12:17:32.656774Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--1c4c3101-4ecd-4b44-8b14-6f64d205ac4f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7d22ac35-09fe-4628-84bd-6c9179ce65fc",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.65712Z",
+            "modified": "2025-11-08T12:17:32.65712Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--063585ea-e1a6-45b2-b4ff-498746ebb860"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f4f5fc38-624a-42b8-b5ef-2f31728d98fc",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.657469Z",
+            "modified": "2025-11-08T12:17:32.657469Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--c66768b9-aa5c-4b74-8da6-325ac60e0972"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1a25436-510a-4612-894a-f7d8242d7884",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.657825Z",
+            "modified": "2025-11-08T12:17:32.657825Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--1c047d33-36ea-4e9c-b1e2-1efb9efa8c98"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ab80ac7-9086-4ac7-b546-7740614f1ece",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.658121Z",
+            "modified": "2025-11-08T12:17:32.658121Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--41ff7f6c-ba9e-4deb-b7fe-297a918f1c7b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ae9e0b10-beea-4085-8ab2-d6751bf6da3b",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.658418Z",
+            "modified": "2025-11-08T12:17:32.658418Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--0533102d-621e-41f8-936f-cc2ddd48a362"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ca153029-7a59-45c1-86ae-de5d0f996dd7",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.658724Z",
+            "modified": "2025-11-08T12:17:32.658724Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+            "target_ref": "attack-pattern--9ce69f85-f59a-4070-9001-26a2ce968cdd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8c04e7a9-16c5-4b8b-aea6-a0bf45329126",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.659018Z",
+            "modified": "2025-11-08T12:17:32.659018Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bcfc2101-91ec-44a5-a640-488199011d16",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a558bd81-a179-4c6a-a1f2-da0c448b6f03",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.659328Z",
+            "modified": "2025-11-08T12:17:32.659328Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6f0118de-35c6-4532-9966-aa68cfdf8bb6",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a5375f6b-d198-4208-8c79-7dd76ce810e8",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.659639Z",
+            "modified": "2025-11-08T12:17:32.659639Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2876d387-21d7-4f60-a525-8008e94b88a8",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ae221f1-2982-47c9-afd6-b98388d1aa8a",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.659943Z",
+            "modified": "2025-11-08T12:17:32.659943Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--984a842a-389d-44d5-b1a0-d533f66b0c70",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2a1a00ce-d798-4c39-a89f-ef0add777c56",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.660242Z",
+            "modified": "2025-11-08T12:17:32.660242Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f74294a6-a0ca-4191-a712-f8a96be4bf27",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c71360f8-f3ef-4a32-9bfc-d01eb3928be2",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.660933Z",
+            "modified": "2025-11-08T12:17:32.660933Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bfb7d9f5-7900-4b3f-a209-0d42d6b7b8da",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--76112640-c4ba-410a-9f0a-f1e4ef95f946",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.66127Z",
+            "modified": "2025-11-08T12:17:32.66127Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--775fad2c-5cff-4f13-af0c-da746c027894",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1d477770-ff6a-4a8f-bbf8-0933cf3f356a",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.661615Z",
+            "modified": "2025-11-08T12:17:32.661615Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--94d8af65-e8fb-45cd-9b5c-29aad44a97b1",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--94b9bddd-3f0a-41b8-93c8-bcadf5bff8c8",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.661941Z",
+            "modified": "2025-11-08T12:17:32.661941Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f2363e1d-3ce6-4325-abc8-b674103509e4",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--439fc229-6ba9-4978-a79f-0e3c3a53f95e",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.662263Z",
+            "modified": "2025-11-08T12:17:32.662263Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3df2e879-905b-4d71-b72b-6f6791fd5095",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--283e18de-1edd-4e7e-9ff7-d7b3e511e5f6",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.662616Z",
+            "modified": "2025-11-08T12:17:32.662616Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d53e4b39-79b6-4886-becf-88e8a34f49ac",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--34c54cb2-bd47-4c1c-812b-b4a016183e83",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.662939Z",
+            "modified": "2025-11-08T12:17:32.662939Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ed054d1f-578f-44ae-b0fd-739b61be1097",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0cd12fbc-5515-42cb-8aa2-8a50c2cb1f92",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.663298Z",
+            "modified": "2025-11-08T12:17:32.663298Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5f15d42d-915d-4e13-89c7-348c5b209ac1",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0410290e-c336-45b5-9090-4ce5e236e222",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.663751Z",
+            "modified": "2025-11-08T12:17:32.663751Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3e98e6a3-6003-451c-a9fa-5efe2513fec6",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--55a44714-dcf4-442d-9a79-339669a2fb6f",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.66408Z",
+            "modified": "2025-11-08T12:17:32.66408Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ca0a1784-352b-40f1-b967-5b99fd1f8f89",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c64f90b8-73f6-44fc-9136-e702b2d3692d",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.664416Z",
+            "modified": "2025-11-08T12:17:32.664416Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8a807024-2de6-49d7-9f34-1169983b4fbb",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--da6c7f99-88bf-4c5b-a8db-597d432bdad3",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.664741Z",
+            "modified": "2025-11-08T12:17:32.664741Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a20ce26e-86bc-4ae9-867a-f3bbe17dcf60",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4fb7a68d-eff5-474d-97d5-0b5f07acc4d0",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.665111Z",
+            "modified": "2025-11-08T12:17:32.665111Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--83aa43d1-eea0-4420-98f5-70ce68ca5e55",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d8c14ff5-9c32-4c47-a229-2381508d3d52",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.665738Z",
+            "modified": "2025-11-08T12:17:32.665738Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--27651d77-0f72-4637-a06e-55e0ad1238e6",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f6847712-3f35-4ad7-8091-e1248b9fc02c",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.666215Z",
+            "modified": "2025-11-08T12:17:32.666215Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d000b479-ec64-4d3f-b2a1-db97a640a4a3",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--641c22b1-fb84-4f0d-a6d2-9f1990b3c164",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.666672Z",
+            "modified": "2025-11-08T12:17:32.666672Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b1f80725-13f4-4d17-8eb7-cc5690cebb80",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f71b6483-d464-49af-8c9b-de4a9c62ef67",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.667007Z",
+            "modified": "2025-11-08T12:17:32.667007Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8f1f1b2f-ef68-4c02-8c91-ce5eb4cad6e0",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15865ec0-3ded-4ded-a893-0faa2f88e657",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.667531Z",
+            "modified": "2025-11-08T12:17:32.667531Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e30201dc-ca49-4a16-973c-695107cd1215",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--efa37698-55ec-4453-86d0-400ad80a1635",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.667913Z",
+            "modified": "2025-11-08T12:17:32.667913Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3a2d9896-e324-48e4-b07a-26362feaa8de",
+            "target_ref": "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--faa9f335-c2a6-4058-a84d-b5d32b151a18",
+            "created_by_ref": "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+            "created": "2025-11-08T12:17:32.668707Z",
+            "modified": "2025-11-08T12:17:32.668707Z",
+            "name": "Analisi Malware: Umbrella Stand",
+            "description": "This report contains technical analysis and indicators associated with malware. umbrella stand.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-08T12:17:32.668685Z",
+            "object_refs": [
+                "identity--c49a60a2-3f33-4782-8612-c0d71e2447bb",
+                "ipv4-addr--272bc839-6307-5fa6-a07f-53ac6c508dcd",
+                "directory--c67f8200-4283-5395-bc96-b86ae1121f68",
+                "directory--941a911a-6e30-5d4d-813e-ecba01c1b069",
+                "indicator--bcfc2101-91ec-44a5-a640-488199011d16",
+                "indicator--6f0118de-35c6-4532-9966-aa68cfdf8bb6",
+                "indicator--2876d387-21d7-4f60-a525-8008e94b88a8",
+                "indicator--984a842a-389d-44d5-b1a0-d533f66b0c70",
+                "indicator--f74294a6-a0ca-4191-a712-f8a96be4bf27",
+                "indicator--bfb7d9f5-7900-4b3f-a209-0d42d6b7b8da",
+                "indicator--775fad2c-5cff-4f13-af0c-da746c027894",
+                "indicator--94d8af65-e8fb-45cd-9b5c-29aad44a97b1",
+                "indicator--f2363e1d-3ce6-4325-abc8-b674103509e4",
+                "indicator--3df2e879-905b-4d71-b72b-6f6791fd5095",
+                "indicator--d53e4b39-79b6-4886-becf-88e8a34f49ac",
+                "indicator--ed054d1f-578f-44ae-b0fd-739b61be1097",
+                "indicator--5f15d42d-915d-4e13-89c7-348c5b209ac1",
+                "indicator--3e98e6a3-6003-451c-a9fa-5efe2513fec6",
+                "indicator--ca0a1784-352b-40f1-b967-5b99fd1f8f89",
+                "indicator--8a807024-2de6-49d7-9f34-1169983b4fbb",
+                "indicator--a20ce26e-86bc-4ae9-867a-f3bbe17dcf60",
+                "indicator--83aa43d1-eea0-4420-98f5-70ce68ca5e55",
+                "malware--7c3782c8-aff9-42c0-b3ab-0c458cbba6df",
+                "identity--ee7ee95f-7fd7-428f-9c22-e890d3d11360",
+                "malware--ef1d18ff-8336-4959-878e-126c2b74ed05",
+                "malware--b117b08c-7a78-487a-a4e6-d720714f4bbc",
+                "indicator--27651d77-0f72-4637-a06e-55e0ad1238e6",
+                "indicator--d000b479-ec64-4d3f-b2a1-db97a640a4a3",
+                "indicator--b1f80725-13f4-4d17-8eb7-cc5690cebb80",
+                "indicator--8f1f1b2f-ef68-4c02-8c91-ce5eb4cad6e0",
+                "indicator--e30201dc-ca49-4a16-973c-695107cd1215",
+                "indicator--3a2d9896-e324-48e4-b07a-26362feaa8de",
+                "attack-pattern--737ba988-5a60-43e1-b710-b07f7f1cae3d",
+                "attack-pattern--599f7d68-84fb-4f15-9e8e-f85d6da34fdd",
+                "attack-pattern--9f2dca65-739a-4bae-b513-e0640c158982",
+                "attack-pattern--ca11c0bf-53ca-436b-9004-164f7a96f86a",
+                "attack-pattern--f6a46019-653a-42f3-a080-7efe6c94aaf7",
+                "attack-pattern--1c4c3101-4ecd-4b44-8b14-6f64d205ac4f",
+                "attack-pattern--063585ea-e1a6-45b2-b4ff-498746ebb860",
+                "attack-pattern--c66768b9-aa5c-4b74-8da6-325ac60e0972",
+                "attack-pattern--1c047d33-36ea-4e9c-b1e2-1efb9efa8c98",
+                "attack-pattern--41ff7f6c-ba9e-4deb-b7fe-297a918f1c7b",
+                "attack-pattern--0533102d-621e-41f8-936f-cc2ddd48a362",
+                "attack-pattern--9ce69f85-f59a-4070-9001-26a2ce968cdd",
+                "relationship--a095acd6-9bb7-4f40-a8a8-19896ffa4523",
+                "relationship--9860bd68-4636-41c2-b498-054b75a4ca27",
+                "relationship--62d7cfaa-f722-4a71-926d-5b89a08c6b4e",
+                "relationship--8d2a9e34-2e19-4839-b364-7450d93c1cd5",
+                "relationship--7b89899e-41c5-48ad-b88f-3383fb0058c6",
+                "relationship--cae22db1-5ba2-411b-bf54-b221fc419c7b",
+                "relationship--7d22ac35-09fe-4628-84bd-6c9179ce65fc",
+                "relationship--f4f5fc38-624a-42b8-b5ef-2f31728d98fc",
+                "relationship--d1a25436-510a-4612-894a-f7d8242d7884",
+                "relationship--1ab80ac7-9086-4ac7-b546-7740614f1ece",
+                "relationship--ae9e0b10-beea-4085-8ab2-d6751bf6da3b",
+                "relationship--ca153029-7a59-45c1-86ae-de5d0f996dd7",
+                "relationship--8c04e7a9-16c5-4b8b-aea6-a0bf45329126",
+                "relationship--a558bd81-a179-4c6a-a1f2-da0c448b6f03",
+                "relationship--a5375f6b-d198-4208-8c79-7dd76ce810e8",
+                "relationship--1ae221f1-2982-47c9-afd6-b98388d1aa8a",
+                "relationship--2a1a00ce-d798-4c39-a89f-ef0add777c56",
+                "relationship--c71360f8-f3ef-4a32-9bfc-d01eb3928be2",
+                "relationship--76112640-c4ba-410a-9f0a-f1e4ef95f946",
+                "relationship--1d477770-ff6a-4a8f-bbf8-0933cf3f356a",
+                "relationship--94b9bddd-3f0a-41b8-93c8-bcadf5bff8c8",
+                "relationship--439fc229-6ba9-4978-a79f-0e3c3a53f95e",
+                "relationship--283e18de-1edd-4e7e-9ff7-d7b3e511e5f6",
+                "relationship--34c54cb2-bd47-4c1c-812b-b4a016183e83",
+                "relationship--0cd12fbc-5515-42cb-8aa2-8a50c2cb1f92",
+                "relationship--0410290e-c336-45b5-9090-4ce5e236e222",
+                "relationship--55a44714-dcf4-442d-9a79-339669a2fb6f",
+                "relationship--c64f90b8-73f6-44fc-9136-e702b2d3692d",
+                "relationship--da6c7f99-88bf-4c5b-a8db-597d432bdad3",
+                "relationship--4fb7a68d-eff5-474d-97d5-0b5f07acc4d0",
+                "relationship--d8c14ff5-9c32-4c47-a229-2381508d3d52",
+                "relationship--f6847712-3f35-4ad7-8091-e1248b9fc02c",
+                "relationship--641c22b1-fb84-4f0d-a6d2-9f1990b3c164",
+                "relationship--f71b6483-d464-49af-8c9b-de4a9c62ef67",
+                "relationship--15865ec0-3ded-4ded-a893-0faa2f88e657",
+                "relationship--efa37698-55ec-4453-86d0-400ad80a1635"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
