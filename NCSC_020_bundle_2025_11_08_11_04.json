@@ -1,0 +1,1239 @@
+{
+    "type": "bundle",
+    "id": "bundle--f3354bd0-1f44-4edf-af61-a242710035f4",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.055902Z",
+            "modified": "2025-11-08T11:04:18.055902Z",
+            "name": "National Cyber Security Centre (NCSC)",
+            "description": "Primary author and publisher of the report; provided analysis, indicators, and a YARA rule for detecting Hexed Noodle.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--73ef4a7c-c388-5c27-8b7d-a64072e33027",
+            "value": "download.riseknite.life"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--6c581daf-1b86-5fd2-8c68-70e965277271",
+            "value": "app.at-me.ml"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--f17f62c0-5836-5380-8036-851a269e7b0f",
+            "value": "http://download.riseknite.life/index.php?m=a&p1=ed0f910544fa0a9e&p2=Standard+PC+(i440FX+++PIIX,+1996)+api27+v1.0.2+()"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--d91a49e1-84b0-5038-91cf-064b74632646",
+            "value": "http://download.riseknite.life/index.php?m=b&p1=ed0f910544fa0a9e&p2=a"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--c9c8eedb-3a91-5150-a811-04fdc5f00a26",
+            "value": "http://download.riseknite.life/index.php?m=c&p1=ed0f910544fa0a9e"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--950b7549-079b-5b3e-8852-183ed4849c09",
+            "value": "http://download.riseknite.life/index.php?m=d&p1=ed0f910544fa0a9e"
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--a8cb6b40-3b0d-5989-a405-b1a93da66abf",
+            "path": "/mnt/sdcard"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--545b236c-dc65-4771-a4ce-594f4f0b22b3",
+            "created": "2025-11-08T11:03:19.332144Z",
+            "modified": "2025-11-08T11:03:19.332144Z",
+            "name": "Hexed Noodle C2",
+            "description": "Primary C2 domain used by the Android AppleSeed (Hexed Noodle) malware for beacons, tasking, and exfiltration over HTTP.",
+            "pattern": "[domain-name:value = 'download.riseknite.life']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.332133Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8cba6170-1ba8-4f6c-ba03-ba26f0ce19ed",
+            "created": "2025-11-08T11:03:19.333276Z",
+            "modified": "2025-11-08T11:03:19.333276Z",
+            "name": "Hexed Noodle C2 (alternate)",
+            "description": "Additional C2 domain associated with Hexed Noodle Android AppleSeed variant.",
+            "pattern": "[domain-name:value = 'app.at-me.ml']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.333268Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--53a74df9-2367-4a93-b561-9cd974d61376",
+            "created": "2025-11-08T11:03:19.334185Z",
+            "modified": "2025-11-08T11:03:19.334185Z",
+            "name": "Hexed Noodle beacon URL (m=a)",
+            "description": "Example device information beacon sent every 60 seconds to the C2 server; responses are ignored by the malware.",
+            "pattern": "[url:value = 'http://download.riseknite.life/index.php?m=a&p1=ed0f910544fa0a9e&p2=Standard+PC+(i440FX+++PIIX,+1996)+api27+v1.0.2+()']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.334178Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6cb70c53-9d94-4e46-ab62-da6e1b915cf6",
+            "created": "2025-11-08T11:03:19.335283Z",
+            "modified": "2025-11-08T11:03:19.335283Z",
+            "name": "Hexed Noodle exfiltration URL (m=b, p2=a)",
+            "description": "Example exfiltration request uploading files or listings to the C2 server; uses multipart/form-data with encrypted payload.",
+            "pattern": "[url:value = 'http://download.riseknite.life/index.php?m=b&p1=ed0f910544fa0a9e&p2=a']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.335276Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9ff9e197-eb54-4069-bba0-791119a13c17",
+            "created": "2025-11-08T11:03:19.336135Z",
+            "modified": "2025-11-08T11:03:19.336135Z",
+            "name": "Hexed Noodle tasking URL (m=c)",
+            "description": "Example tasking POST request used to retrieve tasks from the C2 server every 60 seconds.",
+            "pattern": "[url:value = 'http://download.riseknite.life/index.php?m=c&p1=ed0f910544fa0a9e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.336128Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9e53d947-8e45-411a-ad3c-15eae52f3341",
+            "created": "2025-11-08T11:03:19.336981Z",
+            "modified": "2025-11-08T11:03:19.336981Z",
+            "name": "Hexed Noodle tasking acknowledgement URL (m=d)",
+            "description": "Example tasking acknowledgement sent to the C2 server after receiving tasks.",
+            "pattern": "[url:value = 'http://download.riseknite.life/index.php?m=d&p1=ed0f910544fa0a9e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.336975Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c44b60b6-447a-4bd5-83d6-44bb0a00ae02",
+            "created": "2025-11-08T11:03:19.338153Z",
+            "modified": "2025-11-08T11:03:19.338153Z",
+            "name": "Android user storage partition",
+            "description": "Directory scanned by Hexed Noodle every five minutes for modified files with targeted extensions for exfiltration.",
+            "pattern": "[directory:path = '/mnt/sdcard']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.338147Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--daec0344-adfe-4d59-9df1-88135adef917",
+            "created": "2025-11-08T11:03:19.338902Z",
+            "modified": "2025-11-08T11:03:19.338902Z",
+            "name": "Indicator for KisaAndroidSecurity.apk (MD5)",
+            "description": "MD5 hash of malicious Android backdoor APK masquerading as a KISA mobile security app (Hexed Noodle).",
+            "pattern": "[file:hashes.'MD5' = '4626ed60dfc8deaf75477bc06bd39be7']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.338894Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa",
+            "created": "2025-11-08T11:03:19.339556Z",
+            "modified": "2025-11-08T11:03:19.339556Z",
+            "name": "Indicator for KisaAndroidSecurity.apk (SHA1)",
+            "description": "SHA-1 hash of malicious Android backdoor APK masquerading as a KISA mobile security app (Hexed Noodle).",
+            "pattern": "[file:hashes.'SHA1' = 'a9ff1ebb548f5bba600d38e709ff331749fa9971']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.33955Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2590ad75-6abc-4e64-9ae2-f9bed4647156",
+            "created": "2025-11-08T11:03:19.340196Z",
+            "modified": "2025-11-08T11:03:19.340196Z",
+            "name": "Indicator for KisaAndroidSecurity.apk (SHA256)",
+            "description": "SHA-256 hash of malicious Android backdoor APK masquerading as a KISA mobile security app (Hexed Noodle).",
+            "pattern": "[file:hashes.'SHA256' = '2365a48f7d6cf6dcc83195f06ea11b93c955c3a491c60b50ba42788917ba22e2']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.34019Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0a31c068-4498-4d56-836b-b36311d4e101",
+            "created": "2025-11-08T11:03:19.34083Z",
+            "modified": "2025-11-08T11:03:19.34083Z",
+            "name": "Indicator for Kisa Vaccine.apk (MD5)",
+            "description": "MD5 hash of Hexed Noodle variant APK masquerading as a KISA security app.",
+            "pattern": "[file:hashes.'MD5' = 'c2a7b3722c3517b14986092fd61b79e6']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.340824Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c0a1a2fd-e2b1-4510-999f-6e33547f1876",
+            "created": "2025-11-08T11:03:19.341723Z",
+            "modified": "2025-11-08T11:03:19.341723Z",
+            "name": "Indicator for Kisa Vaccine.apk (SHA1)",
+            "description": "SHA-1 hash of Hexed Noodle variant APK masquerading as a KISA security app.",
+            "pattern": "[file:hashes.'SHA1' = 'd5af22de750d7e3fc91dc154163019b7a245651b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.34171Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7ec0b226-159d-4146-acba-bbf2a83f940a",
+            "created": "2025-11-08T11:03:19.342459Z",
+            "modified": "2025-11-08T11:03:19.342459Z",
+            "name": "Indicator for Kisa Vaccine.apk (SHA256)",
+            "description": "SHA-256 hash of Hexed Noodle variant APK masquerading as a KISA security app.",
+            "pattern": "[file:hashes.'SHA256' = '98909e68fe603a86de5488b8f8860a33dafdace03eebf56f9d680a84c2b66521']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T11:03:19.342452Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7a80f12-17d6-486a-8aae-13c2d3155061",
+            "created": "2025-11-08T11:03:19.343249Z",
+            "modified": "2025-11-08T11:03:19.343249Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--daec0344-adfe-4d59-9df1-88135adef917",
+            "target_ref": "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--37ff852e-67f4-428f-92d5-de2486a26bcc",
+            "created": "2025-11-08T11:03:19.34352Z",
+            "modified": "2025-11-08T11:03:19.34352Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--daec0344-adfe-4d59-9df1-88135adef917",
+            "target_ref": "indicator--2590ad75-6abc-4e64-9ae2-f9bed4647156"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ab631a5-769b-41f6-adae-abd9071c7588",
+            "created": "2025-11-08T11:03:19.343745Z",
+            "modified": "2025-11-08T11:03:19.343745Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa",
+            "target_ref": "indicator--2590ad75-6abc-4e64-9ae2-f9bed4647156"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f8d43412-b25d-4c4d-99e1-0f8c2549081b",
+            "created": "2025-11-08T11:03:19.343974Z",
+            "modified": "2025-11-08T11:03:19.343974Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0a31c068-4498-4d56-836b-b36311d4e101",
+            "target_ref": "indicator--c0a1a2fd-e2b1-4510-999f-6e33547f1876"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a8dc98b3-4fc5-415f-a894-aed542f842d6",
+            "created": "2025-11-08T11:03:19.34424Z",
+            "modified": "2025-11-08T11:03:19.34424Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0a31c068-4498-4d56-836b-b36311d4e101",
+            "target_ref": "indicator--7ec0b226-159d-4146-acba-bbf2a83f940a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d3efc990-cdd8-4444-b4ab-de0142456582",
+            "created": "2025-11-08T11:03:19.34451Z",
+            "modified": "2025-11-08T11:03:19.34451Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c0a1a2fd-e2b1-4510-999f-6e33547f1876",
+            "target_ref": "indicator--7ec0b226-159d-4146-acba-bbf2a83f940a"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.056326Z",
+            "modified": "2025-11-08T11:04:18.056326Z",
+            "name": "hexed noodle",
+            "description": "An Android variant of the AppleSeed backdoor that masquerades as a South Korean Internet Security Agency (KISA) mobile security app. It performs execution of shell commands, periodic beaconing with device details, and both tasked and automated collection of filesystem contents and SMS messages. It scans for modified files with specific extensions, uploads data in encrypted, chunked form via HTTP POST, collects both stored and incoming SMS messages (potentially bypassing SMS-based two-factor authentication), and enables operators to send SMS messages from the victim device. Configuration is stored as hex-encoded strings with a 16-byte XOR-key prefix, consistent with other AppleSeed variants.",
+            "malware_types": [
+                "backdoor",
+                "spyware"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--7ac8b3ed-cd64-49e0-8791-09a2bf048d4d",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.056739Z",
+            "modified": "2025-11-08T11:04:18.056739Z",
+            "name": "appleseed backdoor",
+            "description": "A backdoor observed in Windows environments and referenced as the family for which Hexed Noodle is an Android variant. Known Windows versions share predictable HTTP URI formats for beaconing, tasking, and exfiltration; the Android variant mirrors these behaviors.",
+            "malware_types": [
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--370b75b6-d0d8-42a9-a767-cfe1f454e5f2",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.057084Z",
+            "modified": "2025-11-08T11:04:18.057084Z",
+            "name": "dexstrings_plaincomms_obfushex_a9ff1e",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule dexstrings_plaincomms_obfushex_a9ff1e {\n    meta:\n        author = \"NCSC\"\n        description = \"Plaintext strings from a Hexed Noodle 'classes.dex'\nfile\"\n        hash = \"a9ff1ebb548f5bba600d38e709ff331749fa9971\"\n\n    strings:\n        $exfil1 = \"multipart/form-data; boundary=$$$$$$$$$$$$$$$$\"\n        $exfil2 = \"Content-Disposition: form-data; name=\\\"binary\\\";\nfilename=\\\"\"\n        $reqFormatAParam1 = /\\?m=[a-d]&p1=/\n        $reqFormatAParam2 = /&p2=[a-c]/\n        $smsdb = \"slist.ldb\" //\"flist.ldb\" (name of the files db) is\nobfuscated but the developers have forgotten to wrap this sms database\nfilename\n\n    condition:\n        3 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T11:04:18.057073Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--1c0d2c5f-0964-43ba-9001-7b630400ee30",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.057418Z",
+            "modified": "2025-11-08T11:04:18.057418Z",
+            "name": "Masquerade as Legitimate Application",
+            "description": "Hexed Noodle masquerades as a KISA mobile security app.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1444",
+                    "external_id": "T1444"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a6e15962-9277-405c-8fae-6cfa2867c10a",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.057916Z",
+            "modified": "2025-11-08T11:04:18.057916Z",
+            "name": "Gather Victim Host Information",
+            "description": "Hexed Noodle beacons contain device hardware information and phone number.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "reconnaissance"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1592/001",
+                    "external_id": "T1592.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--bb6657bc-30a1-48f4-b5b5-25ef9587c72d",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.058294Z",
+            "modified": "2025-11-08T11:04:18.058294Z",
+            "name": "Unix Shell",
+            "description": "Hexed Noodle system commands are executed by passing them to \u2018sh -c\u2019.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/004",
+                    "external_id": "T1059.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--547ce4e7-3f4e-42a5-8074-c81fd302b765",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.058644Z",
+            "modified": "2025-11-08T11:04:18.058644Z",
+            "name": "User Execution",
+            "description": "The user is required to install the Hexed Noodle APK, accept permissions and launch the app.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1204/002",
+                    "external_id": "T1204.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--74e2af98-d8ca-433f-8a9c-56ab3c2af34b",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.058939Z",
+            "modified": "2025-11-08T11:04:18.058939Z",
+            "name": "Broadcast Receivers",
+            "description": "Hexed Noodle subscribes to BOOT_COMPLETED, MY_PACKAGE_REPLACED, SMS_RECEIVED and PACKAGE_INSTALL broadcasts.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1402",
+                    "external_id": "T1402"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a0fd4842-5058-4de8-90bd-d110f7ce002e",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.059223Z",
+            "modified": "2025-11-08T11:04:18.059223Z",
+            "name": "Boot Autostart",
+            "description": "The Hexed Noodle app starts on receipt of the BOOT_COMPLETED notification.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547",
+                    "external_id": "T1547"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a1953f84-8428-440d-9ec3-d8b8c6d49ca4",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.059568Z",
+            "modified": "2025-11-08T11:04:18.059568Z",
+            "name": "Obfuscated Files or Information",
+            "description": "Hexed Noodle configuration is stored in the app as hex encoded strings containing a 16 byte XOR-key prefix \u2013 in common with other AppleSeed variants.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1406",
+                    "external_id": "T1406"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--70f938c1-f228-439c-af6f-77cfe56ba979",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.059942Z",
+            "modified": "2025-11-08T11:04:18.059942Z",
+            "name": "Archive Collected Data Via Library",
+            "description": "Hexed Noodle data is Zip compressed before encryption using standard libraries.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1560/002",
+                    "external_id": "T1560.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--997895a0-586a-4168-b678-f50eddc42fdb",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.060221Z",
+            "modified": "2025-11-08T11:04:18.060221Z",
+            "name": "Data from Local System",
+            "description": "Hexed Noodle collects SMS messages and certain filesystem documents.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1005",
+                    "external_id": "T1005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--84b92ac2-d840-40b0-b52c-c88686c5d9df",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.06051Z",
+            "modified": "2025-11-08T11:04:18.06051Z",
+            "name": "Capture SMS Messages",
+            "description": "Hexed Noodle collects both stored and incoming SMS messages, possibly enabling the bypass of SMS-based two-factor authentication.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1412",
+                    "external_id": "T1412"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--84275509-953f-4468-8f4c-203fafc89f5b",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.060853Z",
+            "modified": "2025-11-08T11:04:18.060853Z",
+            "name": "Automated Collection",
+            "description": "Hexed Noodle regularly scans file and SMS directories for changes to trigger exfiltration.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1420",
+                    "external_id": "T1420"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9271cdb4-b590-4173-9390-1dc84c8b1222",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.061151Z",
+            "modified": "2025-11-08T11:04:18.061151Z",
+            "name": "File and Directory Discovery",
+            "description": "Hexed Noodle contains a command to list filesystem contents.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1119",
+                    "external_id": "T1119"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0731a767-d6b2-498d-afe4-e1e4f62386d6",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.061427Z",
+            "modified": "2025-11-08T11:04:18.061427Z",
+            "name": "Web Protocols",
+            "description": "Hexed Noodle uses HTTP requests for tasking and exfiltration.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5762e6a0-3236-4b40-a3dc-672cd4054d5d",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.061719Z",
+            "modified": "2025-11-08T11:04:18.061719Z",
+            "name": "Data Transfer Size Limits",
+            "description": "Hexed Noodle uploads files in chunks of at most 10MB.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1030",
+                    "external_id": "T1030"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--08b0ef1e-6a82-4672-a997-14578524d73b",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.062075Z",
+            "modified": "2025-11-08T11:04:18.062075Z",
+            "name": "Exfiltration over C2 Channel",
+            "description": "Hexed Noodle exfiltration and tasking are HTTP POST requests to the same server with different parameters.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1041",
+                    "external_id": "T1041"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--da58e617-8e3f-41d4-933a-745e4b83b8e4",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.06239Z",
+            "modified": "2025-11-08T11:04:18.06239Z",
+            "name": "Data Encrypted",
+            "description": "Hexed Noodle exfiltrated data is encrypted, prepended with the 16 byte XOR key and Hex encoded.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1532",
+                    "external_id": "T1532"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--09d9d88c-c49b-486a-b9b1-bb9321e82612",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.062648Z",
+            "modified": "2025-11-08T11:04:18.062648Z",
+            "name": "Standard Application Layer Protocol",
+            "description": "Hexed Noodle exfiltrates data using HTTP POST requests.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1437",
+                    "external_id": "T1437"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0e9b30d5-5ccc-43bc-a48c-9875172751fc",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.062931Z",
+            "modified": "2025-11-08T11:04:18.062931Z",
+            "name": "SMS Control",
+            "description": "Hexed Noodle enables the operator to send SMS messages from the victim device.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "impact-(mobile)"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1582",
+                    "external_id": "T1582"
+                }
+            ]
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--e7179dc7-9edc-4873-9e6a-80ccc5779132",
+            "created": "2025-11-08T11:04:18.063222Z",
+            "modified": "2025-11-08T11:04:18.063222Z",
+            "name": "Korea Internet & Security Agency (KISA)",
+            "description": "Organization whose mobile security app branding is impersonated by Hexed Noodle to masquerade as a legitimate application.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--28ac6cb0-91e3-40ae-9a8f-4ac78abf1d6a",
+            "created": "2025-11-08T11:04:18.063436Z",
+            "modified": "2025-11-08T11:04:18.063436Z",
+            "name": "McAfee",
+            "description": "Industry source referenced in the report for information related to Operation Cobra Venom.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--41ee8fe8-fcbd-4b0b-b6fd-5792f0bdab83",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.063833Z",
+            "modified": "2025-11-08T11:04:18.063833Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--1c0d2c5f-0964-43ba-9001-7b630400ee30"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f0c3cab9-22f7-4c9c-b96e-e2c52beeaee8",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.064127Z",
+            "modified": "2025-11-08T11:04:18.064127Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--a6e15962-9277-405c-8fae-6cfa2867c10a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e66d42b1-ec39-4326-aade-149d95a0cbb0",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.064343Z",
+            "modified": "2025-11-08T11:04:18.064343Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--bb6657bc-30a1-48f4-b5b5-25ef9587c72d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--27b31f00-dac8-44d9-a4ba-9353e1b9e005",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.064573Z",
+            "modified": "2025-11-08T11:04:18.064573Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--547ce4e7-3f4e-42a5-8074-c81fd302b765"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5efc4d14-4541-4796-9e12-0f8cdfbffe6f",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.064821Z",
+            "modified": "2025-11-08T11:04:18.064821Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--74e2af98-d8ca-433f-8a9c-56ab3c2af34b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dc906a78-bdcd-4432-88d9-d12b4d90521c",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.065035Z",
+            "modified": "2025-11-08T11:04:18.065035Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--a0fd4842-5058-4de8-90bd-d110f7ce002e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5f9cffdc-a296-4307-b010-cf4d66d4b982",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.065248Z",
+            "modified": "2025-11-08T11:04:18.065248Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--a1953f84-8428-440d-9ec3-d8b8c6d49ca4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2c57c73d-b75f-465e-af4e-da5556803bb0",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.065782Z",
+            "modified": "2025-11-08T11:04:18.065782Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--70f938c1-f228-439c-af6f-77cfe56ba979"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--30f43a7c-07f9-4466-8224-f683ab1ebc8b",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.066131Z",
+            "modified": "2025-11-08T11:04:18.066131Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--997895a0-586a-4168-b678-f50eddc42fdb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0cc1c954-b70d-4997-afee-7921febb9a05",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.066429Z",
+            "modified": "2025-11-08T11:04:18.066429Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--84b92ac2-d840-40b0-b52c-c88686c5d9df"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f290bd54-2df7-476a-8bc3-9d1156e84cba",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.066747Z",
+            "modified": "2025-11-08T11:04:18.066747Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--84275509-953f-4468-8f4c-203fafc89f5b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a4d28958-e02f-4760-a2e0-41b14e315db8",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.066969Z",
+            "modified": "2025-11-08T11:04:18.066969Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--9271cdb4-b590-4173-9390-1dc84c8b1222"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0dc96c28-74be-4a96-9284-07dfce413cce",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.067201Z",
+            "modified": "2025-11-08T11:04:18.067201Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--0731a767-d6b2-498d-afe4-e1e4f62386d6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5a00d320-dc42-4497-b88b-dcd4b0ba3fc3",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.067467Z",
+            "modified": "2025-11-08T11:04:18.067467Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--5762e6a0-3236-4b40-a3dc-672cd4054d5d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cc0355d6-102d-47d4-af9c-3eb5e2b0b2f2",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.067822Z",
+            "modified": "2025-11-08T11:04:18.067822Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--08b0ef1e-6a82-4672-a997-14578524d73b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--db6a3948-bcc9-4215-85c9-f794fe9cc861",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.068206Z",
+            "modified": "2025-11-08T11:04:18.068206Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--da58e617-8e3f-41d4-933a-745e4b83b8e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--85c355c3-f5d2-42e8-8b84-429c7f96cc60",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.068434Z",
+            "modified": "2025-11-08T11:04:18.068434Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--09d9d88c-c49b-486a-b9b1-bb9321e82612"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a0fd60d1-e1d0-4911-ac2b-cfdb68f14532",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.068669Z",
+            "modified": "2025-11-08T11:04:18.068669Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+            "target_ref": "attack-pattern--0e9b30d5-5ccc-43bc-a48c-9875172751fc"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9c4a7804-7b02-4953-ab48-c36c253b01b9",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.068988Z",
+            "modified": "2025-11-08T11:04:18.068988Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--545b236c-dc65-4771-a4ce-594f4f0b22b3",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6fee422c-a6dc-4dad-a85b-df763b9ff7b0",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.069273Z",
+            "modified": "2025-11-08T11:04:18.069273Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8cba6170-1ba8-4f6c-ba03-ba26f0ce19ed",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5c91b913-a56b-4323-b12d-4d2a033b1955",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.069577Z",
+            "modified": "2025-11-08T11:04:18.069577Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--53a74df9-2367-4a93-b561-9cd974d61376",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cf60be2f-5445-426d-874c-f5502a004ff7",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.069896Z",
+            "modified": "2025-11-08T11:04:18.069896Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6cb70c53-9d94-4e46-ab62-da6e1b915cf6",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--263d174f-5350-4001-b0a3-9fec5dcf1234",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.070113Z",
+            "modified": "2025-11-08T11:04:18.070113Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9ff9e197-eb54-4069-bba0-791119a13c17",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--25777afb-a781-4d5a-bfe5-3f68213ecb22",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.070333Z",
+            "modified": "2025-11-08T11:04:18.070333Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9e53d947-8e45-411a-ad3c-15eae52f3341",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6f5f5a32-bbd4-4629-a743-a3b72ad83fa8",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.07059Z",
+            "modified": "2025-11-08T11:04:18.07059Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c44b60b6-447a-4bd5-83d6-44bb0a00ae02",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aa26c561-4134-4bde-9b67-b1170c591bbb",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.070884Z",
+            "modified": "2025-11-08T11:04:18.070884Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--daec0344-adfe-4d59-9df1-88135adef917",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--847f2865-af7f-4487-8e76-5a773c19d7f2",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.071153Z",
+            "modified": "2025-11-08T11:04:18.071153Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--89411344-dbc2-47a7-90a3-7e82cb9b0ac0",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.071422Z",
+            "modified": "2025-11-08T11:04:18.071422Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2590ad75-6abc-4e64-9ae2-f9bed4647156",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--30885e91-7c35-480c-b413-1e3b97bc593e",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.071715Z",
+            "modified": "2025-11-08T11:04:18.071715Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0a31c068-4498-4d56-836b-b36311d4e101",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b0fdfd7-2150-4bc5-b834-00bbe59dc429",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.072Z",
+            "modified": "2025-11-08T11:04:18.072Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c0a1a2fd-e2b1-4510-999f-6e33547f1876",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0493f256-8978-4497-a452-808ad9ce6c35",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.072294Z",
+            "modified": "2025-11-08T11:04:18.072294Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7ec0b226-159d-4146-acba-bbf2a83f940a",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3f7e64e7-2e1e-4acf-b23b-04ab58b98fbe",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.072846Z",
+            "modified": "2025-11-08T11:04:18.072846Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--370b75b6-d0d8-42a9-a767-cfe1f454e5f2",
+            "target_ref": "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e427c545-0470-4672-b1c0-7450b863ac81",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.073152Z",
+            "modified": "2025-11-08T11:04:18.073152Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--370b75b6-d0d8-42a9-a767-cfe1f454e5f2",
+            "target_ref": "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--e2b5aae7-d252-467c-9f82-cd4a7f10c299",
+            "created_by_ref": "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+            "created": "2025-11-08T11:04:18.073671Z",
+            "modified": "2025-11-08T11:04:18.073671Z",
+            "name": "Analisi Malware: Hexed Noodle",
+            "description": "This report contains technical analysis and indicators associated with malware. hexed noodle.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-08T11:04:18.073661Z",
+            "object_refs": [
+                "identity--c76f8e0a-35cb-4095-a3f6-6b6acec99dc7",
+                "domain-name--73ef4a7c-c388-5c27-8b7d-a64072e33027",
+                "domain-name--6c581daf-1b86-5fd2-8c68-70e965277271",
+                "url--f17f62c0-5836-5380-8036-851a269e7b0f",
+                "url--d91a49e1-84b0-5038-91cf-064b74632646",
+                "url--c9c8eedb-3a91-5150-a811-04fdc5f00a26",
+                "url--950b7549-079b-5b3e-8852-183ed4849c09",
+                "directory--a8cb6b40-3b0d-5989-a405-b1a93da66abf",
+                "indicator--545b236c-dc65-4771-a4ce-594f4f0b22b3",
+                "indicator--8cba6170-1ba8-4f6c-ba03-ba26f0ce19ed",
+                "indicator--53a74df9-2367-4a93-b561-9cd974d61376",
+                "indicator--6cb70c53-9d94-4e46-ab62-da6e1b915cf6",
+                "indicator--9ff9e197-eb54-4069-bba0-791119a13c17",
+                "indicator--9e53d947-8e45-411a-ad3c-15eae52f3341",
+                "indicator--c44b60b6-447a-4bd5-83d6-44bb0a00ae02",
+                "indicator--daec0344-adfe-4d59-9df1-88135adef917",
+                "indicator--8eb56c5b-6566-4f90-8b73-bd11bfeef9aa",
+                "indicator--2590ad75-6abc-4e64-9ae2-f9bed4647156",
+                "indicator--0a31c068-4498-4d56-836b-b36311d4e101",
+                "indicator--c0a1a2fd-e2b1-4510-999f-6e33547f1876",
+                "indicator--7ec0b226-159d-4146-acba-bbf2a83f940a",
+                "relationship--c7a80f12-17d6-486a-8aae-13c2d3155061",
+                "relationship--37ff852e-67f4-428f-92d5-de2486a26bcc",
+                "relationship--1ab631a5-769b-41f6-adae-abd9071c7588",
+                "relationship--f8d43412-b25d-4c4d-99e1-0f8c2549081b",
+                "relationship--a8dc98b3-4fc5-415f-a894-aed542f842d6",
+                "relationship--d3efc990-cdd8-4444-b4ab-de0142456582",
+                "malware--b818bfd4-734c-4af5-a5db-fb250337a9b1",
+                "malware--7ac8b3ed-cd64-49e0-8791-09a2bf048d4d",
+                "indicator--370b75b6-d0d8-42a9-a767-cfe1f454e5f2",
+                "attack-pattern--1c0d2c5f-0964-43ba-9001-7b630400ee30",
+                "attack-pattern--a6e15962-9277-405c-8fae-6cfa2867c10a",
+                "attack-pattern--bb6657bc-30a1-48f4-b5b5-25ef9587c72d",
+                "attack-pattern--547ce4e7-3f4e-42a5-8074-c81fd302b765",
+                "attack-pattern--74e2af98-d8ca-433f-8a9c-56ab3c2af34b",
+                "attack-pattern--a0fd4842-5058-4de8-90bd-d110f7ce002e",
+                "attack-pattern--a1953f84-8428-440d-9ec3-d8b8c6d49ca4",
+                "attack-pattern--70f938c1-f228-439c-af6f-77cfe56ba979",
+                "attack-pattern--997895a0-586a-4168-b678-f50eddc42fdb",
+                "attack-pattern--84b92ac2-d840-40b0-b52c-c88686c5d9df",
+                "attack-pattern--84275509-953f-4468-8f4c-203fafc89f5b",
+                "attack-pattern--9271cdb4-b590-4173-9390-1dc84c8b1222",
+                "attack-pattern--0731a767-d6b2-498d-afe4-e1e4f62386d6",
+                "attack-pattern--5762e6a0-3236-4b40-a3dc-672cd4054d5d",
+                "attack-pattern--08b0ef1e-6a82-4672-a997-14578524d73b",
+                "attack-pattern--da58e617-8e3f-41d4-933a-745e4b83b8e4",
+                "attack-pattern--09d9d88c-c49b-486a-b9b1-bb9321e82612",
+                "attack-pattern--0e9b30d5-5ccc-43bc-a48c-9875172751fc",
+                "identity--e7179dc7-9edc-4873-9e6a-80ccc5779132",
+                "identity--28ac6cb0-91e3-40ae-9a8f-4ac78abf1d6a",
+                "relationship--41ee8fe8-fcbd-4b0b-b6fd-5792f0bdab83",
+                "relationship--f0c3cab9-22f7-4c9c-b96e-e2c52beeaee8",
+                "relationship--e66d42b1-ec39-4326-aade-149d95a0cbb0",
+                "relationship--27b31f00-dac8-44d9-a4ba-9353e1b9e005",
+                "relationship--5efc4d14-4541-4796-9e12-0f8cdfbffe6f",
+                "relationship--dc906a78-bdcd-4432-88d9-d12b4d90521c",
+                "relationship--5f9cffdc-a296-4307-b010-cf4d66d4b982",
+                "relationship--2c57c73d-b75f-465e-af4e-da5556803bb0",
+                "relationship--30f43a7c-07f9-4466-8224-f683ab1ebc8b",
+                "relationship--0cc1c954-b70d-4997-afee-7921febb9a05",
+                "relationship--f290bd54-2df7-476a-8bc3-9d1156e84cba",
+                "relationship--a4d28958-e02f-4760-a2e0-41b14e315db8",
+                "relationship--0dc96c28-74be-4a96-9284-07dfce413cce",
+                "relationship--5a00d320-dc42-4497-b88b-dcd4b0ba3fc3",
+                "relationship--cc0355d6-102d-47d4-af9c-3eb5e2b0b2f2",
+                "relationship--db6a3948-bcc9-4215-85c9-f794fe9cc861",
+                "relationship--85c355c3-f5d2-42e8-8b84-429c7f96cc60",
+                "relationship--a0fd60d1-e1d0-4911-ac2b-cfdb68f14532",
+                "relationship--9c4a7804-7b02-4953-ab48-c36c253b01b9",
+                "relationship--6fee422c-a6dc-4dad-a85b-df763b9ff7b0",
+                "relationship--5c91b913-a56b-4323-b12d-4d2a033b1955",
+                "relationship--cf60be2f-5445-426d-874c-f5502a004ff7",
+                "relationship--263d174f-5350-4001-b0a3-9fec5dcf1234",
+                "relationship--25777afb-a781-4d5a-bfe5-3f68213ecb22",
+                "relationship--6f5f5a32-bbd4-4629-a743-a3b72ad83fa8",
+                "relationship--aa26c561-4134-4bde-9b67-b1170c591bbb",
+                "relationship--847f2865-af7f-4487-8e76-5a773c19d7f2",
+                "relationship--89411344-dbc2-47a7-90a3-7e82cb9b0ac0",
+                "relationship--30885e91-7c35-480c-b413-1e3b97bc593e",
+                "relationship--3b0fdfd7-2150-4bc5-b834-00bbe59dc429",
+                "relationship--0493f256-8978-4497-a452-808ad9ce6c35",
+                "relationship--3f7e64e7-2e1e-4acf-b23b-04ab58b98fbe",
+                "relationship--e427c545-0470-4672-b1c0-7450b863ac81"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
