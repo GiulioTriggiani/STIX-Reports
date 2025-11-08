@@ -1,0 +1,2048 @@
+{
+    "type": "bundle",
+    "id": "bundle--fc008833-01ec-402b-80df-fc98a339ee56",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.778648Z",
+            "modified": "2025-11-08T16:13:13.778648Z",
+            "name": "NCSC",
+            "description": "The UK National Cyber Security Centre (NCSC) is the primary author and publisher of this report, providing technical analysis and detection guidance for the COLDSTEEL malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--26a2e7da-6459-5451-b7ed-c6a66fcbe47a",
+            "value": "192.95.36.61"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--cb74eb2e-2108-58b1-a3be-fdccee5d022b",
+            "value": "103.224.80.76"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--735fc373-5123-5cb0-9f97-0474ee729f73",
+            "value": "138.128.98.106"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--c4a550f9-1fb8-5463-9527-adbab153f605",
+            "value": "1.9.5.38"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--272a27f3-9a25-5f56-a633-92ec8bac7903",
+            "value": "172.30.0.14"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--cbced297-bfa1-56bd-9f96-cfa02bb954a5",
+            "name": "msupdate"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--9b85a19a-bf12-5913-a270-bafe31eda515",
+            "name": "msupdate2"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--fb7d7ab4-81ad-517f-8fd1-43f935f830bd",
+            "name": "Anonymous"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--5f4ed9c8-78f1-56c4-8da6-b59af667b5b1",
+            "name": "_DomainUser_"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--613ff164-04a8-589a-a3b9-83c9519c98fc",
+            "key": "MileSt0ne2@16"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--09fa4553-5474-582c-9e22-f296f08ecb57",
+            "key": "Dom4!nUserP4ss"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--c99717e3-9400-5471-a82b-ef65a63edcb6",
+            "key": "RegSetValueEx(Svchost\\krnlsrvc)"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--90d20b14-3107-5661-9ad8-5c53cd45d3e9",
+            "key": "RegOpenKeyEx(Svchost)"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--35a9f49c-eeba-56d4-8e7d-557d750cc2cc",
+            "key": "RegSetValueEx(ServiceDll)"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--922a890f-2b75-4c13-be55-d28154a42360",
+            "created": "2025-11-08T16:12:49.032311Z",
+            "modified": "2025-11-08T16:12:49.032311Z",
+            "name": "newdev.dll (malicious DLL location)",
+            "description": "Path where the COLDSTEEL DLL is dropped and loaded as a service for persistence.",
+            "pattern": "[file:name = 'newdev.dll' AND file:parent_directory_ref.path LIKE 'C:\\\\Users\\\\<user>\\\\AppData\\\\Roaming']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.032286Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5484105d-59a0-4749-8a25-e7ff445c0d8b",
+            "created": "2025-11-08T16:12:49.041614Z",
+            "modified": "2025-11-08T16:12:49.041614Z",
+            "name": "svchost.exe (service binary path, MileStone2016)",
+            "description": "Malicious service binary path used by COLDSTEEL for persistence (MileStone2016 variant).",
+            "pattern": "[file:name = 'svchost.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\Windows\\\\System32']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.041591Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c86fd70f-68d9-469e-bbfe-7f953f6885cb",
+            "created": "2025-11-08T16:12:49.044634Z",
+            "modified": "2025-11-08T16:12:49.044634Z",
+            "name": "svchost.exe (service binary path, MileStone2017)",
+            "description": "Malicious service binary path used by COLDSTEEL for persistence (MileStone2017 variant).",
+            "pattern": "[file:name = 'svchost.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\Windows\\\\System32']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.044597Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e2d5ce46-eb6a-419a-b01c-db92f7b59868",
+            "created": "2025-11-08T16:12:49.047181Z",
+            "modified": "2025-11-08T16:12:49.047181Z",
+            "name": "svchost.exe (service binary path, MileStone2017)",
+            "description": "Malicious service binary path used by COLDSTEEL for persistence (MileStone2017 variant).",
+            "pattern": "[file:name = 'svchost.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\Windows\\\\System32']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.047157Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--23799f10-f02c-4dd0-b2be-c8a42ea9d4b0",
+            "created": "2025-11-08T16:12:49.05027Z",
+            "modified": "2025-11-08T16:12:49.05027Z",
+            "name": "COLDSTEEL C2 infrastructure",
+            "description": "IP address used as C2 server for COLDSTEEL malware.",
+            "pattern": "[ipv4-addr:value = '192.95.36.61']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.050253Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--35d98542-8135-48c2-9cc2-6ec78156d360",
+            "created": "2025-11-08T16:12:49.052122Z",
+            "modified": "2025-11-08T16:12:49.052122Z",
+            "name": "COLDSTEEL C2 infrastructure",
+            "description": "IP address used as C2 server for COLDSTEEL malware.",
+            "pattern": "[ipv4-addr:value = '103.224.80.76']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.052111Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--90466b06-c97f-4866-a34c-9339f70d0629",
+            "created": "2025-11-08T16:12:49.053698Z",
+            "modified": "2025-11-08T16:12:49.053698Z",
+            "name": "COLDSTEEL C2 infrastructure",
+            "description": "IP address used as C2 server for COLDSTEEL malware.",
+            "pattern": "[ipv4-addr:value = '138.128.98.106']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.053687Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b72f2bef-b79d-4642-bce0-586d4e212fe6",
+            "created": "2025-11-08T16:12:49.0549Z",
+            "modified": "2025-11-08T16:12:49.0549Z",
+            "name": "COLDSTEEL C2 infrastructure",
+            "description": "IP address used as C2 server for COLDSTEEL malware.",
+            "pattern": "[ipv4-addr:value = '1.9.5.38']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.05489Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8a09b360-9caf-4450-86e0-76f09e9f1420",
+            "created": "2025-11-08T16:12:49.056163Z",
+            "modified": "2025-11-08T16:12:49.056163Z",
+            "name": "COLDSTEEL internal beacon IP (example)",
+            "description": "Example internal IP address used in COLDSTEEL beacon, may indicate lateral movement or internal C2 relay.",
+            "pattern": "[ipv4-addr:value = '172.30.0.14']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.056154Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--aaaada39-72d6-4d7a-90a1-569ad57230be",
+            "created": "2025-11-08T16:12:49.057187Z",
+            "modified": "2025-11-08T16:12:49.057187Z",
+            "name": "COLDSTEEL service name (MileStone2017)",
+            "description": "Service name used by COLDSTEEL for persistence, masquerading as Microsoft Update.",
+            "pattern": "[mutex:name = 'msupdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.057179Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1c4e37a4-5822-4fcc-8d49-c1ea6fb923dd",
+            "created": "2025-11-08T16:12:49.058353Z",
+            "modified": "2025-11-08T16:12:49.058353Z",
+            "name": "COLDSTEEL service name (MileStone2017)",
+            "description": "Service name used by COLDSTEEL for persistence, masquerading as Microsoft Update.",
+            "pattern": "[mutex:name = 'msupdate2']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.058334Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--de771de8-18ba-4108-a024-2c3a1fb3ff11",
+            "created": "2025-11-08T16:12:49.06064Z",
+            "modified": "2025-11-08T16:12:49.06064Z",
+            "name": "COLDSTEEL temporary user account",
+            "description": "Temporary administrator account created by COLDSTEEL for privilege escalation and process execution.",
+            "pattern": "[mutex:name = 'Anonymous']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.060628Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bf9ab499-d65d-472d-9e30-9d07c48af595",
+            "created": "2025-11-08T16:12:49.062004Z",
+            "modified": "2025-11-08T16:12:49.062004Z",
+            "name": "COLDSTEEL temporary user account",
+            "description": "Temporary user account created by COLDSTEEL for process execution and evasion.",
+            "pattern": "[mutex:name = '_DomainUser_']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.061992Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7c662db0-bc32-44eb-ab2f-0d8442b6d63f",
+            "created": "2025-11-08T16:12:49.063299Z",
+            "modified": "2025-11-08T16:12:49.063299Z",
+            "name": "COLDSTEEL temporary user password",
+            "description": "Password for the temporary administrator account created by COLDSTEEL (MileStone2016 variant).",
+            "pattern": "[windows-registry-key:key = 'MileSt0ne2@16']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.06329Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3ec0fa06-cfef-4933-8dba-e98c1687cf01",
+            "created": "2025-11-08T16:12:49.064513Z",
+            "modified": "2025-11-08T16:12:49.064513Z",
+            "name": "COLDSTEEL temporary user password",
+            "description": "Password for the temporary user account created by COLDSTEEL (FBI20111024 variant).",
+            "pattern": "[windows-registry-key:key = 'Dom4!nUserP4ss']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.064504Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a6b44b33-9c1b-4afc-a15e-46d301910864",
+            "created": "2025-11-08T16:12:49.065747Z",
+            "modified": "2025-11-08T16:12:49.065747Z",
+            "name": "COLDSTEEL registry modification",
+            "description": "Registry key modified by COLDSTEEL for persistence or configuration.",
+            "pattern": "[windows-registry-key:key = 'RegSetValueEx(Svchost\\\\krnlsrvc)']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.065737Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cc2fac80-f6dc-4f3d-98c7-af2f3ce7eb73",
+            "created": "2025-11-08T16:12:49.067008Z",
+            "modified": "2025-11-08T16:12:49.067008Z",
+            "name": "COLDSTEEL registry modification",
+            "description": "Registry key accessed by COLDSTEEL for persistence or configuration.",
+            "pattern": "[windows-registry-key:key = 'RegOpenKeyEx(Svchost)']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.066998Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fb6c4bd0-cd13-4e25-a506-9c41f1a8758a",
+            "created": "2025-11-08T16:12:49.068488Z",
+            "modified": "2025-11-08T16:12:49.068488Z",
+            "name": "COLDSTEEL registry modification",
+            "description": "Registry key modified by COLDSTEEL to register its malicious DLL as a service.",
+            "pattern": "[windows-registry-key:key = 'RegSetValueEx(ServiceDll)']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.068475Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--72aef457-dbe6-4c27-8263-ae8b84dcfc49",
+            "created": "2025-11-08T16:12:49.069597Z",
+            "modified": "2025-11-08T16:12:49.069597Z",
+            "name": "dllhost.exe (renamed cmd.exe)",
+            "description": "Maliciously copied cmd.exe used by COLDSTEEL for command execution and evasion.",
+            "pattern": "[file:name = 'dllhost.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\users\\\\public\\\\documents']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.069584Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9f589ee3-4813-4641-b817-c3013cdd8ef4",
+            "created": "2025-11-08T16:12:49.071432Z",
+            "modified": "2025-11-08T16:12:49.071432Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = 'ca1575ce6131735f7e8e1309b657a626']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.071409Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--133249fc-1fca-4b7e-8832-13098fbc2547",
+            "created": "2025-11-08T16:12:49.073747Z",
+            "modified": "2025-11-08T16:12:49.073747Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = '54153b749c06dbf2d7d2eaea2bbebf00f6d0b54b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.073731Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6d4bedd3-f01d-47cb-a44b-96a32411e065",
+            "created": "2025-11-08T16:12:49.075136Z",
+            "modified": "2025-11-08T16:12:49.075136Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = '968d26244b3243a25c66170900b815123469822385cab610267c3a65e755d1ba']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.075124Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0f692617-cd7d-40b7-ac69-108d81b3dc42",
+            "created": "2025-11-08T16:12:49.076335Z",
+            "modified": "2025-11-08T16:12:49.076335Z",
+            "name": "Indicator for newdev.dll (MileStone2017 variant) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = '8f57ce99d53addabec1d964cd34c96f4']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.076323Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bc49af0c-6355-4423-841d-bcf5803d7571",
+            "created": "2025-11-08T16:12:49.07729Z",
+            "modified": "2025-11-08T16:12:49.07729Z",
+            "name": "Indicator for newdev.dll (MileStone2017 variant) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = 'b4a9ab6e040c88630ea46a2ae4ff41a558366122']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.07728Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2d6b67d9-b070-4d8a-b04a-038826d521c6",
+            "created": "2025-11-08T16:12:49.07823Z",
+            "modified": "2025-11-08T16:12:49.07823Z",
+            "name": "Indicator for newdev.dll (MileStone2017 variant) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = 'e92d4e58dfae7c1aadeef42056d5e2e5002814ee3b9b5ab1a48229bf00f3ade6']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.07822Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d5bf3b00-c6f8-4827-ba78-acdc22e1cf68",
+            "created": "2025-11-08T16:12:49.079214Z",
+            "modified": "2025-11-08T16:12:49.079214Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant, unique IP) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = '53fa0c94678fabf711802009452b521b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.079204Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad",
+            "created": "2025-11-08T16:12:49.080038Z",
+            "modified": "2025-11-08T16:12:49.080038Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant, unique IP) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = '9ec69a042106fc9d27a27197d3b680b468bca9a0']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.080029Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f7998177-1d9f-43bb-831e-dec79abfb1e4",
+            "created": "2025-11-08T16:12:49.080829Z",
+            "modified": "2025-11-08T16:12:49.080829Z",
+            "name": "Indicator for newdev.dll (Themida-protected MileStone2017 variant, unique IP) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = '7ce2909bf205c1a574ac3dcac5891e31aa59dd4cad6c41d7159ad017c837903c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.080821Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "created": "2025-11-08T16:12:49.082337Z",
+            "modified": "2025-11-08T16:12:49.082337Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = 'bb40bbbd3b69e0eb802c42d2506b6754']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.082321Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "created": "2025-11-08T16:12:49.083332Z",
+            "modified": "2025-11-08T16:12:49.083332Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = 'bf80e329cba134ccd96f9572d2c0bf250515c26e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.083322Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+            "created": "2025-11-08T16:12:49.084203Z",
+            "modified": "2025-11-08T16:12:49.084203Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = 'a9fa8e8609872cdcea241e3aab726b02b124c82de4c77ad3c3722d7c6b93b9b5']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.084192Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda",
+            "created": "2025-11-08T16:12:49.085186Z",
+            "modified": "2025-11-08T16:12:49.085186Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = 'c5cf6e70d5a5c489aa1c0326799dbe90']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.085176Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b",
+            "created": "2025-11-08T16:12:49.086017Z",
+            "modified": "2025-11-08T16:12:49.086017Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = 'a94ed3d673261d62f2959979272d8c8d17e6e7f3']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.086009Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4",
+            "created": "2025-11-08T16:12:49.086834Z",
+            "modified": "2025-11-08T16:12:49.086834Z",
+            "name": "Indicator for newdev.dll (MileStone2016 variant) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = '14930488158df5fca4cba80b1089f41dc296e19bebf41e2ff6e5b32770ac0f1e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.086824Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--70064025-f542-4391-90b8-ad4c8166527f",
+            "created": "2025-11-08T16:12:49.087685Z",
+            "modified": "2025-11-08T16:12:49.087685Z",
+            "name": "Indicator for newdev.dll (FBI20111024 variant) (MD5)",
+            "description": "MD5 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'MD5' = '25d2eeb36e729679e5e6c647a306850f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.087677Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--375758bb-a780-4995-acc9-8a11ec644853",
+            "created": "2025-11-08T16:12:49.088588Z",
+            "modified": "2025-11-08T16:12:49.088588Z",
+            "name": "Indicator for newdev.dll (FBI20111024 variant) (SHA1)",
+            "description": "SHA-1 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA1' = '3c365d907dc9f06d19dd192e92ebeeefb8e8c964']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.088579Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e405a511-98db-415f-960d-9907e18f61f6",
+            "created": "2025-11-08T16:12:49.089478Z",
+            "modified": "2025-11-08T16:12:49.089478Z",
+            "name": "Indicator for newdev.dll (FBI20111024 variant) (SHA256)",
+            "description": "SHA-256 hash of a malicious COLDSTEEL DLL sample used in attacks.",
+            "pattern": "[file:hashes.'SHA256' = '50838e12e58a2d96b1a2ebdb53a25151cc22cbd458dba49fcb355ccfc82e0e63']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-08T16:12:49.089469Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c54af8f7-f866-4d92-acd2-1ae8b48a44b0",
+            "created": "2025-11-08T16:12:49.090328Z",
+            "modified": "2025-11-08T16:12:49.090328Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9f589ee3-4813-4641-b817-c3013cdd8ef4",
+            "target_ref": "indicator--133249fc-1fca-4b7e-8832-13098fbc2547"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1f945746-aa11-49f8-b630-4ec16e755be6",
+            "created": "2025-11-08T16:12:49.090819Z",
+            "modified": "2025-11-08T16:12:49.090819Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9f589ee3-4813-4641-b817-c3013cdd8ef4",
+            "target_ref": "indicator--6d4bedd3-f01d-47cb-a44b-96a32411e065"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5da0943e-1b69-4f68-aa02-be0381c5a1fb",
+            "created": "2025-11-08T16:12:49.091225Z",
+            "modified": "2025-11-08T16:12:49.091225Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--133249fc-1fca-4b7e-8832-13098fbc2547",
+            "target_ref": "indicator--6d4bedd3-f01d-47cb-a44b-96a32411e065"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--54dee9e2-6891-4423-815f-9dc2011e4d6e",
+            "created": "2025-11-08T16:12:49.091636Z",
+            "modified": "2025-11-08T16:12:49.091636Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0f692617-cd7d-40b7-ac69-108d81b3dc42",
+            "target_ref": "indicator--bc49af0c-6355-4423-841d-bcf5803d7571"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9b8b45f0-3faa-4186-9655-3c558216b104",
+            "created": "2025-11-08T16:12:49.091967Z",
+            "modified": "2025-11-08T16:12:49.091967Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0f692617-cd7d-40b7-ac69-108d81b3dc42",
+            "target_ref": "indicator--2d6b67d9-b070-4d8a-b04a-038826d521c6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e8729587-f672-4c4e-bd97-f1c07f36d3ee",
+            "created": "2025-11-08T16:12:49.092237Z",
+            "modified": "2025-11-08T16:12:49.092237Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--bc49af0c-6355-4423-841d-bcf5803d7571",
+            "target_ref": "indicator--2d6b67d9-b070-4d8a-b04a-038826d521c6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6044ffeb-e3be-4f08-a53d-abcd82c60442",
+            "created": "2025-11-08T16:12:49.092526Z",
+            "modified": "2025-11-08T16:12:49.092526Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d5bf3b00-c6f8-4827-ba78-acdc22e1cf68",
+            "target_ref": "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9bd7010a-74ca-42c6-9f94-b463a3c254f5",
+            "created": "2025-11-08T16:12:49.093112Z",
+            "modified": "2025-11-08T16:12:49.093112Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d5bf3b00-c6f8-4827-ba78-acdc22e1cf68",
+            "target_ref": "indicator--f7998177-1d9f-43bb-831e-dec79abfb1e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--810cec6c-a946-4481-a9ab-cfa799513ba2",
+            "created": "2025-11-08T16:12:49.093365Z",
+            "modified": "2025-11-08T16:12:49.093365Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad",
+            "target_ref": "indicator--f7998177-1d9f-43bb-831e-dec79abfb1e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--80607c0e-5487-4a1b-86b4-dd864430c6b3",
+            "created": "2025-11-08T16:12:49.093627Z",
+            "modified": "2025-11-08T16:12:49.093627Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9ae930f6-b0fc-49be-9637-15e609b4b8ca",
+            "created": "2025-11-08T16:12:49.093925Z",
+            "modified": "2025-11-08T16:12:49.093925Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a5d57bfd-57f4-401d-a5be-540ca33569bd",
+            "created": "2025-11-08T16:12:49.09418Z",
+            "modified": "2025-11-08T16:12:49.09418Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a306db3f-b629-4fa0-bcb3-11636d63bacd",
+            "created": "2025-11-08T16:12:49.094449Z",
+            "modified": "2025-11-08T16:12:49.094449Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--72656c22-47cb-4030-822d-9f9f3f900b33",
+            "created": "2025-11-08T16:12:49.094707Z",
+            "modified": "2025-11-08T16:12:49.094707Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f406afc2-aaf9-4a18-897d-6b785e01276c",
+            "created": "2025-11-08T16:12:49.094983Z",
+            "modified": "2025-11-08T16:12:49.094983Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "target_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--361eb4ee-9083-4dc6-a552-00fbb67cdcc7",
+            "created": "2025-11-08T16:12:49.095243Z",
+            "modified": "2025-11-08T16:12:49.095243Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "target_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eff445e7-0a82-431a-98a5-4a5da0c987a4",
+            "created": "2025-11-08T16:12:49.095504Z",
+            "modified": "2025-11-08T16:12:49.095504Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1150982a-d13c-43d1-8219-747ee5c21d39",
+            "created": "2025-11-08T16:12:49.095753Z",
+            "modified": "2025-11-08T16:12:49.095753Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "target_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8bbac706-91e6-47d5-885c-7f85c3076d7b",
+            "created": "2025-11-08T16:12:49.096022Z",
+            "modified": "2025-11-08T16:12:49.096022Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+            "target_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d244723f-defb-49c6-aaa7-d1946cbde43c",
+            "created": "2025-11-08T16:12:49.096269Z",
+            "modified": "2025-11-08T16:12:49.096269Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c42f5539-58b3-4061-ba9e-d9a16e6f3aef",
+            "created": "2025-11-08T16:12:49.096525Z",
+            "modified": "2025-11-08T16:12:49.096525Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+            "target_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c5925500-058e-4844-9795-15338e0c83de",
+            "created": "2025-11-08T16:12:49.096773Z",
+            "modified": "2025-11-08T16:12:49.096773Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--61365de1-900b-4032-bf32-68267f19b2f1",
+            "created": "2025-11-08T16:12:49.097042Z",
+            "modified": "2025-11-08T16:12:49.097042Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda",
+            "target_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f8527c2d-3c2d-4982-9f3d-c54c32c3483c",
+            "created": "2025-11-08T16:12:49.097288Z",
+            "modified": "2025-11-08T16:12:49.097288Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b",
+            "target_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3e6d92a7-bac7-440e-8d0b-79b920289358",
+            "created": "2025-11-08T16:12:49.097967Z",
+            "modified": "2025-11-08T16:12:49.097967Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--70064025-f542-4391-90b8-ad4c8166527f",
+            "target_ref": "indicator--375758bb-a780-4995-acc9-8a11ec644853"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1bd5231c-3866-4cad-b6c5-e2a97a9becad",
+            "created": "2025-11-08T16:12:49.098266Z",
+            "modified": "2025-11-08T16:12:49.098266Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--70064025-f542-4391-90b8-ad4c8166527f",
+            "target_ref": "indicator--e405a511-98db-415f-960d-9907e18f61f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2e02f256-cde4-47b1-b23d-50abc39bbcb8",
+            "created": "2025-11-08T16:12:49.098682Z",
+            "modified": "2025-11-08T16:12:49.098682Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--375758bb-a780-4995-acc9-8a11ec644853",
+            "target_ref": "indicator--e405a511-98db-415f-960d-9907e18f61f6"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.77922Z",
+            "modified": "2025-11-08T16:13:13.77922Z",
+            "name": "coldsteel",
+            "description": "COLDSTEEL is a fully featured Windows Remote Access Tool (RAT) that provides interactive desktop and command line invocation capabilities. It allows copying files, taking screenshots, simulating user input, and persists as a Windows service. COLDSTEEL communicates with its C2 server using a raw TCP connection, and is often obfuscated using the Themida packer. Multiple variants exist, such as MileStone2016, MileStone2017, and FBI20111024, which differ in features and obfuscation methods. The malware can create new administrator accounts, modify registry keys, and uses custom protocols for C2 communication. It is capable of exfiltrating system information, enumerating files and directories, and executing arbitrary commands.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--39756737-1896-4f0e-9959-dace795cd96f",
+            "created": "2025-11-08T16:13:13.779671Z",
+            "modified": "2025-11-08T16:13:13.779671Z",
+            "name": "Ahnlab",
+            "description": "Ahnlab is referenced as an industry source that previously reported on COLDSTEEL.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ef14c0d5-1a5f-4122-8f12-f5eaad43844a",
+            "created": "2025-11-08T16:13:13.780304Z",
+            "modified": "2025-11-08T16:13:13.780304Z",
+            "name": "Fortinet",
+            "description": "Fortinet is referenced as an industry source that previously reported on COLDSTEEL.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--12fe41eb-58e8-49ca-ab55-fc889d00ab99",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.780616Z",
+            "modified": "2025-11-08T16:13:13.780616Z",
+            "name": "CVE-2021-44228",
+            "description": "COLDSTEEL is believed to have been deployed following exploitation of Log4j (CVE-2021-44228), a vulnerability in the Apache Log4j library that allows remote code execution via crafted log messages."
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a46cb189-1f9a-48b8-9df7-4a11358f6e2b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.780928Z",
+            "modified": "2025-11-08T16:13:13.780928Z",
+            "name": "COLDSTEEL_service_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule COLDSTEEL_service_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies the service created by COLDSTEEL.\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n        $ = \"msupdate\"\n        $ = \"Microsoft Update\"\n        $ = \"Enables the download and installation of Windows updates. If\nthis service is disabled, this computer will not be able to use the\nAutomatic Updates feature or the Windows Update Web site.\"\n\n    condition:\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T16:13:13.780915Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--eff60d43-d1e6-418c-80ea-7a3c9e91b9ed",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.781286Z",
+            "modified": "2025-11-08T16:13:13.781286Z",
+            "name": "COLDSTEEL_rundll32_use_and_export_names",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "import \"pe\"\nrule COLDSTEEL_rundll32_use_and_export_names\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Execution method used by COLDSTEEL.\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n         $ = \"rundll32.exe \\\"%s\\\",UpdateDriverForPlugAndPlayDevicesW\"\n\n    condition:\n        all of them\n        and pe.exports(\"UpdateDriverForPlugAndPlayDevicesW\")\n        and pe.exports(\"ServiceMain\")\n        and pe.exports(\"DiUninstallDevice\")\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T16:13:13.781277Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e620fd3a-5359-4501-a2af-b2e6a756167c",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.781649Z",
+            "modified": "2025-11-08T16:13:13.781649Z",
+            "name": "COLDSTEEL_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule COLDSTEEL_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"COLDSTEEL strings\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n        $ = \"MileStone201\"\n        $ = \"%SystemRoot%\\\\System32\\\\svchost.exe -k \"\n        $ = \"%s SP%d\"\n        $ = \"Win 2003\"\n        $ = \"Win 98\"\n        $ = \"RegSetValueEx(Svchost\\\\krnlsrvc)\"\n        $ = \"RegOpenKeyEx(Svchost)\"\n        $ = \"RegSetValueEx(ServiceDll)\"\n\n    condition:\n        7 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T16:13:13.781641Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d74dd185-10dc-4124-8f1b-51ff92f288bd",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.781995Z",
+            "modified": "2025-11-08T16:13:13.781995Z",
+            "name": "COLDSTEEL_Themida_useage",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "import \"pe\"\nrule COLDSTEEL_Themida_useage\n{\n    meta:\n        author = \"NCSC\"\n        description = \"COLDSTEEL Themida import usage.\"\n        date = \"2023-01-31\"\n        hash1 = \"9ec69a042106fc9d27a27197d3b680b468bca9a0\"\n\n    strings:\n        $ = \".themida\"\n    condition:\n        all of them\n        and pe.exports(\"ServiceMain\")\n\n  and pe.imports(\"CloseServiceHandle\", \"ADVAPI32\")\n  and pe.imports(\"CreateEnvironmentBlock\", \"USERENV\")\n  and pe.imports(\"CreateWindowExA\", \"USER32\")\n  and pe.imports(\"SHGetFileInfoA\", \"SHELL32\")\n  and pe.imports(\"SelectObject\", \"GDI32\")\n  and pe.imports(\"WTSQuerySessionInformationA\", \"WTSAPI32\")\n  and pe.imports(\"strcspn\", \"MSVCRT\")\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-08T16:13:13.781987Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--22e2568f-33dd-4baf-8b67-31f66e75b7db",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.782323Z",
+            "modified": "2025-11-08T16:13:13.782323Z",
+            "name": "Command and Scripting Interpreter: Windows Command Shell",
+            "description": "COLDSTEEL can run arbitrary commands using cmd.exe.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/003",
+                    "external_id": "T1059.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--90730c4b-a9e0-4f94-8d3d-996ed05b2fe8",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.782884Z",
+            "modified": "2025-11-08T16:13:13.782884Z",
+            "name": "System Services: Service Execution",
+            "description": "COLDSTEEL executes malicious code as a Windows service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1569/002",
+                    "external_id": "T1569.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3546edcf-69cf-458e-84ec-f39a48c39287",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.783373Z",
+            "modified": "2025-11-08T16:13:13.783373Z",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "COLDSTEEL creates an autostart service to persist after a system reboot.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1543/003",
+                    "external_id": "T1543.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--07d9c570-a884-418a-9d96-1ea2aca81e5a",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.783847Z",
+            "modified": "2025-11-08T16:13:13.783847Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "COLDSTEEL is believed to have been deployed following exploitation of Log4j.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1190",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--6641ef5c-79e4-44d5-8ee6-84e118994d5a",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.784294Z",
+            "modified": "2025-11-08T16:13:13.784294Z",
+            "name": "Obfuscated Files or Information: Software Packing",
+            "description": "MileStone2017 variants of COLDSTEEL have been observed to be packed using Themida as described in Defence Evasion (Themida).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027/002",
+                    "external_id": "T1027.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--bc6051fa-64a4-40a2-897f-d10eaa733b22",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.78474Z",
+            "modified": "2025-11-08T16:13:13.78474Z",
+            "name": "Modify Registry",
+            "description": "COLDSTEEL modifies registry keys directly to add a description to its service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1112",
+                    "external_id": "T1112"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0fb867ee-ec14-4a62-bd6f-a1ee1b4406e8",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.785222Z",
+            "modified": "2025-11-08T16:13:13.785222Z",
+            "name": "Indicator Removal: File Deletion",
+            "description": "COLDSTEEL has the ability to delete files from the infected machine.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--f07d434a-80f2-4d46-9945-2bcf4a825c2b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.785673Z",
+            "modified": "2025-11-08T16:13:13.785673Z",
+            "name": "Access Token Manipulation: Create Process with Token",
+            "description": "The MileStone2016 variant of COLDSTEEL has the ability to create a process as the user named ANONYMOUS.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1134/002",
+                    "external_id": "T1134.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8301c5de-b7bb-4f20-b869-3c6f255dec29",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.786128Z",
+            "modified": "2025-11-08T16:13:13.786128Z",
+            "name": "System Information Discovery",
+            "description": "COLDSTEEL collects a range of system information from the infected machine.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1082",
+                    "external_id": "T1082"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--109cfd93-ac54-48a4-ad44-771365be8ba2",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.786564Z",
+            "modified": "2025-11-08T16:13:13.786564Z",
+            "name": "File and Directory Discovery",
+            "description": "COLDSTEEL has commands to enumerate the filesystem.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1083",
+                    "external_id": "T1083"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--3cddc3fb-a098-438c-b75f-8388be92b139",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.787021Z",
+            "modified": "2025-11-08T16:13:13.787021Z",
+            "name": "Process Discovery",
+            "description": "FBI20111024 variants of COLDSTEEL have the ability to collect process information.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1057",
+                    "external_id": "T1057"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9721ffbc-fb99-49ac-ad83-d135103e5217",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.787454Z",
+            "modified": "2025-11-08T16:13:13.787454Z",
+            "name": "Non-Application Layer Protocol",
+            "description": "COLDSTEEL communicates over TCP sockets, using a custom message format.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1095",
+                    "external_id": "T1095"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--55f7a183-33c9-4a10-b813-d3ceda6635f6",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.788517Z",
+            "modified": "2025-11-08T16:13:13.788517Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--22e2568f-33dd-4baf-8b67-31f66e75b7db"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2432a83f-608a-47fe-82cd-956230f5b130",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.789003Z",
+            "modified": "2025-11-08T16:13:13.789003Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--90730c4b-a9e0-4f94-8d3d-996ed05b2fe8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dd31a672-1c15-46ef-ab27-72d4e346e69e",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.789391Z",
+            "modified": "2025-11-08T16:13:13.789391Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--3546edcf-69cf-458e-84ec-f39a48c39287"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--455dd9eb-98ee-403a-9b32-16811cd82a07",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.789753Z",
+            "modified": "2025-11-08T16:13:13.789753Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--07d9c570-a884-418a-9d96-1ea2aca81e5a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--475bae65-e353-4548-9bdf-b6223007e91b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.790117Z",
+            "modified": "2025-11-08T16:13:13.790117Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--6641ef5c-79e4-44d5-8ee6-84e118994d5a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9277cd7-251f-4043-a539-a0f0d0b7bf54",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.790439Z",
+            "modified": "2025-11-08T16:13:13.790439Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--bc6051fa-64a4-40a2-897f-d10eaa733b22"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cfc3fb9e-a282-4667-a222-299dffd83f3b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.790764Z",
+            "modified": "2025-11-08T16:13:13.790764Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--0fb867ee-ec14-4a62-bd6f-a1ee1b4406e8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--61edbfce-2488-4cd0-bb6f-d74014b2e216",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.791083Z",
+            "modified": "2025-11-08T16:13:13.791083Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--f07d434a-80f2-4d46-9945-2bcf4a825c2b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b2525669-5643-4e1e-aba3-10251f95cd36",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.791388Z",
+            "modified": "2025-11-08T16:13:13.791388Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--8301c5de-b7bb-4f20-b869-3c6f255dec29"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e2b98bb5-d92d-4b54-ad23-9c94eed79ce3",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.791698Z",
+            "modified": "2025-11-08T16:13:13.791698Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--109cfd93-ac54-48a4-ad44-771365be8ba2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d20f3d7f-f523-4ed7-b1e9-f27c2d0c96c3",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.792016Z",
+            "modified": "2025-11-08T16:13:13.792016Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--3cddc3fb-a098-438c-b75f-8388be92b139"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--89675324-eab7-4637-b7bf-e714acfc5b28",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.792331Z",
+            "modified": "2025-11-08T16:13:13.792331Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "attack-pattern--9721ffbc-fb99-49ac-ad83-d135103e5217"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0973a45d-8ef5-4aee-b0c1-faec531464b2",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.792649Z",
+            "modified": "2025-11-08T16:13:13.792649Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--922a890f-2b75-4c13-be55-d28154a42360",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8786929c-20f7-4342-aaec-4dd8b972b1d8",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.792979Z",
+            "modified": "2025-11-08T16:13:13.792979Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5484105d-59a0-4749-8a25-e7ff445c0d8b",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3cd9c516-f759-40e6-a13a-e6c2c4f5d883",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.793276Z",
+            "modified": "2025-11-08T16:13:13.793276Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c86fd70f-68d9-469e-bbfe-7f953f6885cb",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f1be3db8-f5e5-495d-8e95-58e14d61727d",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.793957Z",
+            "modified": "2025-11-08T16:13:13.793957Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e2d5ce46-eb6a-419a-b01c-db92f7b59868",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--49aae421-7e48-4969-834f-957ae69b6968",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.794386Z",
+            "modified": "2025-11-08T16:13:13.794386Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--23799f10-f02c-4dd0-b2be-c8a42ea9d4b0",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb702afc-ebca-44ed-ac8b-fa0b23573f40",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.795087Z",
+            "modified": "2025-11-08T16:13:13.795087Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--35d98542-8135-48c2-9cc2-6ec78156d360",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e0f5fdc7-2705-44e6-a39f-625b2b68ce7d",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.795453Z",
+            "modified": "2025-11-08T16:13:13.795453Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--90466b06-c97f-4866-a34c-9339f70d0629",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3c7802cb-9830-4d9f-afff-94821d450f46",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.79581Z",
+            "modified": "2025-11-08T16:13:13.79581Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b72f2bef-b79d-4642-bce0-586d4e212fe6",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ad27a9d0-53eb-4643-b47b-6771570ce519",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.796133Z",
+            "modified": "2025-11-08T16:13:13.796133Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8a09b360-9caf-4450-86e0-76f09e9f1420",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d2bde5ab-09aa-4654-b8a1-cc328e29154f",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.796452Z",
+            "modified": "2025-11-08T16:13:13.796452Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--aaaada39-72d6-4d7a-90a1-569ad57230be",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b29fa5c6-3e32-4a22-9488-b09da3210259",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.79681Z",
+            "modified": "2025-11-08T16:13:13.79681Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1c4e37a4-5822-4fcc-8d49-c1ea6fb923dd",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5258c6fe-a580-4d74-8765-c32429b47664",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.797129Z",
+            "modified": "2025-11-08T16:13:13.797129Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--de771de8-18ba-4108-a024-2c3a1fb3ff11",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--78ce07cb-3647-418f-8376-c67c9374a731",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.797433Z",
+            "modified": "2025-11-08T16:13:13.797433Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bf9ab499-d65d-472d-9e30-9d07c48af595",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ce442eef-fded-48fc-8013-1bb9510e2134",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.79775Z",
+            "modified": "2025-11-08T16:13:13.79775Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7c662db0-bc32-44eb-ab2f-0d8442b6d63f",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--42c03bcd-ad6f-447a-a0ee-0df28cf42687",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.798078Z",
+            "modified": "2025-11-08T16:13:13.798078Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3ec0fa06-cfef-4933-8dba-e98c1687cf01",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eea3de48-1461-4c1e-b5e9-8ac9c72cf2ec",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.798385Z",
+            "modified": "2025-11-08T16:13:13.798385Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a6b44b33-9c1b-4afc-a15e-46d301910864",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1b49488b-afeb-4a17-a32a-b562d4055705",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.798857Z",
+            "modified": "2025-11-08T16:13:13.798857Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cc2fac80-f6dc-4f3d-98c7-af2f3ce7eb73",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cfe7ce14-4e62-4892-94de-a201b7ed9a83",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.799171Z",
+            "modified": "2025-11-08T16:13:13.799171Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fb6c4bd0-cd13-4e25-a506-9c41f1a8758a",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fbb71cb9-d613-47d0-a9b1-bd1dd9214c75",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.799471Z",
+            "modified": "2025-11-08T16:13:13.799471Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--72aef457-dbe6-4c27-8263-ae8b84dcfc49",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bb4b5f04-7f0d-4718-9b98-923d7fcefe8b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.799815Z",
+            "modified": "2025-11-08T16:13:13.799815Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9f589ee3-4813-4641-b817-c3013cdd8ef4",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--42f55fb4-242e-41be-9344-997df9a2668a",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.800116Z",
+            "modified": "2025-11-08T16:13:13.800116Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--133249fc-1fca-4b7e-8832-13098fbc2547",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fa84b152-c19d-4143-8d72-5e60317cb9af",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.800412Z",
+            "modified": "2025-11-08T16:13:13.800412Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6d4bedd3-f01d-47cb-a44b-96a32411e065",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7e45d0c7-aa73-4303-9a38-69ce88b13a29",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80072Z",
+            "modified": "2025-11-08T16:13:13.80072Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0f692617-cd7d-40b7-ac69-108d81b3dc42",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e51f805c-87cd-4ad7-bad0-06948c32253b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.801032Z",
+            "modified": "2025-11-08T16:13:13.801032Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bc49af0c-6355-4423-841d-bcf5803d7571",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e0a091c6-7237-47ea-a3ed-5f381a131dfe",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.801345Z",
+            "modified": "2025-11-08T16:13:13.801345Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2d6b67d9-b070-4d8a-b04a-038826d521c6",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0674d86a-a655-4119-982e-e4e33bf70c35",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.801649Z",
+            "modified": "2025-11-08T16:13:13.801649Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d5bf3b00-c6f8-4827-ba78-acdc22e1cf68",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--032cc902-fce1-43f5-bbd8-7c73c21aea23",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80196Z",
+            "modified": "2025-11-08T16:13:13.80196Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1841bd5c-511c-412c-b32c-361b943fd8f4",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.802268Z",
+            "modified": "2025-11-08T16:13:13.802268Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f7998177-1d9f-43bb-831e-dec79abfb1e4",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9d25e5cf-d9e7-4ea1-90d4-2eee534d9376",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80256Z",
+            "modified": "2025-11-08T16:13:13.80256Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6e54278-02b9-4d6b-bdc1-7bff592a63d9",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.802875Z",
+            "modified": "2025-11-08T16:13:13.802875Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--79df7b4a-edc2-4dd7-b2ac-63bfa256111d",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.803382Z",
+            "modified": "2025-11-08T16:13:13.803382Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7e4b2eb0-278f-4072-8784-36ad59e32cc5",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.803697Z",
+            "modified": "2025-11-08T16:13:13.803697Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f99741eb-b911-4ac1-b2d8-68ce68866919",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.804013Z",
+            "modified": "2025-11-08T16:13:13.804013Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f4a5a1b-7e01-4054-a48e-682be3c9669a",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80431Z",
+            "modified": "2025-11-08T16:13:13.80431Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2082bd8a-1a20-4c85-8f71-bc6e3ce2e989",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.804696Z",
+            "modified": "2025-11-08T16:13:13.804696Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--70064025-f542-4391-90b8-ad4c8166527f",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--887628ce-3c67-4b4f-8fb4-b8f283ede257",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.805052Z",
+            "modified": "2025-11-08T16:13:13.805052Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--375758bb-a780-4995-acc9-8a11ec644853",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fa85e862-4bcc-4c2f-9b1b-1efa2176dab0",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.805344Z",
+            "modified": "2025-11-08T16:13:13.805344Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e405a511-98db-415f-960d-9907e18f61f6",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--baffb08a-1189-4c8c-bbf7-3a10df48c96b",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.806165Z",
+            "modified": "2025-11-08T16:13:13.806165Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a46cb189-1f9a-48b8-9df7-4a11358f6e2b",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0cc406fe-1b56-4d3b-a536-67d6fe1511d9",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.806545Z",
+            "modified": "2025-11-08T16:13:13.806545Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a46cb189-1f9a-48b8-9df7-4a11358f6e2b",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a2bc0a32-cccc-4572-baca-b37b7fe5c30e",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.806991Z",
+            "modified": "2025-11-08T16:13:13.806991Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eff60d43-d1e6-418c-80ea-7a3c9e91b9ed",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8ace947d-c54d-47f4-992d-9fe2577d1259",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80734Z",
+            "modified": "2025-11-08T16:13:13.80734Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eff60d43-d1e6-418c-80ea-7a3c9e91b9ed",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--abbc73dc-a393-4acf-b7c6-cd1dc77f3611",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.807761Z",
+            "modified": "2025-11-08T16:13:13.807761Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e620fd3a-5359-4501-a2af-b2e6a756167c",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ac1b61c2-1067-4483-834c-e971c6465b79",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.808122Z",
+            "modified": "2025-11-08T16:13:13.808122Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e620fd3a-5359-4501-a2af-b2e6a756167c",
+            "target_ref": "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7da7a732-dd77-49d6-ba83-09fc73503c92",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.808525Z",
+            "modified": "2025-11-08T16:13:13.808525Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d74dd185-10dc-4124-8f1b-51ff92f288bd",
+            "target_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--995f3ae1-e109-4c79-ab55-601530adbcf9",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.808885Z",
+            "modified": "2025-11-08T16:13:13.808885Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--d74dd185-10dc-4124-8f1b-51ff92f288bd",
+            "target_ref": "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1bcf7867-7aa9-4982-ae1f-214b853f198e",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.80961Z",
+            "modified": "2025-11-08T16:13:13.80961Z",
+            "relationship_type": "exploits",
+            "source_ref": "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+            "target_ref": "vulnerability--12fe41eb-58e8-49ca-ab55-fc889d00ab99"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--ce7aa572-1204-472d-806f-2738d1e11226",
+            "created_by_ref": "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+            "created": "2025-11-08T16:13:13.810372Z",
+            "modified": "2025-11-08T16:13:13.810372Z",
+            "name": "Analisi Malware: Coldsteel",
+            "description": "This report contains technical analysis and indicators associated with malware. coldsteel.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-08T16:13:13.810358Z",
+            "object_refs": [
+                "identity--f13d7899-67f5-4fff-a620-596bc98c1ce0",
+                "ipv4-addr--26a2e7da-6459-5451-b7ed-c6a66fcbe47a",
+                "ipv4-addr--cb74eb2e-2108-58b1-a3be-fdccee5d022b",
+                "ipv4-addr--735fc373-5123-5cb0-9f97-0474ee729f73",
+                "ipv4-addr--c4a550f9-1fb8-5463-9527-adbab153f605",
+                "ipv4-addr--272a27f3-9a25-5f56-a633-92ec8bac7903",
+                "mutex--cbced297-bfa1-56bd-9f96-cfa02bb954a5",
+                "mutex--9b85a19a-bf12-5913-a270-bafe31eda515",
+                "mutex--fb7d7ab4-81ad-517f-8fd1-43f935f830bd",
+                "mutex--5f4ed9c8-78f1-56c4-8da6-b59af667b5b1",
+                "windows-registry-key--613ff164-04a8-589a-a3b9-83c9519c98fc",
+                "windows-registry-key--09fa4553-5474-582c-9e22-f296f08ecb57",
+                "windows-registry-key--c99717e3-9400-5471-a82b-ef65a63edcb6",
+                "windows-registry-key--90d20b14-3107-5661-9ad8-5c53cd45d3e9",
+                "windows-registry-key--35a9f49c-eeba-56d4-8e7d-557d750cc2cc",
+                "indicator--922a890f-2b75-4c13-be55-d28154a42360",
+                "indicator--5484105d-59a0-4749-8a25-e7ff445c0d8b",
+                "indicator--c86fd70f-68d9-469e-bbfe-7f953f6885cb",
+                "indicator--e2d5ce46-eb6a-419a-b01c-db92f7b59868",
+                "indicator--23799f10-f02c-4dd0-b2be-c8a42ea9d4b0",
+                "indicator--35d98542-8135-48c2-9cc2-6ec78156d360",
+                "indicator--90466b06-c97f-4866-a34c-9339f70d0629",
+                "indicator--b72f2bef-b79d-4642-bce0-586d4e212fe6",
+                "indicator--8a09b360-9caf-4450-86e0-76f09e9f1420",
+                "indicator--aaaada39-72d6-4d7a-90a1-569ad57230be",
+                "indicator--1c4e37a4-5822-4fcc-8d49-c1ea6fb923dd",
+                "indicator--de771de8-18ba-4108-a024-2c3a1fb3ff11",
+                "indicator--bf9ab499-d65d-472d-9e30-9d07c48af595",
+                "indicator--7c662db0-bc32-44eb-ab2f-0d8442b6d63f",
+                "indicator--3ec0fa06-cfef-4933-8dba-e98c1687cf01",
+                "indicator--a6b44b33-9c1b-4afc-a15e-46d301910864",
+                "indicator--cc2fac80-f6dc-4f3d-98c7-af2f3ce7eb73",
+                "indicator--fb6c4bd0-cd13-4e25-a506-9c41f1a8758a",
+                "indicator--72aef457-dbe6-4c27-8263-ae8b84dcfc49",
+                "indicator--9f589ee3-4813-4641-b817-c3013cdd8ef4",
+                "indicator--133249fc-1fca-4b7e-8832-13098fbc2547",
+                "indicator--6d4bedd3-f01d-47cb-a44b-96a32411e065",
+                "indicator--0f692617-cd7d-40b7-ac69-108d81b3dc42",
+                "indicator--bc49af0c-6355-4423-841d-bcf5803d7571",
+                "indicator--2d6b67d9-b070-4d8a-b04a-038826d521c6",
+                "indicator--d5bf3b00-c6f8-4827-ba78-acdc22e1cf68",
+                "indicator--ca8817a7-d4de-4afa-8fc3-8e6559b793ad",
+                "indicator--f7998177-1d9f-43bb-831e-dec79abfb1e4",
+                "indicator--f9ca4915-adfa-434a-9383-5e13ad9c9ae6",
+                "indicator--c29c326c-d134-4ad3-99d0-93fbdccd846d",
+                "indicator--12aa7c98-fcd6-4037-a161-0e3e8486e72a",
+                "indicator--56288073-2ccc-4edd-9cf1-a7f96313bcda",
+                "indicator--f99accb8-51ea-4b9b-a870-3f57cc8d6a9b",
+                "indicator--02ae6651-ac72-40a4-9276-68c6e36bd3a4",
+                "indicator--70064025-f542-4391-90b8-ad4c8166527f",
+                "indicator--375758bb-a780-4995-acc9-8a11ec644853",
+                "indicator--e405a511-98db-415f-960d-9907e18f61f6",
+                "relationship--c54af8f7-f866-4d92-acd2-1ae8b48a44b0",
+                "relationship--1f945746-aa11-49f8-b630-4ec16e755be6",
+                "relationship--5da0943e-1b69-4f68-aa02-be0381c5a1fb",
+                "relationship--54dee9e2-6891-4423-815f-9dc2011e4d6e",
+                "relationship--9b8b45f0-3faa-4186-9655-3c558216b104",
+                "relationship--e8729587-f672-4c4e-bd97-f1c07f36d3ee",
+                "relationship--6044ffeb-e3be-4f08-a53d-abcd82c60442",
+                "relationship--9bd7010a-74ca-42c6-9f94-b463a3c254f5",
+                "relationship--810cec6c-a946-4481-a9ab-cfa799513ba2",
+                "relationship--80607c0e-5487-4a1b-86b4-dd864430c6b3",
+                "relationship--9ae930f6-b0fc-49be-9637-15e609b4b8ca",
+                "relationship--a5d57bfd-57f4-401d-a5be-540ca33569bd",
+                "relationship--a306db3f-b629-4fa0-bcb3-11636d63bacd",
+                "relationship--72656c22-47cb-4030-822d-9f9f3f900b33",
+                "relationship--f406afc2-aaf9-4a18-897d-6b785e01276c",
+                "relationship--361eb4ee-9083-4dc6-a552-00fbb67cdcc7",
+                "relationship--eff445e7-0a82-431a-98a5-4a5da0c987a4",
+                "relationship--1150982a-d13c-43d1-8219-747ee5c21d39",
+                "relationship--8bbac706-91e6-47d5-885c-7f85c3076d7b",
+                "relationship--d244723f-defb-49c6-aaa7-d1946cbde43c",
+                "relationship--c42f5539-58b3-4061-ba9e-d9a16e6f3aef",
+                "relationship--c5925500-058e-4844-9795-15338e0c83de",
+                "relationship--61365de1-900b-4032-bf32-68267f19b2f1",
+                "relationship--f8527c2d-3c2d-4982-9f3d-c54c32c3483c",
+                "relationship--3e6d92a7-bac7-440e-8d0b-79b920289358",
+                "relationship--1bd5231c-3866-4cad-b6c5-e2a97a9becad",
+                "relationship--2e02f256-cde4-47b1-b23d-50abc39bbcb8",
+                "malware--2992f24c-cb4c-4ed5-9691-03ad5cded332",
+                "identity--39756737-1896-4f0e-9959-dace795cd96f",
+                "identity--ef14c0d5-1a5f-4122-8f12-f5eaad43844a",
+                "vulnerability--12fe41eb-58e8-49ca-ab55-fc889d00ab99",
+                "indicator--a46cb189-1f9a-48b8-9df7-4a11358f6e2b",
+                "indicator--eff60d43-d1e6-418c-80ea-7a3c9e91b9ed",
+                "indicator--e620fd3a-5359-4501-a2af-b2e6a756167c",
+                "indicator--d74dd185-10dc-4124-8f1b-51ff92f288bd",
+                "attack-pattern--22e2568f-33dd-4baf-8b67-31f66e75b7db",
+                "attack-pattern--90730c4b-a9e0-4f94-8d3d-996ed05b2fe8",
+                "attack-pattern--3546edcf-69cf-458e-84ec-f39a48c39287",
+                "attack-pattern--07d9c570-a884-418a-9d96-1ea2aca81e5a",
+                "attack-pattern--6641ef5c-79e4-44d5-8ee6-84e118994d5a",
+                "attack-pattern--bc6051fa-64a4-40a2-897f-d10eaa733b22",
+                "attack-pattern--0fb867ee-ec14-4a62-bd6f-a1ee1b4406e8",
+                "attack-pattern--f07d434a-80f2-4d46-9945-2bcf4a825c2b",
+                "attack-pattern--8301c5de-b7bb-4f20-b869-3c6f255dec29",
+                "attack-pattern--109cfd93-ac54-48a4-ad44-771365be8ba2",
+                "attack-pattern--3cddc3fb-a098-438c-b75f-8388be92b139",
+                "attack-pattern--9721ffbc-fb99-49ac-ad83-d135103e5217",
+                "relationship--55f7a183-33c9-4a10-b813-d3ceda6635f6",
+                "relationship--2432a83f-608a-47fe-82cd-956230f5b130",
+                "relationship--dd31a672-1c15-46ef-ab27-72d4e346e69e",
+                "relationship--455dd9eb-98ee-403a-9b32-16811cd82a07",
+                "relationship--475bae65-e353-4548-9bdf-b6223007e91b",
+                "relationship--a9277cd7-251f-4043-a539-a0f0d0b7bf54",
+                "relationship--cfc3fb9e-a282-4667-a222-299dffd83f3b",
+                "relationship--61edbfce-2488-4cd0-bb6f-d74014b2e216",
+                "relationship--b2525669-5643-4e1e-aba3-10251f95cd36",
+                "relationship--e2b98bb5-d92d-4b54-ad23-9c94eed79ce3",
+                "relationship--d20f3d7f-f523-4ed7-b1e9-f27c2d0c96c3",
+                "relationship--89675324-eab7-4637-b7bf-e714acfc5b28",
+                "relationship--0973a45d-8ef5-4aee-b0c1-faec531464b2",
+                "relationship--8786929c-20f7-4342-aaec-4dd8b972b1d8",
+                "relationship--3cd9c516-f759-40e6-a13a-e6c2c4f5d883",
+                "relationship--f1be3db8-f5e5-495d-8e95-58e14d61727d",
+                "relationship--49aae421-7e48-4969-834f-957ae69b6968",
+                "relationship--fb702afc-ebca-44ed-ac8b-fa0b23573f40",
+                "relationship--e0f5fdc7-2705-44e6-a39f-625b2b68ce7d",
+                "relationship--3c7802cb-9830-4d9f-afff-94821d450f46",
+                "relationship--ad27a9d0-53eb-4643-b47b-6771570ce519",
+                "relationship--d2bde5ab-09aa-4654-b8a1-cc328e29154f",
+                "relationship--b29fa5c6-3e32-4a22-9488-b09da3210259",
+                "relationship--5258c6fe-a580-4d74-8765-c32429b47664",
+                "relationship--78ce07cb-3647-418f-8376-c67c9374a731",
+                "relationship--ce442eef-fded-48fc-8013-1bb9510e2134",
+                "relationship--42c03bcd-ad6f-447a-a0ee-0df28cf42687",
+                "relationship--eea3de48-1461-4c1e-b5e9-8ac9c72cf2ec",
+                "relationship--1b49488b-afeb-4a17-a32a-b562d4055705",
+                "relationship--cfe7ce14-4e62-4892-94de-a201b7ed9a83",
+                "relationship--fbb71cb9-d613-47d0-a9b1-bd1dd9214c75",
+                "relationship--bb4b5f04-7f0d-4718-9b98-923d7fcefe8b",
+                "relationship--42f55fb4-242e-41be-9344-997df9a2668a",
+                "relationship--fa84b152-c19d-4143-8d72-5e60317cb9af",
+                "relationship--7e45d0c7-aa73-4303-9a38-69ce88b13a29",
+                "relationship--e51f805c-87cd-4ad7-bad0-06948c32253b",
+                "relationship--e0a091c6-7237-47ea-a3ed-5f381a131dfe",
+                "relationship--0674d86a-a655-4119-982e-e4e33bf70c35",
+                "relationship--032cc902-fce1-43f5-bbd8-7c73c21aea23",
+                "relationship--1841bd5c-511c-412c-b32c-361b943fd8f4",
+                "relationship--9d25e5cf-d9e7-4ea1-90d4-2eee534d9376",
+                "relationship--a6e54278-02b9-4d6b-bdc1-7bff592a63d9",
+                "relationship--79df7b4a-edc2-4dd7-b2ac-63bfa256111d",
+                "relationship--7e4b2eb0-278f-4072-8784-36ad59e32cc5",
+                "relationship--f99741eb-b911-4ac1-b2d8-68ce68866919",
+                "relationship--7f4a5a1b-7e01-4054-a48e-682be3c9669a",
+                "relationship--2082bd8a-1a20-4c85-8f71-bc6e3ce2e989",
+                "relationship--887628ce-3c67-4b4f-8fb4-b8f283ede257",
+                "relationship--fa85e862-4bcc-4c2f-9b1b-1efa2176dab0",
+                "relationship--baffb08a-1189-4c8c-bbf7-3a10df48c96b",
+                "relationship--0cc406fe-1b56-4d3b-a536-67d6fe1511d9",
+                "relationship--a2bc0a32-cccc-4572-baca-b37b7fe5c30e",
+                "relationship--8ace947d-c54d-47f4-992d-9fe2577d1259",
+                "relationship--abbc73dc-a393-4acf-b7c6-cd1dc77f3611",
+                "relationship--ac1b61c2-1067-4483-834c-e971c6465b79",
+                "relationship--7da7a732-dd77-49d6-ba83-09fc73503c92",
+                "relationship--995f3ae1-e109-4c79-ab55-601530adbcf9",
+                "relationship--1bcf7867-7aa9-4982-ae1f-214b853f198e"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
