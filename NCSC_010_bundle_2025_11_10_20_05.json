@@ -1,0 +1,1342 @@
+{
+    "type": "bundle",
+    "id": "bundle--77fabc2c-6610-46fc-91b3-5df9f18f2293",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.638036Z",
+            "modified": "2025-11-10T20:05:55.638036Z",
+            "name": "NCSC",
+            "description": "The primary organization that authored or published this report.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--649eaf78-676f-52fe-a165-911319aceda0",
+            "value": "cdn181.awsdns-531.com"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--ba1a71b9-af46-5543-968f-3e18936c35f1",
+            "name": "Global\\gup0"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--863cdf7c-8790-50c9-8a9f-78361d359e13",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\SearchIndexer"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--5badc5a7-25c4-54d7-b7ec-b27a730ed473",
+            "key": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\SearchIndexer"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1b150634-eac3-593f-b4ab-735450c0d1b5",
+            "key": "111"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--030e0593-9f5a-5918-b58f-60f9993dad75",
+            "key": "222"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a63136b4-c2b4-58ef-adf2-b66ce913699d",
+            "key": "333"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3bf809ce-0daa-49a1-bc68-bc49214050bf",
+            "created": "2025-11-10T20:04:56.170097Z",
+            "modified": "2025-11-10T20:04:56.170097Z",
+            "name": "C2 Domain",
+            "description": "Command and control domain used by SparrowDoor",
+            "pattern": "[domain-name:value = 'cdn181.awsdns-531.com']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.170074Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--efcdfe3a-ca3d-42cc-beba-d09fdab49bd0",
+            "created": "2025-11-10T20:04:56.171675Z",
+            "modified": "2025-11-10T20:04:56.171675Z",
+            "name": "Clipboard Log File",
+            "description": "Log file containing clipboard data",
+            "pattern": "[file:name = 'libcurl.dll.log' AND file:parent_directory_ref.path LIKE 'C:\\\\ProgramData\\\\Microsoft\\\\DRM\\\\']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.171662Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--86ea940e-030c-4003-b833-fcef496b5af2",
+            "created": "2025-11-10T20:04:56.173719Z",
+            "modified": "2025-11-10T20:04:56.173719Z",
+            "name": "SparrowDoor Mutex",
+            "description": "Mutex created by SparrowDoor to ensure only one instance is running",
+            "pattern": "[mutex:name = 'Global\\\\gup0']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.173708Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3e1adfd5-c294-4c99-a5aa-2346d61b0f6d",
+            "created": "2025-11-10T20:04:56.175321Z",
+            "modified": "2025-11-10T20:04:56.175321Z",
+            "name": "Primary Persistence Mechanism",
+            "description": "Registry key used for primary persistence mechanism",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\services\\\\SearchIndexer']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.175311Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--90770af1-c7fb-4156-aef1-01bf043b3afa",
+            "created": "2025-11-10T20:04:56.176945Z",
+            "modified": "2025-11-10T20:04:56.176945Z",
+            "name": "Backup Persistence Mechanism",
+            "description": "Registry key used for backup persistence mechanism",
+            "pattern": "[windows-registry-key:key = 'HKEY_CURRENT_USER\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\SearchIndexer']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.176935Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c7ba11ef-ea39-4d23-aa74-372675b9cbe6",
+            "created": "2025-11-10T20:04:56.178383Z",
+            "modified": "2025-11-10T20:04:56.178383Z",
+            "name": "Environment Variable",
+            "description": "Stores the path to SearchIndexer.exe",
+            "pattern": "[windows-registry-key:key = '111']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.178374Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bbbca569-6623-4997-b2a5-aa3271b77519",
+            "created": "2025-11-10T20:04:56.17994Z",
+            "modified": "2025-11-10T20:04:56.17994Z",
+            "name": "Environment Variable",
+            "description": "Stores the path to libcurl.dll",
+            "pattern": "[windows-registry-key:key = '222']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.17993Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d8775248-896d-4e12-b660-3196e72213cf",
+            "created": "2025-11-10T20:04:56.181242Z",
+            "modified": "2025-11-10T20:04:56.181242Z",
+            "name": "Environment Variable",
+            "description": "Stores the path to libhost.dll",
+            "pattern": "[windows-registry-key:key = '333']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.181216Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--caabe7d5-ab77-4990-bb93-a7a53bd6d931",
+            "created": "2025-11-10T20:04:56.182182Z",
+            "modified": "2025-11-10T20:04:56.182182Z",
+            "name": "Indicator for libcurl.dll MD5 Hash (MD5)",
+            "description": "MD5 hash of the libcurl.dll file",
+            "pattern": "[file:hashes.'MD5' = '46077a32e433a56eb8ba64dcbf86bc60']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.182172Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cdb49341-8ba7-47fa-920d-022862ac0710",
+            "created": "2025-11-10T20:04:56.183335Z",
+            "modified": "2025-11-10T20:04:56.183335Z",
+            "name": "Indicator for libcurl.dll SHA-1 Hash (SHA1)",
+            "description": "SHA-1 hash of the libcurl.dll file",
+            "pattern": "[file:hashes.'SHA1' = '989b3798841d06e286eb083132242749c80fdd4d']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.183324Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f8806648-dd7f-483a-894d-e75df1bc4bb6",
+            "created": "2025-11-10T20:04:56.184461Z",
+            "modified": "2025-11-10T20:04:56.184461Z",
+            "name": "Indicator for libcurl.dll SHA-256 Hash (SHA256)",
+            "description": "SHA-256 hash of the libcurl.dll file",
+            "pattern": "[file:hashes.'SHA256' = 'f19bb3b49d548bce4d35e9cf83fba112ef8e087a422b86d1376a395466fdff2d']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.18445Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7d7e2a18-0804-45d6-adc4-e547e6135891",
+            "created": "2025-11-10T20:04:56.185596Z",
+            "modified": "2025-11-10T20:04:56.185596Z",
+            "name": "Indicator for libhost.dll MD5 Hash (MD5)",
+            "description": "MD5 hash of the libhost.dll file",
+            "pattern": "[file:hashes.'MD5' = '8ad3f513f48f711d573d33b7419e3ed5']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.185585Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b",
+            "created": "2025-11-10T20:04:56.186662Z",
+            "modified": "2025-11-10T20:04:56.186662Z",
+            "name": "Indicator for libhost.dll SHA-1 Hash (SHA1)",
+            "description": "SHA-1 hash of the libhost.dll file",
+            "pattern": "[file:hashes.'SHA1' = 'c1890a6447c991880467b86a013dbeaa66cc615f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.186652Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--09f7627d-074c-4238-885a-71303401cc03",
+            "created": "2025-11-10T20:04:56.187741Z",
+            "modified": "2025-11-10T20:04:56.187741Z",
+            "name": "Indicator for libhost.dll SHA-256 Hash (SHA256)",
+            "description": "SHA-256 hash of the libhost.dll file",
+            "pattern": "[file:hashes.'SHA256' = 'e0b107be8034976f6e91cfcc2bbc792b49ea61a071166968fec775af28b1f19c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T20:04:56.187731Z"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.63857Z",
+            "modified": "2025-11-10T20:05:55.63857Z",
+            "name": "sparrowdoor",
+            "description": "A persistent loader and backdoor which employs XOR encoding for the C2 channel underneath HTTPS.",
+            "malware_types": [
+                "backdoor",
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--07a1977b-65dc-4d35-ac93-6f48565fe306",
+            "created": "2025-11-10T20:05:55.638929Z",
+            "modified": "2025-11-10T20:05:55.638929Z",
+            "name": "ESET",
+            "description": "A cybersecurity company that reported a previous variant of the SparrowDoor malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--8d029380-2d68-4cef-a324-225cc5d7331f",
+            "created": "2025-11-10T20:05:55.639163Z",
+            "modified": "2025-11-10T20:05:55.639163Z",
+            "name": "Trend Micro",
+            "description": "A cybersecurity company whose product is targeted by the SparrowDoor malware's AV detection routine.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fbf5ba9b-3970-449a-b887-aede37e669a6",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.639443Z",
+            "modified": "2025-11-10T20:05:55.639443Z",
+            "name": "SparrowDoor loader",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_loader { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.639428Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--00eccb72-20b3-4fc4-b7b9-8762cb77af0b",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.639751Z",
+            "modified": "2025-11-10T20:05:55.639751Z",
+            "name": "SparrowDoor apipatch",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_apipatch { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.639741Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c58d4283-6b01-4fd4-93ea-e1dc6a3e20cc",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.640026Z",
+            "modified": "2025-11-10T20:05:55.640026Z",
+            "name": "SparrowDoor clipshot",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_clipshot { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.640018Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--30233c67-8ccf-46de-8bed-40006cdf39be",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.640314Z",
+            "modified": "2025-11-10T20:05:55.640314Z",
+            "name": "SparrowDoor config",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_config { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.640305Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--dad39cc7-6702-49ef-ab8d-194eefd40a59",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.640595Z",
+            "modified": "2025-11-10T20:05:55.640595Z",
+            "name": "SparrowDoor shellcode",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_shellcode { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.640585Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--62750c8a-a75f-44e6-aec8-4b93b525898e",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.640901Z",
+            "modified": "2025-11-10T20:05:55.640901Z",
+            "name": "SparrowDoor sleep routine",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_sleep_routine { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.640893Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--23a9dba7-596b-43fc-820a-e247cfe35d05",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.641176Z",
+            "modified": "2025-11-10T20:05:55.641176Z",
+            "name": "SparrowDoor xor routine",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_xor { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.641169Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4f0157cc-6c93-4c69-98ab-1bee897c8f92",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.641456Z",
+            "modified": "2025-11-10T20:05:55.641456Z",
+            "name": "SparrowDoor strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule SparrowDoor_strings { ... }",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T20:05:55.641449Z"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--63f0e718-f6da-4804-85b0-d07bfd969d5a",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.641734Z",
+            "modified": "2025-11-10T20:05:55.641734Z",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "SparrowDoor achieves persistence by installing SearchIndexer.exe as a Windows service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1543/003",
+                    "external_id": "T1543.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--aae14595-8247-4a44-8f45-7e30a134d222",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.642155Z",
+            "modified": "2025-11-10T20:05:55.642155Z",
+            "name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+            "description": "If SparrowDoor fails to persist as a Windows Service, it installs SearchIndexer.exe in the CurrentVersion\\Run key.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1547/001",
+                    "external_id": "T1547.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a1cfb758-3d2b-499f-9199-5be7bd5fd3d3",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.642542Z",
+            "modified": "2025-11-10T20:05:55.642542Z",
+            "name": "Access Token Manipulation: Token Impersonation/Theft",
+            "description": "SparrowDoor impersonates the user account token associated with the explorer.exe process.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1134/001",
+                    "external_id": "T1134.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b2a920b0-6ac3-41af-afc1-859bd45d4c61",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.642883Z",
+            "modified": "2025-11-10T20:05:55.642883Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "The SparrowDoor malware file libhost.dll is obfuscated with a 4-byte XOR key and the configuration is obfuscated with an 8-byte XOR key.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4b29d77d-6821-4135-b66c-4c57244e7ff4",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.643215Z",
+            "modified": "2025-11-10T20:05:55.643215Z",
+            "name": "Hijack Execution Flow: DLL Side-Loading",
+            "description": "The SparrowDoor malware gains execution when the malware file libcurl.dll is side-loaded by SearchIndexer.exe.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1574/002",
+                    "external_id": "T1574.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--9dcaf656-a80e-4b04-8fd6-6531a181bb79",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.643579Z",
+            "modified": "2025-11-10T20:05:55.643579Z",
+            "name": "Process Injection: Portable Executable Injection",
+            "description": "SparrowDoor injects itself into a spawned and suspended instance of svchost.exe during initialisation.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1055/012",
+                    "external_id": "T1055.012"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a2e14ab5-5d80-4cd9-b256-374c985308e4",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.643902Z",
+            "modified": "2025-11-10T20:05:55.643902Z",
+            "name": "Indicator Removal on Host: File Deletion",
+            "description": "SparrowDoor can be tasked to remove arbitrary files from the host.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b064ac43-b43c-460d-bab3-bc7599641bec",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.644266Z",
+            "modified": "2025-11-10T20:05:55.644266Z",
+            "name": "Reflective Code Loading",
+            "description": "SparrowDoor is loaded by a reflective loader found in libhost.dll.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1620",
+                    "external_id": "T1620"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--7eec7389-e171-46c6-867c-1c5f91c56d9f",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.644606Z",
+            "modified": "2025-11-10T20:05:55.644606Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "A legitimate and signed Notepad++ updater has been renamed SearchIndexer.exe, which is the name of a legitimate Windows binary.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/005",
+                    "external_id": "T1036.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0e111098-0d7a-40ec-9939-eb89f00211e7",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.644933Z",
+            "modified": "2025-11-10T20:05:55.644933Z",
+            "name": "Signed Binary Proxy Execution",
+            "description": "SparrowDoor is side-loaded into, and hijacks execution of, a signed Notepad++ updater.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1218",
+                    "external_id": "T1218"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ad70bdb8-639d-438c-b77d-458e278b2f00",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.645277Z",
+            "modified": "2025-11-10T20:05:55.645277Z",
+            "name": "Software Discovery: Security Software Discovery",
+            "description": "SparrowDoor checks the running processes against a list of hardcoded AV names.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1518/001",
+                    "external_id": "T1518.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ff1a0170-fdc4-4ab0-8e39-6f0c5ba8509a",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.645612Z",
+            "modified": "2025-11-10T20:05:55.645612Z",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "SparrowDoor uses HTTPS as a Command and control (C2) channel and is proxy aware.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--82f1021d-23bd-45c2-aa82-b7c10f084e16",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.64595Z",
+            "modified": "2025-11-10T20:05:55.64595Z",
+            "name": "Encrypted Channel: Symmetric Cryptography",
+            "description": "SparrowDoor uses static XOR keys to encode data when it is being sent or received over the C2 channel.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1573/001",
+                    "external_id": "T1573.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--847021d2-64eb-4fad-8df6-33124f87be74",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.64628Z",
+            "modified": "2025-11-10T20:05:55.64628Z",
+            "name": "Clipboard Data",
+            "description": "SparrowDoor can be tasked to launch clipboard logging functionality.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1115",
+                    "external_id": "T1115"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a43490eb-f987-4b35-8adf-72bb90adb549",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.646607Z",
+            "modified": "2025-11-10T20:05:55.646607Z",
+            "name": "Exfiltration Over C2 Channel",
+            "description": "SparrowDoor can be tasked to exfiltrate files from disk.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1041",
+                    "external_id": "T1041"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7a95db7a-3378-4339-9ad5-aa19502d6426",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.647087Z",
+            "modified": "2025-11-10T20:05:55.647087Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--63f0e718-f6da-4804-85b0-d07bfd969d5a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4d8c37f0-74db-4e94-aab6-564273e41cb8",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.647447Z",
+            "modified": "2025-11-10T20:05:55.647447Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--aae14595-8247-4a44-8f45-7e30a134d222"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e03b5c51-a19f-44bd-a73f-2693b81c1ae0",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.647752Z",
+            "modified": "2025-11-10T20:05:55.647752Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--a1cfb758-3d2b-499f-9199-5be7bd5fd3d3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6bb3782a-5609-41d2-b768-07d4aa8f1141",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.648029Z",
+            "modified": "2025-11-10T20:05:55.648029Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--b2a920b0-6ac3-41af-afc1-859bd45d4c61"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2b2265b2-c2fd-4679-b2ff-1d8f1eb9c911",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.648356Z",
+            "modified": "2025-11-10T20:05:55.648356Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--4b29d77d-6821-4135-b66c-4c57244e7ff4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9926ca0-b0ed-4b6d-a635-2670b128d893",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.648637Z",
+            "modified": "2025-11-10T20:05:55.648637Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--9dcaf656-a80e-4b04-8fd6-6531a181bb79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1b591d04-320c-4574-8cb4-c1ee030fcff5",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.648898Z",
+            "modified": "2025-11-10T20:05:55.648898Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--a2e14ab5-5d80-4cd9-b256-374c985308e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8b441efd-7618-4726-8c41-423852cd8823",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.649158Z",
+            "modified": "2025-11-10T20:05:55.649158Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--b064ac43-b43c-460d-bab3-bc7599641bec"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a7a35d6c-0f65-4664-b89a-df5d0576e538",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.649451Z",
+            "modified": "2025-11-10T20:05:55.649451Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--7eec7389-e171-46c6-867c-1c5f91c56d9f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--85394a95-b2cd-443f-bc74-41d1fdfa1767",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.649721Z",
+            "modified": "2025-11-10T20:05:55.649721Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--0e111098-0d7a-40ec-9939-eb89f00211e7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c1d6315a-5a52-4ea1-8592-07caa327403f",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.649991Z",
+            "modified": "2025-11-10T20:05:55.649991Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--ad70bdb8-639d-438c-b77d-458e278b2f00"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3022f40c-3f08-4214-82f2-6859086ba662",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.650276Z",
+            "modified": "2025-11-10T20:05:55.650276Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--ff1a0170-fdc4-4ab0-8e39-6f0c5ba8509a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--310b6f64-7a45-400e-b7d8-2bfb80f2a7d0",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.650547Z",
+            "modified": "2025-11-10T20:05:55.650547Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--82f1021d-23bd-45c2-aa82-b7c10f084e16"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ffbdc8a0-f1e3-45fc-8d22-af537ce7c8a8",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.650807Z",
+            "modified": "2025-11-10T20:05:55.650807Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--847021d2-64eb-4fad-8df6-33124f87be74"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--11bb88a7-c3b9-43cc-8afc-d1e9e1c4f58e",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.651062Z",
+            "modified": "2025-11-10T20:05:55.651062Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+            "target_ref": "attack-pattern--a43490eb-f987-4b35-8adf-72bb90adb549"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--95707540-81e8-4bb3-ac8a-5f6d27e58b8f",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.651355Z",
+            "modified": "2025-11-10T20:05:55.651355Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3bf809ce-0daa-49a1-bc68-bc49214050bf",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8a2ec57a-fac6-48e3-90d9-368179b27e87",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.651625Z",
+            "modified": "2025-11-10T20:05:55.651625Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--efcdfe3a-ca3d-42cc-beba-d09fdab49bd0",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b3cb94ee-784b-4255-8a6a-01cfc00b53f5",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.651896Z",
+            "modified": "2025-11-10T20:05:55.651896Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--86ea940e-030c-4003-b833-fcef496b5af2",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14c0568d-798d-43eb-9f94-e47d508fc3c7",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.652147Z",
+            "modified": "2025-11-10T20:05:55.652147Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3e1adfd5-c294-4c99-a5aa-2346d61b0f6d",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14eff058-2c1c-4f2b-a0b5-60918eac3268",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.652417Z",
+            "modified": "2025-11-10T20:05:55.652417Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--90770af1-c7fb-4156-aef1-01bf043b3afa",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8459e01c-e2dd-48ee-92f2-66845734fbc1",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.652677Z",
+            "modified": "2025-11-10T20:05:55.652677Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c7ba11ef-ea39-4d23-aa74-372675b9cbe6",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--54ba3ebb-5867-4b93-b68f-2f77e1f2bf51",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.652929Z",
+            "modified": "2025-11-10T20:05:55.652929Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bbbca569-6623-4997-b2a5-aa3271b77519",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cea694e6-e73e-475f-82d2-c54d51d321d5",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.653179Z",
+            "modified": "2025-11-10T20:05:55.653179Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--d8775248-896d-4e12-b660-3196e72213cf",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bded8cae-86fe-46f6-aa2f-c765f4306167",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.653453Z",
+            "modified": "2025-11-10T20:05:55.653453Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--caabe7d5-ab77-4990-bb93-a7a53bd6d931",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--84e6b23c-90d0-48b5-8f5c-99637fc2757c",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.653717Z",
+            "modified": "2025-11-10T20:05:55.653717Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cdb49341-8ba7-47fa-920d-022862ac0710",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1bbbee4-390b-44ea-82ba-8832f61368ad",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.653968Z",
+            "modified": "2025-11-10T20:05:55.653968Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f8806648-dd7f-483a-894d-e75df1bc4bb6",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3c66b989-4e1c-4a05-84b8-e00de7f92c49",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.654232Z",
+            "modified": "2025-11-10T20:05:55.654232Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7d7e2a18-0804-45d6-adc4-e547e6135891",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d2c119bd-f131-4622-9669-fa885f33e9eb",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.654502Z",
+            "modified": "2025-11-10T20:05:55.654502Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d38780b1-e43c-4cc3-8038-4c77f358f34a",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.654768Z",
+            "modified": "2025-11-10T20:05:55.654768Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--09f7627d-074c-4238-885a-71303401cc03",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0e05e6ce-eb57-4974-bbdd-ee4c32044444",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.6553Z",
+            "modified": "2025-11-10T20:05:55.6553Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fbf5ba9b-3970-449a-b887-aede37e669a6",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--85ba1b84-12ba-4052-adb7-91f50bd5f5b0",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.655629Z",
+            "modified": "2025-11-10T20:05:55.655629Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fbf5ba9b-3970-449a-b887-aede37e669a6",
+            "target_ref": "indicator--cdb49341-8ba7-47fa-920d-022862ac0710"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d838827a-cdc6-48b8-8830-534c930c4f43",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.655929Z",
+            "modified": "2025-11-10T20:05:55.655929Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--00eccb72-20b3-4fc4-b7b9-8762cb77af0b",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--844c7ebf-409a-4cac-91ad-0ce2c2b99a61",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.656246Z",
+            "modified": "2025-11-10T20:05:55.656246Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--00eccb72-20b3-4fc4-b7b9-8762cb77af0b",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f7cf2a1d-bc48-4ce3-a259-b98a6f60d40e",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.656575Z",
+            "modified": "2025-11-10T20:05:55.656575Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c58d4283-6b01-4fd4-93ea-e1dc6a3e20cc",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--80a9d43e-0c0c-4e5c-87d1-8cb9a5a55544",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.656853Z",
+            "modified": "2025-11-10T20:05:55.656853Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c58d4283-6b01-4fd4-93ea-e1dc6a3e20cc",
+            "target_ref": "indicator--cdb49341-8ba7-47fa-920d-022862ac0710"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0a1ecad7-d6e4-4d64-ab3c-101817371f24",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.65718Z",
+            "modified": "2025-11-10T20:05:55.65718Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--30233c67-8ccf-46de-8bed-40006cdf39be",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--57291910-eede-47de-9922-7c415c88e00c",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.657498Z",
+            "modified": "2025-11-10T20:05:55.657498Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--30233c67-8ccf-46de-8bed-40006cdf39be",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6322b75b-4447-4ab7-8090-aac5c83a8ed0",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.657801Z",
+            "modified": "2025-11-10T20:05:55.657801Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--dad39cc7-6702-49ef-ab8d-194eefd40a59",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3af9de11-2917-4d19-8fc9-3ab87b801100",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.6581Z",
+            "modified": "2025-11-10T20:05:55.6581Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--dad39cc7-6702-49ef-ab8d-194eefd40a59",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a02667d0-5e56-436d-99c7-c0e0aef292a1",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.658433Z",
+            "modified": "2025-11-10T20:05:55.658433Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--62750c8a-a75f-44e6-aec8-4b93b525898e",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4ff3d1c0-5e1e-46a3-bded-42b288dea6a0",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.658809Z",
+            "modified": "2025-11-10T20:05:55.658809Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--62750c8a-a75f-44e6-aec8-4b93b525898e",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a5565c25-b6e7-4f42-8244-69f8c143893f",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.65926Z",
+            "modified": "2025-11-10T20:05:55.65926Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--23a9dba7-596b-43fc-820a-e247cfe35d05",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7064b1f7-95cb-42e5-b6fa-1b34cdea25f9",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.659708Z",
+            "modified": "2025-11-10T20:05:55.659708Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23a9dba7-596b-43fc-820a-e247cfe35d05",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f78907b0-40d8-43b2-b566-8f1a16bf5ce6",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.660046Z",
+            "modified": "2025-11-10T20:05:55.660046Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4f0157cc-6c93-4c69-98ab-1bee897c8f92",
+            "target_ref": "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9a4595c9-e77f-4127-a4ae-ffbeb1272140",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.660371Z",
+            "modified": "2025-11-10T20:05:55.660371Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4f0157cc-6c93-4c69-98ab-1bee897c8f92",
+            "target_ref": "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--40602ab3-1997-44c2-9154-8d4a89d70289",
+            "created_by_ref": "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+            "created": "2025-11-10T20:05:55.661256Z",
+            "modified": "2025-11-10T20:05:55.661256Z",
+            "name": "Analisi Malware: Sparrowdoor",
+            "description": "This report contains technical analysis and indicators associated with malware. sparrowdoor.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-10T20:05:55.661236Z",
+            "object_refs": [
+                "identity--bbe97f1f-dd87-43cf-9ad5-7a54019f08b5",
+                "domain-name--649eaf78-676f-52fe-a165-911319aceda0",
+                "mutex--ba1a71b9-af46-5543-968f-3e18936c35f1",
+                "windows-registry-key--863cdf7c-8790-50c9-8a9f-78361d359e13",
+                "windows-registry-key--5badc5a7-25c4-54d7-b7ec-b27a730ed473",
+                "windows-registry-key--1b150634-eac3-593f-b4ab-735450c0d1b5",
+                "windows-registry-key--030e0593-9f5a-5918-b58f-60f9993dad75",
+                "windows-registry-key--a63136b4-c2b4-58ef-adf2-b66ce913699d",
+                "indicator--3bf809ce-0daa-49a1-bc68-bc49214050bf",
+                "indicator--efcdfe3a-ca3d-42cc-beba-d09fdab49bd0",
+                "indicator--86ea940e-030c-4003-b833-fcef496b5af2",
+                "indicator--3e1adfd5-c294-4c99-a5aa-2346d61b0f6d",
+                "indicator--90770af1-c7fb-4156-aef1-01bf043b3afa",
+                "indicator--c7ba11ef-ea39-4d23-aa74-372675b9cbe6",
+                "indicator--bbbca569-6623-4997-b2a5-aa3271b77519",
+                "indicator--d8775248-896d-4e12-b660-3196e72213cf",
+                "indicator--caabe7d5-ab77-4990-bb93-a7a53bd6d931",
+                "indicator--cdb49341-8ba7-47fa-920d-022862ac0710",
+                "indicator--f8806648-dd7f-483a-894d-e75df1bc4bb6",
+                "indicator--7d7e2a18-0804-45d6-adc4-e547e6135891",
+                "indicator--39c88c83-d1f0-484f-ba4b-f3da26c4782b",
+                "indicator--09f7627d-074c-4238-885a-71303401cc03",
+                "malware--cd5b4c9e-e607-4b1c-8465-82e2eb82f939",
+                "identity--07a1977b-65dc-4d35-ac93-6f48565fe306",
+                "identity--8d029380-2d68-4cef-a324-225cc5d7331f",
+                "indicator--fbf5ba9b-3970-449a-b887-aede37e669a6",
+                "indicator--00eccb72-20b3-4fc4-b7b9-8762cb77af0b",
+                "indicator--c58d4283-6b01-4fd4-93ea-e1dc6a3e20cc",
+                "indicator--30233c67-8ccf-46de-8bed-40006cdf39be",
+                "indicator--dad39cc7-6702-49ef-ab8d-194eefd40a59",
+                "indicator--62750c8a-a75f-44e6-aec8-4b93b525898e",
+                "indicator--23a9dba7-596b-43fc-820a-e247cfe35d05",
+                "indicator--4f0157cc-6c93-4c69-98ab-1bee897c8f92",
+                "attack-pattern--63f0e718-f6da-4804-85b0-d07bfd969d5a",
+                "attack-pattern--aae14595-8247-4a44-8f45-7e30a134d222",
+                "attack-pattern--a1cfb758-3d2b-499f-9199-5be7bd5fd3d3",
+                "attack-pattern--b2a920b0-6ac3-41af-afc1-859bd45d4c61",
+                "attack-pattern--4b29d77d-6821-4135-b66c-4c57244e7ff4",
+                "attack-pattern--9dcaf656-a80e-4b04-8fd6-6531a181bb79",
+                "attack-pattern--a2e14ab5-5d80-4cd9-b256-374c985308e4",
+                "attack-pattern--b064ac43-b43c-460d-bab3-bc7599641bec",
+                "attack-pattern--7eec7389-e171-46c6-867c-1c5f91c56d9f",
+                "attack-pattern--0e111098-0d7a-40ec-9939-eb89f00211e7",
+                "attack-pattern--ad70bdb8-639d-438c-b77d-458e278b2f00",
+                "attack-pattern--ff1a0170-fdc4-4ab0-8e39-6f0c5ba8509a",
+                "attack-pattern--82f1021d-23bd-45c2-aa82-b7c10f084e16",
+                "attack-pattern--847021d2-64eb-4fad-8df6-33124f87be74",
+                "attack-pattern--a43490eb-f987-4b35-8adf-72bb90adb549",
+                "relationship--7a95db7a-3378-4339-9ad5-aa19502d6426",
+                "relationship--4d8c37f0-74db-4e94-aab6-564273e41cb8",
+                "relationship--e03b5c51-a19f-44bd-a73f-2693b81c1ae0",
+                "relationship--6bb3782a-5609-41d2-b768-07d4aa8f1141",
+                "relationship--2b2265b2-c2fd-4679-b2ff-1d8f1eb9c911",
+                "relationship--a9926ca0-b0ed-4b6d-a635-2670b128d893",
+                "relationship--1b591d04-320c-4574-8cb4-c1ee030fcff5",
+                "relationship--8b441efd-7618-4726-8c41-423852cd8823",
+                "relationship--a7a35d6c-0f65-4664-b89a-df5d0576e538",
+                "relationship--85394a95-b2cd-443f-bc74-41d1fdfa1767",
+                "relationship--c1d6315a-5a52-4ea1-8592-07caa327403f",
+                "relationship--3022f40c-3f08-4214-82f2-6859086ba662",
+                "relationship--310b6f64-7a45-400e-b7d8-2bfb80f2a7d0",
+                "relationship--ffbdc8a0-f1e3-45fc-8d22-af537ce7c8a8",
+                "relationship--11bb88a7-c3b9-43cc-8afc-d1e9e1c4f58e",
+                "relationship--95707540-81e8-4bb3-ac8a-5f6d27e58b8f",
+                "relationship--8a2ec57a-fac6-48e3-90d9-368179b27e87",
+                "relationship--b3cb94ee-784b-4255-8a6a-01cfc00b53f5",
+                "relationship--14c0568d-798d-43eb-9f94-e47d508fc3c7",
+                "relationship--14eff058-2c1c-4f2b-a0b5-60918eac3268",
+                "relationship--8459e01c-e2dd-48ee-92f2-66845734fbc1",
+                "relationship--54ba3ebb-5867-4b93-b68f-2f77e1f2bf51",
+                "relationship--cea694e6-e73e-475f-82d2-c54d51d321d5",
+                "relationship--bded8cae-86fe-46f6-aa2f-c765f4306167",
+                "relationship--84e6b23c-90d0-48b5-8f5c-99637fc2757c",
+                "relationship--d1bbbee4-390b-44ea-82ba-8832f61368ad",
+                "relationship--3c66b989-4e1c-4a05-84b8-e00de7f92c49",
+                "relationship--d2c119bd-f131-4622-9669-fa885f33e9eb",
+                "relationship--d38780b1-e43c-4cc3-8038-4c77f358f34a",
+                "relationship--0e05e6ce-eb57-4974-bbdd-ee4c32044444",
+                "relationship--85ba1b84-12ba-4052-adb7-91f50bd5f5b0",
+                "relationship--d838827a-cdc6-48b8-8830-534c930c4f43",
+                "relationship--844c7ebf-409a-4cac-91ad-0ce2c2b99a61",
+                "relationship--f7cf2a1d-bc48-4ce3-a259-b98a6f60d40e",
+                "relationship--80a9d43e-0c0c-4e5c-87d1-8cb9a5a55544",
+                "relationship--0a1ecad7-d6e4-4d64-ab3c-101817371f24",
+                "relationship--57291910-eede-47de-9922-7c415c88e00c",
+                "relationship--6322b75b-4447-4ab7-8090-aac5c83a8ed0",
+                "relationship--3af9de11-2917-4d19-8fc9-3ab87b801100",
+                "relationship--a02667d0-5e56-436d-99c7-c0e0aef292a1",
+                "relationship--4ff3d1c0-5e1e-46a3-bded-42b288dea6a0",
+                "relationship--a5565c25-b6e7-4f42-8244-69f8c143893f",
+                "relationship--7064b1f7-95cb-42e5-b6fa-1b34cdea25f9",
+                "relationship--f78907b0-40d8-43b2-b566-8f1a16bf5ce6",
+                "relationship--9a4595c9-e77f-4127-a4ae-ffbeb1272140"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
