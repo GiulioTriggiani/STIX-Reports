@@ -1,0 +1,1083 @@
+{
+    "type": "bundle",
+    "id": "bundle--9d6399a8-8b68-41c8-9657-4ea7e596635c",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.278372Z",
+            "modified": "2025-11-10T11:32:42.278372Z",
+            "name": "NCSC",
+            "description": "The UK's National Cyber Security Centre. NCSC is the author and publisher of this report, providing analysis, detection strategies, and YARA signatures.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--261b78f4-bbca-576e-96a5-d32bf2f03afa",
+            "value": "apimonger.com"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--52bf1724-9b4e-56ef-a430-3821e9249a98",
+            "value": "journalctl.website"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--5c73e648-6fd6-5ca7-bad3-9fb7305a4056",
+            "value": "http://journalctl.website/asldajEPqew"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--9e4494c5-9509-5ae6-8e8e-9d73202bca8c",
+            "key": "SOFTWARE\\Classes\\CLSID\\{F82B4EF1-93A9-4DDE-8015-F7950A1A6E31}\\InprocServer32"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a88cd271-e03a-4088-bd1a-240017074bb9",
+            "created": "2025-11-10T11:32:13.233435Z",
+            "modified": "2025-11-10T11:32:13.233435Z",
+            "name": "DAMASCENED PEACOCK C2 domain",
+            "description": "Command and Control (C2) domain used by DAMASCENED PEACOCK to communicate with attacker infrastructure over HTTP.",
+            "pattern": "[domain-name:value = 'apimonger.com']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.233412Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--02401080-68ef-41fc-96fd-54c547e45b4e",
+            "created": "2025-11-10T11:32:13.238703Z",
+            "modified": "2025-11-10T11:32:13.238703Z",
+            "name": "Malware download domain",
+            "description": "Domain used to serve DAMASCENED PEACOCK payload during infection chain.",
+            "pattern": "[domain-name:value = 'journalctl.website']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.238685Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--35eb7073-817f-48ed-8c2e-b1dd258f47ca",
+            "created": "2025-11-10T11:32:13.244273Z",
+            "modified": "2025-11-10T11:32:13.244273Z",
+            "name": "DAMASCENED PEACOCK download URL",
+            "description": "Malicious URL in spear-phishing campaign, used to download the DAMASCENED PEACOCK malware.",
+            "pattern": "[url:value = 'http://journalctl.website/asldajEPqew']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.244094Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--289f9cb4-f3a8-45c0-bfdd-b8c2a5a7c805",
+            "created": "2025-11-10T11:32:13.246585Z",
+            "modified": "2025-11-10T11:32:13.246585Z",
+            "name": "Third stage DLL payload",
+            "description": "Location where DAMASCENED PEACOCK writes the downloaded third stage DLL before launching via COM Hijack.",
+            "pattern": "[file:name = 'KeyProv.dll' AND file:parent_directory_ref.path LIKE '%LOCALAPPDATA%\\\\KeyStore']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.24657Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bec1711e-2785-42ad-ac4e-868bf79bf215",
+            "created": "2025-11-10T11:32:13.249648Z",
+            "modified": "2025-11-10T11:32:13.249648Z",
+            "name": "COM Hijack Persistence Registry Key",
+            "description": "Registry key abused by DAMASCENED PEACOCK for persistence via COM hijacking. Malware replaces this entry to launch its payload.",
+            "pattern": "[windows-registry-key:key = 'SOFTWARE\\\\Classes\\\\CLSID\\\\{F82B4EF1-93A9-4DDE-8015-F7950A1A6E31}\\\\InprocServer32']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.249634Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--838a367e-3277-4272-b64f-ff0fccc57fcc",
+            "created": "2025-11-10T11:32:13.251238Z",
+            "modified": "2025-11-10T11:32:13.251238Z",
+            "name": "Indicator for Doc_03.10.24.298133.exe (MD5)",
+            "description": "MD5 hash of the malicious first stage downloader (original filename: PortDocFormat.exe) used in spear-phishing.",
+            "pattern": "[file:hashes.'MD5' = 'e0c48d62c4d484b6dd4a601970df5d0e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.251224Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061",
+            "created": "2025-11-10T11:32:13.252607Z",
+            "modified": "2025-11-10T11:32:13.252607Z",
+            "name": "Indicator for Doc_03.10.24.298133.exe (SHA1)",
+            "description": "SHA-1 hash of the malicious first stage downloader (original filename: PortDocFormat.exe) used in spear-phishing.",
+            "pattern": "[file:hashes.'SHA1' = '1bd5b9fec7ccc29144989203c3b15a10c9c22a76']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.252595Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b9e7439b-9af3-4cf9-a6ef-da9479c777b7",
+            "created": "2025-11-10T11:32:13.254331Z",
+            "modified": "2025-11-10T11:32:13.254331Z",
+            "name": "Indicator for Doc_03.10.24.298133.exe (SHA256)",
+            "description": "SHA-256 hash of the malicious first stage downloader (original filename: PortDocFormat.exe) used in spear-phishing.",
+            "pattern": "[file:hashes.'SHA256' = '31a8a2762b42a1fe4be2aed9d112a169f791bd86a85e68d738aea51312096442']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.254318Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--16092204-ef6e-4c2a-be8c-be944b6808e1",
+            "created": "2025-11-10T11:32:13.255571Z",
+            "modified": "2025-11-10T11:32:13.255571Z",
+            "name": "Indicator for XcsExplorerDll_x86.dll (MD5)",
+            "description": "MD5 hash of the DAMASCENED PEACOCK DLL payload (second stage).",
+            "pattern": "[file:hashes.'MD5' = 'e400ec98fc8a6b7212fc18cf8321ba16']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.255559Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33",
+            "created": "2025-11-10T11:32:13.256821Z",
+            "modified": "2025-11-10T11:32:13.256821Z",
+            "name": "Indicator for XcsExplorerDll_x86.dll (SHA1)",
+            "description": "SHA-1 hash of the DAMASCENED PEACOCK DLL payload (second stage).",
+            "pattern": "[file:hashes.'SHA1' = '8c25b982e5e4b3418b779c85b8ac8a6acf393063']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.256809Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7aaab775-6617-4f90-b7af-de865201972f",
+            "created": "2025-11-10T11:32:13.257994Z",
+            "modified": "2025-11-10T11:32:13.257994Z",
+            "name": "Indicator for XcsExplorerDll_x86.dll (SHA256)",
+            "description": "SHA-256 hash of the DAMASCENED PEACOCK DLL payload (second stage).",
+            "pattern": "[file:hashes.'SHA256' = '804dc9c037e9d0e5426cb1f0df8dde61cd43cf6ea4c27cf526c2d6ac50ba3e95']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-10T11:32:13.257983Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4cca7a5e-b95d-481c-ad34-53e27970885d",
+            "created": "2025-11-10T11:32:13.259269Z",
+            "modified": "2025-11-10T11:32:13.259269Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--838a367e-3277-4272-b64f-ff0fccc57fcc",
+            "target_ref": "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2fbca318-8152-47cf-9941-f44e7af7346f",
+            "created": "2025-11-10T11:32:13.259661Z",
+            "modified": "2025-11-10T11:32:13.259661Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--838a367e-3277-4272-b64f-ff0fccc57fcc",
+            "target_ref": "indicator--b9e7439b-9af3-4cf9-a6ef-da9479c777b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b82a7677-5f42-4d29-9e41-93387d857164",
+            "created": "2025-11-10T11:32:13.259982Z",
+            "modified": "2025-11-10T11:32:13.259982Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061",
+            "target_ref": "indicator--b9e7439b-9af3-4cf9-a6ef-da9479c777b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--79e3adc1-870c-4810-a127-488c38b27e03",
+            "created": "2025-11-10T11:32:13.260305Z",
+            "modified": "2025-11-10T11:32:13.260305Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16092204-ef6e-4c2a-be8c-be944b6808e1",
+            "target_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8de6ce16-2ac5-4a7d-be5b-c656a2c03c24",
+            "created": "2025-11-10T11:32:13.260588Z",
+            "modified": "2025-11-10T11:32:13.260588Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16092204-ef6e-4c2a-be8c-be944b6808e1",
+            "target_ref": "indicator--7aaab775-6617-4f90-b7af-de865201972f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c6d4b44e-8a70-4661-8f4e-e93c75a97b61",
+            "created": "2025-11-10T11:32:13.260879Z",
+            "modified": "2025-11-10T11:32:13.260879Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33",
+            "target_ref": "indicator--7aaab775-6617-4f90-b7af-de865201972f"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.278824Z",
+            "modified": "2025-11-10T11:32:42.278824Z",
+            "name": "damascened peacock",
+            "description": "DAMASCENED PEACOCK is a lightweight, staged downloader targeting Windows systems, delivered via spear-phishing. It acts as the second of three stages in the infection chain, responsible for downloading the final stage and executing it through COM Hijack. It employs defense evasion techniques such as XOR-based string obfuscation and dynamic API resolution, communicates over HTTP to a C2 domain (apimonger.com), and is code signed. DAMASCENED PEACOCK operates as a 32-bit DLL with a single export, and persists via registry manipulation for COM hijacking.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--d8d52d1c-7a31-45c1-ba1c-2f397ced177b",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.279226Z",
+            "modified": "2025-11-10T11:32:42.279226Z",
+            "name": "romcom",
+            "description": "RomCom is a broader malware family of which DAMASCENED PEACOCK, RustyClaw, and SnipBot are part. RomCom campaigns employ code signed first stages and contain multiple malware variants.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--49710f42-50b7-4da1-ac23-e55b24091dd3",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.279534Z",
+            "modified": "2025-11-10T11:32:42.279534Z",
+            "name": "rustyclaw",
+            "description": "RustyClaw is a malware variant related to DAMASCENED PEACOCK, forming an earlier stage in the infection chain documented by Talos and part of the RomCom family.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--5b2d0162-5234-4a30-8536-ad6137f5ae6d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.279833Z",
+            "modified": "2025-11-10T11:32:42.279833Z",
+            "name": "snipbot",
+            "description": "SnipBot is a malware variant related to DAMASCENED PEACOCK and part of the RomCom family, documented by Palo Alto Networks.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--f4fae05d-862a-4eab-8145-fb63ab7ecd6d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.280165Z",
+            "modified": "2025-11-10T11:32:42.280165Z",
+            "name": "dustyhammock",
+            "description": "DustyHammock is referenced as the final stage in the infection chain following DAMASCENED PEACOCK and is part of the RomCom malware ecosystem.",
+            "malware_types": [
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--7b034678-1ed2-4e49-a92e-0d7db2cae183",
+            "created": "2025-11-10T11:32:42.280446Z",
+            "modified": "2025-11-10T11:32:42.280446Z",
+            "name": "Talos",
+            "description": "Cisco Talos is cited as a source documenting the RustyClaw malware variant.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--e9312b1d-6ad9-46e3-b7c1-77b9cc18bd6e",
+            "created": "2025-11-10T11:32:42.280679Z",
+            "modified": "2025-11-10T11:32:42.280679Z",
+            "name": "Palo Alto Networks",
+            "description": "Palo Alto Networks (Unit 42) is cited as a source documenting the SnipBot malware variant.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--2f3eaa75-40cf-4872-a88c-2592752f10d5",
+            "created": "2025-11-10T11:32:42.280909Z",
+            "modified": "2025-11-10T11:32:42.280909Z",
+            "name": "MOD",
+            "description": "UK Ministry of Defence. The MOD was a target of the spear-phishing campaign which delivered DAMASCENED PEACOCK and detected the attack.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--e5b9574e-54d3-4021-95a5-928a1703339f",
+            "created": "2025-11-10T11:32:42.281164Z",
+            "modified": "2025-11-10T11:32:42.281164Z",
+            "name": "FUTURICO LLC",
+            "description": "FUTURICO LLC is the organization to which the code signing certificate used for the first stage of the malware is issued. Mentioned in the code signing certificate details.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--93f42efd-cefe-44d3-ba76-5407f743b12d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.281392Z",
+            "modified": "2025-11-10T11:32:42.281392Z",
+            "name": "Unknown (RomCom threat actor)",
+            "description": "The actor behind DAMASCENED PEACOCK and related RomCom campaigns. The actor demonstrates access to code signing certificates, delivers multi-stage Windows malware via spear-phishing, and leverages defense evasion techniques and staged malware delivery."
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--195a952f-4414-4e61-b63d-cb8e56760d30",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.281701Z",
+            "modified": "2025-11-10T11:32:42.281701Z",
+            "name": "T1592",
+            "description": "DAMASCENED PEACOCK checks whether the victim host is 32-bit or 64-bit to determine the appropriate next stage to download.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "reconnaissance"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1592",
+                    "external_id": "T1592"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--c85550dc-6fe7-4a89-95f1-415175ea837d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.282144Z",
+            "modified": "2025-11-10T11:32:42.282144Z",
+            "name": "T1566.002",
+            "description": "Phishing with spearphishing links: DAMASCENED PEACOCK is executed by a first stage that is delivered via a link in an email.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1566/002",
+                    "external_id": "T1566.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--12c979f3-0d1d-42c3-819c-3ec94aeacfca",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.282488Z",
+            "modified": "2025-11-10T11:32:42.282488Z",
+            "name": "T1204.002",
+            "description": "User Execution via malicious file or link: DAMASCENED PEACOCK is executed by a first stage which is reliant upon the user running the file.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1204/002",
+                    "external_id": "T1204.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--17db40fc-090a-408b-b1b5-e8f638b4b96a",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.282813Z",
+            "modified": "2025-11-10T11:32:42.282813Z",
+            "name": "T1559.001",
+            "description": "Inter-Process Communication: Component Object Model - DAMASCENED PEACOCK achieves execution for the third stage it downloads by COM Hijacking explorer.exe.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1559/001",
+                    "external_id": "T1559.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a0d0a580-a3e4-405d-afbe-4ec20c3383c3",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.2832Z",
+            "modified": "2025-11-10T11:32:42.2832Z",
+            "name": "T1140",
+            "description": "Obfuscated Files or Information: DAMASCENED PEACOCK XOR encodes configuration strings used throughout.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4ce0ed3f-dc18-464d-8fb6-d73db171c039",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.283543Z",
+            "modified": "2025-11-10T11:32:42.283543Z",
+            "name": "T1027.007",
+            "description": "Obfuscated Files or Information: Dynamic API Resolution - DAMASCENED PEACOCK uses an API hashing algorithm combined with dynamic resolution of Win32 APIs to obfuscate functionality.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027/007",
+                    "external_id": "T1027.007"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--60d8ffee-7cd1-419f-a6d6-c049200f064d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.283884Z",
+            "modified": "2025-11-10T11:32:42.283884Z",
+            "name": "T1553.002",
+            "description": "Subvert Trust Controls: Code Signing - The first stage of the malware is signed, meaning DAMASCENED PEACOCK executes within a signed, malicious process.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1553/002",
+                    "external_id": "T1553.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--37f45be9-c58c-4f36-8785-93de5cb027a0",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.284258Z",
+            "modified": "2025-11-10T11:32:42.284258Z",
+            "name": "T1036",
+            "description": "Masquerading - The first stage of DAMASCENED PEACOCK is an executable with an icon and filename indicating it is a PDF.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036",
+                    "external_id": "T1036"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--995acc43-738b-431b-b130-2fd8b49f3733",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.284602Z",
+            "modified": "2025-11-10T11:32:42.284602Z",
+            "name": "T1071.001",
+            "description": "Command and Control: Application Layer Protocol: Web Protocols - DAMASCENED PEACOCK communicates with the command and control server over HTTP.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1a5ed520-208b-4b2c-acb5-3d87398810b7",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.284941Z",
+            "modified": "2025-11-10T11:32:42.284941Z",
+            "name": "DAMASCENED_PEACOCK_resolve_apis",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DAMASCENED_PEACOCK_resolve_apis {\n    meta:\n        author = \"NCSC\"\n        description = \"Targets a code pattern which is used to resolve\nAPIs in the first stage which loads DAMASCENED PEACOCK.\"\n        hash1 = \"1bd5b9fec7ccc29144989203c3b15a10c9c22a76\"\n\n    strings:\n\n    $ = {56 31 C0 85 D2 74 1D 0F B6 31 41 4A 69 F6 [4] 0F AF F6 C1\n\nC6 10 31 C6 0F AF F6 C1 C6 10 89 F0 EB DF 5E C3}\n    condition:\n\n    (uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550\n\nand all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T11:32:42.284929Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0c9ee48d-040b-4592-aba4-b611689d6ff2",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.285242Z",
+            "modified": "2025-11-10T11:32:42.285242Z",
+            "name": "DAMASCENED_PEACOCK_winhttpconnect",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DAMASCENED_PEACOCK_winhttpconnect {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule targets a code pattern in DAMASCENED\nPEACOCK which sees the resolved pointer for WinHttpConnect retrieved from\na struct, arguments pushed e.g. 8080 as the port, and then a call.\"\n        hash1 = \"8c25b982e5e4b3418b779c85b8ac8a6acf393063\"\n\n    strings:\n        $ = {8B 85 90 00 00 00 6A 00 68 90 1F 00 00 FF 76 34 FF 33 FF D0}\n    condition:\n        (uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and\nall of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T11:32:42.285235Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--dc6c74a7-50f4-43fd-9249-f5ca78f159e9",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.285504Z",
+            "modified": "2025-11-10T11:32:42.285504Z",
+            "name": "DAMASCENED_PEACOCK_API_hashes",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DAMASCENED_PEACOCK_API_hashes {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule targets code patterns for pushing the\nhash onto the stack and then moving the returned pointer into a structure\nin DAMASCENED PEACOCK.\"\n        hash1 = \"8c25b982e5e4b3418b779c85b8ac8a6acf393063\"\n\n    strings:\n        $ = {68 1A 81 A8 01} // push hash\n        $ = {83 C4 04 89 46 04} // move result into struct\n\n        $ = {68 7D 53 AE 52}\n        $ = {83 C4 04 89 46 08}\n\n        $ = {68 59 6F 3C 00}\n        $ = {83 C4 04 89 46 0C}\n\n        $ = {68 6B 9A C6 E1}\n        $ = {83 C4 04 89 46 10}\n\n        $ = {68 32 A9 7C 08}\n        $ = {83 C4 04 89 46 14}\n\n        $ = {68 76 EE 30 8A}\n        $ = {83 C4 04 89 46 18}\n\n    condition:\n        (uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and\nall of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T11:32:42.285496Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4502c709-6d4e-4f65-b5d9-259e3bb281bd",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.285765Z",
+            "modified": "2025-11-10T11:32:42.285765Z",
+            "name": "DAMASCENED_PEACOCK_API_hashing_algorithm",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DAMASCENED_PEACOCK_API_hashing_algorithm {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule targets the code in DAMASCENED PEACOCK\nused for generating an API hash. The rule is agnostic of the constants\nused to generate the hash.\"\n        hash1 = \"8c25b982e5e4b3418b779c85b8ac8a6acf393063\"\n\n    strings:\n        $ =\n{8D0C0669C9[4]8D5201C1C9??81C1[4]03C1C1C8??0FAFC60FBE3203C08BC8C1C8??C1C9\n??85F6}\n    condition:\n        any of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T11:32:42.285758Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--73f6dba7-5d95-402a-9958-070c1aabeaee",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.286048Z",
+            "modified": "2025-11-10T11:32:42.286048Z",
+            "name": "DAMASCENED_PEACOCK_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DAMASCENED_PEACOCK_strings {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule targets the original name and export\nname in DAMASCENED PEACOCK.\"\n        hash1 = \"8c25b982e5e4b3418b779c85b8ac8a6acf393063\"\n\n    strings:\n        $ = \"XcsExplorerDll_x86.dll\"\n        $ = \"DllExport\"\n    condition:\n        (uint16(0) == 0x5A4D) and uint32(uint32(0x3C)) == 0x00004550 and\nall of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-10T11:32:42.28604Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--55c878e2-1dca-4616-b2c5-53d1b94f857e",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.286436Z",
+            "modified": "2025-11-10T11:32:42.286436Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--195a952f-4414-4e61-b63d-cb8e56760d30"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d573c163-ecd1-4dce-9fab-e5d7037c42ba",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.28671Z",
+            "modified": "2025-11-10T11:32:42.28671Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--c85550dc-6fe7-4a89-95f1-415175ea837d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67bb4d61-ba2c-4359-ad42-2e4af58b5c40",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.286959Z",
+            "modified": "2025-11-10T11:32:42.286959Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--12c979f3-0d1d-42c3-819c-3ec94aeacfca"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--816bd23d-36fe-453a-893c-c9c8552ee728",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.287237Z",
+            "modified": "2025-11-10T11:32:42.287237Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--17db40fc-090a-408b-b1b5-e8f638b4b96a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--52d7fda2-ff0d-409d-8b5f-9219a119fda1",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.28749Z",
+            "modified": "2025-11-10T11:32:42.28749Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--a0d0a580-a3e4-405d-afbe-4ec20c3383c3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1c11cd4b-562a-47be-8453-03ef3693ac4d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.287761Z",
+            "modified": "2025-11-10T11:32:42.287761Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--4ce0ed3f-dc18-464d-8fb6-d73db171c039"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--338b261e-45db-4fbc-b9e1-5e570ea87d74",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.288073Z",
+            "modified": "2025-11-10T11:32:42.288073Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--60d8ffee-7cd1-419f-a6d6-c049200f064d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8e7ae32c-c7ad-457e-8f74-8acc5e0f9b8f",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.288337Z",
+            "modified": "2025-11-10T11:32:42.288337Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--37f45be9-c58c-4f36-8785-93de5cb027a0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0fb765a3-66a4-430c-8b52-c9581683882f",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.288589Z",
+            "modified": "2025-11-10T11:32:42.288589Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+            "target_ref": "attack-pattern--995acc43-738b-431b-b130-2fd8b49f3733"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3f156de-d818-48f3-980d-f967c79aeee4",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.288842Z",
+            "modified": "2025-11-10T11:32:42.288842Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a88cd271-e03a-4088-bd1a-240017074bb9",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67bac8e4-f7a2-451d-b339-f216722be229",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.289135Z",
+            "modified": "2025-11-10T11:32:42.289135Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--02401080-68ef-41fc-96fd-54c547e45b4e",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--718c829b-7a69-483a-8c06-f95a5ab524ef",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.289384Z",
+            "modified": "2025-11-10T11:32:42.289384Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--35eb7073-817f-48ed-8c2e-b1dd258f47ca",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7c7b1cfb-05e4-4041-93b4-b866d437fe15",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.289632Z",
+            "modified": "2025-11-10T11:32:42.289632Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--289f9cb4-f3a8-45c0-bfdd-b8c2a5a7c805",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--874c2dd1-01eb-4f04-993d-dead1cc2138d",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.28989Z",
+            "modified": "2025-11-10T11:32:42.28989Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bec1711e-2785-42ad-ac4e-868bf79bf215",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2ff6badd-3625-4d48-b118-e803d0ef307e",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.29018Z",
+            "modified": "2025-11-10T11:32:42.29018Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--838a367e-3277-4272-b64f-ff0fccc57fcc",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--619ffab5-c5e4-4b04-9976-17a266123853",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.290435Z",
+            "modified": "2025-11-10T11:32:42.290435Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f4c9cc43-99b6-4c26-aca6-fa53d8ec2e06",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.290686Z",
+            "modified": "2025-11-10T11:32:42.290686Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b9e7439b-9af3-4cf9-a6ef-da9479c777b7",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8b94710b-3974-42db-b156-a60865101ada",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.291096Z",
+            "modified": "2025-11-10T11:32:42.291096Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--16092204-ef6e-4c2a-be8c-be944b6808e1",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--28825b40-ace7-49fd-96e2-5eeb1116ffd7",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.291477Z",
+            "modified": "2025-11-10T11:32:42.291477Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4bf4010e-f107-4f54-9ae4-ddc6a01b84bc",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.291761Z",
+            "modified": "2025-11-10T11:32:42.291761Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7aaab775-6617-4f90-b7af-de865201972f",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d90b12ac-ae07-4d65-a683-95539e745335",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.292257Z",
+            "modified": "2025-11-10T11:32:42.292257Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1a5ed520-208b-4b2c-acb5-3d87398810b7",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--91a6f1e2-cec0-4eb4-9a37-7445abb81bcf",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.292574Z",
+            "modified": "2025-11-10T11:32:42.292574Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--1a5ed520-208b-4b2c-acb5-3d87398810b7",
+            "target_ref": "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--abc26561-7e9d-481c-8244-03a8b7ec4d05",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.29294Z",
+            "modified": "2025-11-10T11:32:42.29294Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0c9ee48d-040b-4592-aba4-b611689d6ff2",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3fbbdc55-780a-4a6d-9797-9c561ea1a522",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.293252Z",
+            "modified": "2025-11-10T11:32:42.293252Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c9ee48d-040b-4592-aba4-b611689d6ff2",
+            "target_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1f30d9f5-541f-4ad4-9091-21e34e1b9996",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.293544Z",
+            "modified": "2025-11-10T11:32:42.293544Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--dc6c74a7-50f4-43fd-9249-f5ca78f159e9",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2dcc0a25-3e7d-455a-acf9-bb4e5265ccb9",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.293834Z",
+            "modified": "2025-11-10T11:32:42.293834Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--dc6c74a7-50f4-43fd-9249-f5ca78f159e9",
+            "target_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ab9f0319-4b79-4523-821a-bc4683309bb9",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.29416Z",
+            "modified": "2025-11-10T11:32:42.29416Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4502c709-6d4e-4f65-b5d9-259e3bb281bd",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c65bdfaa-06d5-41ce-ab48-9adfddcf0ef0",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.294439Z",
+            "modified": "2025-11-10T11:32:42.294439Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4502c709-6d4e-4f65-b5d9-259e3bb281bd",
+            "target_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0e2d4a20-27e8-4709-9702-8fbacb48059b",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.294733Z",
+            "modified": "2025-11-10T11:32:42.294733Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--73f6dba7-5d95-402a-9958-070c1aabeaee",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f9e3eace-9bf8-4f03-b893-9cc2a51e5011",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.295025Z",
+            "modified": "2025-11-10T11:32:42.295025Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--73f6dba7-5d95-402a-9958-070c1aabeaee",
+            "target_ref": "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ef104704-f347-4438-84ab-cce940eb6eb0",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.295457Z",
+            "modified": "2025-11-10T11:32:42.295457Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--93f42efd-cefe-44d3-ba76-5407f743b12d",
+            "target_ref": "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--6f84b4c2-94e8-4529-8772-67aeb59efc72",
+            "created_by_ref": "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+            "created": "2025-11-10T11:32:42.295863Z",
+            "modified": "2025-11-10T11:32:42.295863Z",
+            "name": "Analisi Malware: Damascened Peacock",
+            "description": "This report contains technical analysis and indicators associated with malware. damascened peacock.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-10T11:32:42.295853Z",
+            "object_refs": [
+                "identity--346f82be-3c88-4eb0-a964-691c31678f63",
+                "domain-name--261b78f4-bbca-576e-96a5-d32bf2f03afa",
+                "domain-name--52bf1724-9b4e-56ef-a430-3821e9249a98",
+                "url--5c73e648-6fd6-5ca7-bad3-9fb7305a4056",
+                "windows-registry-key--9e4494c5-9509-5ae6-8e8e-9d73202bca8c",
+                "indicator--a88cd271-e03a-4088-bd1a-240017074bb9",
+                "indicator--02401080-68ef-41fc-96fd-54c547e45b4e",
+                "indicator--35eb7073-817f-48ed-8c2e-b1dd258f47ca",
+                "indicator--289f9cb4-f3a8-45c0-bfdd-b8c2a5a7c805",
+                "indicator--bec1711e-2785-42ad-ac4e-868bf79bf215",
+                "indicator--838a367e-3277-4272-b64f-ff0fccc57fcc",
+                "indicator--74ecd2c4-cf4d-40dc-93fa-8f599e138061",
+                "indicator--b9e7439b-9af3-4cf9-a6ef-da9479c777b7",
+                "indicator--16092204-ef6e-4c2a-be8c-be944b6808e1",
+                "indicator--2d0fc4cd-4f3f-4ce6-ba56-064170ae8d33",
+                "indicator--7aaab775-6617-4f90-b7af-de865201972f",
+                "relationship--4cca7a5e-b95d-481c-ad34-53e27970885d",
+                "relationship--2fbca318-8152-47cf-9941-f44e7af7346f",
+                "relationship--b82a7677-5f42-4d29-9e41-93387d857164",
+                "relationship--79e3adc1-870c-4810-a127-488c38b27e03",
+                "relationship--8de6ce16-2ac5-4a7d-be5b-c656a2c03c24",
+                "relationship--c6d4b44e-8a70-4661-8f4e-e93c75a97b61",
+                "malware--e5fcb361-fef8-49c0-a7d8-4adca1f48738",
+                "malware--d8d52d1c-7a31-45c1-ba1c-2f397ced177b",
+                "malware--49710f42-50b7-4da1-ac23-e55b24091dd3",
+                "malware--5b2d0162-5234-4a30-8536-ad6137f5ae6d",
+                "malware--f4fae05d-862a-4eab-8145-fb63ab7ecd6d",
+                "identity--7b034678-1ed2-4e49-a92e-0d7db2cae183",
+                "identity--e9312b1d-6ad9-46e3-b7c1-77b9cc18bd6e",
+                "identity--2f3eaa75-40cf-4872-a88c-2592752f10d5",
+                "identity--e5b9574e-54d3-4021-95a5-928a1703339f",
+                "threat-actor--93f42efd-cefe-44d3-ba76-5407f743b12d",
+                "attack-pattern--195a952f-4414-4e61-b63d-cb8e56760d30",
+                "attack-pattern--c85550dc-6fe7-4a89-95f1-415175ea837d",
+                "attack-pattern--12c979f3-0d1d-42c3-819c-3ec94aeacfca",
+                "attack-pattern--17db40fc-090a-408b-b1b5-e8f638b4b96a",
+                "attack-pattern--a0d0a580-a3e4-405d-afbe-4ec20c3383c3",
+                "attack-pattern--4ce0ed3f-dc18-464d-8fb6-d73db171c039",
+                "attack-pattern--60d8ffee-7cd1-419f-a6d6-c049200f064d",
+                "attack-pattern--37f45be9-c58c-4f36-8785-93de5cb027a0",
+                "attack-pattern--995acc43-738b-431b-b130-2fd8b49f3733",
+                "indicator--1a5ed520-208b-4b2c-acb5-3d87398810b7",
+                "indicator--0c9ee48d-040b-4592-aba4-b611689d6ff2",
+                "indicator--dc6c74a7-50f4-43fd-9249-f5ca78f159e9",
+                "indicator--4502c709-6d4e-4f65-b5d9-259e3bb281bd",
+                "indicator--73f6dba7-5d95-402a-9958-070c1aabeaee",
+                "relationship--55c878e2-1dca-4616-b2c5-53d1b94f857e",
+                "relationship--d573c163-ecd1-4dce-9fab-e5d7037c42ba",
+                "relationship--67bb4d61-ba2c-4359-ad42-2e4af58b5c40",
+                "relationship--816bd23d-36fe-453a-893c-c9c8552ee728",
+                "relationship--52d7fda2-ff0d-409d-8b5f-9219a119fda1",
+                "relationship--1c11cd4b-562a-47be-8453-03ef3693ac4d",
+                "relationship--338b261e-45db-4fbc-b9e1-5e570ea87d74",
+                "relationship--8e7ae32c-c7ad-457e-8f74-8acc5e0f9b8f",
+                "relationship--0fb765a3-66a4-430c-8b52-c9581683882f",
+                "relationship--f3f156de-d818-48f3-980d-f967c79aeee4",
+                "relationship--67bac8e4-f7a2-451d-b339-f216722be229",
+                "relationship--718c829b-7a69-483a-8c06-f95a5ab524ef",
+                "relationship--7c7b1cfb-05e4-4041-93b4-b866d437fe15",
+                "relationship--874c2dd1-01eb-4f04-993d-dead1cc2138d",
+                "relationship--2ff6badd-3625-4d48-b118-e803d0ef307e",
+                "relationship--619ffab5-c5e4-4b04-9976-17a266123853",
+                "relationship--f4c9cc43-99b6-4c26-aca6-fa53d8ec2e06",
+                "relationship--8b94710b-3974-42db-b156-a60865101ada",
+                "relationship--28825b40-ace7-49fd-96e2-5eeb1116ffd7",
+                "relationship--4bf4010e-f107-4f54-9ae4-ddc6a01b84bc",
+                "relationship--d90b12ac-ae07-4d65-a683-95539e745335",
+                "relationship--91a6f1e2-cec0-4eb4-9a37-7445abb81bcf",
+                "relationship--abc26561-7e9d-481c-8244-03a8b7ec4d05",
+                "relationship--3fbbdc55-780a-4a6d-9797-9c561ea1a522",
+                "relationship--1f30d9f5-541f-4ad4-9091-21e34e1b9996",
+                "relationship--2dcc0a25-3e7d-455a-acf9-bb4e5265ccb9",
+                "relationship--ab9f0319-4b79-4523-821a-bc4683309bb9",
+                "relationship--c65bdfaa-06d5-41ce-ab48-9adfddcf0ef0",
+                "relationship--0e2d4a20-27e8-4709-9702-8fbacb48059b",
+                "relationship--f9e3eace-9bf8-4f03-b893-9cc2a51e5011",
+                "relationship--ef104704-f347-4438-84ab-cce940eb6eb0"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
