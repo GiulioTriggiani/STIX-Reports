@@ -1,0 +1,956 @@
+{
+    "type": "bundle",
+    "id": "bundle--66f79d9d-91db-4ab3-8bd4-a7edfcb4a7a6",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.277183Z",
+            "modified": "2025-11-11T22:03:04.277183Z",
+            "name": "NCSC",
+            "description": "The authoring organization of the threat report, as indicated by the copyright, YARA rule metadata, and disclaimer.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--147485f8-8bb6-5c6f-ada7-c46b9f64b476",
+            "key": "HKCU\\Software\\Microsoft\\Internet Explorer\\Main\\DisableFirstRunCustomize"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--d2f67e17-9d1c-527e-a737-0655e9a1871a",
+            "key": "HKCU\\Software\\Microsoft\\Internet Explorer\\Main\\Check_Associations"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--c45d39e9-5865-5906-a359-6e233737c1d3",
+            "value": "www.hahae.co.kr"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--0792d548-1c94-5763-b630-b5e24420175e",
+            "value": "http://www.hahae.co.kr/new3/ISAF/Libs/php/cross.php?op=1&dt=1214&uid=01"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--cea54a61-784a-5ae4-8db7-097315be5f00",
+            "value": "http://www.hahae.co.kr/new3/ISAF/Libs/php/report.php"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--301559e7-7ce9-53d3-83ee-d4a134146a05",
+            "value": "http://www.hahae.co.kr/new3/ISAF/Libs/php/suf.hta"
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--7f02db98-f94d-5eff-8b2a-ceb49c2ae0b8",
+            "value": "http://xeoskin.co.kr/wp/wp-includes/SimplePie/Net/cross.php"
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--8b76b915-91d3-59cd-8977-fee991262f47",
+            "value": "xeoskin.co.kr"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ea41958a-7dc0-47fa-bc5a-2b7740e0a424",
+            "created": "2025-11-11T22:02:14.144588Z",
+            "modified": "2025-11-11T22:02:14.144588Z",
+            "name": "IE DisableFirstRunCustomize",
+            "description": "Registry key modified by an embedded VBScript to prevent IE from diverting to a homepage.",
+            "pattern": "[windows-registry-key:key = 'HKCU\\\\Software\\\\Microsoft\\\\Internet Explorer\\\\Main\\\\DisableFirstRunCustomize']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.144577Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4c3b493b-cb4c-419f-b03a-1c6d776ca045",
+            "created": "2025-11-11T22:02:14.145758Z",
+            "modified": "2025-11-11T22:02:14.145758Z",
+            "name": "IE Check_Associations",
+            "description": "Registry key modified by an embedded VBScript to prevent IE from checking if it is the default browser.",
+            "pattern": "[windows-registry-key:key = 'HKCU\\\\Software\\\\Microsoft\\\\Internet Explorer\\\\Main\\\\Check_Associations']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.145751Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0f64fbe9-b48c-4523-ae1c-a0880e5be895",
+            "created": "2025-11-11T22:02:14.146671Z",
+            "modified": "2025-11-11T22:02:14.146671Z",
+            "name": "Primary C2 Domain",
+            "description": "Command and Control domain used for downloading the second stage, exfiltration, and persistence.",
+            "pattern": "[domain-name:value = 'www.hahae.co.kr']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.146665Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5387ff45-c5fa-4580-b57a-db4231c093c9",
+            "created": "2025-11-11T22:02:14.14749Z",
+            "modified": "2025-11-11T22:02:14.14749Z",
+            "name": "Second-stage Download URL",
+            "description": "URL used by the initial macro to download the second-stage VBScript.",
+            "pattern": "[url:value = 'http://www.hahae.co.kr/new3/ISAF/Libs/php/cross.php?op=1&dt=1214&uid=01']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.147484Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b017018a-fb57-4366-b390-af0c69a7110e",
+            "created": "2025-11-11T22:02:14.148284Z",
+            "modified": "2025-11-11T22:02:14.148284Z",
+            "name": "Exfiltration URL",
+            "description": "URL endpoint used to exfiltrate collected system enumeration data.",
+            "pattern": "[url:value = 'http://www.hahae.co.kr/new3/ISAF/Libs/php/report.php']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.148279Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--df5089ff-3526-4dcc-b050-a2138accdf2e",
+            "created": "2025-11-11T22:02:14.149043Z",
+            "modified": "2025-11-11T22:02:14.149043Z",
+            "name": "Persistence C2 URL",
+            "description": "URL used by the 'AhnlabUpdate' scheduled task to retrieve and execute a file every 10 minutes via mshta.exe.",
+            "pattern": "[url:value = 'http://www.hahae.co.kr/new3/ISAF/Libs/php/suf.hta']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.149038Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c0257ba3-de51-4db2-a7db-716c15567e79",
+            "created": "2025-11-11T22:02:14.149953Z",
+            "modified": "2025-11-11T22:02:14.149953Z",
+            "name": "Unused C2 URL",
+            "description": "URL found in an embedded (but unexecuted) VBScript, intended for C2 communication.",
+            "pattern": "[url:value = 'http://xeoskin.co.kr/wp/wp-includes/SimplePie/Net/cross.php']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.149946Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7d7ad76a-5b45-48ae-ac72-f4a0cf730968",
+            "created": "2025-11-11T22:02:14.150726Z",
+            "modified": "2025-11-11T22:02:14.150726Z",
+            "name": "Unused C2 Domain",
+            "description": "Domain found in an embedded (but unexecuted) VBScript, intended for C2 communication.",
+            "pattern": "[domain-name:value = 'xeoskin.co.kr']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.15072Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--384c8e12-d85a-4adf-a424-d8c62a708070",
+            "created": "2025-11-11T22:02:14.15138Z",
+            "modified": "2025-11-11T22:02:14.15138Z",
+            "name": "First-stage VBScript Dropper",
+            "description": "Path where the first-stage VBScript is written. Contains code to download the second stage.",
+            "pattern": "[file:name = 'version.xml' AND file:parent_directory_ref.path LIKE '%AppData%\\\\Microsoft\\\\Office\\\\']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.151376Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9c1a4707-6d8b-4ad7-93f7-ca937295ca09",
+            "created": "2025-11-11T22:02:14.15214Z",
+            "modified": "2025-11-11T22:02:14.15214Z",
+            "name": "System Enumeration Output File",
+            "description": "File used to store the output of system enumeration commands (systeminfo, ipconfig, tasklist, etc.).",
+            "pattern": "[file:name = 'sr011.xml' AND file:parent_directory_ref.path LIKE '%AppData%\\\\Microsoft\\\\Network\\\\']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.152135Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4bef053f-d43d-44ba-be94-27c959d90b65",
+            "created": "2025-11-11T22:02:14.152843Z",
+            "modified": "2025-11-11T22:02:14.152843Z",
+            "name": "Encoded System Enumeration Data",
+            "description": "File containing the base64-encoded system enumeration data from sr011.xml, which is later exfiltrated.",
+            "pattern": "[file:name = 'conv.xml' AND file:parent_directory_ref.path LIKE '%AppData%\\\\Microsoft\\\\Network\\\\']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.152837Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2e8d893f-1baf-43e2-82a6-418c6a02b851",
+            "created": "2025-11-11T22:02:14.153546Z",
+            "modified": "2025-11-11T22:02:14.153546Z",
+            "name": "Indicator for Devil Bait Word Document (MD5)",
+            "description": "MD5 hash of the malicious macro-enabled Microsoft Word document '\uccb4\ubd88\ud655\uc778\uc6d0-\uae40\ubcf4\ub77c.doc'.",
+            "pattern": "[file:hashes.'MD5' = '631ec884e194a04ac89ae7db34ee2cdc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.153542Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b636cb32-5100-49fd-aa14-bf81c033bc5f",
+            "created": "2025-11-11T22:02:14.154135Z",
+            "modified": "2025-11-11T22:02:14.154135Z",
+            "name": "Indicator for Devil Bait Word Document (SHA1)",
+            "description": "SHA-1 hash of the malicious macro-enabled Microsoft Word document '\uccb4\ubd88\ud655\uc778\uc6d0-\uae40\ubcf4\ub77c.doc'.",
+            "pattern": "[file:hashes.'SHA1' = '0d686dae87f79713d7382c4976ed796caed5ca2b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.15413Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--aabe5558-fc4c-46d5-bf0f-99777a54e2b0",
+            "created": "2025-11-11T22:02:14.154681Z",
+            "modified": "2025-11-11T22:02:14.154681Z",
+            "name": "Indicator for Devil Bait Word Document (SHA256)",
+            "description": "SHA-256 hash of the malicious macro-enabled Microsoft Word document '\uccb4\ubd88\ud655\uc778\uc6d0-\uae40\ubcf4\ub77c.doc'.",
+            "pattern": "[file:hashes.'SHA256' = 'fa71eee906a7849ba3f4bab74edb577bd1f1f8397ca428591b4a9872ce1f1e9b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.154677Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c7d956e4-05a3-4fcc-bd25-a900aa0b0afd",
+            "created": "2025-11-11T22:02:14.155456Z",
+            "modified": "2025-11-11T22:02:14.155456Z",
+            "name": "Indicator for data.txt VBScript (MD5)",
+            "description": "MD5 hash of the malicious second-stage VBScript, named data.txt.",
+            "pattern": "[file:hashes.'MD5' = '26c27d19dfc1a3af9b856b1b2299cc5f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.155451Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--145cd619-d86f-4769-8a44-6931aa757572",
+            "created": "2025-11-11T22:02:14.156002Z",
+            "modified": "2025-11-11T22:02:14.156002Z",
+            "name": "Indicator for data.txt VBScript (SHA1)",
+            "description": "SHA-1 hash of the malicious second-stage VBScript, named data.txt.",
+            "pattern": "[file:hashes.'SHA1' = 'f4c03d8d372e29a2409411271ead45742069b70e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.155996Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--417e7591-0138-4557-ab90-bc68c1a399b8",
+            "created": "2025-11-11T22:02:14.156563Z",
+            "modified": "2025-11-11T22:02:14.156563Z",
+            "name": "Indicator for data.txt VBScript (SHA256)",
+            "description": "SHA-256 hash of the malicious second-stage VBScript, named data.txt.",
+            "pattern": "[file:hashes.'SHA256' = 'a6f9043627f8be2452153b5dbf6278e9b91763c3b5c2aea537a859e0c8c6b504']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:02:14.156557Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--95232adf-8f95-480e-98da-e0b1e0e51a5d",
+            "created": "2025-11-11T22:02:14.157328Z",
+            "modified": "2025-11-11T22:02:14.157328Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2e8d893f-1baf-43e2-82a6-418c6a02b851",
+            "target_ref": "indicator--b636cb32-5100-49fd-aa14-bf81c033bc5f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--18259cef-6d0f-4cff-8975-d9d46bdb9335",
+            "created": "2025-11-11T22:02:14.157603Z",
+            "modified": "2025-11-11T22:02:14.157603Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2e8d893f-1baf-43e2-82a6-418c6a02b851",
+            "target_ref": "indicator--aabe5558-fc4c-46d5-bf0f-99777a54e2b0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ff8fa292-9483-43e6-b491-93ddc170a211",
+            "created": "2025-11-11T22:02:14.157837Z",
+            "modified": "2025-11-11T22:02:14.157837Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--b636cb32-5100-49fd-aa14-bf81c033bc5f",
+            "target_ref": "indicator--aabe5558-fc4c-46d5-bf0f-99777a54e2b0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--629dc1fc-e355-41bf-8497-34a9e006a638",
+            "created": "2025-11-11T22:02:14.158087Z",
+            "modified": "2025-11-11T22:02:14.158087Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c7d956e4-05a3-4fcc-bd25-a900aa0b0afd",
+            "target_ref": "indicator--145cd619-d86f-4769-8a44-6931aa757572"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9eab5226-a1ea-4f45-9ef2-8c2df9b2e644",
+            "created": "2025-11-11T22:02:14.158334Z",
+            "modified": "2025-11-11T22:02:14.158334Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c7d956e4-05a3-4fcc-bd25-a900aa0b0afd",
+            "target_ref": "indicator--417e7591-0138-4557-ab90-bc68c1a399b8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8dc0bd19-9d19-48e1-84a5-6aab2dd4a291",
+            "created": "2025-11-11T22:02:14.158556Z",
+            "modified": "2025-11-11T22:02:14.158556Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--145cd619-d86f-4769-8a44-6931aa757572",
+            "target_ref": "indicator--417e7591-0138-4557-ab90-bc68c1a399b8"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.277666Z",
+            "modified": "2025-11-11T22:03:04.277666Z",
+            "name": "devil bait",
+            "description": "A malicious macro-enabled Microsoft Word document targeting Korean speakers. It downloads and executes a second-stage VBScript, which uses 'live off the land' binaries (LOLbins) for system enumeration, registry modification, and persistence. It exfiltrates collected data over HTTP and establishes persistence via a Scheduled Task.",
+            "malware_types": [
+                "downloader",
+                "backdoor"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--c7a531c9-cdfe-4dc7-a81f-4ad40fa50074",
+            "created": "2025-11-11T22:03:04.278036Z",
+            "modified": "2025-11-11T22:03:04.278036Z",
+            "name": "AhnLab",
+            "description": "A legitimate South Korean endpoint security product that Devil Bait masquerades as for its persistence mechanism.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--5eb6b1a5-bb78-4e98-8a97-0c1b3de3a737",
+            "created": "2025-11-11T22:03:04.278257Z",
+            "modified": "2025-11-11T22:03:04.278257Z",
+            "name": "VirusTotal",
+            "description": "An online service that analyzes files and URLs for malware. The report mentions that the second-stage script was retrieved from sandbox data in VirusTotal.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--ab4f0a8f-e09e-46e5-8331-0aa591a81e27",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.278462Z",
+            "modified": "2025-11-11T22:03:04.278462Z",
+            "name": "Kimsuky",
+            "description": "A threat actor group associated with TTPs similar to those used by Devil Bait, specifically masquerading as AhnLab for persistence and using 'Update' in autorun names."
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8b07eeff-02f8-48bb-bee2-39328835807a",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.278744Z",
+            "modified": "2025-11-11T22:03:04.278744Z",
+            "name": "Command and Scripting Interpreter",
+            "description": "Devil Bait uses the WScript shell from within other scripts to spawn cmd.exe instances to collect system information.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059",
+                    "external_id": "T1059"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--576e947e-3a1e-457b-b60a-e07751be711e",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.279147Z",
+            "modified": "2025-11-11T22:03:04.279147Z",
+            "name": "Scheduled Task/Job: Scheduled Task",
+            "description": "Devil Bait creates a Scheduled Task to beacon every 10 minutes.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/005",
+                    "external_id": "T1053.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--c8f3fb76-d410-4ac0-acd7-e38cd01fdaab",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.279458Z",
+            "modified": "2025-11-11T22:03:04.279458Z",
+            "name": "Application Layer Protocol: Web Protocols",
+            "description": "Devil Bait Command and Control is achieved over HTTP using the scripting object ServerXMLHTTP.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1071/001",
+                    "external_id": "T1071.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--79b053ac-eaf6-45f4-ba7c-cc93c96b573d",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.27976Z",
+            "modified": "2025-11-11T22:03:04.27976Z",
+            "name": "Exfiltration Over C2 Channel",
+            "description": "Devil Bait sends system enumeration data over HTTP to the C2 server.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "exfiltration"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1041",
+                    "external_id": "T1041"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--97d62511-48b1-4990-be75-9714c7c9903b",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.280092Z",
+            "modified": "2025-11-11T22:03:04.280092Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "Devil Bait masquerades as AhnLab, a legitimate security product, in its persistence mechanism.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defence-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/004",
+                    "external_id": "T1036.004"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ef551ccd-86e1-40cf-9960-a0b5044db1c5",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.280385Z",
+            "modified": "2025-11-11T22:03:04.280385Z",
+            "name": "DevilBait_vbscript_2",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DevilBait_vbscript_2 {\n    meta:\n        author = \"NCSC\"\n        description = \"These strings appear in second stage VBScript used\nby Devil Bait.\"\n\n    strings:\n       $ = \"WScript.Shell\" nocase\n       $ = \"Scripting.FileSystemObject\" nocase\n       $ = \"MSXML2.ServerXMLHTTP.6.0\" nocase\n       $ = \"FolderExists\" nocase\n       $ = \"certutil\" nocase\n       $ = \"vbCrLf\" nocase\n       $ = \"expandenvironmentstrings\" nocase\n       $ = \"%appdata%\" nocase\n    condition:\n\n    filesize < 20KB and all of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:03:04.280374Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1eb39b9c-1e03-4a31-ba17-4c7241581005",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.280622Z",
+            "modified": "2025-11-11T22:03:04.280622Z",
+            "name": "DevilBait_Maldoc",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DevilBait_Maldoc {\n    meta:\n        author = \"NCSC\"\n        description = \"These strings appear in the Devil Bait malicious\ndocument.\"\n\n    strings:\n\n   $word = \"MSWordDoc\"\n   $ms_xml = \"MSXML2.ServerXMLHTTP.6.0\"\n   $ = {53 65 6E 64 3A 45 78 65 63 75 74 65 28 [1-6] 2E 72 65 73 70\n\n6F 6E 73 65 54 65 78 74 29}// Send:Execute(<variable>.responseText)\n\n   $ = \"wscript.exe //e:vbscript\"\n\n    condition:\n\n    all of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:03:04.280617Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5c4d8209-2755-44f4-bf80-40a97e94d4b9",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.280835Z",
+            "modified": "2025-11-11T22:03:04.280835Z",
+            "name": "DevilBait_C2",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DevilBait_C2 {\n    meta:\n        author = \"NCSC\"\n        description = \"C2 and IoC strings found in Devil Bait second\nstage vbscript.\"\n\n    strings:\n       $file_1 = \"sr011.xml\"\n\n       $must_func = \"Roller\"\n       $must_C2 = \".co.kr\"\n\n       $c2_1 = \"cross.php\"\n       $c2_2 = \"report.php\"\n       $c2_3 = \"list.php\"\n       $c2_4 = \"show.php\"\n    condition:\n        $file_1 and any of ($must_*) and any of ($c2_*)\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:03:04.28083Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8d6ecf4c-1781-4117-b2bd-6a28f340dced",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.28107Z",
+            "modified": "2025-11-11T22:03:04.28107Z",
+            "name": "DevilBait_vbscript_1",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule DevilBait_vbscript_1 {\n    meta:\n        author = \"NCSC\"\n        description = \"This rule identifies the first stage vbscript\nwritten to disk e.g. version.xml.\"\n\n    strings:\n        $must_1 = \"On Error Resume Next:Set\"\n        $must_2 = \"CreateObject(\\\"MSXML2.ServerXMLHTTP.6.0\\\"):\"\n        $must_3 = \".Send:Execute(\"\n        $must_4 = \"http\"\n        $get = \"GET\"\n        $post = \"POST\"\n    condition:\n\n    filesize < 10KB and all of ($must*) and ($get or $post)\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:03:04.281065Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5b4996ce-88d9-4a1a-bc47-57ca37d2fb3e",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.281413Z",
+            "modified": "2025-11-11T22:03:04.281413Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "target_ref": "attack-pattern--8b07eeff-02f8-48bb-bee2-39328835807a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--90bd1483-bdc4-48f0-b464-3c2b4bda6b84",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.281653Z",
+            "modified": "2025-11-11T22:03:04.281653Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "target_ref": "attack-pattern--576e947e-3a1e-457b-b60a-e07751be711e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7a2d744-ffdb-4483-bb0b-9fe717d1d371",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.281844Z",
+            "modified": "2025-11-11T22:03:04.281844Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "target_ref": "attack-pattern--c8f3fb76-d410-4ac0-acd7-e38cd01fdaab"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dc3f20a3-abf5-476a-893a-24686203475e",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.282078Z",
+            "modified": "2025-11-11T22:03:04.282078Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "target_ref": "attack-pattern--79b053ac-eaf6-45f4-ba7c-cc93c96b573d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67f78deb-02f0-44ec-a012-987259e53306",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.282282Z",
+            "modified": "2025-11-11T22:03:04.282282Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+            "target_ref": "attack-pattern--97d62511-48b1-4990-be75-9714c7c9903b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--60cd9064-e3bf-4e53-afdc-54df414ae58b",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.282488Z",
+            "modified": "2025-11-11T22:03:04.282488Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ea41958a-7dc0-47fa-bc5a-2b7740e0a424",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--db4a525f-2917-41a8-b76e-c664b5b146a9",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.282684Z",
+            "modified": "2025-11-11T22:03:04.282684Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4c3b493b-cb4c-419f-b03a-1c6d776ca045",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2b89c31c-4475-4c9c-b184-604ab6473feb",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.282882Z",
+            "modified": "2025-11-11T22:03:04.282882Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0f64fbe9-b48c-4523-ae1c-a0880e5be895",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c55801db-4891-4967-b6f4-01edf1455650",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.283109Z",
+            "modified": "2025-11-11T22:03:04.283109Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5387ff45-c5fa-4580-b57a-db4231c093c9",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8e6fa17d-a098-419c-9126-b9a83e2face9",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.283312Z",
+            "modified": "2025-11-11T22:03:04.283312Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b017018a-fb57-4366-b390-af0c69a7110e",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--06d57828-cd69-4f6d-b38d-1d830e0ad96c",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.283512Z",
+            "modified": "2025-11-11T22:03:04.283512Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--df5089ff-3526-4dcc-b050-a2138accdf2e",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e9e8aff2-227f-45ce-a92d-1240679d6f61",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.283714Z",
+            "modified": "2025-11-11T22:03:04.283714Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c0257ba3-de51-4db2-a7db-716c15567e79",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9a92f7f4-ee84-4bd2-a72f-d34c7dd4ab1f",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.283906Z",
+            "modified": "2025-11-11T22:03:04.283906Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7d7ad76a-5b45-48ae-ac72-f4a0cf730968",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--219b9d6f-28ac-46f3-b7a8-5abf0d927689",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.284127Z",
+            "modified": "2025-11-11T22:03:04.284127Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--384c8e12-d85a-4adf-a424-d8c62a708070",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bcabb78d-ca29-4df7-ba49-8c29018fcdf7",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.284322Z",
+            "modified": "2025-11-11T22:03:04.284322Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9c1a4707-6d8b-4ad7-93f7-ca937295ca09",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2fd61e68-9a43-4ea7-9124-1b73bd36928b",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.284516Z",
+            "modified": "2025-11-11T22:03:04.284516Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4bef053f-d43d-44ba-be94-27c959d90b65",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d51cd9ad-c57c-45d9-b5e5-0a8574569796",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.28471Z",
+            "modified": "2025-11-11T22:03:04.28471Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2e8d893f-1baf-43e2-82a6-418c6a02b851",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a26ec0a4-fbfe-4097-a7d9-94027d48e69a",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.284905Z",
+            "modified": "2025-11-11T22:03:04.284905Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b636cb32-5100-49fd-aa14-bf81c033bc5f",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8597483a-f0c4-4d36-a760-f1a3d231a74d",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.285139Z",
+            "modified": "2025-11-11T22:03:04.285139Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--aabe5558-fc4c-46d5-bf0f-99777a54e2b0",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b9ac607-1aff-41e8-9e01-48828c996c3d",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.285352Z",
+            "modified": "2025-11-11T22:03:04.285352Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c7d956e4-05a3-4fcc-bd25-a900aa0b0afd",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--33e874dd-504f-460d-a930-73276d18acc9",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.285564Z",
+            "modified": "2025-11-11T22:03:04.285564Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--145cd619-d86f-4769-8a44-6931aa757572",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4ba14966-d151-43d7-a62f-40376b6064bb",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.285762Z",
+            "modified": "2025-11-11T22:03:04.285762Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--417e7591-0138-4557-ab90-bc68c1a399b8",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--54d40769-a06f-4057-beca-eb2c190c8de1",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.28626Z",
+            "modified": "2025-11-11T22:03:04.28626Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ef551ccd-86e1-40cf-9960-a0b5044db1c5",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2f08869b-609f-4e6a-bd51-2dc99dcc5e86",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.286498Z",
+            "modified": "2025-11-11T22:03:04.286498Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--1eb39b9c-1e03-4a31-ba17-4c7241581005",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4c8fad8f-44d1-4adc-8631-5edd4d8f5907",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.28673Z",
+            "modified": "2025-11-11T22:03:04.28673Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5c4d8209-2755-44f4-bf80-40a97e94d4b9",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f182516b-3d00-45b4-b8cd-90880c00b1ca",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.286963Z",
+            "modified": "2025-11-11T22:03:04.286963Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--8d6ecf4c-1781-4117-b2bd-6a28f340dced",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6975c994-8ae1-43a7-8ae0-e01602b999a6",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.287294Z",
+            "modified": "2025-11-11T22:03:04.287294Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--ab4f0a8f-e09e-46e5-8331-0aa591a81e27",
+            "target_ref": "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--46d48317-2ccb-4492-9875-a68676db1712",
+            "created_by_ref": "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+            "created": "2025-11-11T22:03:04.28762Z",
+            "modified": "2025-11-11T22:03:04.28762Z",
+            "name": "Analisi Malware: Devil Bait",
+            "description": "This report contains technical analysis and indicators associated with malware. devil bait.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-11T22:03:04.287609Z",
+            "object_refs": [
+                "identity--96a1a5bb-d9f1-4e21-9819-e6041b702222",
+                "windows-registry-key--147485f8-8bb6-5c6f-ada7-c46b9f64b476",
+                "windows-registry-key--d2f67e17-9d1c-527e-a737-0655e9a1871a",
+                "domain-name--c45d39e9-5865-5906-a359-6e233737c1d3",
+                "url--0792d548-1c94-5763-b630-b5e24420175e",
+                "url--cea54a61-784a-5ae4-8db7-097315be5f00",
+                "url--301559e7-7ce9-53d3-83ee-d4a134146a05",
+                "url--7f02db98-f94d-5eff-8b2a-ceb49c2ae0b8",
+                "domain-name--8b76b915-91d3-59cd-8977-fee991262f47",
+                "indicator--ea41958a-7dc0-47fa-bc5a-2b7740e0a424",
+                "indicator--4c3b493b-cb4c-419f-b03a-1c6d776ca045",
+                "indicator--0f64fbe9-b48c-4523-ae1c-a0880e5be895",
+                "indicator--5387ff45-c5fa-4580-b57a-db4231c093c9",
+                "indicator--b017018a-fb57-4366-b390-af0c69a7110e",
+                "indicator--df5089ff-3526-4dcc-b050-a2138accdf2e",
+                "indicator--c0257ba3-de51-4db2-a7db-716c15567e79",
+                "indicator--7d7ad76a-5b45-48ae-ac72-f4a0cf730968",
+                "indicator--384c8e12-d85a-4adf-a424-d8c62a708070",
+                "indicator--9c1a4707-6d8b-4ad7-93f7-ca937295ca09",
+                "indicator--4bef053f-d43d-44ba-be94-27c959d90b65",
+                "indicator--2e8d893f-1baf-43e2-82a6-418c6a02b851",
+                "indicator--b636cb32-5100-49fd-aa14-bf81c033bc5f",
+                "indicator--aabe5558-fc4c-46d5-bf0f-99777a54e2b0",
+                "indicator--c7d956e4-05a3-4fcc-bd25-a900aa0b0afd",
+                "indicator--145cd619-d86f-4769-8a44-6931aa757572",
+                "indicator--417e7591-0138-4557-ab90-bc68c1a399b8",
+                "relationship--95232adf-8f95-480e-98da-e0b1e0e51a5d",
+                "relationship--18259cef-6d0f-4cff-8975-d9d46bdb9335",
+                "relationship--ff8fa292-9483-43e6-b491-93ddc170a211",
+                "relationship--629dc1fc-e355-41bf-8497-34a9e006a638",
+                "relationship--9eab5226-a1ea-4f45-9ef2-8c2df9b2e644",
+                "relationship--8dc0bd19-9d19-48e1-84a5-6aab2dd4a291",
+                "malware--5962b0f5-18fd-4a33-8c93-a3cf43ff7347",
+                "identity--c7a531c9-cdfe-4dc7-a81f-4ad40fa50074",
+                "identity--5eb6b1a5-bb78-4e98-8a97-0c1b3de3a737",
+                "threat-actor--ab4f0a8f-e09e-46e5-8331-0aa591a81e27",
+                "attack-pattern--8b07eeff-02f8-48bb-bee2-39328835807a",
+                "attack-pattern--576e947e-3a1e-457b-b60a-e07751be711e",
+                "attack-pattern--c8f3fb76-d410-4ac0-acd7-e38cd01fdaab",
+                "attack-pattern--79b053ac-eaf6-45f4-ba7c-cc93c96b573d",
+                "attack-pattern--97d62511-48b1-4990-be75-9714c7c9903b",
+                "indicator--ef551ccd-86e1-40cf-9960-a0b5044db1c5",
+                "indicator--1eb39b9c-1e03-4a31-ba17-4c7241581005",
+                "indicator--5c4d8209-2755-44f4-bf80-40a97e94d4b9",
+                "indicator--8d6ecf4c-1781-4117-b2bd-6a28f340dced",
+                "relationship--5b4996ce-88d9-4a1a-bc47-57ca37d2fb3e",
+                "relationship--90bd1483-bdc4-48f0-b464-3c2b4bda6b84",
+                "relationship--c7a2d744-ffdb-4483-bb0b-9fe717d1d371",
+                "relationship--dc3f20a3-abf5-476a-893a-24686203475e",
+                "relationship--67f78deb-02f0-44ec-a012-987259e53306",
+                "relationship--60cd9064-e3bf-4e53-afdc-54df414ae58b",
+                "relationship--db4a525f-2917-41a8-b76e-c664b5b146a9",
+                "relationship--2b89c31c-4475-4c9c-b184-604ab6473feb",
+                "relationship--c55801db-4891-4967-b6f4-01edf1455650",
+                "relationship--8e6fa17d-a098-419c-9126-b9a83e2face9",
+                "relationship--06d57828-cd69-4f6d-b38d-1d830e0ad96c",
+                "relationship--e9e8aff2-227f-45ce-a92d-1240679d6f61",
+                "relationship--9a92f7f4-ee84-4bd2-a72f-d34c7dd4ab1f",
+                "relationship--219b9d6f-28ac-46f3-b7a8-5abf0d927689",
+                "relationship--bcabb78d-ca29-4df7-ba49-8c29018fcdf7",
+                "relationship--2fd61e68-9a43-4ea7-9124-1b73bd36928b",
+                "relationship--d51cd9ad-c57c-45d9-b5e5-0a8574569796",
+                "relationship--a26ec0a4-fbfe-4097-a7d9-94027d48e69a",
+                "relationship--8597483a-f0c4-4d36-a760-f1a3d231a74d",
+                "relationship--3b9ac607-1aff-41e8-9e01-48828c996c3d",
+                "relationship--33e874dd-504f-460d-a930-73276d18acc9",
+                "relationship--4ba14966-d151-43d7-a62f-40376b6064bb",
+                "relationship--54d40769-a06f-4057-beca-eb2c190c8de1",
+                "relationship--2f08869b-609f-4e6a-bd51-2dc99dcc5e86",
+                "relationship--4c8fad8f-44d1-4adc-8631-5edd4d8f5907",
+                "relationship--f182516b-3d00-45b4-b8cd-90880c00b1ca",
+                "relationship--6975c994-8ae1-43a7-8ae0-e01602b999a6"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
