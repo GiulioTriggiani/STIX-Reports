@@ -1,0 +1,3092 @@
+{
+    "type": "bundle",
+    "id": "bundle--cce7b3fb-4196-43f5-b521-1ae7a5a65ea5",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.38697Z",
+            "modified": "2025-11-11T22:34:43.38697Z",
+            "name": "NCSC",
+            "description": "The authoring organization of the COLDSTEEL malware analysis report, as identified in the YARA rule metadata and report disclaimer.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--8e1c0de4-e9d5-57c4-a0f7-d54cc1f6aba5",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\msupdate"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--b868bb26-29b6-550f-a7fd-482293fe7316",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\msupdate2"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--26a2e7da-6459-5451-b7ed-c6a66fcbe47a",
+            "value": "192.95.36.61"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--cb74eb2e-2108-58b1-a3be-fdccee5d022b",
+            "value": "103.224.80.76"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--735fc373-5123-5cb0-9f97-0474ee729f73",
+            "value": "138.128.98.106"
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--c4a550f9-1fb8-5463-9527-adbab153f605",
+            "value": "1.9.5.38"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ed208d7f-4f1b-4dc9-882a-a031178cbf13",
+            "created": "2025-11-11T22:33:36.790468Z",
+            "modified": "2025-11-11T22:33:36.790468Z",
+            "name": "COLDSTEEL Service DLL",
+            "description": "File path where the malicious COLDSTEEL Service DLL is stored for persistence.",
+            "pattern": "[file:name = 'newdev.dll' AND file:parent_directory_ref.path LIKE 'C:\\\\Users\\\\%user%\\\\AppData\\\\Roaming']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.790434Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--561dc75f-4df2-4d53-9a45-c7ccc6060a6e",
+            "created": "2025-11-11T22:33:36.792799Z",
+            "modified": "2025-11-11T22:33:36.792799Z",
+            "name": "cmd.exe copy",
+            "description": "A copy of cmd.exe used by COLDSTEEL to create a new process for its reverse shell.",
+            "pattern": "[file:name = 'dllhost.exe' AND file:parent_directory_ref.path LIKE 'C:\\\\Users\\\\Public\\\\Documents']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.792784Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0cfe6f2d-de77-4d33-923e-fe9b2d59214d",
+            "created": "2025-11-11T22:33:36.79466Z",
+            "modified": "2025-11-11T22:33:36.79466Z",
+            "name": "COLDSTEEL Persistence Service",
+            "description": "Registry key for the Windows service 'msupdate' created by COLDSTEEL for persistence.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\msupdate']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.794646Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5c7aae8f-5b09-47fe-a1b2-3bd48dde5097",
+            "created": "2025-11-11T22:33:36.796234Z",
+            "modified": "2025-11-11T22:33:36.796234Z",
+            "name": "COLDSTEEL Persistence Service",
+            "description": "Registry key for the Windows service 'msupdate2' created by COLDSTEEL for persistence.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\Services\\\\msupdate2']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.796223Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9846bb02-6985-465b-9010-29ed73eeef95",
+            "created": "2025-11-11T22:33:36.79765Z",
+            "modified": "2025-11-11T22:33:36.79765Z",
+            "name": "C2 Server",
+            "description": "COLDSTEEL C2 server IP address, observed communicating on port 443.",
+            "pattern": "[ipv4-addr:value = '192.95.36.61']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.797636Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a334138b-5b83-42a0-9b3d-4ac386849936",
+            "created": "2025-11-11T22:33:36.798762Z",
+            "modified": "2025-11-11T22:33:36.798762Z",
+            "name": "C2 Server",
+            "description": "COLDSTEEL C2 server IP address.",
+            "pattern": "[ipv4-addr:value = '103.224.80.76']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.798752Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e5692768-a8a5-46da-97d4-e52d8fa2a4e1",
+            "created": "2025-11-11T22:33:36.800685Z",
+            "modified": "2025-11-11T22:33:36.800685Z",
+            "name": "C2 Server",
+            "description": "COLDSTEEL C2 server IP address, observed communicating on port 8443.",
+            "pattern": "[ipv4-addr:value = '138.128.98.106']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.80067Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e48d3202-ab1e-458d-8ad4-b34fb5a9636b",
+            "created": "2025-11-11T22:33:36.802466Z",
+            "modified": "2025-11-11T22:33:36.802466Z",
+            "name": "C2 Server",
+            "description": "COLDSTEEL C2 server IP address, observed communicating on port 443.",
+            "pattern": "[ipv4-addr:value = '1.9.5.38']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.802455Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "created": "2025-11-11T22:33:36.803755Z",
+            "modified": "2025-11-11T22:33:36.803755Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of a Themida-protected MileStone2017 variant of COLDSTEEL seen on a UK victim.",
+            "pattern": "[file:hashes.'MD5' = 'ca1575ce6131735f7e8e1309b657a626']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.803744Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "created": "2025-11-11T22:33:36.804731Z",
+            "modified": "2025-11-11T22:33:36.804731Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of a Themida-protected MileStone2017 variant of COLDSTEEL seen on a UK victim.",
+            "pattern": "[file:hashes.'SHA1' = '54153b749c06dbf2d7d2eaea2bbebf00f6d0b54b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.80472Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "created": "2025-11-11T22:33:36.805613Z",
+            "modified": "2025-11-11T22:33:36.805613Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of a Themida-protected MileStone2017 variant of COLDSTEEL seen on a UK victim.",
+            "pattern": "[file:hashes.'SHA256' = '968d26244b3243a25c66170900b815123469822385cab610267c3a65e755d1ba']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.805583Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "created": "2025-11-11T22:33:36.806502Z",
+            "modified": "2025-11-11T22:33:36.806502Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of a MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'MD5' = '8f57ce99d53addabec1d964cd34c96f4']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.806492Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "created": "2025-11-11T22:33:36.807344Z",
+            "modified": "2025-11-11T22:33:36.807344Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of a MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA1' = 'b4a9ab6e040c88630ea46a2ae4ff41a558366122']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.807335Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "created": "2025-11-11T22:33:36.808302Z",
+            "modified": "2025-11-11T22:33:36.808302Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of a MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA256' = 'e92d4e58dfae7c1aadeef42056d5e2e5002814ee3b9b5ab1a48229bf00f3ade6']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.808292Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "created": "2025-11-11T22:33:36.809177Z",
+            "modified": "2025-11-11T22:33:36.809177Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of a Themida-protected MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'MD5' = '53fa0c94678fabf711802009452b521b']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.809167Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "created": "2025-11-11T22:33:36.809996Z",
+            "modified": "2025-11-11T22:33:36.809996Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of a Themida-protected MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA1' = '9ec69a042106fc9d27a27197d3b680b468bca9a0']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.809987Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "created": "2025-11-11T22:33:36.811147Z",
+            "modified": "2025-11-11T22:33:36.811147Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of a Themida-protected MileStone2017 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA256' = '7ce2909bf205c1a574ac3dcac5891e31aa59dd4cad6c41d7159ad017c837903c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.811138Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "created": "2025-11-11T22:33:36.812055Z",
+            "modified": "2025-11-11T22:33:36.812055Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'MD5' = 'bb40bbbd3b69e0eb802c42d2506b6754']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.812045Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "created": "2025-11-11T22:33:36.812888Z",
+            "modified": "2025-11-11T22:33:36.812888Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA1' = 'bf80e329cba134ccd96f9572d2c0bf250515c26e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.812879Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "created": "2025-11-11T22:33:36.813783Z",
+            "modified": "2025-11-11T22:33:36.813783Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA256' = 'a9fa8e8609872cdcea241e3aab726b02b124c82de4c77ad3c3722d7c6b93b9b5']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.813772Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "created": "2025-11-11T22:33:36.814954Z",
+            "modified": "2025-11-11T22:33:36.814954Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'MD5' = 'c5cf6e70d5a5c489aa1c0326799dbe90']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.814943Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "created": "2025-11-11T22:33:36.815917Z",
+            "modified": "2025-11-11T22:33:36.815917Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA1' = 'a94ed3d673261d62f2959979272d8c8d17e6e7f3']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.815908Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+            "created": "2025-11-11T22:33:36.816746Z",
+            "modified": "2025-11-11T22:33:36.816746Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of a MileStone2016 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA256' = '14930488158df5fca4cba80b1089f41dc296e19bebf41e2ff6e5b32770ac0f1e']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.816737Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b",
+            "created": "2025-11-11T22:33:36.817553Z",
+            "modified": "2025-11-11T22:33:36.817553Z",
+            "name": "Indicator for newdev.dll (MD5)",
+            "description": "MD5 hash of an FBI20111024 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'MD5' = '25d2eeb36e729679e5e6c647a306850f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.817545Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6",
+            "created": "2025-11-11T22:33:36.818354Z",
+            "modified": "2025-11-11T22:33:36.818354Z",
+            "name": "Indicator for newdev.dll (SHA1)",
+            "description": "SHA-1 hash of an FBI20111024 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA1' = '3c365d907dc9f06d19dd192e92ebeeefb8e8c964']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.818345Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a",
+            "created": "2025-11-11T22:33:36.819157Z",
+            "modified": "2025-11-11T22:33:36.819157Z",
+            "name": "Indicator for newdev.dll (SHA256)",
+            "description": "SHA-256 hash of an FBI20111024 variant of COLDSTEEL.",
+            "pattern": "[file:hashes.'SHA256' = '50838e12e58a2d96b1a2ebdb53a25151cc22cbd458dba49fcb355ccfc82e0e63']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:33:36.819149Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--749bd6da-3568-4fd3-a641-f008d5fd94ee",
+            "created": "2025-11-11T22:33:36.820337Z",
+            "modified": "2025-11-11T22:33:36.820337Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5dc2fb77-0b79-4d6b-8cd5-4951b6d94cd8",
+            "created": "2025-11-11T22:33:36.820696Z",
+            "modified": "2025-11-11T22:33:36.820696Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--58cb540c-f0bb-4c90-bd50-1367fba0d91a",
+            "created": "2025-11-11T22:33:36.820955Z",
+            "modified": "2025-11-11T22:33:36.820955Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5b560c86-30f4-476c-800b-64e611389b7e",
+            "created": "2025-11-11T22:33:36.821209Z",
+            "modified": "2025-11-11T22:33:36.821209Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bf9a2dd2-0195-4b7b-b8b0-00763c218d82",
+            "created": "2025-11-11T22:33:36.821461Z",
+            "modified": "2025-11-11T22:33:36.821461Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6dec7eb2-d385-476e-99e7-e8783339d421",
+            "created": "2025-11-11T22:33:36.821912Z",
+            "modified": "2025-11-11T22:33:36.821912Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1cd7a47c-2816-4433-8f03-db073e5f9dd7",
+            "created": "2025-11-11T22:33:36.822207Z",
+            "modified": "2025-11-11T22:33:36.822207Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3fccd25-217a-4d2a-bd98-fa53b0aa641c",
+            "created": "2025-11-11T22:33:36.822625Z",
+            "modified": "2025-11-11T22:33:36.822625Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8ced6641-e0ba-49a9-b47f-62bd6749b6c8",
+            "created": "2025-11-11T22:33:36.822889Z",
+            "modified": "2025-11-11T22:33:36.822889Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--302bb9f4-fddd-41cb-83c4-c2a99f4ea71b",
+            "created": "2025-11-11T22:33:36.823131Z",
+            "modified": "2025-11-11T22:33:36.823131Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dcdff19d-3790-4c31-9703-ec3189a24a55",
+            "created": "2025-11-11T22:33:36.823387Z",
+            "modified": "2025-11-11T22:33:36.823387Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e9ca3999-4675-4e55-81e2-a2962501d387",
+            "created": "2025-11-11T22:33:36.82365Z",
+            "modified": "2025-11-11T22:33:36.82365Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f75e7933-c90d-4a91-9a1e-8b848c7ab99b",
+            "created": "2025-11-11T22:33:36.823912Z",
+            "modified": "2025-11-11T22:33:36.823912Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9cc376eb-dac8-4749-9706-024650d36de5",
+            "created": "2025-11-11T22:33:36.82457Z",
+            "modified": "2025-11-11T22:33:36.82457Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f51dd8d3-8e3b-4611-81ae-46756ec88a8a",
+            "created": "2025-11-11T22:33:36.824874Z",
+            "modified": "2025-11-11T22:33:36.824874Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5a4265aa-7b4f-488c-93f6-7ef13e42650e",
+            "created": "2025-11-11T22:33:36.825123Z",
+            "modified": "2025-11-11T22:33:36.825123Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--78630f6b-2182-448a-89e0-332a8248f7d4",
+            "created": "2025-11-11T22:33:36.825544Z",
+            "modified": "2025-11-11T22:33:36.825544Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b5bec195-1652-45e9-ac4f-f34986c00630",
+            "created": "2025-11-11T22:33:36.825806Z",
+            "modified": "2025-11-11T22:33:36.825806Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f75e5aa3-0a71-46e8-b260-714daef6197a",
+            "created": "2025-11-11T22:33:36.826045Z",
+            "modified": "2025-11-11T22:33:36.826045Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7bcffd8-9786-4d3d-b0ec-7a4c337fb263",
+            "created": "2025-11-11T22:33:36.826301Z",
+            "modified": "2025-11-11T22:33:36.826301Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bfe1e6bb-8b56-4a81-909d-c486d2ce43ac",
+            "created": "2025-11-11T22:33:36.826547Z",
+            "modified": "2025-11-11T22:33:36.826547Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b7e43583-22b7-4e2b-bc1b-bf6f0c66e948",
+            "created": "2025-11-11T22:33:36.826822Z",
+            "modified": "2025-11-11T22:33:36.826822Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1010d763-74f2-45c4-b349-c2a797384865",
+            "created": "2025-11-11T22:33:36.827064Z",
+            "modified": "2025-11-11T22:33:36.827064Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0ac9d4c0-b23d-4c23-b983-e0a50d9a2e0b",
+            "created": "2025-11-11T22:33:36.82732Z",
+            "modified": "2025-11-11T22:33:36.82732Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1e08ec60-370c-40a8-a568-c7a5a84ff576",
+            "created": "2025-11-11T22:33:36.827587Z",
+            "modified": "2025-11-11T22:33:36.827587Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--22359f7d-0a6f-4563-95a9-0085315151c2",
+            "created": "2025-11-11T22:33:36.828116Z",
+            "modified": "2025-11-11T22:33:36.828116Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5e9d3730-de81-46ba-9cf0-007854fe82f2",
+            "created": "2025-11-11T22:33:36.828666Z",
+            "modified": "2025-11-11T22:33:36.828666Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6412897b-e0b7-4a49-b927-ebf2b8e4a45d",
+            "created": "2025-11-11T22:33:36.828937Z",
+            "modified": "2025-11-11T22:33:36.828937Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d9343b69-3820-4461-8059-6e553821577d",
+            "created": "2025-11-11T22:33:36.829192Z",
+            "modified": "2025-11-11T22:33:36.829192Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0b6d124-b38a-4cda-a56a-b780295364f9",
+            "created": "2025-11-11T22:33:36.829459Z",
+            "modified": "2025-11-11T22:33:36.829459Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--18aacf69-30ef-4a1d-98c9-196a298e3c93",
+            "created": "2025-11-11T22:33:36.829938Z",
+            "modified": "2025-11-11T22:33:36.829938Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--551f3eec-9812-4bb4-8b06-ddd3a4dbd9d8",
+            "created": "2025-11-11T22:33:36.830221Z",
+            "modified": "2025-11-11T22:33:36.830221Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6439bc3a-1806-4618-867d-8baec2bea4cc",
+            "created": "2025-11-11T22:33:36.830475Z",
+            "modified": "2025-11-11T22:33:36.830475Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a63b0f6b-daff-41cb-ad50-865ffa8927cd",
+            "created": "2025-11-11T22:33:36.83115Z",
+            "modified": "2025-11-11T22:33:36.83115Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--512ee228-ad6e-4201-9695-e46686e4dd6f",
+            "created": "2025-11-11T22:33:36.831722Z",
+            "modified": "2025-11-11T22:33:36.831722Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7917838b-deee-4be5-ab9f-2c708486873a",
+            "created": "2025-11-11T22:33:36.831983Z",
+            "modified": "2025-11-11T22:33:36.831983Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e9434f4d-6895-4969-b7f2-465ceed3b7f8",
+            "created": "2025-11-11T22:33:36.832839Z",
+            "modified": "2025-11-11T22:33:36.832839Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--44428e77-6d29-46b4-9d69-2251b6d8d946",
+            "created": "2025-11-11T22:33:36.833155Z",
+            "modified": "2025-11-11T22:33:36.833155Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7e3b00e3-ac05-473a-b921-277fd4a70d18",
+            "created": "2025-11-11T22:33:36.833411Z",
+            "modified": "2025-11-11T22:33:36.833411Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fd0bac92-d7c8-4c40-9b92-9a14e70824dc",
+            "created": "2025-11-11T22:33:36.833694Z",
+            "modified": "2025-11-11T22:33:36.833694Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3eeb2b3d-dbcc-4a3b-b6d9-676a2ba7d8d8",
+            "created": "2025-11-11T22:33:36.833948Z",
+            "modified": "2025-11-11T22:33:36.833948Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a048f665-8fe8-4cf6-8e8c-704f3f02f940",
+            "created": "2025-11-11T22:33:36.834199Z",
+            "modified": "2025-11-11T22:33:36.834199Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--135667bf-7c27-48ff-a5ed-c6c7a37fb645",
+            "created": "2025-11-11T22:33:36.834476Z",
+            "modified": "2025-11-11T22:33:36.834476Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b6bb63ee-ca81-4720-b9de-91ed1ff5e077",
+            "created": "2025-11-11T22:33:36.834813Z",
+            "modified": "2025-11-11T22:33:36.834813Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--48199afa-c3df-4e41-b86e-b1a67d3f657d",
+            "created": "2025-11-11T22:33:36.835092Z",
+            "modified": "2025-11-11T22:33:36.835092Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--72556bd5-f125-462f-a156-7fa5eef8b06e",
+            "created": "2025-11-11T22:33:36.8354Z",
+            "modified": "2025-11-11T22:33:36.8354Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--75a140a7-5d8c-48a1-978f-cde081179f81",
+            "created": "2025-11-11T22:33:36.835807Z",
+            "modified": "2025-11-11T22:33:36.835807Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1fabd9ba-6411-4596-98dc-95ac63a586f3",
+            "created": "2025-11-11T22:33:36.836089Z",
+            "modified": "2025-11-11T22:33:36.836089Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dce8b313-dd27-4e2e-ab36-ea2ed4460977",
+            "created": "2025-11-11T22:33:36.836657Z",
+            "modified": "2025-11-11T22:33:36.836657Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6a7873c0-93c7-477a-98f4-beb2ad090961",
+            "created": "2025-11-11T22:33:36.837086Z",
+            "modified": "2025-11-11T22:33:36.837086Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--753c982c-58a7-4d1d-9713-cb3f1253d6f7",
+            "created": "2025-11-11T22:33:36.83821Z",
+            "modified": "2025-11-11T22:33:36.83821Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--93c14c86-dfcd-4d83-b902-f817e6dca9ba",
+            "created": "2025-11-11T22:33:36.838524Z",
+            "modified": "2025-11-11T22:33:36.838524Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c477014b-f596-400f-9415-16460ad7d653",
+            "created": "2025-11-11T22:33:36.838844Z",
+            "modified": "2025-11-11T22:33:36.838844Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--978bd344-f2a9-4116-9f33-5d674244df81",
+            "created": "2025-11-11T22:33:36.839118Z",
+            "modified": "2025-11-11T22:33:36.839118Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2c29b22e-4ef4-4712-ab5c-c61d36a4b992",
+            "created": "2025-11-11T22:33:36.839407Z",
+            "modified": "2025-11-11T22:33:36.839407Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9f2dd372-58e9-48a1-a7d7-09cf72358310",
+            "created": "2025-11-11T22:33:36.840081Z",
+            "modified": "2025-11-11T22:33:36.840081Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--04eb35fb-fec4-4e38-90f8-8f8aef7d1d1c",
+            "created": "2025-11-11T22:33:36.840421Z",
+            "modified": "2025-11-11T22:33:36.840421Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3efb018c-bc08-4280-8d71-8fb7cb45f037",
+            "created": "2025-11-11T22:33:36.840755Z",
+            "modified": "2025-11-11T22:33:36.840755Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--40ead791-bb8d-483c-86bb-c917ac580f5b",
+            "created": "2025-11-11T22:33:36.841043Z",
+            "modified": "2025-11-11T22:33:36.841043Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3ad6037c-6b98-49a4-b212-3bbeb4fb9360",
+            "created": "2025-11-11T22:33:36.841319Z",
+            "modified": "2025-11-11T22:33:36.841319Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ba24d42e-f11a-4696-9e80-4578c6e6dc5f",
+            "created": "2025-11-11T22:33:36.841896Z",
+            "modified": "2025-11-11T22:33:36.841896Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ac7742bb-0ca9-400c-b26c-1600fc876dc0",
+            "created": "2025-11-11T22:33:36.84222Z",
+            "modified": "2025-11-11T22:33:36.84222Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f4cc3968-0948-4eea-b5f6-c6464789b9ee",
+            "created": "2025-11-11T22:33:36.842696Z",
+            "modified": "2025-11-11T22:33:36.842696Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1388a5cc-003e-44cb-b863-fd84af8483d5",
+            "created": "2025-11-11T22:33:36.843058Z",
+            "modified": "2025-11-11T22:33:36.843058Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b4a9f7ee-eb1a-4f9b-8208-120fec572419",
+            "created": "2025-11-11T22:33:36.843264Z",
+            "modified": "2025-11-11T22:33:36.843264Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--26ecbb25-4377-46b9-bfe8-24322e38a4c2",
+            "created": "2025-11-11T22:33:36.843436Z",
+            "modified": "2025-11-11T22:33:36.843436Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2e0b8a8e-713d-4398-897d-5fb2ffbb4a22",
+            "created": "2025-11-11T22:33:36.843644Z",
+            "modified": "2025-11-11T22:33:36.843644Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0e6331c8-29ae-4b8e-ab07-8d72fb952d8d",
+            "created": "2025-11-11T22:33:36.843832Z",
+            "modified": "2025-11-11T22:33:36.843832Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--57e089e5-e1b0-4a75-bdeb-a7904dcce64c",
+            "created": "2025-11-11T22:33:36.843996Z",
+            "modified": "2025-11-11T22:33:36.843996Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3c47329d-b28c-41c5-a003-3dd8ccdff51e",
+            "created": "2025-11-11T22:33:36.84416Z",
+            "modified": "2025-11-11T22:33:36.84416Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cc37922e-3407-4e13-a60a-972fa80ef877",
+            "created": "2025-11-11T22:33:36.844332Z",
+            "modified": "2025-11-11T22:33:36.844332Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b9cdcf1f-14d6-4cfe-bfb6-b0d596bae89f",
+            "created": "2025-11-11T22:33:36.844514Z",
+            "modified": "2025-11-11T22:33:36.844514Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d8f137ff-689e-433c-a7d4-c72ab000042c",
+            "created": "2025-11-11T22:33:36.844743Z",
+            "modified": "2025-11-11T22:33:36.844743Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7b0640fb-6658-4e3d-96c2-c2692f6a0424",
+            "created": "2025-11-11T22:33:36.844913Z",
+            "modified": "2025-11-11T22:33:36.844913Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--df50df04-698d-4f2c-957e-8f2b21fb74c7",
+            "created": "2025-11-11T22:33:36.84507Z",
+            "modified": "2025-11-11T22:33:36.84507Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9dbe6371-5d20-4759-9ab1-29b9bfc4f987",
+            "created": "2025-11-11T22:33:36.845225Z",
+            "modified": "2025-11-11T22:33:36.845225Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5df29dd4-453d-48fe-8ce0-64e30ba8f2a1",
+            "created": "2025-11-11T22:33:36.845541Z",
+            "modified": "2025-11-11T22:33:36.845541Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7128bfea-48e7-4717-b41b-7632f995364b",
+            "created": "2025-11-11T22:33:36.845765Z",
+            "modified": "2025-11-11T22:33:36.845765Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0567534d-1e90-41e3-abb1-9bc9195dc921",
+            "created": "2025-11-11T22:33:36.845923Z",
+            "modified": "2025-11-11T22:33:36.845923Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0ed83184-46cf-4c91-bb31-98bbf994c234",
+            "created": "2025-11-11T22:33:36.846074Z",
+            "modified": "2025-11-11T22:33:36.846074Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4cffded1-4382-4f46-991f-eddde2a98074",
+            "created": "2025-11-11T22:33:36.846228Z",
+            "modified": "2025-11-11T22:33:36.846228Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c7b8ebdd-f156-473e-94f2-93d6b8336f7c",
+            "created": "2025-11-11T22:33:36.846381Z",
+            "modified": "2025-11-11T22:33:36.846381Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--64fd45d0-814a-47d9-8afd-32c79ced3b92",
+            "created": "2025-11-11T22:33:36.84654Z",
+            "modified": "2025-11-11T22:33:36.84654Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1a3cfbac-e342-48a9-a308-0571af56e97b",
+            "created": "2025-11-11T22:33:36.84675Z",
+            "modified": "2025-11-11T22:33:36.84675Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3af2a05d-fd0c-4df4-8933-040415114fe7",
+            "created": "2025-11-11T22:33:36.84691Z",
+            "modified": "2025-11-11T22:33:36.84691Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ff7e11c4-5e7a-4bd6-b9d8-9e9cf64ad8ae",
+            "created": "2025-11-11T22:33:36.847059Z",
+            "modified": "2025-11-11T22:33:36.847059Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0924b23a-11f4-4b11-b613-2aec620d1757",
+            "created": "2025-11-11T22:33:36.847214Z",
+            "modified": "2025-11-11T22:33:36.847214Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--095791da-8b4f-4415-b25a-c87f87c1e2fd",
+            "created": "2025-11-11T22:33:36.847368Z",
+            "modified": "2025-11-11T22:33:36.847368Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9503e47f-5bc2-43ca-b965-735708be6cd9",
+            "created": "2025-11-11T22:33:36.847728Z",
+            "modified": "2025-11-11T22:33:36.847728Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e047ea5d-db48-4962-90ef-ea64daa9f6e7",
+            "created": "2025-11-11T22:33:36.84799Z",
+            "modified": "2025-11-11T22:33:36.84799Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--609bf63e-a78b-4416-8991-4e6d2b12e3ed",
+            "created": "2025-11-11T22:33:36.84817Z",
+            "modified": "2025-11-11T22:33:36.84817Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14ce6983-f601-4117-8411-f822a9a525ec",
+            "created": "2025-11-11T22:33:36.848668Z",
+            "modified": "2025-11-11T22:33:36.848668Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--38cbc070-3c91-4d56-8eb5-2a7c5a647cb3",
+            "created": "2025-11-11T22:33:36.848908Z",
+            "modified": "2025-11-11T22:33:36.848908Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--abcad287-8f39-4d37-bee1-c0477d4541dc",
+            "created": "2025-11-11T22:33:36.849084Z",
+            "modified": "2025-11-11T22:33:36.849084Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0be41bc6-7a25-42d1-9d20-fd70d7cf40ae",
+            "created": "2025-11-11T22:33:36.849245Z",
+            "modified": "2025-11-11T22:33:36.849245Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--612756c0-e72b-48f9-8344-ec61be6cc66c",
+            "created": "2025-11-11T22:33:36.849735Z",
+            "modified": "2025-11-11T22:33:36.849735Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a708873c-c882-4776-8b3f-b33c532e972d",
+            "created": "2025-11-11T22:33:36.84995Z",
+            "modified": "2025-11-11T22:33:36.84995Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c92c5d5c-052a-42be-b3dc-d671e11788c1",
+            "created": "2025-11-11T22:33:36.850116Z",
+            "modified": "2025-11-11T22:33:36.850116Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14036136-fefc-426a-bb78-9bd98c18d749",
+            "created": "2025-11-11T22:33:36.850273Z",
+            "modified": "2025-11-11T22:33:36.850273Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ef4cb540-fc30-40b7-b604-0594b379b885",
+            "created": "2025-11-11T22:33:36.850433Z",
+            "modified": "2025-11-11T22:33:36.850433Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--08670ae9-e8a6-4f53-85f9-b4d43014d001",
+            "created": "2025-11-11T22:33:36.850798Z",
+            "modified": "2025-11-11T22:33:36.850798Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5d2c6362-8b3b-48ec-bc18-84a87c94abac",
+            "created": "2025-11-11T22:33:36.851016Z",
+            "modified": "2025-11-11T22:33:36.851016Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1cdbb6a-1eff-4a6e-a14d-2c037fb56ab9",
+            "created": "2025-11-11T22:33:36.851187Z",
+            "modified": "2025-11-11T22:33:36.851187Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--34a082a4-f2fc-4a76-9713-c271eefa431f",
+            "created": "2025-11-11T22:33:36.851365Z",
+            "modified": "2025-11-11T22:33:36.851365Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--58b3e9a4-08f8-4c38-a735-a8e44a58885d",
+            "created": "2025-11-11T22:33:36.851532Z",
+            "modified": "2025-11-11T22:33:36.851532Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--81ec5f7d-f5ee-401e-b7d3-00a0c5ddd201",
+            "created": "2025-11-11T22:33:36.851743Z",
+            "modified": "2025-11-11T22:33:36.851743Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4a29464b-c95b-4a5a-9c04-2d8e547ced9c",
+            "created": "2025-11-11T22:33:36.851909Z",
+            "modified": "2025-11-11T22:33:36.851909Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6e9ae87e-9569-43b3-9748-a4e18bdb9111",
+            "created": "2025-11-11T22:33:36.852067Z",
+            "modified": "2025-11-11T22:33:36.852067Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6ecd2886-fee4-4406-a5dd-19a45f689469",
+            "created": "2025-11-11T22:33:36.852226Z",
+            "modified": "2025-11-11T22:33:36.852226Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2dd563d2-efa2-48be-8cbf-a31ecbb069af",
+            "created": "2025-11-11T22:33:36.852858Z",
+            "modified": "2025-11-11T22:33:36.852858Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--01552983-d678-49d4-b2d8-0fe4c5168437",
+            "created": "2025-11-11T22:33:36.853058Z",
+            "modified": "2025-11-11T22:33:36.853058Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b0e0eafa-cb63-4a0b-b9ab-06bcfb739d37",
+            "created": "2025-11-11T22:33:36.85326Z",
+            "modified": "2025-11-11T22:33:36.85326Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f85865c5-78f0-4e3a-bc29-850412b98852",
+            "created": "2025-11-11T22:33:36.853428Z",
+            "modified": "2025-11-11T22:33:36.853428Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7a9b43cf-f421-4db7-9860-ca54c23c4f49",
+            "created": "2025-11-11T22:33:36.853618Z",
+            "modified": "2025-11-11T22:33:36.853618Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2c4c7590-71e8-45cf-9a0b-62abaed8d29d",
+            "created": "2025-11-11T22:33:36.853786Z",
+            "modified": "2025-11-11T22:33:36.853786Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a4c083a7-0f8c-4502-96f5-ff41c3616c43",
+            "created": "2025-11-11T22:33:36.853949Z",
+            "modified": "2025-11-11T22:33:36.853949Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--74600a76-9860-452a-82e0-5e3f8ccb5db2",
+            "created": "2025-11-11T22:33:36.854126Z",
+            "modified": "2025-11-11T22:33:36.854126Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d8d85e12-3c2c-49d4-9c45-0b299be97377",
+            "created": "2025-11-11T22:33:36.854301Z",
+            "modified": "2025-11-11T22:33:36.854301Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b6cd2e13-0cd0-4d1c-9dc8-2cfcdb62e01a",
+            "created": "2025-11-11T22:33:36.854469Z",
+            "modified": "2025-11-11T22:33:36.854469Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1da11e09-9bf6-4cca-a87d-e1e7b4e775d4",
+            "created": "2025-11-11T22:33:36.854656Z",
+            "modified": "2025-11-11T22:33:36.854656Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--57914894-ffce-4484-9247-80d212cfe26e",
+            "created": "2025-11-11T22:33:36.854822Z",
+            "modified": "2025-11-11T22:33:36.854822Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4f39a2e4-c7dc-4b55-9a38-ce14496661d4",
+            "created": "2025-11-11T22:33:36.85498Z",
+            "modified": "2025-11-11T22:33:36.85498Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3634c893-40d9-4aa4-a95f-23c3f0bcc288",
+            "created": "2025-11-11T22:33:36.85516Z",
+            "modified": "2025-11-11T22:33:36.85516Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0bb17f27-045a-4959-a4b0-3e38100666f7",
+            "created": "2025-11-11T22:33:36.855334Z",
+            "modified": "2025-11-11T22:33:36.855334Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--060eedc5-3da1-4809-b4a0-e1f32076aad6",
+            "created": "2025-11-11T22:33:36.855497Z",
+            "modified": "2025-11-11T22:33:36.855497Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9b9716ca-3d1b-4b4c-8de7-ea7bcbaef942",
+            "created": "2025-11-11T22:33:36.855677Z",
+            "modified": "2025-11-11T22:33:36.855677Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--004eb250-c54c-4144-b780-b864302b92f3",
+            "created": "2025-11-11T22:33:36.855834Z",
+            "modified": "2025-11-11T22:33:36.855834Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d9f7937c-ad50-4342-bd42-4f90bc713303",
+            "created": "2025-11-11T22:33:36.856003Z",
+            "modified": "2025-11-11T22:33:36.856003Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6f8e66c-0c58-4f45-9797-489575bce123",
+            "created": "2025-11-11T22:33:36.856161Z",
+            "modified": "2025-11-11T22:33:36.856161Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--48c58e0a-29e5-47f9-93ac-d6a74a1554fe",
+            "created": "2025-11-11T22:33:36.856328Z",
+            "modified": "2025-11-11T22:33:36.856328Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--859d615a-c384-4e83-b98d-1a6e6ece18ec",
+            "created": "2025-11-11T22:33:36.856489Z",
+            "modified": "2025-11-11T22:33:36.856489Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15136fd5-3d91-4ddb-9bd6-8e8af4675f85",
+            "created": "2025-11-11T22:33:36.856658Z",
+            "modified": "2025-11-11T22:33:36.856658Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1103bffb-8823-48db-af9c-459a614e043c",
+            "created": "2025-11-11T22:33:36.85684Z",
+            "modified": "2025-11-11T22:33:36.85684Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b2a28914-f3fa-4ef9-a2ea-ae67523c6779",
+            "created": "2025-11-11T22:33:36.856995Z",
+            "modified": "2025-11-11T22:33:36.856995Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7d939a3d-d7db-46b5-b703-bb1e83e87ed4",
+            "created": "2025-11-11T22:33:36.857145Z",
+            "modified": "2025-11-11T22:33:36.857145Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--26e24773-17d6-4482-bff3-1492745c4f28",
+            "created": "2025-11-11T22:33:36.857321Z",
+            "modified": "2025-11-11T22:33:36.857321Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4bf1b4fc-7dd8-494a-824f-eb911768136d",
+            "created": "2025-11-11T22:33:36.857488Z",
+            "modified": "2025-11-11T22:33:36.857488Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--140fe794-9ccf-4cc9-9e6d-2602f4ae5efe",
+            "created": "2025-11-11T22:33:36.857662Z",
+            "modified": "2025-11-11T22:33:36.857662Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6239e7f-f2de-4f66-8fc0-e076a63e8769",
+            "created": "2025-11-11T22:33:36.857818Z",
+            "modified": "2025-11-11T22:33:36.857818Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cc5fe3b4-b06f-4f7c-8e01-711ef9c275a5",
+            "created": "2025-11-11T22:33:36.858035Z",
+            "modified": "2025-11-11T22:33:36.858035Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1ef29ac4-a0e0-4dd4-954a-2ce7d8e7c3bd",
+            "created": "2025-11-11T22:33:36.858202Z",
+            "modified": "2025-11-11T22:33:36.858202Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6e3b652c-daa4-48f8-9a84-8bad9049fd05",
+            "created": "2025-11-11T22:33:36.858366Z",
+            "modified": "2025-11-11T22:33:36.858366Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e70057de-8de0-4f51-96bc-573b3e7dd332",
+            "created": "2025-11-11T22:33:36.858537Z",
+            "modified": "2025-11-11T22:33:36.858537Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f00a1289-054e-46ce-bcc1-ecab58892fd3",
+            "created": "2025-11-11T22:33:36.858723Z",
+            "modified": "2025-11-11T22:33:36.858723Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "target_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15920875-8b53-479f-b1c9-c7ddcc9682d5",
+            "created": "2025-11-11T22:33:36.858874Z",
+            "modified": "2025-11-11T22:33:36.858874Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--86b5976e-7d47-407d-917c-f023ebc1f213",
+            "created": "2025-11-11T22:33:36.859022Z",
+            "modified": "2025-11-11T22:33:36.859022Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5e2a9abd-35fa-496a-aa2a-8b8f7afbe612",
+            "created": "2025-11-11T22:33:36.859186Z",
+            "modified": "2025-11-11T22:33:36.859186Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--46f3eed8-46bb-4408-87c0-79d2043d425f",
+            "created": "2025-11-11T22:33:36.859354Z",
+            "modified": "2025-11-11T22:33:36.859354Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+            "target_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6d622a5d-9c96-46a8-9bbb-823f44312c88",
+            "created": "2025-11-11T22:33:36.859513Z",
+            "modified": "2025-11-11T22:33:36.859513Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--992e7c0a-98d3-4d30-87fa-706031f76797",
+            "created": "2025-11-11T22:33:36.859687Z",
+            "modified": "2025-11-11T22:33:36.859687Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--99a94bac-b46a-4a84-b44f-6f4f82226a11",
+            "created": "2025-11-11T22:33:36.85984Z",
+            "modified": "2025-11-11T22:33:36.85984Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b",
+            "target_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8be29e25-02e1-4aa3-8991-868865e02c73",
+            "created": "2025-11-11T22:33:36.859989Z",
+            "modified": "2025-11-11T22:33:36.859989Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--53afbb19-5986-4aa3-a648-e31971ca3721",
+            "created": "2025-11-11T22:33:36.860138Z",
+            "modified": "2025-11-11T22:33:36.860138Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6",
+            "target_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.387465Z",
+            "modified": "2025-11-11T22:34:43.387465Z",
+            "name": "coldsteel",
+            "description": "COLDSTEEL is a fully featured Windows Remote Access Tool (RAT) with variants identified by strings such as MileStone2016, MileStone2017, and FBI20111024. It provides interactive desktop and command-line invocation capabilities, including file management, screen capture, and user input simulation. It persists on the system by creating a Windows service and communicates with its C2 server over a raw TCP connection.",
+            "malware_types": [
+                "remote-access-trojan"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ba1ac89c-074a-492a-bfdb-a5edb6768657",
+            "created": "2025-11-11T22:34:43.387845Z",
+            "modified": "2025-11-11T22:34:43.387845Z",
+            "name": "Ahnlab",
+            "description": "An organization that has previously published a report on the COLDSTEEL malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--ccb1373c-5f2a-4848-9de7-63907f872dd9",
+            "created": "2025-11-11T22:34:43.388091Z",
+            "modified": "2025-11-11T22:34:43.388091Z",
+            "name": "Fortinet",
+            "description": "An organization that has previously published a report on the COLDSTEEL malware.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--b38a5029-006a-4fa2-bd70-af97de422b14",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.388342Z",
+            "modified": "2025-11-11T22:34:43.388342Z",
+            "name": "Log4j",
+            "description": "A vulnerability that is believed to have been exploited for initial access to deploy the COLDSTEEL malware onto a victim's network."
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--7d779422-3074-45a3-a98e-91455b7c3bd9",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.388627Z",
+            "modified": "2025-11-11T22:34:43.388627Z",
+            "name": "Command and Scripting Interpreter: Windows Command Shell",
+            "description": "COLDSTEEL can run arbitrary commands using cmd.exe.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/003",
+                    "external_id": "T1059.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--921c26e5-ab61-47f4-8465-baed1d055303",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.389062Z",
+            "modified": "2025-11-11T22:34:43.389062Z",
+            "name": "System Services: Service Execution",
+            "description": "COLDSTEEL executes malicious code as a Windows service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1569/002",
+                    "external_id": "T1569.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4543c9e3-ada0-4115-8e34-9d7d01b15ca8",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.389425Z",
+            "modified": "2025-11-11T22:34:43.389425Z",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "COLDSTEEL creates an autostart service to persist after a system reboot.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1543/003",
+                    "external_id": "T1543.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--7cbba771-9ca0-4a62-b43d-90322b778146",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.389864Z",
+            "modified": "2025-11-11T22:34:43.389864Z",
+            "name": "Exploit Public-Facing Application",
+            "description": "COLDSTEEL is believed to have been deployed following exploitation of Log4j.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1190",
+                    "external_id": "T1190"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--036b292d-f9f4-40dc-9613-44ec6771e21e",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.390221Z",
+            "modified": "2025-11-11T22:34:43.390221Z",
+            "name": "Obfuscated Files or Information: Software Packing",
+            "description": "MileStone2017 variants of COLDSTEEL have been observed to be packed using Themida as described in Defence Evasion (Themida).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027/002",
+                    "external_id": "T1027.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--5262e882-f115-4b6b-99fe-99e535c4bb4c",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.390566Z",
+            "modified": "2025-11-11T22:34:43.390566Z",
+            "name": "Modify Registry",
+            "description": "COLDSTEEL modifies registry keys directly to add a description to its service.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1112",
+                    "external_id": "T1112"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--d9d8ef1c-fc97-430a-8552-f3f956720a79",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.390937Z",
+            "modified": "2025-11-11T22:34:43.390937Z",
+            "name": "Indicator Removal: File Deletion",
+            "description": "COLDSTEEL has the ability to delete files from the infected machine.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--59fef00d-ed77-4dbf-8131-1c60e1865042",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.391282Z",
+            "modified": "2025-11-11T22:34:43.391282Z",
+            "name": "Access Token Manipulation: Create Process with Token",
+            "description": "The MileStone2016 variant of COLDSTEEL has the ability to create a process as the user named ANONYMOUS.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1134/002",
+                    "external_id": "T1134.002"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--02003046-a090-4ba9-85f4-7a9b3e41d938",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.391641Z",
+            "modified": "2025-11-11T22:34:43.391641Z",
+            "name": "System Information Discovery",
+            "description": "COLDSTEEL collects a range of system information from the infected machine.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1082",
+                    "external_id": "T1082"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--af8ec2cc-523d-43df-bf8d-141a56b9aabe",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.391989Z",
+            "modified": "2025-11-11T22:34:43.391989Z",
+            "name": "File and Directory Discovery",
+            "description": "COLDSTEEL has commands to enumerate the filesystem.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1083",
+                    "external_id": "T1083"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--777489a5-2930-4b30-80ac-dcf263eedc28",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.392315Z",
+            "modified": "2025-11-11T22:34:43.392315Z",
+            "name": "Process Discovery",
+            "description": "FBI20111024 variants of COLDSTEEL have the ability to collect process information.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "discovery"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1057",
+                    "external_id": "T1057"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--be9672c2-9324-4eb6-bf75-4dc69ae20f61",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.392671Z",
+            "modified": "2025-11-11T22:34:43.392671Z",
+            "name": "Non-Application Layer Protocol",
+            "description": "COLDSTEEL communicates over TCP sockets, using a custom message format.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1095",
+                    "external_id": "T1095"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9eb2ec06-9295-4cf6-9554-ae8bd755e239",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.39301Z",
+            "modified": "2025-11-11T22:34:43.39301Z",
+            "name": "COLDSTEEL_service_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule COLDSTEEL_service_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Identifies the service created by COLDSTEEL.\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n        $ = \"msupdate\"\n        $ = \"Microsoft Update\"\n        $ = \"Enables the download and installation of Windows updates. If\nthis service is disabled, this computer will not be able to use the\nAutomatic Updates feature or the Windows Update Web site.\"\n\n    condition:\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:34:43.392999Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2b8fff63-907b-48f3-bbea-a09037e330a7",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.393293Z",
+            "modified": "2025-11-11T22:34:43.393293Z",
+            "name": "COLDSTEEL_rundll32_use_and_export_names",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "import \"pe\"\nrule COLDSTEEL_rundll32_use_and_export_names\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Execution method used by COLDSTEEL.\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n         $ = \"rundll32.exe \\\"%s\\\",UpdateDriverForPlugAndPlayDevicesW\"\n\n    condition:\n        all of them\n        and pe.exports(\"UpdateDriverForPlugAndPlayDevicesW\")\n        and pe.exports(\"ServiceMain\")\n        and pe.exports(\"DiUninstallDevice\")\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:34:43.393286Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4bd8ed7e-c9c1-477b-839c-f37b6be4a91a",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.393564Z",
+            "modified": "2025-11-11T22:34:43.393564Z",
+            "name": "COLDSTEEL_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule COLDSTEEL_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"COLDSTEEL strings\"\n        date = \"2023-01-31\"\n        hash1 = \"a94ed3d673261d62f2959979272d8c8d17e6e7f3\"\n\n    strings:\n        $ = \"MileStone201\"\n        $ = \"%SystemRoot%\\\\System32\\\\svchost.exe -k \"\n        $ = \"%s SP%d\"\n        $ = \"Win 2003\"\n        $ = \"Win 98\"\n        $ = \"RegSetValueEx(Svchost\\\\krnlsrvc)\"\n        $ = \"RegOpenKeyEx(Svchost)\"\n        $ = \"RegSetValueEx(ServiceDll)\"\n\n    condition:\n        7 of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:34:43.393556Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a3db0087-8f19-49dd-b8c3-c47c75c80e71",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.393844Z",
+            "modified": "2025-11-11T22:34:43.393844Z",
+            "name": "COLDSTEEL_Themida_useage",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "import \"pe\"\nrule COLDSTEEL_Themida_useage\n{\n    meta:\n        author = \"NCSC\"\n        description = \"COLDSTEEL Themida import usage.\"\n        date = \"2023-01-31\"\n        hash1 = \"9ec69a042106fc9d27a27197d3b680b468bca9a0\"\n\n    strings:\n        $ = \".themida\"\n    condition:\n        all of them\n        and pe.exports(\"ServiceMain\")\n\n  and pe.imports(\"CloseServiceHandle\", \"ADVAPI32\")\n  and pe.imports(\"CreateEnvironmentBlock\", \"USERENV\")\n  and pe.imports(\"CreateWindowExA\", \"USER32\")\n  and pe.imports(\"SHGetFileInfoA\", \"SHELL32\")\n  and pe.imports(\"SelectObject\", \"GDI32\")\n  and pe.imports(\"WTSQuerySessionInformationA\", \"WTSAPI32\")\n  and pe.imports(\"strcspn\", \"MSVCRT\")\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:34:43.393835Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8307dbb3-6ba5-4951-b058-8ae1c4e832d9",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.394379Z",
+            "modified": "2025-11-11T22:34:43.394379Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--7d779422-3074-45a3-a98e-91455b7c3bd9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4ccee653-cf93-489f-aeef-29a59b73185e",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.39468Z",
+            "modified": "2025-11-11T22:34:43.39468Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--921c26e5-ab61-47f4-8465-baed1d055303"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5740e7b1-79f7-4d8f-ac1c-ce876d40d11f",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.394931Z",
+            "modified": "2025-11-11T22:34:43.394931Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--4543c9e3-ada0-4115-8e34-9d7d01b15ca8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eda2d58b-d170-4e67-a69c-a5c2b3964866",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.395184Z",
+            "modified": "2025-11-11T22:34:43.395184Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--7cbba771-9ca0-4a62-b43d-90322b778146"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--718a4261-6578-461e-9cc6-428efade385b",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.39544Z",
+            "modified": "2025-11-11T22:34:43.39544Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--036b292d-f9f4-40dc-9613-44ec6771e21e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9ea3b0b-327b-436c-add4-568d683369da",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.395904Z",
+            "modified": "2025-11-11T22:34:43.395904Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--5262e882-f115-4b6b-99fe-99e535c4bb4c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c82e5f5e-c682-4476-b378-059225116dee",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.396183Z",
+            "modified": "2025-11-11T22:34:43.396183Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--d9d8ef1c-fc97-430a-8552-f3f956720a79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a0d46b7a-2314-4873-b33f-81cc4da1c63e",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.396553Z",
+            "modified": "2025-11-11T22:34:43.396553Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--59fef00d-ed77-4dbf-8131-1c60e1865042"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d02acd2b-de2a-464b-a9be-cb84b0e4afb5",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.396854Z",
+            "modified": "2025-11-11T22:34:43.396854Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--02003046-a090-4ba9-85f4-7a9b3e41d938"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6e2586bd-0908-478e-8015-5d40a6929077",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.397115Z",
+            "modified": "2025-11-11T22:34:43.397115Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--af8ec2cc-523d-43df-bf8d-141a56b9aabe"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3cedc445-8ed7-4693-9682-52fb4ab343d8",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.397378Z",
+            "modified": "2025-11-11T22:34:43.397378Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--777489a5-2930-4b30-80ac-dcf263eedc28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2815f995-3726-4386-9bb6-28414ae093b3",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.39772Z",
+            "modified": "2025-11-11T22:34:43.39772Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "attack-pattern--be9672c2-9324-4eb6-bf75-4dc69ae20f61"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--86878d17-e626-4353-a82c-0a77fe6adc11",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.398128Z",
+            "modified": "2025-11-11T22:34:43.398128Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ed208d7f-4f1b-4dc9-882a-a031178cbf13",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--496478d7-ab74-4e0d-964b-e43db2e4a755",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.398584Z",
+            "modified": "2025-11-11T22:34:43.398584Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--561dc75f-4df2-4d53-9a45-c7ccc6060a6e",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e0e87c86-8f56-4637-971d-dd518cca1bb9",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.398899Z",
+            "modified": "2025-11-11T22:34:43.398899Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0cfe6f2d-de77-4d33-923e-fe9b2d59214d",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9870526c-fbf8-4d50-b5f9-62265bf6d378",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.399157Z",
+            "modified": "2025-11-11T22:34:43.399157Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5c7aae8f-5b09-47fe-a1b2-3bd48dde5097",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0bff2691-2958-4ba6-819e-ea87fb0971dd",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.399426Z",
+            "modified": "2025-11-11T22:34:43.399426Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9846bb02-6985-465b-9010-29ed73eeef95",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fe8a1443-37b3-44e4-8ff7-de7e98635578",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.399713Z",
+            "modified": "2025-11-11T22:34:43.399713Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a334138b-5b83-42a0-9b3d-4ac386849936",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a7c9a905-2dec-4202-9c7b-ef354f0b5779",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.399972Z",
+            "modified": "2025-11-11T22:34:43.399972Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e5692768-a8a5-46da-97d4-e52d8fa2a4e1",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--decc9adf-1812-4b41-b226-bd2d17166b99",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.400297Z",
+            "modified": "2025-11-11T22:34:43.400297Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e48d3202-ab1e-458d-8ad4-b34fb5a9636b",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--958bb0dc-a5df-45db-8aed-2830665a5841",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.400683Z",
+            "modified": "2025-11-11T22:34:43.400683Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c1f16142-e920-47b9-ba69-e12f38cf5cac",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.400954Z",
+            "modified": "2025-11-11T22:34:43.400954Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--94c404a0-b220-4ef4-9c52-245fb56599fa",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.401227Z",
+            "modified": "2025-11-11T22:34:43.401227Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1c3d8489-85b8-4207-8e1f-4b92e70a1243",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.40165Z",
+            "modified": "2025-11-11T22:34:43.40165Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b08b7b9e-7b71-463c-b335-a30301f5c0d4",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.401981Z",
+            "modified": "2025-11-11T22:34:43.401981Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7d02b15c-e9d2-4d86-83af-9d3a96a70e6a",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.402356Z",
+            "modified": "2025-11-11T22:34:43.402356Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14b70378-be39-4ecc-b94f-af532d5c8b9e",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.402668Z",
+            "modified": "2025-11-11T22:34:43.402668Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--10a28aaf-267a-4df7-9e87-c08744119deb",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.402947Z",
+            "modified": "2025-11-11T22:34:43.402947Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1135c68a-4a8a-43de-96e1-b0782939b5e4",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.403209Z",
+            "modified": "2025-11-11T22:34:43.403209Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--17fbcf38-fb76-4921-a61c-971cffccd210",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.403638Z",
+            "modified": "2025-11-11T22:34:43.403638Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--865b4af6-1e41-4506-a050-b8e646928b49",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.403892Z",
+            "modified": "2025-11-11T22:34:43.403892Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fbe1f95a-e55c-4aef-800f-bf7378273210",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.404151Z",
+            "modified": "2025-11-11T22:34:43.404151Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b00b70ff-8a6f-429b-a243-d97aadb32ef4",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.404661Z",
+            "modified": "2025-11-11T22:34:43.404661Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--213ec224-940b-43d8-b593-7f59add0618d",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.404933Z",
+            "modified": "2025-11-11T22:34:43.404933Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1e25e781-81d3-4924-ac33-f2d3bb4da57c",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.405176Z",
+            "modified": "2025-11-11T22:34:43.405176Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--19a83410-d3b7-4511-90e6-71419711317b",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.405432Z",
+            "modified": "2025-11-11T22:34:43.405432Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f08e427b-040d-4d93-b186-e49c02c1715b",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5ed29e45-cf4b-4f00-9b45-0e120bd3d862",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.405721Z",
+            "modified": "2025-11-11T22:34:43.405721Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2177dad4-71a5-45bd-933c-7dbb8b24ef81",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.40597Z",
+            "modified": "2025-11-11T22:34:43.40597Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--566b01d3-1776-4372-8b16-71331f7cc08a",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6f06854d-f4b9-4785-a783-7a67413724ee",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.406712Z",
+            "modified": "2025-11-11T22:34:43.406712Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9eb2ec06-9295-4cf6-9554-ae8bd755e239",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b9046f0d-955c-43a3-9917-52b0c9fea74c",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.407043Z",
+            "modified": "2025-11-11T22:34:43.407043Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9eb2ec06-9295-4cf6-9554-ae8bd755e239",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2bd7159e-ac5f-430e-9297-171d9a31e5d1",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.40747Z",
+            "modified": "2025-11-11T22:34:43.40747Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2b8fff63-907b-48f3-bbea-a09037e330a7",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--536d33fc-b7b8-4d85-afeb-ba788efc85e6",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.407775Z",
+            "modified": "2025-11-11T22:34:43.407775Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2b8fff63-907b-48f3-bbea-a09037e330a7",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dca5763b-2c22-49a1-93dd-09afb7146462",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.408172Z",
+            "modified": "2025-11-11T22:34:43.408172Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4bd8ed7e-c9c1-477b-839c-f37b6be4a91a",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--28990a0a-58da-4420-bd36-6a1a6967c85a",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.408456Z",
+            "modified": "2025-11-11T22:34:43.408456Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4bd8ed7e-c9c1-477b-839c-f37b6be4a91a",
+            "target_ref": "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ff643ac8-4aa0-407a-aec3-fbb62fa94d74",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.408892Z",
+            "modified": "2025-11-11T22:34:43.408892Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a3db0087-8f19-49dd-b8c3-c47c75c80e71",
+            "target_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2a8bcf5e-53a9-495b-8bb6-97eb8499045b",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.409165Z",
+            "modified": "2025-11-11T22:34:43.409165Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--a3db0087-8f19-49dd-b8c3-c47c75c80e71",
+            "target_ref": "indicator--c9b3b5de-8021-4272-842f-41b591793b03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1c7d6b0d-8fb3-4707-8354-420f7edee455",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.410105Z",
+            "modified": "2025-11-11T22:34:43.410105Z",
+            "relationship_type": "exploits",
+            "source_ref": "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+            "target_ref": "vulnerability--b38a5029-006a-4fa2-bd70-af97de422b14"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--bbd1fd9d-6821-47e8-8a88-d6bdba8f336a",
+            "created_by_ref": "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+            "created": "2025-11-11T22:34:43.411316Z",
+            "modified": "2025-11-11T22:34:43.411316Z",
+            "name": "Analisi Malware: Coldsteel",
+            "description": "This report contains technical analysis and indicators associated with malware. coldsteel.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-11T22:34:43.411301Z",
+            "object_refs": [
+                "identity--277f49e8-af1b-45e0-bd2a-17ccc5c4cef5",
+                "windows-registry-key--8e1c0de4-e9d5-57c4-a0f7-d54cc1f6aba5",
+                "windows-registry-key--b868bb26-29b6-550f-a7fd-482293fe7316",
+                "ipv4-addr--26a2e7da-6459-5451-b7ed-c6a66fcbe47a",
+                "ipv4-addr--cb74eb2e-2108-58b1-a3be-fdccee5d022b",
+                "ipv4-addr--735fc373-5123-5cb0-9f97-0474ee729f73",
+                "ipv4-addr--c4a550f9-1fb8-5463-9527-adbab153f605",
+                "indicator--ed208d7f-4f1b-4dc9-882a-a031178cbf13",
+                "indicator--561dc75f-4df2-4d53-9a45-c7ccc6060a6e",
+                "indicator--0cfe6f2d-de77-4d33-923e-fe9b2d59214d",
+                "indicator--5c7aae8f-5b09-47fe-a1b2-3bd48dde5097",
+                "indicator--9846bb02-6985-465b-9010-29ed73eeef95",
+                "indicator--a334138b-5b83-42a0-9b3d-4ac386849936",
+                "indicator--e5692768-a8a5-46da-97d4-e52d8fa2a4e1",
+                "indicator--e48d3202-ab1e-458d-8ad4-b34fb5a9636b",
+                "indicator--857def37-389f-474e-90cd-bbb8b73e162c",
+                "indicator--cdbf749f-682a-4ae4-b2d2-fdbc6efc4274",
+                "indicator--0c1d7d88-09ac-480b-a471-dc4ec12eaf0d",
+                "indicator--16f912d1-8ed2-438d-b9e7-af2400d06318",
+                "indicator--e67eede7-fab0-4c5e-9846-0b8468dee34d",
+                "indicator--36baa861-ebb9-4820-8c1f-d63ed3384fde",
+                "indicator--5913e6a4-d62a-452f-9ec1-91e425a86b94",
+                "indicator--c9b3b5de-8021-4272-842f-41b591793b03",
+                "indicator--23d55bbc-8c1d-465e-9fa8-6c5aa8bbb49b",
+                "indicator--eeee0499-9693-48d2-b710-abe26057f1e9",
+                "indicator--5ca4ce46-2b52-4b4a-b75b-9c70270642d0",
+                "indicator--45a9875a-7733-491e-8d62-56c85c7931f9",
+                "indicator--19760337-4857-4c0d-bf78-e3b1c91242b1",
+                "indicator--4ba3e995-6c83-4164-942c-cbcf87e0b9ce",
+                "indicator--0fd6f8ea-38b8-469e-89bf-8d8e39fc49b7",
+                "indicator--f08e427b-040d-4d93-b186-e49c02c1715b",
+                "indicator--539abeb0-afcd-4dd0-bf8c-376a9de3e7f6",
+                "indicator--566b01d3-1776-4372-8b16-71331f7cc08a",
+                "relationship--749bd6da-3568-4fd3-a641-f008d5fd94ee",
+                "relationship--5dc2fb77-0b79-4d6b-8cd5-4951b6d94cd8",
+                "relationship--58cb540c-f0bb-4c90-bd50-1367fba0d91a",
+                "relationship--5b560c86-30f4-476c-800b-64e611389b7e",
+                "relationship--bf9a2dd2-0195-4b7b-b8b0-00763c218d82",
+                "relationship--6dec7eb2-d385-476e-99e7-e8783339d421",
+                "relationship--1cd7a47c-2816-4433-8f03-db073e5f9dd7",
+                "relationship--f3fccd25-217a-4d2a-bd98-fa53b0aa641c",
+                "relationship--8ced6641-e0ba-49a9-b47f-62bd6749b6c8",
+                "relationship--302bb9f4-fddd-41cb-83c4-c2a99f4ea71b",
+                "relationship--dcdff19d-3790-4c31-9703-ec3189a24a55",
+                "relationship--e9ca3999-4675-4e55-81e2-a2962501d387",
+                "relationship--f75e7933-c90d-4a91-9a1e-8b848c7ab99b",
+                "relationship--9cc376eb-dac8-4749-9706-024650d36de5",
+                "relationship--f51dd8d3-8e3b-4611-81ae-46756ec88a8a",
+                "relationship--5a4265aa-7b4f-488c-93f6-7ef13e42650e",
+                "relationship--78630f6b-2182-448a-89e0-332a8248f7d4",
+                "relationship--b5bec195-1652-45e9-ac4f-f34986c00630",
+                "relationship--f75e5aa3-0a71-46e8-b260-714daef6197a",
+                "relationship--c7bcffd8-9786-4d3d-b0ec-7a4c337fb263",
+                "relationship--bfe1e6bb-8b56-4a81-909d-c486d2ce43ac",
+                "relationship--b7e43583-22b7-4e2b-bc1b-bf6f0c66e948",
+                "relationship--1010d763-74f2-45c4-b349-c2a797384865",
+                "relationship--0ac9d4c0-b23d-4c23-b983-e0a50d9a2e0b",
+                "relationship--1e08ec60-370c-40a8-a568-c7a5a84ff576",
+                "relationship--22359f7d-0a6f-4563-95a9-0085315151c2",
+                "relationship--5e9d3730-de81-46ba-9cf0-007854fe82f2",
+                "relationship--6412897b-e0b7-4a49-b927-ebf2b8e4a45d",
+                "relationship--d9343b69-3820-4461-8059-6e553821577d",
+                "relationship--c0b6d124-b38a-4cda-a56a-b780295364f9",
+                "relationship--18aacf69-30ef-4a1d-98c9-196a298e3c93",
+                "relationship--551f3eec-9812-4bb4-8b06-ddd3a4dbd9d8",
+                "relationship--6439bc3a-1806-4618-867d-8baec2bea4cc",
+                "relationship--a63b0f6b-daff-41cb-ad50-865ffa8927cd",
+                "relationship--512ee228-ad6e-4201-9695-e46686e4dd6f",
+                "relationship--7917838b-deee-4be5-ab9f-2c708486873a",
+                "relationship--e9434f4d-6895-4969-b7f2-465ceed3b7f8",
+                "relationship--44428e77-6d29-46b4-9d69-2251b6d8d946",
+                "relationship--7e3b00e3-ac05-473a-b921-277fd4a70d18",
+                "relationship--fd0bac92-d7c8-4c40-9b92-9a14e70824dc",
+                "relationship--3eeb2b3d-dbcc-4a3b-b6d9-676a2ba7d8d8",
+                "relationship--a048f665-8fe8-4cf6-8e8c-704f3f02f940",
+                "relationship--135667bf-7c27-48ff-a5ed-c6c7a37fb645",
+                "relationship--b6bb63ee-ca81-4720-b9de-91ed1ff5e077",
+                "relationship--48199afa-c3df-4e41-b86e-b1a67d3f657d",
+                "relationship--72556bd5-f125-462f-a156-7fa5eef8b06e",
+                "relationship--75a140a7-5d8c-48a1-978f-cde081179f81",
+                "relationship--1fabd9ba-6411-4596-98dc-95ac63a586f3",
+                "relationship--dce8b313-dd27-4e2e-ab36-ea2ed4460977",
+                "relationship--6a7873c0-93c7-477a-98f4-beb2ad090961",
+                "relationship--753c982c-58a7-4d1d-9713-cb3f1253d6f7",
+                "relationship--93c14c86-dfcd-4d83-b902-f817e6dca9ba",
+                "relationship--c477014b-f596-400f-9415-16460ad7d653",
+                "relationship--978bd344-f2a9-4116-9f33-5d674244df81",
+                "relationship--2c29b22e-4ef4-4712-ab5c-c61d36a4b992",
+                "relationship--9f2dd372-58e9-48a1-a7d7-09cf72358310",
+                "relationship--04eb35fb-fec4-4e38-90f8-8f8aef7d1d1c",
+                "relationship--3efb018c-bc08-4280-8d71-8fb7cb45f037",
+                "relationship--40ead791-bb8d-483c-86bb-c917ac580f5b",
+                "relationship--3ad6037c-6b98-49a4-b212-3bbeb4fb9360",
+                "relationship--ba24d42e-f11a-4696-9e80-4578c6e6dc5f",
+                "relationship--ac7742bb-0ca9-400c-b26c-1600fc876dc0",
+                "relationship--f4cc3968-0948-4eea-b5f6-c6464789b9ee",
+                "relationship--1388a5cc-003e-44cb-b863-fd84af8483d5",
+                "relationship--b4a9f7ee-eb1a-4f9b-8208-120fec572419",
+                "relationship--26ecbb25-4377-46b9-bfe8-24322e38a4c2",
+                "relationship--2e0b8a8e-713d-4398-897d-5fb2ffbb4a22",
+                "relationship--0e6331c8-29ae-4b8e-ab07-8d72fb952d8d",
+                "relationship--57e089e5-e1b0-4a75-bdeb-a7904dcce64c",
+                "relationship--3c47329d-b28c-41c5-a003-3dd8ccdff51e",
+                "relationship--cc37922e-3407-4e13-a60a-972fa80ef877",
+                "relationship--b9cdcf1f-14d6-4cfe-bfb6-b0d596bae89f",
+                "relationship--d8f137ff-689e-433c-a7d4-c72ab000042c",
+                "relationship--7b0640fb-6658-4e3d-96c2-c2692f6a0424",
+                "relationship--df50df04-698d-4f2c-957e-8f2b21fb74c7",
+                "relationship--9dbe6371-5d20-4759-9ab1-29b9bfc4f987",
+                "relationship--5df29dd4-453d-48fe-8ce0-64e30ba8f2a1",
+                "relationship--7128bfea-48e7-4717-b41b-7632f995364b",
+                "relationship--0567534d-1e90-41e3-abb1-9bc9195dc921",
+                "relationship--0ed83184-46cf-4c91-bb31-98bbf994c234",
+                "relationship--4cffded1-4382-4f46-991f-eddde2a98074",
+                "relationship--c7b8ebdd-f156-473e-94f2-93d6b8336f7c",
+                "relationship--64fd45d0-814a-47d9-8afd-32c79ced3b92",
+                "relationship--1a3cfbac-e342-48a9-a308-0571af56e97b",
+                "relationship--3af2a05d-fd0c-4df4-8933-040415114fe7",
+                "relationship--ff7e11c4-5e7a-4bd6-b9d8-9e9cf64ad8ae",
+                "relationship--0924b23a-11f4-4b11-b613-2aec620d1757",
+                "relationship--095791da-8b4f-4415-b25a-c87f87c1e2fd",
+                "relationship--9503e47f-5bc2-43ca-b965-735708be6cd9",
+                "relationship--e047ea5d-db48-4962-90ef-ea64daa9f6e7",
+                "relationship--609bf63e-a78b-4416-8991-4e6d2b12e3ed",
+                "relationship--14ce6983-f601-4117-8411-f822a9a525ec",
+                "relationship--38cbc070-3c91-4d56-8eb5-2a7c5a647cb3",
+                "relationship--abcad287-8f39-4d37-bee1-c0477d4541dc",
+                "relationship--0be41bc6-7a25-42d1-9d20-fd70d7cf40ae",
+                "relationship--612756c0-e72b-48f9-8344-ec61be6cc66c",
+                "relationship--a708873c-c882-4776-8b3f-b33c532e972d",
+                "relationship--c92c5d5c-052a-42be-b3dc-d671e11788c1",
+                "relationship--14036136-fefc-426a-bb78-9bd98c18d749",
+                "relationship--ef4cb540-fc30-40b7-b604-0594b379b885",
+                "relationship--08670ae9-e8a6-4f53-85f9-b4d43014d001",
+                "relationship--5d2c6362-8b3b-48ec-bc18-84a87c94abac",
+                "relationship--d1cdbb6a-1eff-4a6e-a14d-2c037fb56ab9",
+                "relationship--34a082a4-f2fc-4a76-9713-c271eefa431f",
+                "relationship--58b3e9a4-08f8-4c38-a735-a8e44a58885d",
+                "relationship--81ec5f7d-f5ee-401e-b7d3-00a0c5ddd201",
+                "relationship--4a29464b-c95b-4a5a-9c04-2d8e547ced9c",
+                "relationship--6e9ae87e-9569-43b3-9748-a4e18bdb9111",
+                "relationship--6ecd2886-fee4-4406-a5dd-19a45f689469",
+                "relationship--2dd563d2-efa2-48be-8cbf-a31ecbb069af",
+                "relationship--01552983-d678-49d4-b2d8-0fe4c5168437",
+                "relationship--b0e0eafa-cb63-4a0b-b9ab-06bcfb739d37",
+                "relationship--f85865c5-78f0-4e3a-bc29-850412b98852",
+                "relationship--7a9b43cf-f421-4db7-9860-ca54c23c4f49",
+                "relationship--2c4c7590-71e8-45cf-9a0b-62abaed8d29d",
+                "relationship--a4c083a7-0f8c-4502-96f5-ff41c3616c43",
+                "relationship--74600a76-9860-452a-82e0-5e3f8ccb5db2",
+                "relationship--d8d85e12-3c2c-49d4-9c45-0b299be97377",
+                "relationship--b6cd2e13-0cd0-4d1c-9dc8-2cfcdb62e01a",
+                "relationship--1da11e09-9bf6-4cca-a87d-e1e7b4e775d4",
+                "relationship--57914894-ffce-4484-9247-80d212cfe26e",
+                "relationship--4f39a2e4-c7dc-4b55-9a38-ce14496661d4",
+                "relationship--3634c893-40d9-4aa4-a95f-23c3f0bcc288",
+                "relationship--0bb17f27-045a-4959-a4b0-3e38100666f7",
+                "relationship--060eedc5-3da1-4809-b4a0-e1f32076aad6",
+                "relationship--9b9716ca-3d1b-4b4c-8de7-ea7bcbaef942",
+                "relationship--004eb250-c54c-4144-b780-b864302b92f3",
+                "relationship--d9f7937c-ad50-4342-bd42-4f90bc713303",
+                "relationship--a6f8e66c-0c58-4f45-9797-489575bce123",
+                "relationship--48c58e0a-29e5-47f9-93ac-d6a74a1554fe",
+                "relationship--859d615a-c384-4e83-b98d-1a6e6ece18ec",
+                "relationship--15136fd5-3d91-4ddb-9bd6-8e8af4675f85",
+                "relationship--1103bffb-8823-48db-af9c-459a614e043c",
+                "relationship--b2a28914-f3fa-4ef9-a2ea-ae67523c6779",
+                "relationship--7d939a3d-d7db-46b5-b703-bb1e83e87ed4",
+                "relationship--26e24773-17d6-4482-bff3-1492745c4f28",
+                "relationship--4bf1b4fc-7dd8-494a-824f-eb911768136d",
+                "relationship--140fe794-9ccf-4cc9-9e6d-2602f4ae5efe",
+                "relationship--a6239e7f-f2de-4f66-8fc0-e076a63e8769",
+                "relationship--cc5fe3b4-b06f-4f7c-8e01-711ef9c275a5",
+                "relationship--1ef29ac4-a0e0-4dd4-954a-2ce7d8e7c3bd",
+                "relationship--6e3b652c-daa4-48f8-9a84-8bad9049fd05",
+                "relationship--e70057de-8de0-4f51-96bc-573b3e7dd332",
+                "relationship--f00a1289-054e-46ce-bcc1-ecab58892fd3",
+                "relationship--15920875-8b53-479f-b1c9-c7ddcc9682d5",
+                "relationship--86b5976e-7d47-407d-917c-f023ebc1f213",
+                "relationship--5e2a9abd-35fa-496a-aa2a-8b8f7afbe612",
+                "relationship--46f3eed8-46bb-4408-87c0-79d2043d425f",
+                "relationship--6d622a5d-9c96-46a8-9bbb-823f44312c88",
+                "relationship--992e7c0a-98d3-4d30-87fa-706031f76797",
+                "relationship--99a94bac-b46a-4a84-b44f-6f4f82226a11",
+                "relationship--8be29e25-02e1-4aa3-8991-868865e02c73",
+                "relationship--53afbb19-5986-4aa3-a648-e31971ca3721",
+                "malware--b8bda22a-e7aa-4b4a-b614-e62e6202c0b1",
+                "identity--ba1ac89c-074a-492a-bfdb-a5edb6768657",
+                "identity--ccb1373c-5f2a-4848-9de7-63907f872dd9",
+                "vulnerability--b38a5029-006a-4fa2-bd70-af97de422b14",
+                "attack-pattern--7d779422-3074-45a3-a98e-91455b7c3bd9",
+                "attack-pattern--921c26e5-ab61-47f4-8465-baed1d055303",
+                "attack-pattern--4543c9e3-ada0-4115-8e34-9d7d01b15ca8",
+                "attack-pattern--7cbba771-9ca0-4a62-b43d-90322b778146",
+                "attack-pattern--036b292d-f9f4-40dc-9613-44ec6771e21e",
+                "attack-pattern--5262e882-f115-4b6b-99fe-99e535c4bb4c",
+                "attack-pattern--d9d8ef1c-fc97-430a-8552-f3f956720a79",
+                "attack-pattern--59fef00d-ed77-4dbf-8131-1c60e1865042",
+                "attack-pattern--02003046-a090-4ba9-85f4-7a9b3e41d938",
+                "attack-pattern--af8ec2cc-523d-43df-bf8d-141a56b9aabe",
+                "attack-pattern--777489a5-2930-4b30-80ac-dcf263eedc28",
+                "attack-pattern--be9672c2-9324-4eb6-bf75-4dc69ae20f61",
+                "indicator--9eb2ec06-9295-4cf6-9554-ae8bd755e239",
+                "indicator--2b8fff63-907b-48f3-bbea-a09037e330a7",
+                "indicator--4bd8ed7e-c9c1-477b-839c-f37b6be4a91a",
+                "indicator--a3db0087-8f19-49dd-b8c3-c47c75c80e71",
+                "relationship--8307dbb3-6ba5-4951-b058-8ae1c4e832d9",
+                "relationship--4ccee653-cf93-489f-aeef-29a59b73185e",
+                "relationship--5740e7b1-79f7-4d8f-ac1c-ce876d40d11f",
+                "relationship--eda2d58b-d170-4e67-a69c-a5c2b3964866",
+                "relationship--718a4261-6578-461e-9cc6-428efade385b",
+                "relationship--a9ea3b0b-327b-436c-add4-568d683369da",
+                "relationship--c82e5f5e-c682-4476-b378-059225116dee",
+                "relationship--a0d46b7a-2314-4873-b33f-81cc4da1c63e",
+                "relationship--d02acd2b-de2a-464b-a9be-cb84b0e4afb5",
+                "relationship--6e2586bd-0908-478e-8015-5d40a6929077",
+                "relationship--3cedc445-8ed7-4693-9682-52fb4ab343d8",
+                "relationship--2815f995-3726-4386-9bb6-28414ae093b3",
+                "relationship--86878d17-e626-4353-a82c-0a77fe6adc11",
+                "relationship--496478d7-ab74-4e0d-964b-e43db2e4a755",
+                "relationship--e0e87c86-8f56-4637-971d-dd518cca1bb9",
+                "relationship--9870526c-fbf8-4d50-b5f9-62265bf6d378",
+                "relationship--0bff2691-2958-4ba6-819e-ea87fb0971dd",
+                "relationship--fe8a1443-37b3-44e4-8ff7-de7e98635578",
+                "relationship--a7c9a905-2dec-4202-9c7b-ef354f0b5779",
+                "relationship--decc9adf-1812-4b41-b226-bd2d17166b99",
+                "relationship--958bb0dc-a5df-45db-8aed-2830665a5841",
+                "relationship--c1f16142-e920-47b9-ba69-e12f38cf5cac",
+                "relationship--94c404a0-b220-4ef4-9c52-245fb56599fa",
+                "relationship--1c3d8489-85b8-4207-8e1f-4b92e70a1243",
+                "relationship--b08b7b9e-7b71-463c-b335-a30301f5c0d4",
+                "relationship--7d02b15c-e9d2-4d86-83af-9d3a96a70e6a",
+                "relationship--14b70378-be39-4ecc-b94f-af532d5c8b9e",
+                "relationship--10a28aaf-267a-4df7-9e87-c08744119deb",
+                "relationship--1135c68a-4a8a-43de-96e1-b0782939b5e4",
+                "relationship--17fbcf38-fb76-4921-a61c-971cffccd210",
+                "relationship--865b4af6-1e41-4506-a050-b8e646928b49",
+                "relationship--fbe1f95a-e55c-4aef-800f-bf7378273210",
+                "relationship--b00b70ff-8a6f-429b-a243-d97aadb32ef4",
+                "relationship--213ec224-940b-43d8-b593-7f59add0618d",
+                "relationship--1e25e781-81d3-4924-ac33-f2d3bb4da57c",
+                "relationship--19a83410-d3b7-4511-90e6-71419711317b",
+                "relationship--5ed29e45-cf4b-4f00-9b45-0e120bd3d862",
+                "relationship--2177dad4-71a5-45bd-933c-7dbb8b24ef81",
+                "relationship--6f06854d-f4b9-4785-a783-7a67413724ee",
+                "relationship--b9046f0d-955c-43a3-9917-52b0c9fea74c",
+                "relationship--2bd7159e-ac5f-430e-9297-171d9a31e5d1",
+                "relationship--536d33fc-b7b8-4d85-afeb-ba788efc85e6",
+                "relationship--dca5763b-2c22-49a1-93dd-09afb7146462",
+                "relationship--28990a0a-58da-4420-bd36-6a1a6967c85a",
+                "relationship--ff643ac8-4aa0-407a-aec3-fbb62fa94d74",
+                "relationship--2a8bcf5e-53a9-495b-8bb6-97eb8499045b",
+                "relationship--1c7d6b0d-8fb3-4707-8354-420f7edee455"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
