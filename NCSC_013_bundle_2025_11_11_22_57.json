@@ -1,0 +1,1814 @@
+{
+    "type": "bundle",
+    "id": "bundle--92825b2c-e760-4e42-b92b-0ce063350da2",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.688483Z",
+            "modified": "2025-11-11T22:57:49.688483Z",
+            "name": "NCSC",
+            "description": "The authoring organization of the 'Cheeky Chipmunk' threat report, as indicated by the copyright, disclaimer, and YARA rule metadata.",
+            "identity_class": "organization"
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1d296f16-1b52-5f17-b654-b69a98946a84",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\LanmanServer\\Parameters\\NullSessionPipes\\Pnrsvc"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--5bfa8eb1-e1a7-5473-9e55-9f181ccebee4",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Network\\Media\\Enable"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1305563a-c275-52fc-9db0-559013f9b70b",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Network\\Media\\(Default)"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--1f9e6616-06ec-558d-91fd-c4058f53f9ad",
+            "key": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\pnrssp"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--18e4dbab-6fb1-5a47-9964-b86a85b47e34",
+            "name": "\\\\.\\pipe\\atctl"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--5c4a863e-6858-50df-8274-77b4a3cbe132",
+            "name": "\\\\.\\pipe\\pnrsvc"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--67d82dd0-4095-54ee-b004-6929346b7ff5",
+            "name": "\\\\.\\pipe\\msbrws"
+        },
+        {
+            "type": "mutex",
+            "spec_version": "2.1",
+            "id": "mutex--25ff4bf2-5c1d-5bdc-8c14-03585225ba8d",
+            "name": "{7DF02564-C31E-4A68-A688-72D0EC840746}"
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--a1ed3b80-30f3-5a76-b97c-fad4113b27ea",
+            "key": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Svchost\\netsvcs\\Pnrssp"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f7b681c1-87b6-4612-8969-0802cbe7dc04",
+            "created": "2025-11-11T22:56:06.120127Z",
+            "modified": "2025-11-11T22:56:06.120127Z",
+            "name": "Cheeky Chipmunk NullSessionPipes Entry",
+            "description": "Registry key added to allow anonymous access to the malware's named pipe for RPC communication.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\services\\\\LanmanServer\\\\Parameters\\\\NullSessionPipes\\\\Pnrsvc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.120102Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2dd647ca-fa07-49c8-aa4f-6e9d8d5103d5",
+            "created": "2025-11-11T22:56:06.121888Z",
+            "modified": "2025-11-11T22:56:06.121888Z",
+            "name": "Cheeky Chipmunk RPC server binary",
+            "description": "Path where the RPC server binary (securlsa.chk) is written by the loader.",
+            "pattern": "[file:name = 'securlsa.chk' AND file:parent_directory_ref.path LIKE '%SYSTEMROOT%\\\\security\\\\database']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.121876Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--577dcf05-59e4-4f9a-8fa2-fc70b453f0b8",
+            "created": "2025-11-11T22:56:06.123306Z",
+            "modified": "2025-11-11T22:56:06.123306Z",
+            "name": "Cheeky Chipmunk PowerShell Command Storage",
+            "description": "Registry value used to store Base64-encoded commands for execution via the embedded PowerShellRunner.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Network\\\\Media\\\\Enable']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.123297Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--188f94d2-725c-4bd7-be45-7692bad16f7e",
+            "created": "2025-11-11T22:56:06.124313Z",
+            "modified": "2025-11-11T22:56:06.124313Z",
+            "name": "Cheeky Chipmunk PowerShell Command Storage",
+            "description": "Registry value (Default) used to store Base64-encoded commands for execution via the embedded PowerShellRunner.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Network\\\\Media\\\\(Default)']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.124304Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e8459e5c-85a5-4c07-b5ed-58182e829d4a",
+            "created": "2025-11-11T22:56:06.125457Z",
+            "modified": "2025-11-11T22:56:06.125457Z",
+            "name": "Cheeky Chipmunk log file",
+            "description": "Log file created during PowerShell execution, named to masquerade as a legitimate Windows file.",
+            "pattern": "[file:name = 'NTuser.log' AND file:parent_directory_ref.path LIKE '%PUBLIC%']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.125445Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9dcfd794-f294-4aed-9576-bf2d03664075",
+            "created": "2025-11-11T22:56:06.127452Z",
+            "modified": "2025-11-11T22:56:06.127452Z",
+            "name": "Cheeky Chipmunk Persistence Service Key",
+            "description": "The primary registry key defining the malicious 'pnrssp' Windows service used for persistence.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\CurrentControlSet\\\\services\\\\pnrssp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.127442Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--eec4bf5d-9887-449f-998c-1625fdc213ae",
+            "created": "2025-11-11T22:56:06.129237Z",
+            "modified": "2025-11-11T22:56:06.129237Z",
+            "name": "Cheeky Chipmunk C2 Named Pipe",
+            "description": "Named pipe used for RPC-based command and control communications.",
+            "pattern": "[mutex:name = '\\\\\\\\.\\\\pipe\\\\atctl']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.129226Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e6ea2684-06bf-4a4a-8b68-40a4439194b6",
+            "created": "2025-11-11T22:56:06.13059Z",
+            "modified": "2025-11-11T22:56:06.13059Z",
+            "name": "Cheeky Chipmunk C2 Named Pipe",
+            "description": "Named pipe used for RPC-based command and control communications.",
+            "pattern": "[mutex:name = '\\\\\\\\.\\\\pipe\\\\pnrsvc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.13058Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bb3f5663-c4c0-4285-b730-4ee6f6c23190",
+            "created": "2025-11-11T22:56:06.131799Z",
+            "modified": "2025-11-11T22:56:06.131799Z",
+            "name": "Cheeky Chipmunk C2 Named Pipe",
+            "description": "Named pipe used for RPC-based command and control communications.",
+            "pattern": "[mutex:name = '\\\\\\\\.\\\\pipe\\\\msbrws']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.13179Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6b240f39-2bdf-49dc-9c9a-5556d28bf76a",
+            "created": "2025-11-11T22:56:06.13305Z",
+            "modified": "2025-11-11T22:56:06.13305Z",
+            "name": "Cheeky Chipmunk RPC Interface GUID",
+            "description": "Unique identifier for the Cheeky Chipmunk RPC interface, seen in network traffic and hardcoded in binaries.",
+            "pattern": "[mutex:name = '{7DF02564-C31E-4A68-A688-72D0EC840746}']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.13304Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b615d640-647a-4305-a197-2fce9c9962fb",
+            "created": "2025-11-11T22:56:06.134625Z",
+            "modified": "2025-11-11T22:56:06.134625Z",
+            "name": "Cheeky Chipmunk Service Host Group Entry",
+            "description": "Registry key value adding the malicious 'Pnrssp' service to the legitimate 'netsvcs' service host group for masquerading.",
+            "pattern": "[windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Svchost\\\\netsvcs\\\\Pnrssp']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.134613Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--afb54442-22b7-459a-8f4e-13cd8328c3f6",
+            "created": "2025-11-11T22:56:06.135863Z",
+            "modified": "2025-11-11T22:56:06.135863Z",
+            "name": "Indicator for mstcf.ps1 loader (MD5)",
+            "description": "MD5 hash of the Cheeky Chipmunk PowerShell service loader script.",
+            "pattern": "[file:hashes.'MD5' = '165be7620b78fe37cf25c797ee5b49e7']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.135851Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac",
+            "created": "2025-11-11T22:56:06.137104Z",
+            "modified": "2025-11-11T22:56:06.137104Z",
+            "name": "Indicator for mstcf.ps1 loader (SHA1)",
+            "description": "SHA-1 hash of the Cheeky Chipmunk PowerShell service loader script.",
+            "pattern": "[file:hashes.'SHA1' = '50c0bf9479efc93fa9cf1aa99bdca923273b71a1']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.137092Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a7f4ddee-c816-4937-b354-59224ceb3d0f",
+            "created": "2025-11-11T22:56:06.138304Z",
+            "modified": "2025-11-11T22:56:06.138304Z",
+            "name": "Indicator for mstcf.ps1 loader (SHA256)",
+            "description": "SHA-256 hash of the Cheeky Chipmunk PowerShell service loader script.",
+            "pattern": "[file:hashes.'SHA256' = '22a8b4a7c7a467ea7fcf0a3930c99ecb482095093839683b400f58e2cdda176f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.138292Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--33262c63-fa33-4910-a295-11583ea35a33",
+            "created": "2025-11-11T22:56:06.139499Z",
+            "modified": "2025-11-11T22:56:06.139499Z",
+            "name": "Indicator for securlsa.chk RPC server (MD5)",
+            "description": "MD5 hash of the Cheeky Chipmunk RPC server binary.",
+            "pattern": "[file:hashes.'MD5' = '38abeb8a68e9207da3e6ead88a9682ec']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.139488Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28",
+            "created": "2025-11-11T22:56:06.140942Z",
+            "modified": "2025-11-11T22:56:06.140942Z",
+            "name": "Indicator for securlsa.chk RPC server (SHA1)",
+            "description": "SHA-1 hash of the Cheeky Chipmunk RPC server binary.",
+            "pattern": "[file:hashes.'SHA1' = '52c8cbd0545caab7596c1382c7fc5a479209851d']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.140931Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ee1ea803-21bb-4525-99a8-989186d7e964",
+            "created": "2025-11-11T22:56:06.142087Z",
+            "modified": "2025-11-11T22:56:06.142087Z",
+            "name": "Indicator for securlsa.chk RPC server (SHA256)",
+            "description": "SHA-256 hash of the Cheeky Chipmunk RPC server binary.",
+            "pattern": "[file:hashes.'SHA256' = '454e6c3d8c1c982cd301b4dd82ec3431935c28adea78ed8160d731ab0bed6cb7']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.142076Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "created": "2025-11-11T22:56:06.143198Z",
+            "modified": "2025-11-11T22:56:06.143198Z",
+            "name": "Indicator for mscsp.exe RPC client (MD5)",
+            "description": "MD5 hash of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'MD5' = 'b03caf2f86a6b7adc06550bf666309a4']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.143188Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "created": "2025-11-11T22:56:06.144228Z",
+            "modified": "2025-11-11T22:56:06.144228Z",
+            "name": "Indicator for mscsp.exe RPC client (SHA1)",
+            "description": "SHA-1 hash of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'SHA1' = '865f4c457bf86ff03456de828044f6ed6d6cf96a']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.144217Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+            "created": "2025-11-11T22:56:06.145264Z",
+            "modified": "2025-11-11T22:56:06.145264Z",
+            "name": "Indicator for mscsp.exe RPC client (SHA256)",
+            "description": "SHA-256 hash of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'SHA256' = 'd86f7d63bf8faa7070ba096523cf114947b55570dc50b0583797c9897ba3559c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.145254Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2edeeb4e-145c-43ab-aa4c-c8fd29e21102",
+            "created": "2025-11-11T22:56:06.146346Z",
+            "modified": "2025-11-11T22:56:06.146346Z",
+            "name": "Indicator for Cheeky Chipmunk RPC client DLL (MD5)",
+            "description": "MD5 hash of the DLL version of the Cheeky Chipmunk RPC client.",
+            "pattern": "[file:hashes.'MD5' = '50c98af90563bae4f89219d50feba38f']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.146336Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6",
+            "created": "2025-11-11T22:56:06.147363Z",
+            "modified": "2025-11-11T22:56:06.147363Z",
+            "name": "Indicator for Cheeky Chipmunk RPC client DLL (SHA1)",
+            "description": "SHA-1 hash of the DLL version of the Cheeky Chipmunk RPC client.",
+            "pattern": "[file:hashes.'SHA1' = '5d5825b14377c5e5fe96816dd72a90bd13dc9fc8']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.147353Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--09c74cb1-d815-4617-a596-c3a99f21a517",
+            "created": "2025-11-11T22:56:06.148394Z",
+            "modified": "2025-11-11T22:56:06.148394Z",
+            "name": "Indicator for Cheeky Chipmunk RPC client DLL (SHA256)",
+            "description": "SHA-256 hash of the DLL version of the Cheeky Chipmunk RPC client.",
+            "pattern": "[file:hashes.'SHA256' = '722fa0c893b39fef787b7bc277c979d29adc1525d77dd952f0cc61cd4d0597cc']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.148384Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783",
+            "created": "2025-11-11T22:56:06.149482Z",
+            "modified": "2025-11-11T22:56:06.149482Z",
+            "name": "Indicator for mscsp.exe RPC client (MD5)",
+            "description": "MD5 hash of another version of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'MD5' = '48afbdc27f3ff243ac2689e2ebd9f33c']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.149472Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--da38dca9-2137-4433-a4c8-edef49198267",
+            "created": "2025-11-11T22:56:06.150499Z",
+            "modified": "2025-11-11T22:56:06.150499Z",
+            "name": "Indicator for mscsp.exe RPC client (SHA1)",
+            "description": "SHA-1 hash of another version of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'SHA1' = '7e4a6bac09ad214e98801bc199f96c265d7b6b48']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.150489Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79",
+            "created": "2025-11-11T22:56:06.151908Z",
+            "modified": "2025-11-11T22:56:06.151908Z",
+            "name": "Indicator for mscsp.exe RPC client (SHA256)",
+            "description": "SHA-256 hash of another version of the Cheeky Chipmunk RPC client executable.",
+            "pattern": "[file:hashes.'SHA256' = '27e7d2054a68510c974add24f33c1c7ef06ef68028cca021cd6b5e67363e2bea']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2025-11-11T22:56:06.151897Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--52a1c495-0d08-45a1-ae91-be98158ee83c",
+            "created": "2025-11-11T22:56:06.153031Z",
+            "modified": "2025-11-11T22:56:06.153031Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--afb54442-22b7-459a-8f4e-13cd8328c3f6",
+            "target_ref": "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5b593161-01af-4bc6-af54-f7d9295a5353",
+            "created": "2025-11-11T22:56:06.153387Z",
+            "modified": "2025-11-11T22:56:06.153387Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--afb54442-22b7-459a-8f4e-13cd8328c3f6",
+            "target_ref": "indicator--a7f4ddee-c816-4937-b354-59224ceb3d0f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--641b977a-5dfd-4d0c-84d4-b009f75cd2b6",
+            "created": "2025-11-11T22:56:06.153668Z",
+            "modified": "2025-11-11T22:56:06.153668Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac",
+            "target_ref": "indicator--a7f4ddee-c816-4937-b354-59224ceb3d0f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b0ba3952-a30c-4105-807f-8d1cadf2b2d4",
+            "created": "2025-11-11T22:56:06.153925Z",
+            "modified": "2025-11-11T22:56:06.153925Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--33262c63-fa33-4910-a295-11583ea35a33",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d9a252cd-1317-401c-a36a-a32080a129c6",
+            "created": "2025-11-11T22:56:06.15419Z",
+            "modified": "2025-11-11T22:56:06.15419Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--33262c63-fa33-4910-a295-11583ea35a33",
+            "target_ref": "indicator--ee1ea803-21bb-4525-99a8-989186d7e964"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--82692e40-b11c-45bd-b61f-83d1db2f011d",
+            "created": "2025-11-11T22:56:06.154434Z",
+            "modified": "2025-11-11T22:56:06.154434Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28",
+            "target_ref": "indicator--ee1ea803-21bb-4525-99a8-989186d7e964"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--689c2faf-f1d8-468e-85db-b7c954eb53c6",
+            "created": "2025-11-11T22:56:06.154695Z",
+            "modified": "2025-11-11T22:56:06.154695Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bd6ac97b-5eac-4541-a751-3bfb40a35d78",
+            "created": "2025-11-11T22:56:06.154936Z",
+            "modified": "2025-11-11T22:56:06.154936Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4fc7a0b5-a024-418d-82b6-5895ac7b53b1",
+            "created": "2025-11-11T22:56:06.155174Z",
+            "modified": "2025-11-11T22:56:06.155174Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--23af29c2-24cd-44d6-a9b0-b8feed8a40e7",
+            "created": "2025-11-11T22:56:06.155416Z",
+            "modified": "2025-11-11T22:56:06.155416Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--eb3b3c78-71ba-4e0d-9030-e8bc6864fd42",
+            "created": "2025-11-11T22:56:06.155695Z",
+            "modified": "2025-11-11T22:56:06.155695Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--db17b4be-1416-411f-872d-fb6a738f5525",
+            "created": "2025-11-11T22:56:06.155934Z",
+            "modified": "2025-11-11T22:56:06.155934Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "target_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--286b4528-019e-444a-9c72-af7b32885d49",
+            "created": "2025-11-11T22:56:06.156166Z",
+            "modified": "2025-11-11T22:56:06.156166Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "target_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--197432d7-369a-46ee-8238-e57957adf462",
+            "created": "2025-11-11T22:56:06.156401Z",
+            "modified": "2025-11-11T22:56:06.156401Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9061160f-063b-4a67-b15c-01eec479a9b1",
+            "created": "2025-11-11T22:56:06.156656Z",
+            "modified": "2025-11-11T22:56:06.156656Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "target_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--97284a64-a744-4b89-b787-98c564cae74a",
+            "created": "2025-11-11T22:56:06.15689Z",
+            "modified": "2025-11-11T22:56:06.15689Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+            "target_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--73fa1dd0-c9e8-4f62-8a83-15ae7e096b27",
+            "created": "2025-11-11T22:56:06.15712Z",
+            "modified": "2025-11-11T22:56:06.15712Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c3128325-dcff-4159-a490-8756d6761a39",
+            "created": "2025-11-11T22:56:06.15735Z",
+            "modified": "2025-11-11T22:56:06.15735Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+            "target_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--decdd0ca-f10d-49d9-b3e2-353d6c3ea85c",
+            "created": "2025-11-11T22:56:06.157588Z",
+            "modified": "2025-11-11T22:56:06.157588Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fdf0e448-fcb2-4887-bb4f-0c07177f1a2b",
+            "created": "2025-11-11T22:56:06.157858Z",
+            "modified": "2025-11-11T22:56:06.157858Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783",
+            "target_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--69847285-7154-4182-a796-3b571eaef9e2",
+            "created": "2025-11-11T22:56:06.158089Z",
+            "modified": "2025-11-11T22:56:06.158089Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267",
+            "target_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--becaffa3-5e3d-43d2-a34a-9e98c0ce2102",
+            "created": "2025-11-11T22:56:06.158333Z",
+            "modified": "2025-11-11T22:56:06.158333Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2edeeb4e-145c-43ab-aa4c-c8fd29e21102",
+            "target_ref": "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--99065c66-25b8-440f-9c19-29b647adf188",
+            "created": "2025-11-11T22:56:06.158578Z",
+            "modified": "2025-11-11T22:56:06.158578Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2edeeb4e-145c-43ab-aa4c-c8fd29e21102",
+            "target_ref": "indicator--09c74cb1-d815-4617-a596-c3a99f21a517"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--edef8ba2-a56d-40b7-a7b2-9a6eee64009f",
+            "created": "2025-11-11T22:56:06.15884Z",
+            "modified": "2025-11-11T22:56:06.15884Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6",
+            "target_ref": "indicator--09c74cb1-d815-4617-a596-c3a99f21a517"
+        },
+        {
+            "type": "malware",
+            "spec_version": "2.1",
+            "id": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.688984Z",
+            "modified": "2025-11-11T22:57:49.688984Z",
+            "name": "cheeky chipmunk",
+            "description": "A malicious Microsoft Windows Remote Procedure Call (RPC) server, installed via a PowerShell loader. Its functionality includes execution of shell commands and upload/download of files, enabling data exfiltration and providing a vector for additional payloads. It establishes command and control (C2) using a separate RPC client over named pipes and maintains persistence by creating a Windows service. It employs defense evasion techniques like AMSI avoidance and layered obfuscation, encryption, and compression.",
+            "malware_types": [
+                "remote-access-trojan",
+                "backdoor",
+                "downloader"
+            ],
+            "is_family": true
+        },
+        {
+            "type": "threat-actor",
+            "spec_version": "2.1",
+            "id": "threat-actor--6f42468e-baa7-4223-9f5a-53bfe8f5e25c",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.689353Z",
+            "modified": "2025-11-11T22:57:49.689353Z",
+            "name": "Turla",
+            "description": "A threat actor mentioned in the report due to their known, regular use of single-byte XOR-encoding with the key 0x55 for obfuscating imported function names, a technique also utilized by the Cheeky Chipmunk malware."
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b76587c3-4f65-4516-a001-c68da77e4cc2",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.689798Z",
+            "modified": "2025-11-11T22:57:49.689798Z",
+            "name": "Create or Modify System Process: Windows Service",
+            "description": "Cheeky Chipmunk maintains persistence by adding a new Windows service (pnrssp) for the RPC server component.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1543/003",
+                    "external_id": "T1543.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--09759e33-dd89-498e-ad65-394b020da07d",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.690448Z",
+            "modified": "2025-11-11T22:57:49.690448Z",
+            "name": "Command and Scripting Interpreter: PowerShell",
+            "description": "Open-source PowerShell runner code is embedded in the Cheeky Chipmunk RPC server and used to invoke commands stored in the registry.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/001",
+                    "external_id": "T1059.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--94ee5cfa-a47c-45c8-ba88-30ff9df52cbf",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.6909Z",
+            "modified": "2025-11-11T22:57:49.6909Z",
+            "name": "Command and Scripting Interpreter: Windows Command Shell",
+            "description": "The Cheeky Chipmunk RPC server can be sent Windows shell commands by the RPC client.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1059/003",
+                    "external_id": "T1059.003"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b0f81806-378a-4ea3-9dda-8b504c54df1f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.691275Z",
+            "modified": "2025-11-11T22:57:49.691275Z",
+            "name": "Inter-Process Communication: Component Object Model",
+            "description": "The Cheeky Chipmunk RPC server uses COM to call embedded PowerShell runner code.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1559/001",
+                    "external_id": "T1559.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--b3742e80-b4a9-4305-ba18-e4f514b61d58",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.691724Z",
+            "modified": "2025-11-11T22:57:49.691724Z",
+            "name": "Windows Management Instrumentation",
+            "description": "Cheeky Chipmunk implements an RPC server to receive tasking.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1047",
+                    "external_id": "T1047"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--43290b31-ac33-42c3-a4af-e22ac0750d9f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.69208Z",
+            "modified": "2025-11-11T22:57:49.69208Z",
+            "name": "Deobfuscate/Decode Files or Information",
+            "description": "The Cheeky Chipmunk loader uses built-in and open-source PowerShell libraries to Base64-decode, 3DES-decrypt, and GZIP-decompress the RPC server.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1140",
+                    "external_id": "T1140"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--e5f73a11-eb2a-4072-9644-2430fbe69b8a",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.692428Z",
+            "modified": "2025-11-11T22:57:49.692428Z",
+            "name": "Indicator Removal on Host: File Deletion",
+            "description": "The Cheeky Chipmunk loader is deleted from disk once the RPC server is running. Cheeky Chipmunk deletes the log file containing details of its RPC server\u2019s execution, following exfiltration.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1070/004",
+                    "external_id": "T1070.004"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--ecff146c-22cb-400f-9bca-a211788f1c7c",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.692807Z",
+            "modified": "2025-11-11T22:57:49.692807Z",
+            "name": "Masquerading: Match Legitimate Name or Location",
+            "description": "Cheeky Chipmunk masquerades as a legitimate Windows service path (netsvcs) to maintain persistence. The Cheeky Chipmunk log file (NTuser.log) is named similarly to a legitimate Windows log file (NTuser.dat.log). The Cheeky Chipmunk service (Peer Name Resolution Provider) is named similarly to a legitimate Windows service (Peer Name Resolution Protocol).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1036/005",
+                    "external_id": "T1036.005"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--4e330d4c-d44b-4eed-9057-32c8c9c2ebe8",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.693172Z",
+            "modified": "2025-11-11T22:57:49.693172Z",
+            "name": "Obfuscated Files or Information",
+            "description": "Cheeky Chipmunk\u2019s import names are obfuscated by XORing with 0x55.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1027",
+                    "external_id": "T1027"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--a1ac7531-1a4b-431a-a074-28afd01d565f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.693521Z",
+            "modified": "2025-11-11T22:57:49.693521Z",
+            "name": "Impair Defenses: Disable or Modify Tools",
+            "description": "Cheeky Chipmunk implements an AMSI bypass technique.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1562/001",
+                    "external_id": "T1562.001"
+                }
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--8290ce26-b0b4-4d48-84c8-f39baa37926f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.693887Z",
+            "modified": "2025-11-11T22:57:49.693887Z",
+            "name": "Data from Local System",
+            "description": "Cheeky Chipmunk can be tasked to collect files.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1005",
+                    "external_id": "T1005"
+                }
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--92bcc395-ea9c-4564-ac16-3d78e044296b",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.694248Z",
+            "modified": "2025-11-11T22:57:49.694248Z",
+            "name": "CheekyChipmunk_command_argument_check",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_command_argument_check\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Cheeky Chipmunk argument checking code to\ndetermine command to process. \"\n        date = \"2022-01-24\"\n        hash1 = \"7e4a6bac09ad214e98801bc199f96c265d7b6b48\"\n\n    strings:\n\n$1 = {66 83 F8 70 75 ?? C7 85 ?? FD FF FF 01 00 00 00 EB ??}\n\n//cmp     ax, 70h ; 'p'\n//jnz     short loc_401C39\n//mov     [ebp+Switch], 1\n//jmp     short loc_401C7F\n\n$2 = {66 83 F8 63 75 ?? C7 85 ?? FD FF FF 03 00 00 00 EB ??}\n\n//cmp     ax, 63h ; 'c'\n//jnz     short loc_401C4B\n//mov     [ebp+Switch], 3\n//jmp     short loc_401C7F\n\n$3 = {66 83 F8 67 75 ?? C7 85 ?? FD FF FF 02 00 00 00 EB ??}\n\n//cmp     ax, 67h ; 'g'\n//jnz     short loc_401C5D\n//mov     [ebp+Switch], 2\n//jmp     short loc_401C7F\n\n$4 = {66 83 F8 72 75 ?? C7 85 ?? FD FF FF 01 00 00 00 EB ??}\n\n//cmp     ax, 72h ; 'r'\n//jnz     short loc_401C6F\n//mov     [ebp+var_300], 1\n//jmp     short loc_401C7F02}\n\n    condition:\n\nuint16(0) == 0x5A4D and\nuint32(uint32(0x3c)) == 0x00004550 and\nall of them\n\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.694236Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.694527Z",
+            "modified": "2025-11-11T22:57:49.694527Z",
+            "name": "CheekyChipmunk_GUID_bytes",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_GUID_bytes\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects the Cheeky Chipmunk RPC GUID\"\n        date = \"2022-01-24\"\n        hash1 = \"52c8cbd0545caab7596c1382c7fc5a479209851d\"\n        hash2 = \"865f4c457bf86ff03456de828044f6ed6d6cf96a\"\n        hash3 = \"5d5825b14377c5e5fe96816dd72a90bd13dc9fc8\"\n        hash4 = \"7e4a6bac09ad214e98801bc199f96c265d7b6b48\"\n\n    strings:\n        $GUID = {64 25 F0 7D 1E C3 68 4A A6 88 72 D0 EC 84 07 46}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.69452Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c8b17e55-a38a-4d82-b540-e2b68d855a1b",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.694817Z",
+            "modified": "2025-11-11T22:57:49.694817Z",
+            "name": "CheekyChipmunk_control_handler_code",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_control_handler_code\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects the Cheeky Chipmunk RPC service control\nhandler\"\n        date = \"2022-01-24\"\n        hash1 = \"52c8cbd0545caab7596c1382c7fc5a479209851d\"\n\n    strings:\n        $servicecode = {41 B8 01 00 00 00 33 D2 B9 03 00 00 00 E8 ?? ??\n?? ?? E8 ?? ?? ?? ?? 45 33 C0 33 D2 B9 01 00 00 00 E8 ?? ?? ?? ?? EB ??\n41 B8 01 00 00 00 33 D2 B9 06 00 00 00 E8 ?? ?? ?? ?? 45 33 C0 33 D2 B9\n07 00 00 00 E8 ?? ?? ?? ?? EB ?? 41 B8 01 00 00 00 33 D2 B9 05 00 00 00\nE8 ?? ?? ?? ?? 45 33 C0 33 D2 B9 04 00 00 00 E8 ?? ?? ?? ??}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.694808Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--13e0ac73-7ca2-4b7b-9591-f676264d6176",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.695074Z",
+            "modified": "2025-11-11T22:57:49.695074Z",
+            "name": "CheekyChipmunk_logfilename_stackstring",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_logfilename_stackstring\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects the stack string for the Cheeky Chipmunk\nlog file name\"\n        date = \"2022-01-24\"\n        hash1 = \"52c8cbd0545caab7596c1382c7fc5a479209851d\"\n\n    strings:\n        $name = {B8 5C 00 00 00 66 89 84 24 ?? 00 00 00 B8 4E 00 00 00 66\n89 84 24 ?? 00 00 00 B8 54 00 00 00 66 89 84 24 ?? 00 00 00 B8 55 00 00\n00 66 89 84 24 ?? 00 00 00 B8 73 00 00 00 66 89 84 24 ?? 00 00 00 B8 65\n00 00 00 66 89 84 24 ?? 00 00 00 B8 72 00 00 00 66 89 84 24 ?? 00 00 00\nB8 2E 00 00 00 66 89 84 24 ?? 00 00 00 B8 6C 00 00 00 66 89 84 24 ?? 00\n00 00 B8 6F 00 00 00 66 89 84 24 ?? 00 00 00 B8 67 00 00 00 66 89 84 24\n?? 00 00 00 33 C0 66 89 84 24 ?? 00 00 00}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.695066Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--864f98c4-b662-4337-a3a8-b80a016aceb4",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.695337Z",
+            "modified": "2025-11-11T22:57:49.695337Z",
+            "name": "CheekyChipmunk_amsi_avoidance_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_amsi_avoidance_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Cheeky Chipmunk loader AMSI avoidance\nstrings\"\n        date = \"2022-01-24\"\n        hash1 = \"50c0bf9479efc93fa9cf1aa99bdca923273b71a1\"\n    strings:\n        $functionname = \"FindAmsiFun\"\n        $x86found = \"x32 protection detected\"\n        $x64found = \"x64 protection detected\"\n\n    condition:\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.695329Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2077f28c-9eb7-4757-aea4-cb68e35c29ee",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.695605Z",
+            "modified": "2025-11-11T22:57:49.695605Z",
+            "name": "CheekyChipmunk_namedpipe_stackstring",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_namedpipe_stackstring\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects stack string for Cheeky Chipmunk named\npipe\"\n        date = \"2022-01-24\"\n        hash1 = \"52c8cbd0545caab7596c1382c7fc5a479209851d\"\n    strings:\n        $stackstring = {B8 5C 00 00 00 66 89 84 24 80 00 00 00 B8 70 00\n00 00 66 89 84 24 82 00 00 00 B8 69 00 00 00 66 89 84 24 84 00 00 00 B8\n70 00 00 00 66 89 84 24 86 00 00 00 B8 65 00 00 00 66 89 84 24 88 00 00\n00 B8 5C 00 00 00 66 89 84 24 8A 00 00 00 B8 70 00 00 00 66 89 84 24 8C\n00 00 00 B8 6E 00 00 00 66 89 84 24 8E 00 00 00 B8 72 00 00 00 66 89 84\n24 90 00 00 00 B8 73 00 00 00 66 89 84 24 92 00 00 00 B8 76 00 00 00 66\n89 84 24 94 00 00 00 B8 63 00 00 00 66 89 84 24 96 00 00 00 33 C0 66 89\n84 24 98 00 00 00}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.695585Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--05b7953c-a068-461a-9cae-7706f8035c9f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.695886Z",
+            "modified": "2025-11-11T22:57:49.695886Z",
+            "name": "CheekyChipmunk_xor_function_code",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_xor_function_code\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Cheeky Chipmunk XOR function\"\n        date = \"2022-01-24\"\n        hash1 = \"52c8cbd0545caab7596c1382c7fc5a479209851d\"\n\n    strings:\n        $funccode = {8B 44 24 04 48 8B 4C 24 20 0F B6 04 01 8B 0C 24 03\nC8 8B C1 89 04 24 8B 44 24 04 48 8B 4C 24 20 0F B6 04 01 83 F0 55 8B 4C\n24 04 48 8B 54 24 20 88 04 0A B8 01 00 00 00 48 6B C0 00 48 8B 4C 24 20\n0F B6 04 01 8B 0C 24 03 C8 8B C1 89 04 24}\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.695878Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4782a24d-05d6-49be-aa07-beb946ca4de8",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.696139Z",
+            "modified": "2025-11-11T22:57:49.696139Z",
+            "name": "CheekyChipmunk_print_format_strings",
+            "description": "YARA rule to detect related activity.",
+            "pattern": "rule CheekyChipmunk_print_format_strings\n{\n    meta:\n        author = \"NCSC\"\n        description = \"Detects Cheeky Chipmunk client print format\nstrings\"\n\n    strings:\n        $SN = \"0x%04d: SN %S: \"\n        $RC = \"0x%04d: RC %S: \"\n        $EX = \"0x%04d: EX %S: \"\n        $SNSuccess = \"SN %S: success\"\n        $RCSuccess = \"RC %S: success\"\n\n    condition:\n        uint16(0) == 0x5A4D and\n        uint32(uint32(0x3c)) == 0x00004550 and\n        all of them\n}",
+            "pattern_type": "yara",
+            "valid_from": "2025-11-11T22:57:49.696132Z"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3624deda-7d99-4d0d-89f4-63bdbfa49dbc",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.696931Z",
+            "modified": "2025-11-11T22:57:49.696931Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--b76587c3-4f65-4516-a001-c68da77e4cc2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--22a041cb-d82a-4282-bbac-e981111509d4",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.697446Z",
+            "modified": "2025-11-11T22:57:49.697446Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--09759e33-dd89-498e-ad65-394b020da07d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb6e579e-d62d-439e-9687-7a2a6ec2ff58",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.697764Z",
+            "modified": "2025-11-11T22:57:49.697764Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--94ee5cfa-a47c-45c8-ba88-30ff9df52cbf"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6895f7be-b7d5-4f48-bad1-718b08c0b5fb",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.698023Z",
+            "modified": "2025-11-11T22:57:49.698023Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--b0f81806-378a-4ea3-9dda-8b504c54df1f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8d8dc759-c346-45fd-8d05-0bbecc2e3538",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.698293Z",
+            "modified": "2025-11-11T22:57:49.698293Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--b3742e80-b4a9-4305-ba18-e4f514b61d58"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7cfb1c09-5d3b-4d4c-b670-8c2810507998",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.698551Z",
+            "modified": "2025-11-11T22:57:49.698551Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--43290b31-ac33-42c3-a4af-e22ac0750d9f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--092e358f-fb30-4dc6-82c5-4a7aa4b1f751",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.698821Z",
+            "modified": "2025-11-11T22:57:49.698821Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--e5f73a11-eb2a-4072-9644-2430fbe69b8a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--995db74b-5985-430a-aa87-5710d8e90331",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.699081Z",
+            "modified": "2025-11-11T22:57:49.699081Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--ecff146c-22cb-400f-9bca-a211788f1c7c"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--26549454-9e33-483a-8b7a-bc0ad02c2f4e",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.69934Z",
+            "modified": "2025-11-11T22:57:49.69934Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--4e330d4c-d44b-4eed-9057-32c8c9c2ebe8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9c5d8ca9-41c0-469c-8c10-bed71bef352d",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.699607Z",
+            "modified": "2025-11-11T22:57:49.699607Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--a1ac7531-1a4b-431a-a074-28afd01d565f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6e84ca0b-133a-4284-bf74-c744127ab5ac",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.700023Z",
+            "modified": "2025-11-11T22:57:49.700023Z",
+            "relationship_type": "uses",
+            "source_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+            "target_ref": "attack-pattern--8290ce26-b0b4-4d48-84c8-f39baa37926f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--26b71f03-5317-45c3-ad50-580a47352009",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.700305Z",
+            "modified": "2025-11-11T22:57:49.700305Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--f7b681c1-87b6-4612-8969-0802cbe7dc04",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--10b65c9f-c01a-495d-bd48-66a037a4ccdc",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.700641Z",
+            "modified": "2025-11-11T22:57:49.700641Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2dd647ca-fa07-49c8-aa4f-6e9d8d5103d5",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9dfea064-2b2b-4eab-a352-3f4ad710e320",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.700931Z",
+            "modified": "2025-11-11T22:57:49.700931Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--577dcf05-59e4-4f9a-8fa2-fc70b453f0b8",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6c15ad5-44c3-40ce-9529-76d678ec0fa0",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.701219Z",
+            "modified": "2025-11-11T22:57:49.701219Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--188f94d2-725c-4bd7-be45-7692bad16f7e",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fe79e9bf-7379-4a04-80a5-cc18c2be517b",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.701672Z",
+            "modified": "2025-11-11T22:57:49.701672Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e8459e5c-85a5-4c07-b5ed-58182e829d4a",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--43b36f15-e347-4d10-b4fb-ca000760654f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.701966Z",
+            "modified": "2025-11-11T22:57:49.701966Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9dcfd794-f294-4aed-9576-bf2d03664075",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--51740b3c-2939-484c-a9b5-b4ad48fd6ac0",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.702229Z",
+            "modified": "2025-11-11T22:57:49.702229Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eec4bf5d-9887-449f-998c-1625fdc213ae",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--db585bff-50dc-42f1-a255-16489040b7a4",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.702478Z",
+            "modified": "2025-11-11T22:57:49.702478Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--e6ea2684-06bf-4a4a-8b68-40a4439194b6",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f7b3dff9-7428-4cfa-ae7b-1aa72d634a54",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.702769Z",
+            "modified": "2025-11-11T22:57:49.702769Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--bb3f5663-c4c0-4285-b730-4ee6f6c23190",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f4a69e7-62af-4779-8d78-ba0fb95371dd",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.703027Z",
+            "modified": "2025-11-11T22:57:49.703027Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--6b240f39-2bdf-49dc-9c9a-5556d28bf76a",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--70d93b74-0196-4548-8acb-9d1072c04825",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.703443Z",
+            "modified": "2025-11-11T22:57:49.703443Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--b615d640-647a-4305-a197-2fce9c9962fb",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2157f070-e442-4f21-9dd6-950683a7a68e",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.703794Z",
+            "modified": "2025-11-11T22:57:49.703794Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--afb54442-22b7-459a-8f4e-13cd8328c3f6",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2df379c4-1d7e-445e-98e8-b418d6523538",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.704137Z",
+            "modified": "2025-11-11T22:57:49.704137Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e983e088-0c55-4cc7-991c-4bc38b0f5963",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.704551Z",
+            "modified": "2025-11-11T22:57:49.704551Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--a7f4ddee-c816-4937-b354-59224ceb3d0f",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--19e66758-feb9-41d1-a554-968ef94046eb",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.704833Z",
+            "modified": "2025-11-11T22:57:49.704833Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--33262c63-fa33-4910-a295-11583ea35a33",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--48c4a4bd-eee1-43bb-9c18-958bcaeedbad",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.705083Z",
+            "modified": "2025-11-11T22:57:49.705083Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--43cc6f7a-41dd-46e1-8bc5-3294954bc948",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.705345Z",
+            "modified": "2025-11-11T22:57:49.705345Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--ee1ea803-21bb-4525-99a8-989186d7e964",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--156c5691-412d-42a0-a2ce-62cafdb195a0",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.705611Z",
+            "modified": "2025-11-11T22:57:49.705611Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2c7841de-f636-443d-aee9-41564b7c98f1",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.705882Z",
+            "modified": "2025-11-11T22:57:49.705882Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7646f497-29aa-40cf-a7eb-d0f0ed356207",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.706131Z",
+            "modified": "2025-11-11T22:57:49.706131Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--21a820c6-cfeb-49d4-8c65-5f8a8f12ff94",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.706393Z",
+            "modified": "2025-11-11T22:57:49.706393Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2edeeb4e-145c-43ab-aa4c-c8fd29e21102",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c547f985-eb66-4eb8-9395-5d5ef08d811a",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.706671Z",
+            "modified": "2025-11-11T22:57:49.706671Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--98b92b19-4da1-46a9-ac35-038888200a64",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.706925Z",
+            "modified": "2025-11-11T22:57:49.706925Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--09c74cb1-d815-4617-a596-c3a99f21a517",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8f095f82-7938-4d3a-9d83-32eaf186e9fc",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.707173Z",
+            "modified": "2025-11-11T22:57:49.707173Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--128b95bc-d186-44ad-a626-3d2f6788d075",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.707426Z",
+            "modified": "2025-11-11T22:57:49.707426Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4f31a988-94af-48e3-bbeb-bbe320dbb26e",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.707695Z",
+            "modified": "2025-11-11T22:57:49.707695Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ba12ebfa-816a-4c2a-a984-677b0ed9216b",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.708222Z",
+            "modified": "2025-11-11T22:57:49.708222Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--92bcc395-ea9c-4564-ac16-3d78e044296b",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4c84450e-7a04-49e4-8752-24c0cd5c634f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.708544Z",
+            "modified": "2025-11-11T22:57:49.708544Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--92bcc395-ea9c-4564-ac16-3d78e044296b",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9c0be81d-1139-4b64-b163-4fa6681b530f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.708883Z",
+            "modified": "2025-11-11T22:57:49.708883Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9b3e5499-28d7-4a35-aa1c-199e59da1388",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.709161Z",
+            "modified": "2025-11-11T22:57:49.709161Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--034186c3-c195-422a-b7d8-0dc0b455dd9a",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.709438Z",
+            "modified": "2025-11-11T22:57:49.709438Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "target_ref": "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7a785659-4042-4e51-84e7-d3cd57989d8f",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.709738Z",
+            "modified": "2025-11-11T22:57:49.709738Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "target_ref": "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5718861d-6362-486d-b35b-6029c3294a50",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.710013Z",
+            "modified": "2025-11-11T22:57:49.710013Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+            "target_ref": "indicator--da38dca9-2137-4433-a4c8-edef49198267"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0b018b37-b8ee-4f7d-9da8-dad843b77ca7",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.710321Z",
+            "modified": "2025-11-11T22:57:49.710321Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--c8b17e55-a38a-4d82-b540-e2b68d855a1b",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--955cf27e-9e98-4789-a036-0580d4fbcf57",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.710609Z",
+            "modified": "2025-11-11T22:57:49.710609Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--c8b17e55-a38a-4d82-b540-e2b68d855a1b",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--06c84a7b-e914-4922-92bf-596e6fadc5cb",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.71112Z",
+            "modified": "2025-11-11T22:57:49.71112Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--13e0ac73-7ca2-4b7b-9591-f676264d6176",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4f4bb8f2-d468-4e82-9897-b91656b42f91",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.711392Z",
+            "modified": "2025-11-11T22:57:49.711392Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--13e0ac73-7ca2-4b7b-9591-f676264d6176",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--589dab5f-8df5-4437-97aa-3195750a0874",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.711721Z",
+            "modified": "2025-11-11T22:57:49.711721Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--864f98c4-b662-4337-a3a8-b80a016aceb4",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6325d004-4e8d-4bc9-b8e7-c948bb285cc8",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.711997Z",
+            "modified": "2025-11-11T22:57:49.711997Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--864f98c4-b662-4337-a3a8-b80a016aceb4",
+            "target_ref": "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67b13360-f603-4d2b-8da2-592f6a723d8a",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.712306Z",
+            "modified": "2025-11-11T22:57:49.712306Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--2077f28c-9eb7-4757-aea4-cb68e35c29ee",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d9bc5f48-3e53-46e9-84c0-59ab09819913",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.712576Z",
+            "modified": "2025-11-11T22:57:49.712576Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--2077f28c-9eb7-4757-aea4-cb68e35c29ee",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--769b3086-6205-485c-836d-1d377f9a7d67",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.7129Z",
+            "modified": "2025-11-11T22:57:49.7129Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--05b7953c-a068-461a-9cae-7706f8035c9f",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5584b2ff-2710-41c6-abad-e4b5b716a0aa",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.713186Z",
+            "modified": "2025-11-11T22:57:49.713186Z",
+            "relationship_type": "derived-from",
+            "source_ref": "indicator--05b7953c-a068-461a-9cae-7706f8035c9f",
+            "target_ref": "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c9ff9191-29a5-41d9-9244-6e6a8d46f25e",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.713492Z",
+            "modified": "2025-11-11T22:57:49.713492Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--4782a24d-05d6-49be-aa07-beb946ca4de8",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ec9711d1-c8bd-4eb7-9416-a75e6e4aaafc",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.713999Z",
+            "modified": "2025-11-11T22:57:49.713999Z",
+            "relationship_type": "uses",
+            "source_ref": "threat-actor--6f42468e-baa7-4223-9f5a-53bfe8f5e25c",
+            "target_ref": "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--fb4da18f-5f15-4c7d-8e7d-145b467e7083",
+            "created_by_ref": "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+            "created": "2025-11-11T22:57:49.714486Z",
+            "modified": "2025-11-11T22:57:49.714486Z",
+            "name": "Analisi Malware: Cheeky Chipmunk",
+            "description": "This report contains technical analysis and indicators associated with malware. cheeky chipmunk.",
+            "report_types": [
+                "threat-report"
+            ],
+            "published": "2025-11-11T22:57:49.714475Z",
+            "object_refs": [
+                "identity--7ffa2083-24e9-49d0-bff8-055a779eb8e4",
+                "windows-registry-key--1d296f16-1b52-5f17-b654-b69a98946a84",
+                "windows-registry-key--5bfa8eb1-e1a7-5473-9e55-9f181ccebee4",
+                "windows-registry-key--1305563a-c275-52fc-9db0-559013f9b70b",
+                "windows-registry-key--1f9e6616-06ec-558d-91fd-c4058f53f9ad",
+                "mutex--18e4dbab-6fb1-5a47-9964-b86a85b47e34",
+                "mutex--5c4a863e-6858-50df-8274-77b4a3cbe132",
+                "mutex--67d82dd0-4095-54ee-b004-6929346b7ff5",
+                "mutex--25ff4bf2-5c1d-5bdc-8c14-03585225ba8d",
+                "windows-registry-key--a1ed3b80-30f3-5a76-b97c-fad4113b27ea",
+                "indicator--f7b681c1-87b6-4612-8969-0802cbe7dc04",
+                "indicator--2dd647ca-fa07-49c8-aa4f-6e9d8d5103d5",
+                "indicator--577dcf05-59e4-4f9a-8fa2-fc70b453f0b8",
+                "indicator--188f94d2-725c-4bd7-be45-7692bad16f7e",
+                "indicator--e8459e5c-85a5-4c07-b5ed-58182e829d4a",
+                "indicator--9dcfd794-f294-4aed-9576-bf2d03664075",
+                "indicator--eec4bf5d-9887-449f-998c-1625fdc213ae",
+                "indicator--e6ea2684-06bf-4a4a-8b68-40a4439194b6",
+                "indicator--bb3f5663-c4c0-4285-b730-4ee6f6c23190",
+                "indicator--6b240f39-2bdf-49dc-9c9a-5556d28bf76a",
+                "indicator--b615d640-647a-4305-a197-2fce9c9962fb",
+                "indicator--afb54442-22b7-459a-8f4e-13cd8328c3f6",
+                "indicator--c899edc3-84b0-4480-8a16-6ee05e236dac",
+                "indicator--a7f4ddee-c816-4937-b354-59224ceb3d0f",
+                "indicator--33262c63-fa33-4910-a295-11583ea35a33",
+                "indicator--4cb381a5-5114-4681-bb98-1259f70bbe28",
+                "indicator--ee1ea803-21bb-4525-99a8-989186d7e964",
+                "indicator--356971c3-0de2-45ac-885e-1efc1d6764ac",
+                "indicator--9a4ec9dd-dc54-4a78-b4e7-2122fe49fe44",
+                "indicator--fe644d08-4dd9-4f3b-909f-1629bc4f43b0",
+                "indicator--2edeeb4e-145c-43ab-aa4c-c8fd29e21102",
+                "indicator--2f4c91aa-4da0-4fec-96b2-4e7d9b0788f6",
+                "indicator--09c74cb1-d815-4617-a596-c3a99f21a517",
+                "indicator--86d1f1dc-468e-40f2-ad68-a629032d7783",
+                "indicator--da38dca9-2137-4433-a4c8-edef49198267",
+                "indicator--7e78a6cb-ff7d-485a-b1c0-786501491d79",
+                "relationship--52a1c495-0d08-45a1-ae91-be98158ee83c",
+                "relationship--5b593161-01af-4bc6-af54-f7d9295a5353",
+                "relationship--641b977a-5dfd-4d0c-84d4-b009f75cd2b6",
+                "relationship--b0ba3952-a30c-4105-807f-8d1cadf2b2d4",
+                "relationship--d9a252cd-1317-401c-a36a-a32080a129c6",
+                "relationship--82692e40-b11c-45bd-b61f-83d1db2f011d",
+                "relationship--689c2faf-f1d8-468e-85db-b7c954eb53c6",
+                "relationship--bd6ac97b-5eac-4541-a751-3bfb40a35d78",
+                "relationship--4fc7a0b5-a024-418d-82b6-5895ac7b53b1",
+                "relationship--23af29c2-24cd-44d6-a9b0-b8feed8a40e7",
+                "relationship--eb3b3c78-71ba-4e0d-9030-e8bc6864fd42",
+                "relationship--db17b4be-1416-411f-872d-fb6a738f5525",
+                "relationship--286b4528-019e-444a-9c72-af7b32885d49",
+                "relationship--197432d7-369a-46ee-8238-e57957adf462",
+                "relationship--9061160f-063b-4a67-b15c-01eec479a9b1",
+                "relationship--97284a64-a744-4b89-b787-98c564cae74a",
+                "relationship--73fa1dd0-c9e8-4f62-8a83-15ae7e096b27",
+                "relationship--c3128325-dcff-4159-a490-8756d6761a39",
+                "relationship--decdd0ca-f10d-49d9-b3e2-353d6c3ea85c",
+                "relationship--fdf0e448-fcb2-4887-bb4f-0c07177f1a2b",
+                "relationship--69847285-7154-4182-a796-3b571eaef9e2",
+                "relationship--becaffa3-5e3d-43d2-a34a-9e98c0ce2102",
+                "relationship--99065c66-25b8-440f-9c19-29b647adf188",
+                "relationship--edef8ba2-a56d-40b7-a7b2-9a6eee64009f",
+                "malware--c07b2bc1-7202-4933-bc9f-1e3480795d03",
+                "threat-actor--6f42468e-baa7-4223-9f5a-53bfe8f5e25c",
+                "attack-pattern--b76587c3-4f65-4516-a001-c68da77e4cc2",
+                "attack-pattern--09759e33-dd89-498e-ad65-394b020da07d",
+                "attack-pattern--94ee5cfa-a47c-45c8-ba88-30ff9df52cbf",
+                "attack-pattern--b0f81806-378a-4ea3-9dda-8b504c54df1f",
+                "attack-pattern--b3742e80-b4a9-4305-ba18-e4f514b61d58",
+                "attack-pattern--43290b31-ac33-42c3-a4af-e22ac0750d9f",
+                "attack-pattern--e5f73a11-eb2a-4072-9644-2430fbe69b8a",
+                "attack-pattern--ecff146c-22cb-400f-9bca-a211788f1c7c",
+                "attack-pattern--4e330d4c-d44b-4eed-9057-32c8c9c2ebe8",
+                "attack-pattern--a1ac7531-1a4b-431a-a074-28afd01d565f",
+                "attack-pattern--8290ce26-b0b4-4d48-84c8-f39baa37926f",
+                "indicator--92bcc395-ea9c-4564-ac16-3d78e044296b",
+                "indicator--fe3a1dc3-4832-417c-8a20-690870f6f333",
+                "indicator--c8b17e55-a38a-4d82-b540-e2b68d855a1b",
+                "indicator--13e0ac73-7ca2-4b7b-9591-f676264d6176",
+                "indicator--864f98c4-b662-4337-a3a8-b80a016aceb4",
+                "indicator--2077f28c-9eb7-4757-aea4-cb68e35c29ee",
+                "indicator--05b7953c-a068-461a-9cae-7706f8035c9f",
+                "indicator--4782a24d-05d6-49be-aa07-beb946ca4de8",
+                "relationship--3624deda-7d99-4d0d-89f4-63bdbfa49dbc",
+                "relationship--22a041cb-d82a-4282-bbac-e981111509d4",
+                "relationship--fb6e579e-d62d-439e-9687-7a2a6ec2ff58",
+                "relationship--6895f7be-b7d5-4f48-bad1-718b08c0b5fb",
+                "relationship--8d8dc759-c346-45fd-8d05-0bbecc2e3538",
+                "relationship--7cfb1c09-5d3b-4d4c-b670-8c2810507998",
+                "relationship--092e358f-fb30-4dc6-82c5-4a7aa4b1f751",
+                "relationship--995db74b-5985-430a-aa87-5710d8e90331",
+                "relationship--26549454-9e33-483a-8b7a-bc0ad02c2f4e",
+                "relationship--9c5d8ca9-41c0-469c-8c10-bed71bef352d",
+                "relationship--6e84ca0b-133a-4284-bf74-c744127ab5ac",
+                "relationship--26b71f03-5317-45c3-ad50-580a47352009",
+                "relationship--10b65c9f-c01a-495d-bd48-66a037a4ccdc",
+                "relationship--9dfea064-2b2b-4eab-a352-3f4ad710e320",
+                "relationship--a6c15ad5-44c3-40ce-9529-76d678ec0fa0",
+                "relationship--fe79e9bf-7379-4a04-80a5-cc18c2be517b",
+                "relationship--43b36f15-e347-4d10-b4fb-ca000760654f",
+                "relationship--51740b3c-2939-484c-a9b5-b4ad48fd6ac0",
+                "relationship--db585bff-50dc-42f1-a255-16489040b7a4",
+                "relationship--f7b3dff9-7428-4cfa-ae7b-1aa72d634a54",
+                "relationship--7f4a69e7-62af-4779-8d78-ba0fb95371dd",
+                "relationship--70d93b74-0196-4548-8acb-9d1072c04825",
+                "relationship--2157f070-e442-4f21-9dd6-950683a7a68e",
+                "relationship--2df379c4-1d7e-445e-98e8-b418d6523538",
+                "relationship--e983e088-0c55-4cc7-991c-4bc38b0f5963",
+                "relationship--19e66758-feb9-41d1-a554-968ef94046eb",
+                "relationship--48c4a4bd-eee1-43bb-9c18-958bcaeedbad",
+                "relationship--43cc6f7a-41dd-46e1-8bc5-3294954bc948",
+                "relationship--156c5691-412d-42a0-a2ce-62cafdb195a0",
+                "relationship--2c7841de-f636-443d-aee9-41564b7c98f1",
+                "relationship--7646f497-29aa-40cf-a7eb-d0f0ed356207",
+                "relationship--21a820c6-cfeb-49d4-8c65-5f8a8f12ff94",
+                "relationship--c547f985-eb66-4eb8-9395-5d5ef08d811a",
+                "relationship--98b92b19-4da1-46a9-ac35-038888200a64",
+                "relationship--8f095f82-7938-4d3a-9d83-32eaf186e9fc",
+                "relationship--128b95bc-d186-44ad-a626-3d2f6788d075",
+                "relationship--4f31a988-94af-48e3-bbeb-bbe320dbb26e",
+                "relationship--ba12ebfa-816a-4c2a-a984-677b0ed9216b",
+                "relationship--4c84450e-7a04-49e4-8752-24c0cd5c634f",
+                "relationship--9c0be81d-1139-4b64-b163-4fa6681b530f",
+                "relationship--9b3e5499-28d7-4a35-aa1c-199e59da1388",
+                "relationship--034186c3-c195-422a-b7d8-0dc0b455dd9a",
+                "relationship--7a785659-4042-4e51-84e7-d3cd57989d8f",
+                "relationship--5718861d-6362-486d-b35b-6029c3294a50",
+                "relationship--0b018b37-b8ee-4f7d-9da8-dad843b77ca7",
+                "relationship--955cf27e-9e98-4789-a036-0580d4fbcf57",
+                "relationship--06c84a7b-e914-4922-92bf-596e6fadc5cb",
+                "relationship--4f4bb8f2-d468-4e82-9897-b91656b42f91",
+                "relationship--589dab5f-8df5-4437-97aa-3195750a0874",
+                "relationship--6325d004-4e8d-4bc9-b8e7-c948bb285cc8",
+                "relationship--67b13360-f603-4d2b-8da2-592f6a723d8a",
+                "relationship--d9bc5f48-3e53-46e9-84c0-59ab09819913",
+                "relationship--769b3086-6205-485c-836d-1d377f9a7d67",
+                "relationship--5584b2ff-2710-41c6-abad-e4b5b716a0aa",
+                "relationship--c9ff9191-29a5-41d9-9244-6e6a8d46f25e",
+                "relationship--ec9711d1-c8bd-4eb7-9416-a75e6e4aaafc"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
